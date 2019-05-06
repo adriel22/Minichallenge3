@@ -7,7 +7,7 @@
 //
 
 import XCTest
-
+// swiftlint:disable all
 class Minichallenge3UITests: XCTestCase {
 
     override func setUp() {
