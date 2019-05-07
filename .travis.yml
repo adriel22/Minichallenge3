@@ -2,7 +2,7 @@ language:
   - swift
 osx_image: xcode10.1
 script:
-  - xcodebuild -scheme SwiftExample -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone X,OS=12.1' build test
+  - xcodebuild -scheme Minichallenge3 -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone X,OS=12.1' build test
 
 #language: swift
 #before_install: pod install
