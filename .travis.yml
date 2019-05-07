@@ -1,6 +1,6 @@
 
 language: swift
-before_install: pod install
+#before_install: pod install
 xcode_project: Minichallenge3.xcodeproj
 xcode_scheme: Minichallenge3Tests
 xcode_destination: platform=iOS Simulator,OS=12.1,name=iPhone 8
