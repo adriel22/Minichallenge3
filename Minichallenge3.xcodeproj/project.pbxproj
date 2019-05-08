@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		C77E46C789F9B2BADE16D712 /* Pods_Minichallenge3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CF4D23D356FA463D37FC974 /* Pods_Minichallenge3.framework */; };
+		E3C030AC2282F19500AD53E0 /* HistoryGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030AB2282F19500AD53E0 /* HistoryGraph.swift */; };
+		E3C030AE2282F1B500AD53E0 /* HistoryNodeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030AD2282F1B400AD53E0 /* HistoryNodeProtocol.swift */; };
+		E3C030B02282F1C500AD53E0 /* HistoryNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030AF2282F1C500AD53E0 /* HistoryNode.swift */; };
+		E3C030B22282F1E300AD53E0 /* HistoryShortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B12282F1E300AD53E0 /* HistoryShortcut.swift */; };
+		E3C030B42282F1F300AD53E0 /* HistoryConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B32282F1F300AD53E0 /* HistoryConnection.swift */; };
 		FCB3548E228065AF00AB7ED2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB3548D228065AF00AB7ED2 /* AppDelegate.swift */; };
 		FCB35490228065AF00AB7ED2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB3548F228065AF00AB7ED2 /* ViewController.swift */; };
 		FCB35493228065AF00AB7ED2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCB35491228065AF00AB7ED2 /* Main.storyboard */; };
@@ -40,6 +45,11 @@
 		3CF4D23D356FA463D37FC974 /* Pods_Minichallenge3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Minichallenge3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4405664E379635FBB9519A12 /* Pods-Minichallenge3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Minichallenge3.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Minichallenge3/Pods-Minichallenge3.debug.xcconfig"; sourceTree = "<group>"; };
 		B20FF8B7118109CF1BB19056 /* Pods-Minichallenge3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Minichallenge3.release.xcconfig"; path = "Pods/Target Support Files/Pods-Minichallenge3/Pods-Minichallenge3.release.xcconfig"; sourceTree = "<group>"; };
+		E3C030AB2282F19500AD53E0 /* HistoryGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryGraph.swift; sourceTree = "<group>"; };
+		E3C030AD2282F1B400AD53E0 /* HistoryNodeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryNodeProtocol.swift; sourceTree = "<group>"; };
+		E3C030AF2282F1C500AD53E0 /* HistoryNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryNode.swift; sourceTree = "<group>"; };
+		E3C030B12282F1E300AD53E0 /* HistoryShortcut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryShortcut.swift; sourceTree = "<group>"; };
+		E3C030B32282F1F300AD53E0 /* HistoryConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryConnection.swift; sourceTree = "<group>"; };
 		FCB3548A228065AF00AB7ED2 /* Minichallenge3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Minichallenge3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCB3548D228065AF00AB7ED2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FCB3548F228065AF00AB7ED2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -91,6 +101,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E3C030AA2282F14700AD53E0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E3C030AB2282F19500AD53E0 /* HistoryGraph.swift */,
+				E3C030AD2282F1B400AD53E0 /* HistoryNodeProtocol.swift */,
+				E3C030AF2282F1C500AD53E0 /* HistoryNode.swift */,
+				E3C030B12282F1E300AD53E0 /* HistoryShortcut.swift */,
+				E3C030B32282F1F300AD53E0 /* HistoryConnection.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		E63AF8B70B6E719FFBCF5BDE /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +147,7 @@
 		FCB3548C228065AF00AB7ED2 /* Minichallenge3 */ = {
 			isa = PBXGroup;
 			children = (
+				E3C030AA2282F14700AD53E0 /* Models */,
 				FCB3548D228065AF00AB7ED2 /* AppDelegate.swift */,
 				FCB3548F228065AF00AB7ED2 /* ViewController.swift */,
 				FCB35491228065AF00AB7ED2 /* Main.storyboard */,
@@ -330,7 +353,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3C030B22282F1E300AD53E0 /* HistoryShortcut.swift in Sources */,
+				E3C030AE2282F1B500AD53E0 /* HistoryNodeProtocol.swift in Sources */,
 				FCB35490228065AF00AB7ED2 /* ViewController.swift in Sources */,
+				E3C030B02282F1C500AD53E0 /* HistoryNode.swift in Sources */,
+				E3C030B42282F1F300AD53E0 /* HistoryConnection.swift in Sources */,
+				E3C030AC2282F19500AD53E0 /* HistoryGraph.swift in Sources */,
 				FCB3548E228065AF00AB7ED2 /* AppDelegate.swift in Sources */,
 				FCB35496228065AF00AB7ED2 /* Minichallenge3.xcdatamodeld in Sources */,
 			);
