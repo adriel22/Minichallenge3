@@ -43,19 +43,18 @@ class HistoryGraph: CustomStringConvertible {
                        withTitle title: String) {
         
         /*
-         se existe conexao origen-desitino nao pode
+         if there is a connection origin-destiny, it stops
          
-         se o destino tem pai, cria shortcut
+         if the destiny has a parent, it create a shortcut
+
+         if there is a connection "backing", it create a shortcut
          
-         se existe uma conexao "voltando", cria shortcut
+         if the destiny has no parent neither connections, move the destiny node to origins bellow and connect them.
          
-         se o destino nao tem pai nem filhos, move o destino para baixo dele, liga
+         if the destiny has no parents, but has connections, create a shortcut
          
-         se o destino nao tem pai, mas tem filhos, cria shortcut
-         
-         se nao tem pai, tem filhos e esta na linha de baixo, liga
+         if there is no parent and connections but the destiny is bellow the origin, connect them.
          */
-        
 
         guard !checkConnection(fromNode1: originNode, toNode2: destinyNode) else {
             return
@@ -65,8 +64,8 @@ class HistoryGraph: CustomStringConvertible {
             let connection = HistoryConnection(destinyNode: destinyNode, title: title)
 
             if destinyNode.connections.count == 0 {
-                //move destino para em baixo da origem e liga a linha
-
+                
+                //move the destiny to bellow the origin
                 let destinyNodeNewLinePosition = originNode.positionY + 1
                 var destinyNodeNewColPosition: Int
 
@@ -77,16 +76,17 @@ class HistoryGraph: CustomStringConvertible {
                         toPositionX: destinyNodeNewColPosition,
                         andPositionY: destinyNodeNewLinePosition
                     )
-
+                    
+                    //connect them
                     originNode.connections.append(connection)
                     destinyNode.parent = originNode
                 }
             } else if destinyNode.positionY == originNode.positionY + 1 {
-                //liga linha
+                //connect them
                 originNode.connections.append(connection)
                 destinyNode.parent = originNode
             } else {
-                //cria shortcut
+                //create the shortcut
                 addShortcut(fromNode: originNode, toNode: destinyNode)
             }
         } else {
@@ -126,6 +126,13 @@ class HistoryGraph: CustomStringConvertible {
 
         nodes.append(node)
 
+        addBordersToNode(node)
+    }
+
+    /// Add lines and columns in the node sides if it is in the grid border
+    ///
+    /// - Parameter node: the target node
+    private func addBordersToNode(_ node: HistoryNodeProtocol) {
         if node.positionX == grid.graphWidth - 1 {
             grid.addColumToGrid()
         }
@@ -160,10 +167,22 @@ class HistoryGraph: CustomStringConvertible {
 
     }
 
+    /// It checks the connection between two nodes
+    ///
+    /// - Parameters:
+    ///   - node1: the first node
+    ///   - node2: second node
+    /// - Returns: true if they are connected, false if not
     private func checkConnectionBetween(node1: HistoryNode, andNode2 node2: HistoryNode) -> Bool {
         return checkConnection(fromNode1: node1, toNode2: node2) || checkConnection(fromNode1: node2, toNode2: node1)
     }
-
+    
+    ///  Check if the node1 is connected to the node2
+    ///
+    /// - Parameters:
+    ///   - node1: the first node
+    ///   - node2: the second node
+    /// - Returns: true if it is connected, false if not
     private func checkConnection(fromNode1 node1: HistoryNode, toNode2 node2: HistoryNode) -> Bool {
         for connection in node1.connections {
             if let destinyNode = connection.destinyNode, destinyNode === node2 {

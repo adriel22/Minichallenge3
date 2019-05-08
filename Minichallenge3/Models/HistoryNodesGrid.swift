@@ -49,6 +49,7 @@ class HistoryNodesGrid: CustomStringConvertible {
         self.graphHeight = height
     }
 
+    /// add a column to the begin of the grid
     func addColumToGridBegin() {
         for lineIndex in 0..<graphHeight {
             grid[lineIndex].insert(nil, at: 0)
@@ -61,6 +62,7 @@ class HistoryNodesGrid: CustomStringConvertible {
         graphWidth += 1
     }
 
+    /// add a column to the end of the grid
     func addColumToGrid() {
         for lineIndex in 0..<graphHeight {
             grid[lineIndex].append(nil)
@@ -69,12 +71,20 @@ class HistoryNodesGrid: CustomStringConvertible {
         graphWidth += 1
     }
 
+    /// add a line in the vertical end of the grid
     func addLineToGrid() {
 
         grid.append([HistoryNodeProtocol?].init(repeating: nil, count: graphWidth))
         graphHeight += 1
     }
 
+
+    /// Move a node to the given position. Only works if it parent is nill, and it has no connections.
+    ///
+    /// - Parameters:
+    ///   - node: the target node
+    ///   - positionX: position in horizontal axis
+    ///   - positionY: position in the vertical axis
     func moveNodeToPosition(node: HistoryNodeProtocol,
                             toPositionX positionX: Int,
                             andPositionY positionY: Int) {
