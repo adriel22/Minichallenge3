@@ -8,9 +8,10 @@
 
 import Foundation
 
-protocol HistoryNodeProtocol: AnyObject {
-    var resume: String { get set }
-    var text: String { get set }
+protocol HistoryNodeProtocol: AnyObject, CustomStringConvertible {
+    var parent: HistoryNodeProtocol? { get set }
+    var resume: String? { get set }
+    var text: String? { get set }
     var positionX: Int { get set }
     var positionY: Int { get set }
 }

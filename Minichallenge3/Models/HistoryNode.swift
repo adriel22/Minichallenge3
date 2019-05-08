@@ -11,12 +11,16 @@ import Foundation
 class HistoryNode: HistoryNodeProtocol {
     var positionX: Int
     var positionY: Int
-    var resume: String
-    var text: String
+    var resume: String?
+    var text: String?
 
     weak var parent: HistoryNodeProtocol?
     var shortcuts: [HistoryShortcut] = []
     var connections: [HistoryConnection] = []
+
+    var description: String {
+        return "Resume: \(self.resume ?? "None"), Position: (x: \(positionX), y: \(positionY)"
+    }
 
     /// Initialize the node
     ///

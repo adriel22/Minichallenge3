@@ -8,21 +8,46 @@
 
 import Foundation
 
-struct HistoryGraph {
-    weak var root: HistoryNodeProtocol?
-    var nodes: [HistoryNodeProtocol]
+struct HistoryGraph: CustomStringConvertible {
+
+    var nodes: [HistoryNodeProtocol] = []
     var historyName: String
     var sinopse: String
     var graphWidth: Int
     var graphHeight: Int
+
+    var description: String {
+        var description = ""
+        
+        for node in nodes {
+            description += node.description
+        }
+
+        return ""
+    }
+    
+    init(withName name: String, sinopse: String, width: Int, andHeight height: Int) {
+        self.historyName = name
+        self.sinopse = sinopse
+        self.graphWidth = width
+        self.graphHeight = height
+    }
 
     /// Adds a connection between two nodes
     ///
     /// - Parameters:
     ///   - originNode: the origin node
     ///   - destinyNode: the destiny node
-    func addConnection(fromNode originNode: HistoryNodeProtocol, toNode destinyNode: HistoryNodeProtocol) {
-        
+    func addConnection(fromNode originNode: HistoryNodeProtocol, toNode destinyNode: HistoryNodeProtocol, withTitle title: String) {
+
+        guard let originNode = originNode as? HistoryNode else {
+            return
+        }
+
+        let connection = HistoryConnection(destinyNode: destinyNode, title: title)
+
+        originNode.connections.append(connection)
+        destinyNode.parent = originNode
     }
 
     /// add a shortcut to a node
@@ -31,21 +56,27 @@ struct HistoryGraph {
     ///   - originNode: the shortcut`s parent node
     ///   - destinyNode: the node represented by the shortcut
     func addShortcut(fromNode originNode: HistoryNodeProtocol, toNode destinyNode: HistoryNodeProtocol) {
-        
+
     }
 
     /// add a node to the graph
     ///
     /// - Parameter node: the node
-    func addNode(_ node: HistoryNodeProtocol) {
-        
+    mutating func addNode(_ node: HistoryNodeProtocol) {
+        guard !nodes.contains(where: { currentNode in
+            currentNode === node
+        }) else {
+            return
+        }
+
+        nodes.append(node)
     }
 
     /// remove a node from the graph and all it connections and shortcuts
     ///
     /// - Parameter node: the node the be removed
     func removeNode(_ node: HistoryNodeProtocol) {
-        
+
     }
 
     /// remove a connection from the graph
