@@ -1,16 +1,16 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <testsuites name='Minichallenge3UITests.xctest' tests='5' failures='1'>
   <testsuite name='Minichallenge3Tests.CITest' tests='2' failures='0'>
-    <testcase classname='Minichallenge3Tests.CITest' name='testExample' time='0.001'/>
-    <testcase classname='Minichallenge3Tests.CITest' name='testPerformanceExample' time='0.360'/>
+    <testcase classname='Minichallenge3Tests.CITest' name='testExample' time='0.002'/>
+    <testcase classname='Minichallenge3Tests.CITest' name='testPerformanceExample' time='0.345'/>
   </testsuite>
   <testsuite name='Minichallenge3Tests.Minichallenge3Tests' tests='2' failures='1'>
     <testcase classname='Minichallenge3Tests.Minichallenge3Tests' name='testExample'>
-      <failure message='XCTAssertTrue failed'>Minichallenge3Tests/Minichallenge3Tests.swift:25</failure>
+      <failure message='XCTAssertTrue failed'>Minichallenge3Tests/Minichallenge3Tests.swift:26</failure>
     </testcase>
-    <testcase classname='Minichallenge3Tests.Minichallenge3Tests' name='testPerformanceExample' time='0.253'/>
+    <testcase classname='Minichallenge3Tests.Minichallenge3Tests' name='testPerformanceExample' time='0.252'/>
   </testsuite>
   <testsuite name='Minichallenge3UITests.Minichallenge3UITests' tests='1' failures='0'>
-    <testcase classname='Minichallenge3UITests.Minichallenge3UITests' name='testExample' time='4.368'/>
+    <testcase classname='Minichallenge3UITests.Minichallenge3UITests' name='testExample' time='4.918'/>
   </testsuite>
 </testsuites>
