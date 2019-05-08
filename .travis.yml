@@ -9,6 +9,7 @@ script:
   - set -o pipefail
 #  - fastlane beta
 #  - bundle exec fastlane tests
+  - fastlane match --readonly
   - fastlane tests
 xcode_project: Minichallenge3.xcworkspace
 xcode_scheme: Minichallenge3Tests
