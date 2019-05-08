@@ -8,6 +8,7 @@ env:
 #  - bundle install
 script:
   - set -o pipefail
+  - fastlane tests
 #  - fastlane beta
 #  - bundle exec fastlane tests
   - fastlane run_tests
