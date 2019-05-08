@@ -20,10 +20,10 @@ struct HistoryGraph: CustomStringConvertible {
         var description = ""
         
         for node in nodes {
-            description += node.description
+            description += node.description + "\n"
         }
 
-        return ""
+        return description
     }
     
     init(withName name: String, sinopse: String, width: Int, andHeight height: Int) {
@@ -55,8 +55,18 @@ struct HistoryGraph: CustomStringConvertible {
     /// - Parameters:
     ///   - originNode: the shortcut`s parent node
     ///   - destinyNode: the node represented by the shortcut
-    func addShortcut(fromNode originNode: HistoryNodeProtocol, toNode destinyNode: HistoryNodeProtocol) {
+    mutating func addShortcut(fromNode originNode: HistoryNodeProtocol, toNode destinyNode: HistoryNodeProtocol, andPositionX positionX: Int, andPositionY positionY:Int) {
 
+        guard let originNode = originNode as? HistoryNode else {
+            return
+        }
+        guard let destinyNode = destinyNode as? HistoryNode else{
+            return
+        }
+        let shortcut = HistoryShortcut(forNode: destinyNode, andParentNode: originNode, positionX: positionX, andPositionY: positionY)
+        
+        self.addNode(shortcut)
+        
     }
 
     /// add a node to the graph

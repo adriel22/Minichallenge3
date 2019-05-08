@@ -34,7 +34,7 @@ class HistoryShortcut: HistoryNodeProtocol {
     var positionY: Int
 
     var description: String {
-        return "Shortcut for Node: \(self.node?.description ?? "None")"
+        return "Shortcut in Position: (x:\(positionX),y:\(positionY)) for Node: \(self.node?.description ?? "None")"
     }
 
     weak var node: HistoryNode?
