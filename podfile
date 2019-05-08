@@ -1,3 +1,4 @@
+platform :ios, '12.2'
 target 'Minichallenge3' do
   use_frameworks!
   pod 'SwiftLint'
