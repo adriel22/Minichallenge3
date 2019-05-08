@@ -34,6 +34,20 @@
                ReferencedContainer = "container:Minichallenge3.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "FCB354A0228065B000AB7ED2"
+               BuildableName = "Minichallenge3Tests.xctest"
+               BlueprintName = "Minichallenge3Tests"
+               ReferencedContainer = "container:Minichallenge3.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
