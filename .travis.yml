@@ -8,15 +8,12 @@ install:
 script:
   - set -o pipefail
   - fastlane beta
-after_script:
-  - fastlane tests
-#  - xcodebuild -workspace Minichallenge3.xcworkspace -scheme Minichallenge3 -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO | xcpretty -c
-#  - fastlane tests
-#language: swift
-#before_install: pod install
+
 xcode_project: Minichallenge3.xcworkspace
 xcode_scheme: Minichallenge3
 xcode_destination: platform=iOS Simulator,OS=12.1,name=iPhone 8
+script: 
+  -fastlane tests
 notifications:
   #slack: academyifce:CLlMQdEiXi2cg97KwIAauAQq
   email: false
