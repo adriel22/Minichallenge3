@@ -27,19 +27,4 @@ platform :ios do
      build_app(scheme: "Minichallenge3")
   end
 
-      create_keychain(
-      name: ENV["MATCH_KEYCHAIN_NAME"],
-      password: ENV["MATCH_PASSWORD"],
-      default_keychain: true,
-      unlock: true,
-      timeout: 3600,
-      add_to_search_list: true
-    )
-
-    match(
-      type: "adhoc",
-      keychain_name: ENV["MATCH_KEYCHAIN_NAME"],
-      keychain_password: ENV["MATCH_PASSWORD"],
-      readonly: true
-    )
 end
