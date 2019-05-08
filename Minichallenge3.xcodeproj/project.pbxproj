@@ -537,7 +537,7 @@
 			baseConfigurationReference = 4405664E379635FBB9519A12 /* Pods-Minichallenge3.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = JGG8YW8SJU;
 				INFOPLIST_FILE = Minichallenge3/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -556,7 +556,7 @@
 			baseConfigurationReference = B20FF8B7118109CF1BB19056 /* Pods-Minichallenge3.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = JGG8YW8SJU;
 				INFOPLIST_FILE = Minichallenge3/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
