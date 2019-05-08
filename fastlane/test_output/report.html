@@ -112,6 +112,8 @@
         <section id="counters">
           <h2 id="test-count"><span class="number">5</span> tests</h2>
           
+            <h2 id="fail-count"><span class="number">1</span> failures</h2>
+          
         </section>
         <section id="segment-bar">
           <a id="all-segment" onclick="selectSegment(this);" class="selected">All</a><a id="failing-segment" onclick="selectSegment(this);">Failing</a><a id="passing-segment" onclick="selectSegment(this);">Passing</a>
@@ -132,7 +134,7 @@
               <tr class="test passing "  onclick="toggleDetails('testExample');">
                 <td>
                   
-                    <h3 class="time">0.003s</h3>
+                    <h3 class="time">0.001s</h3>
                   
                 </td>
                 <td><h3 class="title">testExample</h3></td>
@@ -143,7 +145,7 @@
               <tr class="test passing odd"  onclick="toggleDetails('testPerformanceExample');">
                 <td>
                   
-                    <h3 class="time">0.348s</h3>
+                    <h3 class="time">0.360s</h3>
                   
                 </td>
                 <td><h3 class="title">testPerformanceExample</h3></td>
@@ -155,7 +157,7 @@
         </section>
       
         
-        <section class="test-suite passing" id="Minichallenge3Tests.Minichallenge3Tests">
+        <section class="test-suite failing" id="Minichallenge3Tests.Minichallenge3Tests">
           <section class="heading" onclick="toggleTests(this);">
             <h3 class="title">Minichallenge3Tests.Minichallenge3Tests</h3>
           </section>
@@ -163,21 +165,36 @@
             <table>
             
               
-              <tr class="test passing "  onclick="toggleDetails('testExample');">
+              <tr class="test failing "  onclick="toggleDetails('testExample');">
                 <td>
-                  
-                    <h3 class="time">0.000s</h3>
                   
                 </td>
                 <td><h3 class="title">testExample</h3></td>
               </tr>
+              
+                <tr class="details failing testExample">
+                  <td></td>
+                  <td>
+                    
+                      <section class="test-detail reason">XCTAssertTrue failed</section>
+                    
+                    
+                      <section class="test-detail snippet">        <span class="c1">// Use XCTAssert and related functions to verify your tests produce the correct results.</span>
+        <span class="kt">XCTAssert</span><span class="p">(</span><span class="mi">1</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="p">}</span>
+</section>
+                      <section class="test-detail">/Users/adrielfreire/Desktop/Minichallenge3/Minichallenge3Tests/Minichallenge3Tests.swift:25</section>
+                    
+                    
+                  </td>
+                </tr>
               
             
               
               <tr class="test passing odd"  onclick="toggleDetails('testPerformanceExample');">
                 <td>
                   
-                    <h3 class="time">0.252s</h3>
+                    <h3 class="time">0.253s</h3>
                   
                 </td>
                 <td><h3 class="title">testPerformanceExample</h3></td>
@@ -200,7 +217,7 @@
               <tr class="test passing "  onclick="toggleDetails('testExample');">
                 <td>
                   
-                    <h3 class="time">4.203s</h3>
+                    <h3 class="time">4.368s</h3>
                   
                 </td>
                 <td><h3 class="title">testExample</h3></td>
