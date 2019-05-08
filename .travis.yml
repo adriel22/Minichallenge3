@@ -6,13 +6,13 @@ env:
 
 script:
   - set -o pipefail
-  - xcodebuild -workspace Minichallenge3.xcworkspace -scheme Minichallenge3 -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO | xcpretty -c
+#  - xcodebuild -workspace Minichallenge3.xcworkspace -scheme Minichallenge3 -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO | xcpretty -c
 
 #language: swift
 #before_install: pod install
-#xcode_project: Minichallenge3.xcodeproj
-#xcode_scheme: Minichallenge3Tests
-#xcode_destination: platform=iOS Simulator,OS=12.1,name=iPhone 8
+xcode_project: Minichallenge3.xcodeproj
+xcode_scheme: Minichallenge3Tests
+xcode_destination: platform=iOS Simulator,OS=12.1,name=iPhone 8
 notifications:
   #slack: academyifce:CLlMQdEiXi2cg97KwIAauAQq
   email: false
