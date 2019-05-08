@@ -8,12 +8,12 @@ install:
 script:
   - set -o pipefail
 #  - fastlane beta
-  - bundle exec fastlane tests
+#  - bundle exec fastlane tests
 xcode_project: Minichallenge3.xcworkspace
 xcode_scheme: Minichallenge3Tests
-xcode_destination: platform=iOS Simulator,OS=12.0,name=iPhone 8
-#script: 
- # - fastlane tests
+xcode_destination: platform=iOS Simulator,OS=12.1,name=iPhone 8
+script: 
+  - fastlane tests
 notifications:
   #slack: academyifce:CLlMQdEiXi2cg97KwIAauAQq
   email: false
