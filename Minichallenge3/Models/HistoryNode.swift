@@ -19,7 +19,7 @@ class HistoryNode: HistoryNodeProtocol {
     var connections: [HistoryConnection] = []
 
     var description: String {
-        return "Resume: \(self.resume ?? "None"), Position: (x: \(positionX), y: \(positionY)"
+        return "Resume: \(self.resume ?? "None"), Position: (x: \(positionX), y: \(positionY))"
     }
 
     /// Initialize the node

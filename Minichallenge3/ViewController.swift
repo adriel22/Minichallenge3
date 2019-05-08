@@ -17,15 +17,23 @@ class ViewController: UIViewController {
         
         var graph = HistoryGraph.init(withName: "bla", sinopse: "b", width: 2, andHeight: 2)
         
-        let rootNode = HistoryNode.init(withResume: "bla", text: "bla bla", positionX: 0, andPositionY: 0)
+        let rootNode = HistoryNode.init(withResume: "bla", text: "bla bla", positionX: 1, andPositionY: 0)
         
-        let node2 = HistoryNode.init(withResume: "bla2", text: "bla bla 2", positionX: 0, andPositionY: 1)
+        let node2 = HistoryNode.init(withResume: "bla2", text: "bla bla 2", positionX: 0, andPositionY: 0)
         
+        print(graph.grid)
         graph.addNode(rootNode)
+        print(graph.grid)
+        
         graph.addNode(node2)
+        print(graph.grid)
+        
+        
         
         graph.addConnection(fromNode: rootNode, toNode: node2, withTitle: "blablinho")
         
+        
+        print(graph.grid)
         print(graph)
     }
 }
