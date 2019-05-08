@@ -1,5 +1,5 @@
-language: objective-c
-xcode_project: Minichallenge3.xcworkspace # path to your xcodeproj folder
+language: swift
+xcode_workspace: Minichallenge3.xcworkspace # path to your xcodeproj folder
 xcode_scheme: Minichallenge3
 xcode_destination: platform=iOS Simulator,OS=10.1,name=iPad Pro (9.7-inch)
 
