@@ -62,32 +62,23 @@ public class HistoryGraph: CustomStringConvertible {
         if destinyNode.parent == nil {
             let connection = HistoryConnection(destinyNode: destinyNode, title: title)
 
-            if destinyNode.connections.count == 0 {
-
-                //move the destiny to bellow the origin
-                let destinyNodeNewLinePosition = originNode.positionY + 1
-                var destinyNodeNewColPosition: Int
-
-                if let newColPosition = grid.findPositionInLine(atIndex: destinyNodeNewLinePosition) {
-                    destinyNodeNewColPosition = newColPosition
-                    grid.moveNodeToPosition(
-                        node: destinyNode,
-                        toPositionX: destinyNodeNewColPosition,
-                        andPositionY: destinyNodeNewLinePosition
-                    )
-
-                    addBordersToNode(destinyNode)
-                    //connect them
-                    originNode.connections.append(connection)
-                    destinyNode.parent = originNode
-                }
-            } else if destinyNode.positionY == originNode.positionY + 1 {
+            if destinyNode.positionY == originNode.positionY + 1 {
                 //connect them
                 originNode.connections.append(connection)
                 destinyNode.parent = originNode
             } else {
-                //create the shortcut
-                addShortcut(fromNode: originNode, toNode: destinyNode)
+                do {
+                    try grid.moveNode(destinyNode, toBellowOfNode: originNode)
+
+                    addBordersToNode(destinyNode)
+
+                    //connect them
+                    originNode.connections.append(connection)
+                    destinyNode.parent = originNode
+                } catch {
+                    //create the shortcut
+                    addShortcut(fromNode: originNode, toNode: destinyNode)
+                }
             }
         } else {
 
@@ -121,9 +112,9 @@ public class HistoryGraph: CustomStringConvertible {
     ///
     /// - Parameter node: the node
     public func addNode(_ node: HistoryNodeProtocol) throws {
-        let existPosition: Bool = node.positionX < grid.graphWidth && node.positionY < grid.graphHeight
-        let positionIsFree: Bool = grid[node.positionY, node.positionX] == nil
 
+        let existPosition: Bool = grid.hasPosition(yIndex: node.positionY, xIndex: node.positionX)
+        let positionIsFree: Bool = grid[node.positionY, node.positionX] == nil
         let graphContainsNode: Bool = containsNode(node)
 
         guard existPosition, positionIsFree else {
