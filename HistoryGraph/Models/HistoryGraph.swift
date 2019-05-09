@@ -8,7 +8,7 @@
 
 import Foundation
 
-class HistoryGraph: CustomStringConvertible {
+public class HistoryGraph: CustomStringConvertible {
 
     var nodes: [HistoryNodeProtocol] = []
     var historyName: String
@@ -16,7 +16,7 @@ class HistoryGraph: CustomStringConvertible {
 
     var grid: HistoryNodesGrid
 
-    var description: String {
+    public var description: String {
         var description = ""
 
         for node in nodes {
@@ -26,7 +26,7 @@ class HistoryGraph: CustomStringConvertible {
         return description
     }
 
-    init(withName name: String, sinopse: String, width: Int, andHeight height: Int) {
+    public init(withName name: String, sinopse: String, width: Int, andHeight height: Int) {
         self.historyName = name
         self.sinopse = sinopse
         self.grid = HistoryNodesGrid(width: width, andHeight: height)
@@ -38,9 +38,9 @@ class HistoryGraph: CustomStringConvertible {
     /// - Parameters:
     ///   - originNode: the origin node
     ///   - destinyNode: the destiny node
-    func addConnection(fromNode originNode: HistoryNode,
-                       toNode destinyNode: HistoryNode,
-                       withTitle title: String) {
+    public func addConnection(fromNode originNode: HistoryNode,
+                              toNode destinyNode: HistoryNode,
+                              withTitle title: String) {
         /*
          if there is a connection origin-destiny, it stops
          
@@ -101,25 +101,27 @@ class HistoryGraph: CustomStringConvertible {
     /// - Parameters:
     ///   - originNode: the shortcut`s parent node
     ///   - destinyNode: the node represented by the shortcut
-    func addShortcut(fromNode originNode: HistoryNodeProtocol, toNode destinyNode: HistoryNodeProtocol) {
+    public func addShortcut(fromNode originNode: HistoryNodeProtocol, toNode destinyNode: HistoryNodeProtocol) {
 
     }
 
     /// add a node to the graph
     ///
     /// - Parameter node: the node
-    func addNode(_ node: HistoryNodeProtocol) {
-        guard node.positionX < grid.graphWidth,
-              node.positionY < grid.graphHeight,
-              grid[node.positionY, node.positionX] == nil else {
+    public func addNode(_ node: HistoryNodeProtocol) throws {
+        let existPosition: Bool = node.positionX < grid.graphWidth && node.positionY < grid.graphHeight
+        let positionIsFree: Bool = grid[node.positionY, node.positionX] == nil
 
-            return
+        let graphContainsNode: Bool = nodes.contains(where: { currentNode in
+            currentNode === node
+        })
+
+        guard existPosition, positionIsFree else {
+            throw HistoryError.wrongNodePosition
         }
 
-        guard !nodes.contains(where: { currentNode in
-            currentNode === node
-        }) else {
-            return
+        guard !graphContainsNode else {
+            throw HistoryError.duplicatedNode
         }
 
         grid[node.positionY, node.positionX] = node
@@ -132,7 +134,9 @@ class HistoryGraph: CustomStringConvertible {
     /// Add lines and columns in the node sides if it is in the grid border
     ///
     /// - Parameter node: the target node
-    private func addBordersToNode(_ node: HistoryNodeProtocol) {
+    internal func addBordersToNode(_ node: HistoryNodeProtocol, grid: HistoryNodesGrid? = nil) {
+        let grid = grid ?? self.grid
+
         if node.positionX == grid.graphWidth - 1 {
             grid.addColumToGrid()
         }
@@ -149,7 +153,7 @@ class HistoryGraph: CustomStringConvertible {
     /// remove a node from the graph and all it connections and shortcuts
     ///
     /// - Parameter node: the node the be removed
-    func removeNode(_ node: HistoryNodeProtocol) {
+    public func removeNode(_ node: HistoryNodeProtocol) {
         //rever com os shortcuts
         guard let parentNode = node.parent as? HistoryNode else {
             return
@@ -175,7 +179,7 @@ class HistoryGraph: CustomStringConvertible {
     /// remove a connection from the graph
     ///
     /// - Parameter connection: the connection to be removed
-    func removeConnection(_ connection: HistoryConnection, fromNode node: HistoryNodeProtocol) {
+    public func removeConnection(_ connection: HistoryConnection, fromNode node: HistoryNodeProtocol) {
         guard let node = node as? HistoryNode else {
             return
         }
@@ -190,7 +194,7 @@ class HistoryGraph: CustomStringConvertible {
     /// remove a shortcut from the graph
     ///
     /// - Parameter shortcut: the shortcut to be removed
-    func removeShortcut( _ shortcut: HistoryShortcut) {
+    public func removeShortcut( _ shortcut: HistoryShortcut) {
 
     }
 
@@ -200,7 +204,7 @@ class HistoryGraph: CustomStringConvertible {
     ///   - node1: the first node
     ///   - node2: second node
     /// - Returns: true if they are connected, false if not
-    private func checkConnectionBetween(node1: HistoryNode, andNode2 node2: HistoryNode) -> Bool {
+    internal func checkConnectionBetween(node1: HistoryNode, andNode2 node2: HistoryNode) -> Bool {
         return checkConnection(fromNode1: node1, toNode2: node2) || checkConnection(fromNode1: node2, toNode2: node1)
     }
 
@@ -210,7 +214,7 @@ class HistoryGraph: CustomStringConvertible {
     ///   - node1: the first node
     ///   - node2: the second node
     /// - Returns: true if it is connected, false if not
-    private func checkConnection(fromNode1 node1: HistoryNode, toNode2 node2: HistoryNode) -> Bool {
+    internal func checkConnection(fromNode1 node1: HistoryNode, toNode2 node2: HistoryNode) -> Bool {
         for connection in node1.connections {
             if let destinyNode = connection.destinyNode, destinyNode === node2 {
                 return true

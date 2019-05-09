@@ -8,17 +8,17 @@
 
 import Foundation
 
-class HistoryNode: HistoryNodeProtocol {
-    var positionX: Int
-    var positionY: Int
-    var resume: String?
-    var text: String?
+public class HistoryNode: HistoryNodeProtocol {
+    public var positionX: Int
+    public var positionY: Int
+    public var resume: String?
+    public var text: String?
 
-    weak var parent: HistoryNodeProtocol?
+    public weak var parent: HistoryNodeProtocol?
     var shortcuts: [HistoryShortcut] = []
     var connections: [HistoryConnection] = []
 
-    var description: String {
+    public var description: String {
         return "Resume: \(self.resume ?? "None"), Position: (y: \(positionY), x: \(positionX))"
     }
 
@@ -27,14 +27,14 @@ class HistoryNode: HistoryNodeProtocol {
     /// - Parameters:
     ///   - resume: the resume is a little text about the node history, used to the nodes previews
     ///   - text: the real history text for the node
-    init(withResume resume: String, text: String, positionX: Int, andPositionY positionY: Int) {
+    public init(withResume resume: String, text: String, positionX: Int, andPositionY positionY: Int) {
         self.resume = resume
         self.text = text
         self.positionX = positionX
         self.positionY = positionY
     }
 
-    func removeConnection(toNode node: HistoryNodeProtocol) {
+    public func removeConnection(toNode node: HistoryNodeProtocol) {
         connections.removeAll { currentConnection in
             currentConnection.destinyNode === node
         }

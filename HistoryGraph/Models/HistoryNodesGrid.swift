@@ -12,7 +12,7 @@ class HistoryNodesGrid: CustomStringConvertible {
 
     var graphWidth: Int
     var graphHeight: Int
-    unowned var graph: HistoryGraph!
+    weak var graph: HistoryGraph?
 
     lazy var grid: [[HistoryNodeProtocol?]] = {
         let gridLine = [HistoryNodeProtocol?](repeating: nil, count: graphWidth)
@@ -55,9 +55,9 @@ class HistoryNodesGrid: CustomStringConvertible {
             grid[lineIndex].insert(nil, at: 0)
         }
 
-        for node in graph.nodes {
-            node.positionX += 1
-        }
+        graph?.nodes.forEach({ (currentNode) in
+            currentNode.positionX += 1
+        })
 
         graphWidth += 1
     }

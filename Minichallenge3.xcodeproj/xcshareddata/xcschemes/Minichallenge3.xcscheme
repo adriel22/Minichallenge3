@@ -65,6 +65,13 @@
             BlueprintName = "Minichallenge3"
             ReferencedContainer = "container:Minichallenge3.xcodeproj">
          </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "E3C030C0228478EB00AD53E0"
+            BuildableName = "HistoryGraph.framework"
+            BlueprintName = "HistoryGraph"
+            ReferencedContainer = "container:Minichallenge3.xcodeproj">
+         </BuildableReference>
       </CodeCoverageTargets>
       <Testables>
          <TestableReference

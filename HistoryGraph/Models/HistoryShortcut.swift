@@ -8,10 +8,10 @@
 
 import Foundation
 
-class HistoryShortcut: HistoryNodeProtocol {
-    var parent: HistoryNodeProtocol?
+public class HistoryShortcut: HistoryNodeProtocol {
+    public weak var parent: HistoryNodeProtocol?
 
-    var resume: String? {
+    public var resume: String? {
         get {
             return self.node?.resume
         }
@@ -20,7 +20,7 @@ class HistoryShortcut: HistoryNodeProtocol {
         }
     }
 
-    var text: String? {
+    public var text: String? {
         get {
             return self.node?.text
         }
@@ -29,11 +29,11 @@ class HistoryShortcut: HistoryNodeProtocol {
         }
     }
 
-    var positionX: Int
+    public var positionX: Int
 
-    var positionY: Int
+    public var positionY: Int
 
-    var description: String {
+    public var description: String {
         return "Shortcut for Node: \(self.node?.description ?? "None")"
     }
 

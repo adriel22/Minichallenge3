@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol HistoryNodeProtocol: AnyObject, CustomStringConvertible {
+public protocol HistoryNodeProtocol: AnyObject, CustomStringConvertible {
     var parent: HistoryNodeProtocol? { get set }
     var resume: String? { get set }
     var text: String? { get set }

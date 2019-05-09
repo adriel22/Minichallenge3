@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import Minichallenge3
+@testable import HistoryGraph
 
 class Minichallenge3Tests: XCTestCase {
 
