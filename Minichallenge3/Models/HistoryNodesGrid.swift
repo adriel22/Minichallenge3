@@ -35,12 +35,12 @@ class HistoryNodesGrid: CustomStringConvertible {
         return description
     }
 
-    subscript(xIndex: Int, yIndex: Int) -> HistoryNodeProtocol? {
+    subscript(yIndex: Int, xIndex: Int) -> HistoryNodeProtocol? {
         get {
-            return grid[xIndex][yIndex]
+            return grid[yIndex][xIndex]
         }
         set {
-            grid[xIndex][yIndex] = newValue
+            grid[yIndex][xIndex] = newValue
         }
     }
 
@@ -77,7 +77,6 @@ class HistoryNodesGrid: CustomStringConvertible {
         grid.append([HistoryNodeProtocol?].init(repeating: nil, count: graphWidth))
         graphHeight += 1
     }
-
 
     /// Move a node to the given position. Only works if it parent is nill, and it has no connections.
     ///

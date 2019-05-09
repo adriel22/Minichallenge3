@@ -1,15 +1,15 @@
 //
-//  Minichallenge3Tests.swift
+//  HistoryGraphTests.swift
 //  Minichallenge3Tests
 //
-//  Created by Adriel Freire on 06/05/19.
+//  Created by Elias Paulino on 09/05/19.
 //  Copyright © 2019 Adriel Freire. All rights reserved.
 //
 
 import XCTest
 @testable import Minichallenge3
 
-class Minichallenge3Tests: XCTestCase {
+class HistoryGraphTests: XCTestCase {
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -24,6 +24,8 @@ class Minichallenge3Tests: XCTestCase {
         // Use XCTAssert and related functions to verify your tests produce the correct results.
 
     }
+    
+    func 
 
     func testPerformanceExample() {
         // This is an example of a performance test case.

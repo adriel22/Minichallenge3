@@ -13,9 +13,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
-        
-        var graph = HistoryGraph.init(withName: "bla", sinopse: "b", width: 2, andHeight: 2)
+
+        let graph = HistoryGraph.init(withName: "bla", sinopse: "b", width: 2, andHeight: 2)
         
         let rootNode = HistoryNode.init(withResume: "bla", text: "bla bla", positionX: 1, andPositionY: 0)
         
@@ -28,12 +27,21 @@ class ViewController: UIViewController {
         graph.addNode(node2)
         print(graph.grid)
         
-        
-        
         graph.addConnection(fromNode: rootNode, toNode: node2, withTitle: "blablinho")
         
+        print(graph.grid)
+        
+ 
+        let node3 = HistoryNode.init(withResume: "bla3", text: "bla bla 3", positionX: 0, andPositionY: 0)
+        graph.addNode(node3)
         
         print(graph.grid)
+        
+        
+        graph.addConnection(fromNode: node2, toNode: node3, withTitle: "balbi2")
+        
+        print(graph.grid)
+        
         print(graph)
     }
 }

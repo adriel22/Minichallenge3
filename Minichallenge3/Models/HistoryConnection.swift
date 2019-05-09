@@ -8,7 +8,16 @@
 
 import Foundation
 
-struct HistoryConnection {
+struct HistoryConnection: Comparable {
+
     weak var destinyNode: HistoryNodeProtocol?
     var title: String
+
+    static func < (lhs: HistoryConnection, rhs: HistoryConnection) -> Bool {
+        return lhs.title < rhs.title
+    }
+
+    static func == (lhs: HistoryConnection, rhs: HistoryConnection) -> Bool {
+        return lhs.destinyNode === rhs.destinyNode && lhs.title == rhs.title
+    }
 }

@@ -19,7 +19,7 @@ class HistoryNode: HistoryNodeProtocol {
     var connections: [HistoryConnection] = []
 
     var description: String {
-        return "Resume: \(self.resume ?? "None"), Position: (x: \(positionX), y: \(positionY))"
+        return "Resume: \(self.resume ?? "None"), Position: (y: \(positionY), x: \(positionX))"
     }
 
     /// Initialize the node
@@ -32,5 +32,11 @@ class HistoryNode: HistoryNodeProtocol {
         self.text = text
         self.positionX = positionX
         self.positionY = positionY
+    }
+
+    func removeConnection(toNode node: HistoryNodeProtocol) {
+        connections.removeAll { currentConnection in
+            currentConnection.destinyNode === node
+        }
     }
 }
