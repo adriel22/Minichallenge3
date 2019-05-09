@@ -163,21 +163,72 @@ class HistoryGraphTests: XCTestCase {
         XCTAssertTrue(grid[2, 1] === rootNode)
         XCTAssertTrue(rootNode.positionY == 2)
     }
-//    
-//    func test_removeNode_sucess() {
-//        let rootNode = HistoryNode.init(
-//            withResume: "Root Node Resume",
-//            text: "Root Node Text",
-//            positionX: 0,
-//            andPositionY: 0
-//        )
-//        
-//        graph.addNode(rootNode)
-//        
-//        graph.removeNode(rootNode)
-//        
-//        
-//    }
+
+    func test_removeNode_sucess() {
+        let rootNode = HistoryNode.init(
+            withResume: "Root Node Resume",
+            text: "Root Node Text",
+            positionX: 0,
+            andPositionY: 0
+        )
+
+        try? graph.addNode(rootNode)
+        graph.removeNode(rootNode)
+
+        XCTAssertTrue(graph.nodes.count == 0)
+        XCTAssertTrue(graph.grid[rootNode.positionY, rootNode.positionX] == nil)
+    }
+
+    func test_removeNode_withParent() {
+        let rootNode = HistoryNode.init(
+            withResume: "Root Node Resume",
+            text: "Root Node Text",
+            positionX: 0,
+            andPositionY: 0
+        )
+
+        let node2 = HistoryNode.init(
+            withResume: "Node 2 Resume",
+            text: "Node 2 Text",
+            positionX: 0,
+            andPositionY: 0
+        )
+
+        try? graph.addNode(rootNode)
+        try? graph.addNode(node2)
+        graph.addConnection(fromNode: rootNode, toNode: node2, withTitle: "action title")
+        graph.removeNode(node2)
+
+        XCTAssertTrue(graph.nodes.count == 1)
+        XCTAssertTrue(graph.grid[node2.positionY, node2.positionX] == nil)
+        XCTAssertTrue(!graph.containsNode(node2))
+    }
+
+    func test_removeNode_withConnections() {
+        let rootNode = HistoryNode.init(
+            withResume: "Root Node Resume",
+            text: "Root Node Text",
+            positionX: 0,
+            andPositionY: 0
+        )
+
+        let node2 = HistoryNode.init(
+            withResume: "Node 2 Resume",
+            text: "Node 2 Text",
+            positionX: 0,
+            andPositionY: 0
+        )
+
+        try? graph.addNode(rootNode)
+        try? graph.addNode(node2)
+        graph.addConnection(fromNode: rootNode, toNode: node2, withTitle: "action title")
+        graph.removeNode(rootNode)
+
+        XCTAssertTrue(graph.nodes.count == 1)
+        XCTAssertTrue(graph.grid[rootNode.positionY, rootNode.positionX] == nil)
+        XCTAssertTrue(node2.parent == nil)
+        XCTAssertTrue(!graph.containsNode(rootNode))
+    }
 
     func testPerformanceExample() {
         // This is an example of a performance test case.

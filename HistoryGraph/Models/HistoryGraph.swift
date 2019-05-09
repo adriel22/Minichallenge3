@@ -105,6 +105,18 @@ public class HistoryGraph: CustomStringConvertible {
 
     }
 
+    /// checks if a node is the graph
+    ///
+    /// - Parameter node: the node to be checked
+    /// - Returns: true if the graph contains the node, false if not
+    public func containsNode(_ node: HistoryNodeProtocol) -> Bool {
+        let graphContainsNode: Bool = nodes.contains(where: { currentNode in
+            currentNode === node
+        })
+
+        return graphContainsNode
+    }
+
     /// add a node to the graph
     ///
     /// - Parameter node: the node
@@ -112,9 +124,7 @@ public class HistoryGraph: CustomStringConvertible {
         let existPosition: Bool = node.positionX < grid.graphWidth && node.positionY < grid.graphHeight
         let positionIsFree: Bool = grid[node.positionY, node.positionX] == nil
 
-        let graphContainsNode: Bool = nodes.contains(where: { currentNode in
-            currentNode === node
-        })
+        let graphContainsNode: Bool = containsNode(node)
 
         guard existPosition, positionIsFree else {
             throw HistoryError.wrongNodePosition
@@ -155,18 +165,15 @@ public class HistoryGraph: CustomStringConvertible {
     /// - Parameter node: the node the be removed
     public func removeNode(_ node: HistoryNodeProtocol) {
         //rever com os shortcuts
-        guard let parentNode = node.parent as? HistoryNode else {
-            return
+
+        if let parentNode = node.parent as? HistoryNode {
+            parentNode.removeConnection(toNode: node)
         }
 
-        parentNode.removeConnection(toNode: node)
-
-        guard let historyNode = node as? HistoryNode else {
-            return
-        }
-
-        for connection in historyNode.connections {
-            connection.destinyNode?.parent = nil
+        if let historyNode = node as? HistoryNode {
+            for connection in historyNode.connections {
+                connection.destinyNode?.parent = nil
+            }
         }
 
         self.nodes.removeAll { currentNode in
