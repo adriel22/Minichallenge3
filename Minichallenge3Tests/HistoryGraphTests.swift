@@ -230,10 +230,79 @@ class HistoryGraphTests: XCTestCase {
         XCTAssertTrue(!graph.containsNode(rootNode))
     }
 
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func test_checkConnection_sucess() {
+        let rootNode = HistoryNode.init(
+            withResume: "Root Node Resume",
+            text: "Root Node Text",
+            positionX: 0,
+            andPositionY: 0
+        )
+
+        let node2 = HistoryNode.init(
+            withResume: "Node 2 Resume",
+            text: "Node 2 Text",
+            positionX: 0,
+            andPositionY: 0
+        )
+
+        let node3 = HistoryNode.init(
+            withResume: "Node 3 Resume",
+            text: "Node 3 Text",
+            positionX: 0,
+            andPositionY: 0
+        )
+
+        try? graph.addNode(rootNode)
+        try? graph.addNode(node3)
+        try? graph.addNode(node2)
+        graph.addConnection(fromNode: rootNode, toNode: node2, withTitle: "action title")
+        graph.addConnection(fromNode: rootNode, toNode: node3, withTitle: "action title")
+
+        XCTAssertTrue(graph.checkConnection(fromNode1: rootNode, toNode2: node2))
+        XCTAssertTrue(graph.checkConnection(fromNode1: rootNode, toNode2: node3))
+    }
+
+    func test_checkConnection_fail() {
+        let rootNode = HistoryNode.init(
+            withResume: "Root Node Resume",
+            text: "Root Node Text",
+            positionX: 0,
+            andPositionY: 0
+        )
+
+        let node2 = HistoryNode.init(
+            withResume: "Node 2 Resume",
+            text: "Node 2 Text",
+            positionX: 0,
+            andPositionY: 0
+        )
+
+        try? graph.addNode(rootNode)
+        try? graph.addNode(node2)
+
+        XCTAssertTrue(!graph.checkConnection(fromNode1: rootNode, toNode2: node2))
+    }
+
+    func test_checkConnectionBetween_sucess() {
+        let rootNode = HistoryNode.init(
+            withResume: "Root Node Resume",
+            text: "Root Node Text",
+            positionX: 0,
+            andPositionY: 0
+        )
+
+        let node2 = HistoryNode.init(
+            withResume: "Node 2 Resume",
+            text: "Node 2 Text",
+            positionX: 0,
+            andPositionY: 0
+        )
+
+        try? graph.addNode(rootNode)
+        try? graph.addNode(node2)
+        graph.addConnection(fromNode: rootNode, toNode: node2, withTitle: "action title")
+
+        XCTAssertTrue(graph.checkConnectionBetween(node1: rootNode, andNode2: node2))
+        XCTAssertTrue(graph.checkConnectionBetween(node1: node2, andNode2: rootNode))
     }
 }
