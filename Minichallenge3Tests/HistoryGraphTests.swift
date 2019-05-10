@@ -32,12 +32,10 @@ class HistoryGraphTests: XCTestCase {
     }
 
     func test_addNode_sucess() {
-
         let rootNode = HistoryNode.init(
             withResume: "Root Node Resume",
             text: "Root Node Text",
-            positionX: 0,
-            andPositionY: 0
+            positionX: 0, andPositionY: 0
         )
 
         try? graph.addNode(rootNode)
@@ -47,7 +45,6 @@ class HistoryGraphTests: XCTestCase {
     }
 
     func test_addNode_wrongPosition() {
-
         let rootNode = HistoryNode.init(
             withResume: "Root Node Resume",
             text: "Root Node Text",
@@ -58,8 +55,7 @@ class HistoryGraphTests: XCTestCase {
         let node2 = HistoryNode.init(
             withResume: "Node 2",
             text: "Node 2 Text",
-            positionX: 0,
-            andPositionY: 0
+            positionX: 0, andPositionY: 0
         )
 
         try? graph.addNode(rootNode)
@@ -78,12 +74,10 @@ class HistoryGraphTests: XCTestCase {
     }
 
     func test_addNode_duplicatedNode() {
-
         let rootNode = HistoryNode.init(
             withResume: "Root Node Resume",
             text: "Root Node Text",
-            positionX: 0,
-            andPositionY: 0
+            positionX: 0, andPositionY: 0
         )
 
         try? graph.addNode(rootNode)
@@ -102,15 +96,13 @@ class HistoryGraphTests: XCTestCase {
     }
 
     func test_addBorders_columnToBegin() {
-
         let grid = HistoryNodesGrid.init(width: 2, andHeight: 2)
         grid.graph = self.graph
 
         let rootNode = HistoryNode.init(
             withResume: "Root Node Resume",
             text: "Root Node Text",
-            positionX: 0,
-            andPositionY: 0
+            positionX: 0, andPositionY: 0
         )
 
         grid[0, 0] = rootNode
@@ -123,15 +115,13 @@ class HistoryGraphTests: XCTestCase {
     }
 
     func test_addBorders_columnToEnd() {
-
         let grid = HistoryNodesGrid.init(width: 2, andHeight: 2)
         grid.graph = self.graph
 
         let rootNode = HistoryNode.init(
             withResume: "Root Node Resume",
             text: "Root Node Text",
-            positionX: 1,
-            andPositionY: 0
+            positionX: 1, andPositionY: 0
         )
 
         grid[0, 1] = rootNode
@@ -144,15 +134,13 @@ class HistoryGraphTests: XCTestCase {
     }
 
     func test_addBorders_lineToEnd() {
-
         let grid = HistoryNodesGrid.init(width: 3, andHeight: 3)
         grid.graph = self.graph
 
         let rootNode = HistoryNode.init(
             withResume: "Root Node Resume",
             text: "Root Node Text",
-            positionX: 1,
-            andPositionY: 2
+            positionX: 1, andPositionY: 2
         )
 
         grid[2, 1] = rootNode
@@ -183,20 +171,18 @@ class HistoryGraphTests: XCTestCase {
         let rootNode = HistoryNode.init(
             withResume: "Root Node Resume",
             text: "Root Node Text",
-            positionX: 0,
-            andPositionY: 0
+            positionX: 0, andPositionY: 0
         )
 
         let node2 = HistoryNode.init(
             withResume: "Node 2 Resume",
             text: "Node 2 Text",
-            positionX: 0,
-            andPositionY: 0
+            positionX: 0, andPositionY: 0
         )
 
         try? graph.addNode(rootNode)
         try? graph.addNode(node2)
-        graph.addConnection(fromNode: rootNode, toNode: node2, withTitle: "action title")
+        try? graph.addConnection(fromNode: rootNode, toNode: node2, withTitle: "action title")
         graph.removeNode(node2)
 
         XCTAssertTrue(graph.nodes.count == 1)
@@ -208,20 +194,18 @@ class HistoryGraphTests: XCTestCase {
         let rootNode = HistoryNode.init(
             withResume: "Root Node Resume",
             text: "Root Node Text",
-            positionX: 0,
-            andPositionY: 0
+            positionX: 0, andPositionY: 0
         )
 
         let node2 = HistoryNode.init(
             withResume: "Node 2 Resume",
             text: "Node 2 Text",
-            positionX: 0,
-            andPositionY: 0
+            positionX: 0, andPositionY: 0
         )
 
         try? graph.addNode(rootNode)
         try? graph.addNode(node2)
-        graph.addConnection(fromNode: rootNode, toNode: node2, withTitle: "action title")
+        try? graph.addConnection(fromNode: rootNode, toNode: node2, withTitle: "action title")
         graph.removeNode(rootNode)
 
         XCTAssertTrue(graph.nodes.count == 1)
@@ -234,29 +218,26 @@ class HistoryGraphTests: XCTestCase {
         let rootNode = HistoryNode.init(
             withResume: "Root Node Resume",
             text: "Root Node Text",
-            positionX: 0,
-            andPositionY: 0
+            positionX: 0, andPositionY: 0
         )
 
         let node2 = HistoryNode.init(
             withResume: "Node 2 Resume",
             text: "Node 2 Text",
-            positionX: 0,
-            andPositionY: 0
+            positionX: 0, andPositionY: 0
         )
 
         let node3 = HistoryNode.init(
             withResume: "Node 3 Resume",
             text: "Node 3 Text",
-            positionX: 0,
-            andPositionY: 0
+            positionX: 0, andPositionY: 0
         )
 
         try? graph.addNode(rootNode)
         try? graph.addNode(node3)
         try? graph.addNode(node2)
-        graph.addConnection(fromNode: rootNode, toNode: node2, withTitle: "action title")
-        graph.addConnection(fromNode: rootNode, toNode: node3, withTitle: "action title")
+        try? graph.addConnection(fromNode: rootNode, toNode: node2, withTitle: "action title")
+        try? graph.addConnection(fromNode: rootNode, toNode: node3, withTitle: "action title")
 
         XCTAssertTrue(graph.checkConnection(fromNode1: rootNode, toNode2: node2))
         XCTAssertTrue(graph.checkConnection(fromNode1: rootNode, toNode2: node3))
@@ -266,15 +247,13 @@ class HistoryGraphTests: XCTestCase {
         let rootNode = HistoryNode.init(
             withResume: "Root Node Resume",
             text: "Root Node Text",
-            positionX: 0,
-            andPositionY: 0
+            positionX: 0, andPositionY: 0
         )
 
         let node2 = HistoryNode.init(
             withResume: "Node 2 Resume",
             text: "Node 2 Text",
-            positionX: 0,
-            andPositionY: 0
+            positionX: 0, andPositionY: 0
         )
 
         try? graph.addNode(rootNode)
@@ -300,9 +279,140 @@ class HistoryGraphTests: XCTestCase {
 
         try? graph.addNode(rootNode)
         try? graph.addNode(node2)
-        graph.addConnection(fromNode: rootNode, toNode: node2, withTitle: "action title")
+        try? graph.addConnection(fromNode: rootNode, toNode: node2, withTitle: "action title")
 
         XCTAssertTrue(graph.checkConnectionBetween(node1: rootNode, andNode2: node2))
         XCTAssertTrue(graph.checkConnectionBetween(node1: node2, andNode2: rootNode))
+    }
+
+    func test_addConnection_hasConnectionAndIsBellow() {
+        // [ ][r][ ]    |   [ ][r][ ]       |   [ ][r][ ]
+        // [ ][ ][ ]    |   [ ][n2][ ]      |   [ ][n2][ ]
+        //              |   [ ][ ][ ]       |   [ ][n2c][ ]
+        //                                  |   [ ][ ][ ]
+
+        let rootNode = HistoryNode.init(
+            withResume: "Root Node Resume",
+            text: "Root Node Text",
+            positionX: 0, andPositionY: 0
+        )
+
+        let node2 = HistoryNode.init(
+            withResume: "Node 2 Resume",
+            text: "Node 2 Text",
+            positionX: 1, andPositionY: 1
+        )
+
+        let node2Child = HistoryNode.init(
+            withResume: "Node 2 Child Resume",
+            text: "Node 2 Child Text",
+            positionX: 1, andPositionY: 2
+        )
+
+        try? graph.addNode(rootNode)
+        try? graph.addNode(node2)
+        try? graph.addNode(node2Child)
+
+        try? graph.addConnection(fromNode: node2, toNode: node2Child, withTitle: "action")
+
+        XCTAssertNoThrow(try graph.addConnection(fromNode: rootNode, toNode: node2, withTitle: "action"))
+        XCTAssert(rootNode.positionX == 1 && rootNode.positionY == 0)
+        XCTAssert(node2.positionX == 1 && node2.positionY == 1)
+        XCTAssert(node2Child.positionX == 1 && node2Child.positionY == 2)
+    }
+
+    func test_addConnection_IsBellow() {
+        // [ ][r][ ]    |   [ ][r][ ]
+        // [ ][ ][ ]    |   [ ][n2][ ]
+        //              |   [ ][ ][ ]
+
+        let rootNode = HistoryNode.init(
+            withResume: "Root Node Resume",
+            text: "Root Node Text",
+            positionX: 0, andPositionY: 0
+        )
+
+        let node2 = HistoryNode.init(
+            withResume: "Node 2 Resume",
+            text: "Node 2 Text",
+            positionX: 1, andPositionY: 1
+        )
+
+        try? graph.addNode(rootNode)
+        try? graph.addNode(node2)
+
+        XCTAssertNoThrow(try graph.addConnection(fromNode: rootNode, toNode: node2, withTitle: "action"))
+        XCTAssert(rootNode.positionX == 1 && rootNode.positionY == 0)
+        XCTAssert(node2.positionX == 1 && node2.positionY == 1)
+    }
+
+    func test_addConnection_needMoveChild() {
+        // [ ][r][ ]    |   [ ][n2][r][ ]   |   [ ][ ][ ][r][ ]
+        // [ ][ ][ ]    |   [ ][ ][ ][ ]    |   [ ][n2][ ][ ][ ]
+
+        let rootNode = HistoryNode.init(
+            withResume: "Root Node Resume",
+            text: "Root Node Text",
+            positionX: 0, andPositionY: 0
+        )
+
+        let node2 = HistoryNode.init(
+            withResume: "Node 2 Resume",
+            text: "Node 2 Text",
+            positionX: 0, andPositionY: 0
+        )
+
+        try? graph.addNode(rootNode)
+        try? graph.addNode(node2)
+
+        XCTAssertNoThrow(try graph.addConnection(fromNode: rootNode, toNode: node2, withTitle: "action"))
+        XCTAssert(rootNode.positionX == 3 && rootNode.positionY == 0)
+        XCTAssert(node2.positionX == 1 && node2.positionY == 1)
+    }
+
+    func test_addConnection_duplicatedConnection() {
+        let rootNode = HistoryNode.init(
+            withResume: "Root Node Resume",
+            text: "Root Node Text",
+            positionX: 0, andPositionY: 0
+        )
+        
+        let node2 = HistoryNode.init(
+            withResume: "Node 2 Resume",
+            text: "Node 2 Text",
+            positionX: 1, andPositionY: 1
+        )
+
+        try? graph.addNode(rootNode)
+        try? graph.addNode(node2)
+        try? graph.addConnection(fromNode: rootNode, toNode: node2, withTitle: "action")
+
+        XCTAssertThrowsError(
+            try graph.addConnection(fromNode: rootNode, toNode: node2, withTitle: "action")
+        )
+    }
+
+    func test_removeConnection_sucess() {
+        let rootNode = HistoryNode.init(
+            withResume: "Root Node Resume",
+            text: "Root Node Text",
+            positionX: 0, andPositionY: 0
+        )
+
+        let node2 = HistoryNode.init(
+            withResume: "Node 2 Resume",
+            text: "Node 2 Text",
+            positionX: 0, andPositionY: 0
+        )
+
+        try? graph.addNode(rootNode)
+        try? graph.addNode(node2)
+        try? graph.addConnection(fromNode: rootNode, toNode: node2, withTitle: "action")
+
+        if let connection = rootNode.connections.first {
+            graph.removeConnection(connection, fromNode: rootNode)
+        }
+
+        XCTAssert(rootNode.connections.count == 0)
     }
 }
