@@ -12,12 +12,28 @@ import SnapKit
 class ViewController: UIViewController {
     
     var allHistoriesTableView: UITableView!
-    var selected = 0
+    
+    /// Holds the value of which section is showing it's content in the table view
+    var selected = -1
+    
+    /// This array holds where the previewed story is on the table view (the section and row values)
+    var storiesMapForTableView: [[HistoryNode]] = [[],[],[],[],[],[],[],[]]
+    
+    /// This array actually holds all the stories
+    var stories: [[HistoryNode]] = [[],[],[],[],[],[],[],[]]
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor(color: .purpleWhite)
+        
+        let node  = HistoryNode(withResume: "Teste", andText: "Tetse")
+        for index in 0..<8 {
+            stories[index].append(node)
+        }
         
         allHistoriesTableView = UITableView(frame: .zero)
+        allHistoriesTableView.backgroundColor = view.backgroundColor
+        allHistoriesTableView.separatorStyle = .none
         allHistoriesTableView.dataSource = self
         allHistoriesTableView.delegate = self
         view.addSubview(allHistoriesTableView)
@@ -37,33 +53,48 @@ class ViewController: UIViewController {
 
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 5
+        return storiesMapForTableView.count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Jurema, a aventureira da vida real"
     }
     
+    func expandRow(from indexPath: IndexPath) {
+        if let story = self.stories[indexPath.section].first {
+            self.selected = indexPath.section
+            self.storiesMapForTableView[indexPath.section].append(story)
+            allHistoriesTableView.insertRows(at: [indexPath], with: .automatic)
+        }
+    }
+    
+    func collapseRow(from indexPath: IndexPath) {
+        self.storiesMapForTableView[self.selected].removeFirst()
+        allHistoriesTableView.deleteRows(at: [indexPath], with: .automatic)
+    }
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = ExpandableTableViewHeaderView()
-        headerView.label.text = tableView.dataSource?.tableView?(tableView, titleForHeaderInSection: section)
+        headerView.label.text = tableView.dataSource?.tableView?(tableView, titleForHeaderInSection: section)?.uppercased()
         headerView.isCollapsed = !(section == selected)
         headerView.didTap = { sender in
-            self.selected = headerView.isCollapsed ? section : -1
-            UIView.animate(withDuration: 0.7,
-                           delay: 0,
-                           usingSpringWithDamping: 0.7,
-                           initialSpringVelocity: 0.7,
-                           options: [.allowUserInteraction, .layoutSubviews, .curveEaseInOut],
-                           animations: {
-                tableView.reloadData()
-            })
+            let toCollapseIndexPath = IndexPath(row: 0, section: self.selected)
+            let toExpandIndexPath = IndexPath(row: 0, section: section)
+            if self.selected == -1 { // Only expand (all sections collapsed)
+                self.expandRow(from: toExpandIndexPath)
+            } else if self.selected == section { // Only collapse (the section touched is the same as the showed on the table view)
+                self.collapseRow(from: toCollapseIndexPath)
+                self.selected = -1
+            } else { // Collapse the showed row, and expand the touched one
+                self.collapseRow(from: toCollapseIndexPath)
+                self.expandRow(from: toExpandIndexPath)
+            }
         }
         return headerView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return selected > -1 ? 1 : 0
+        return storiesMapForTableView[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

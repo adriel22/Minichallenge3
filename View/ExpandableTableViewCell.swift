@@ -19,6 +19,7 @@ class ExpandableTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        backgroundColor = UIColor(color: .purpleWhite)
 
         label = UILabel(frame: .zero)
         label.numberOfLines = 0

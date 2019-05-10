@@ -18,10 +18,11 @@ class ExpandableTableViewHeaderView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = UIColor(rgb: 0xF7F7F7)
+        backgroundColor = UIColor(rgb: 0xEFEFF4)
         
         label = UILabel()
-        label.font = .systemFont(ofSize: 17, weight: .semibold)
+        label.font = .systemFont(ofSize: 13, weight: .regular)
+        label.textColor = UIColor(rgb: 0x8E8E93)
         addSubview(label)
         
         button = UIButton()
