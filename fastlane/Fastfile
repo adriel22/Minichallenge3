@@ -21,9 +21,10 @@ platform :ios do
     # add actions here: https://docs.fastlane.tools/actions
   end
   lane :tests do
-     run_tests(scheme: "MyAppTests")
+     run_tests(scheme: "Minichallenge3")
   end
   lane :beta do
-     build_app(scheme: "MyApp")
+     build_app(scheme: "Minichallenge3")
   end
+
 end
