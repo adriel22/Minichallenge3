@@ -8,11 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		C77E46C789F9B2BADE16D712 /* Pods_Minichallenge3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CF4D23D356FA463D37FC974 /* Pods_Minichallenge3.framework */; };
-		E3C030AC2282F19500AD53E0 /* HistoryGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030AB2282F19500AD53E0 /* HistoryGraph.swift */; };
-		E3C030AE2282F1B500AD53E0 /* HistoryNodeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030AD2282F1B400AD53E0 /* HistoryNodeProtocol.swift */; };
-		E3C030B02282F1C500AD53E0 /* HistoryNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030AF2282F1C500AD53E0 /* HistoryNode.swift */; };
-		E3C030B22282F1E300AD53E0 /* HistoryShortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B12282F1E300AD53E0 /* HistoryShortcut.swift */; };
-		E3C030B42282F1F300AD53E0 /* HistoryConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B32282F1F300AD53E0 /* HistoryConnection.swift */; };
+		E3C030B822844F0800AD53E0 /* HistoryGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B722844F0800AD53E0 /* HistoryGraphTests.swift */; };
+		E3C030C5228478EB00AD53E0 /* HistoryGraph.h in Headers */ = {isa = PBXBuildFile; fileRef = E3C030C3228478EB00AD53E0 /* HistoryGraph.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E3C030C8228478EB00AD53E0 /* HistoryGraph.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3C030C1228478EB00AD53E0 /* HistoryGraph.framework */; };
+		E3C030C9228478EB00AD53E0 /* HistoryGraph.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3C030C1228478EB00AD53E0 /* HistoryGraph.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E3C030CE228479DC00AD53E0 /* HistoryError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030BA22845ECE00AD53E0 /* HistoryError.swift */; };
+		E3C030CF228479DC00AD53E0 /* HistoryGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030AB2282F19500AD53E0 /* HistoryGraph.swift */; };
+		E3C030D0228479DC00AD53E0 /* HistoryNodeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030AD2282F1B400AD53E0 /* HistoryNodeProtocol.swift */; };
+		E3C030D1228479DC00AD53E0 /* HistoryNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030AF2282F1C500AD53E0 /* HistoryNode.swift */; };
+		E3C030D2228479DC00AD53E0 /* HistoryShortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B12282F1E300AD53E0 /* HistoryShortcut.swift */; };
+		E3C030D3228479DC00AD53E0 /* HistoryConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B32282F1F300AD53E0 /* HistoryConnection.swift */; };
+		E3C030D4228479DC00AD53E0 /* HistoryNodesGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B5228322FC00AD53E0 /* HistoryNodesGrid.swift */; };
 		FCB3548E228065AF00AB7ED2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB3548D228065AF00AB7ED2 /* AppDelegate.swift */; };
 		FCB35490228065AF00AB7ED2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB3548F228065AF00AB7ED2 /* ViewController.swift */; };
 		FCB35493228065AF00AB7ED2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCB35491228065AF00AB7ED2 /* Main.storyboard */; };
@@ -25,6 +31,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		E3C030C6228478EB00AD53E0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FCB35482228065AF00AB7ED2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E3C030C0228478EB00AD53E0;
+			remoteInfo = HistoryGraph;
+		};
 		FCB354A2228065B000AB7ED2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FCB35482228065AF00AB7ED2 /* Project object */;
@@ -41,6 +54,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		E3C030CD228478EB00AD53E0 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E3C030C9228478EB00AD53E0 /* HistoryGraph.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		3CF4D23D356FA463D37FC974 /* Pods_Minichallenge3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Minichallenge3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4405664E379635FBB9519A12 /* Pods-Minichallenge3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Minichallenge3.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Minichallenge3/Pods-Minichallenge3.debug.xcconfig"; sourceTree = "<group>"; };
@@ -50,6 +77,12 @@
 		E3C030AF2282F1C500AD53E0 /* HistoryNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryNode.swift; sourceTree = "<group>"; };
 		E3C030B12282F1E300AD53E0 /* HistoryShortcut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryShortcut.swift; sourceTree = "<group>"; };
 		E3C030B32282F1F300AD53E0 /* HistoryConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryConnection.swift; sourceTree = "<group>"; };
+		E3C030B5228322FC00AD53E0 /* HistoryNodesGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryNodesGrid.swift; sourceTree = "<group>"; };
+		E3C030B722844F0800AD53E0 /* HistoryGraphTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryGraphTests.swift; sourceTree = "<group>"; };
+		E3C030BA22845ECE00AD53E0 /* HistoryError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryError.swift; sourceTree = "<group>"; };
+		E3C030C1228478EB00AD53E0 /* HistoryGraph.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HistoryGraph.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E3C030C3228478EB00AD53E0 /* HistoryGraph.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HistoryGraph.h; sourceTree = "<group>"; };
+		E3C030C4228478EB00AD53E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FCB3548A228065AF00AB7ED2 /* Minichallenge3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Minichallenge3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCB3548D228065AF00AB7ED2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FCB3548F228065AF00AB7ED2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -68,10 +101,18 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		E3C030BE228478EB00AD53E0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FCB35487228065AF00AB7ED2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3C030C8228478EB00AD53E0 /* HistoryGraph.framework in Frameworks */,
 				C77E46C789F9B2BADE16D712 /* Pods_Minichallenge3.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -104,13 +145,25 @@
 		E3C030AA2282F14700AD53E0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E3C030BA22845ECE00AD53E0 /* HistoryError.swift */,
 				E3C030AB2282F19500AD53E0 /* HistoryGraph.swift */,
 				E3C030AD2282F1B400AD53E0 /* HistoryNodeProtocol.swift */,
 				E3C030AF2282F1C500AD53E0 /* HistoryNode.swift */,
 				E3C030B12282F1E300AD53E0 /* HistoryShortcut.swift */,
 				E3C030B32282F1F300AD53E0 /* HistoryConnection.swift */,
+				E3C030B5228322FC00AD53E0 /* HistoryNodesGrid.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		E3C030C2228478EB00AD53E0 /* HistoryGraph */ = {
+			isa = PBXGroup;
+			children = (
+				E3C030AA2282F14700AD53E0 /* Models */,
+				E3C030C3228478EB00AD53E0 /* HistoryGraph.h */,
+				E3C030C4228478EB00AD53E0 /* Info.plist */,
+			);
+			path = HistoryGraph;
 			sourceTree = "<group>";
 		};
 		E63AF8B70B6E719FFBCF5BDE /* Pods */ = {
@@ -128,6 +181,7 @@
 				FCB3548C228065AF00AB7ED2 /* Minichallenge3 */,
 				FCB354A4228065B000AB7ED2 /* Minichallenge3Tests */,
 				FCB354AF228065B000AB7ED2 /* Minichallenge3UITests */,
+				E3C030C2228478EB00AD53E0 /* HistoryGraph */,
 				FCB3548B228065AF00AB7ED2 /* Products */,
 				E63AF8B70B6E719FFBCF5BDE /* Pods */,
 				DABAE8F7599EAF4B2D921E49 /* Frameworks */,
@@ -140,6 +194,7 @@
 				FCB3548A228065AF00AB7ED2 /* Minichallenge3.app */,
 				FCB354A1228065B000AB7ED2 /* Minichallenge3Tests.xctest */,
 				FCB354AC228065B000AB7ED2 /* Minichallenge3UITests.xctest */,
+				E3C030C1228478EB00AD53E0 /* HistoryGraph.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -147,7 +202,6 @@
 		FCB3548C228065AF00AB7ED2 /* Minichallenge3 */ = {
 			isa = PBXGroup;
 			children = (
-				E3C030AA2282F14700AD53E0 /* Models */,
 				FCB3548D228065AF00AB7ED2 /* AppDelegate.swift */,
 				FCB3548F228065AF00AB7ED2 /* ViewController.swift */,
 				FCB35491228065AF00AB7ED2 /* Main.storyboard */,
@@ -163,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				FCB354A5228065B000AB7ED2 /* Minichallenge3Tests.swift */,
+				E3C030B722844F0800AD53E0 /* HistoryGraphTests.swift */,
 				FCB354A7228065B000AB7ED2 /* Info.plist */,
 				FCB354BE2280688D00AB7ED2 /* CITest.swift */,
 			);
@@ -180,7 +235,36 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		E3C030BC228478EB00AD53E0 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E3C030C5228478EB00AD53E0 /* HistoryGraph.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		E3C030C0228478EB00AD53E0 /* HistoryGraph */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E3C030CA228478EB00AD53E0 /* Build configuration list for PBXNativeTarget "HistoryGraph" */;
+			buildPhases = (
+				E3C030BC228478EB00AD53E0 /* Headers */,
+				E3C030BD228478EB00AD53E0 /* Sources */,
+				E3C030BE228478EB00AD53E0 /* Frameworks */,
+				E3C030BF228478EB00AD53E0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HistoryGraph;
+			productName = HistoryGraph;
+			productReference = E3C030C1228478EB00AD53E0 /* HistoryGraph.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		FCB35489228065AF00AB7ED2 /* Minichallenge3 */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FCB354B5228065B000AB7ED2 /* Build configuration list for PBXNativeTarget "Minichallenge3" */;
@@ -190,10 +274,12 @@
 				FCB35487228065AF00AB7ED2 /* Frameworks */,
 				FCB35488228065AF00AB7ED2 /* Resources */,
 				FCB354C0228077F000AB7ED2 /* ShellScript */,
+				E3C030CD228478EB00AD53E0 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				E3C030C7228478EB00AD53E0 /* PBXTargetDependency */,
 			);
 			name = Minichallenge3;
 			productName = Minichallenge3;
@@ -246,6 +332,9 @@
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Adriel Freire";
 				TargetAttributes = {
+					E3C030C0228478EB00AD53E0 = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
 					FCB35489228065AF00AB7ED2 = {
 						CreatedOnToolsVersion = 10.2;
 					};
@@ -275,11 +364,19 @@
 				FCB35489228065AF00AB7ED2 /* Minichallenge3 */,
 				FCB354A0228065B000AB7ED2 /* Minichallenge3Tests */,
 				FCB354AB228065B000AB7ED2 /* Minichallenge3UITests */,
+				E3C030C0228478EB00AD53E0 /* HistoryGraph */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		E3C030BF228478EB00AD53E0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FCB35488228065AF00AB7ED2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -349,16 +446,25 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		E3C030BD228478EB00AD53E0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E3C030D1228479DC00AD53E0 /* HistoryNode.swift in Sources */,
+				E3C030D2228479DC00AD53E0 /* HistoryShortcut.swift in Sources */,
+				E3C030CE228479DC00AD53E0 /* HistoryError.swift in Sources */,
+				E3C030D0228479DC00AD53E0 /* HistoryNodeProtocol.swift in Sources */,
+				E3C030D3228479DC00AD53E0 /* HistoryConnection.swift in Sources */,
+				E3C030CF228479DC00AD53E0 /* HistoryGraph.swift in Sources */,
+				E3C030D4228479DC00AD53E0 /* HistoryNodesGrid.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FCB35486228065AF00AB7ED2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E3C030B22282F1E300AD53E0 /* HistoryShortcut.swift in Sources */,
-				E3C030AE2282F1B500AD53E0 /* HistoryNodeProtocol.swift in Sources */,
 				FCB35490228065AF00AB7ED2 /* ViewController.swift in Sources */,
-				E3C030B02282F1C500AD53E0 /* HistoryNode.swift in Sources */,
-				E3C030B42282F1F300AD53E0 /* HistoryConnection.swift in Sources */,
-				E3C030AC2282F19500AD53E0 /* HistoryGraph.swift in Sources */,
 				FCB3548E228065AF00AB7ED2 /* AppDelegate.swift in Sources */,
 				FCB35496228065AF00AB7ED2 /* Minichallenge3.xcdatamodeld in Sources */,
 			);
@@ -370,6 +476,7 @@
 			files = (
 				FCB354A6228065B000AB7ED2 /* Minichallenge3Tests.swift in Sources */,
 				FCB354BF2280688D00AB7ED2 /* CITest.swift in Sources */,
+				E3C030B822844F0800AD53E0 /* HistoryGraphTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,6 +491,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		E3C030C7228478EB00AD53E0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E3C030C0228478EB00AD53E0 /* HistoryGraph */;
+			targetProxy = E3C030C6228478EB00AD53E0 /* PBXContainerItemProxy */;
+		};
 		FCB354A3228065B000AB7ED2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = FCB35489228065AF00AB7ED2 /* Minichallenge3 */;
@@ -416,6 +528,62 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		E3C030CB228478EB00AD53E0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = JGG8YW8SJU;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = HistoryGraph/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = paulino.elias.HistoryGraph;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		E3C030CC228478EB00AD53E0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = JGG8YW8SJU;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = HistoryGraph/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = paulino.elias.HistoryGraph;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		FCB354B3228065B000AB7ED2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -536,6 +704,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4405664E379635FBB9519A12 /* Pods-Minichallenge3.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = JGG8YW8SJU;
@@ -555,6 +724,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B20FF8B7118109CF1BB19056 /* Pods-Minichallenge3.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = JGG8YW8SJU;
@@ -655,6 +825,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		E3C030CA228478EB00AD53E0 /* Build configuration list for PBXNativeTarget "HistoryGraph" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E3C030CB228478EB00AD53E0 /* Debug */,
+				E3C030CC228478EB00AD53E0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		FCB35485228065AF00AB7ED2 /* Build configuration list for PBXProject "Minichallenge3" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

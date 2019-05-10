@@ -55,7 +55,24 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       codeCoverageEnabled = "YES"
+      onlyGenerateCoverageForSpecifiedTargets = "YES"
       shouldUseLaunchSchemeArgsEnv = "YES">
+      <CodeCoverageTargets>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "FCB35489228065AF00AB7ED2"
+            BuildableName = "Minichallenge3.app"
+            BlueprintName = "Minichallenge3"
+            ReferencedContainer = "container:Minichallenge3.xcodeproj">
+         </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "E3C030C0228478EB00AD53E0"
+            BuildableName = "HistoryGraph.framework"
+            BlueprintName = "HistoryGraph"
+            ReferencedContainer = "container:Minichallenge3.xcodeproj">
+         </BuildableReference>
+      </CodeCoverageTargets>
       <Testables>
          <TestableReference
             skipped = "NO">
