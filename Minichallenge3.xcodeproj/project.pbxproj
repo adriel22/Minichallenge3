@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C003435228469BA006EBC2F /* ExpandableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C003434228469B9006EBC2F /* ExpandableTableViewCell.swift */; };
+		3C00343722846F20006EBC2F /* ExpandableTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C00343622846F20006EBC2F /* ExpandableTableViewCell.xib */; };
+		3C0034392284723D006EBC2F /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0034382284723D006EBC2F /* Colors.swift */; };
+		3C00343D22859E83006EBC2F /* ExpandableTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C00343C22859E83006EBC2F /* ExpandableTableViewHeaderView.swift */; };
 		C77E46C789F9B2BADE16D712 /* Pods_Minichallenge3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CF4D23D356FA463D37FC974 /* Pods_Minichallenge3.framework */; };
 		E3C030AC2282F19500AD53E0 /* HistoryGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030AB2282F19500AD53E0 /* HistoryGraph.swift */; };
 		E3C030AE2282F1B500AD53E0 /* HistoryNodeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030AD2282F1B400AD53E0 /* HistoryNodeProtocol.swift */; };
@@ -42,6 +46,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3C003434228469B9006EBC2F /* ExpandableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableTableViewCell.swift; sourceTree = "<group>"; };
+		3C00343622846F20006EBC2F /* ExpandableTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExpandableTableViewCell.xib; sourceTree = "<group>"; };
+		3C0034382284723D006EBC2F /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		3C00343C22859E83006EBC2F /* ExpandableTableViewHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandableTableViewHeaderView.swift; sourceTree = "<group>"; };
 		3CF4D23D356FA463D37FC974 /* Pods_Minichallenge3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Minichallenge3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4405664E379635FBB9519A12 /* Pods-Minichallenge3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Minichallenge3.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Minichallenge3/Pods-Minichallenge3.debug.xcconfig"; sourceTree = "<group>"; };
 		B20FF8B7118109CF1BB19056 /* Pods-Minichallenge3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Minichallenge3.release.xcconfig"; path = "Pods/Target Support Files/Pods-Minichallenge3/Pods-Minichallenge3.release.xcconfig"; sourceTree = "<group>"; };
@@ -93,6 +101,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3C00343322846986006EBC2F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3C003434228469B9006EBC2F /* ExpandableTableViewCell.swift */,
+				3C00343622846F20006EBC2F /* ExpandableTableViewCell.xib */,
+				3C00343C22859E83006EBC2F /* ExpandableTableViewHeaderView.swift */,
+			);
+			path = View;
+			sourceTree = SOURCE_ROOT;
+		};
 		DABAE8F7599EAF4B2D921E49 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -147,6 +165,8 @@
 		FCB3548C228065AF00AB7ED2 /* Minichallenge3 */ = {
 			isa = PBXGroup;
 			children = (
+				3C0034382284723D006EBC2F /* Colors.swift */,
+				3C00343322846986006EBC2F /* View */,
 				E3C030AA2282F14700AD53E0 /* Models */,
 				FCB3548D228065AF00AB7ED2 /* AppDelegate.swift */,
 				FCB3548F228065AF00AB7ED2 /* ViewController.swift */,
@@ -190,6 +210,7 @@
 				FCB35487228065AF00AB7ED2 /* Frameworks */,
 				FCB35488228065AF00AB7ED2 /* Resources */,
 				FCB354C0228077F000AB7ED2 /* ShellScript */,
+				DC9F1AC5B4B3194CD60F171E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -287,6 +308,7 @@
 				FCB3549B228065B000AB7ED2 /* LaunchScreen.storyboard in Resources */,
 				FCB35498228065B000AB7ED2 /* Assets.xcassets in Resources */,
 				FCB35493228065AF00AB7ED2 /* Main.storyboard in Resources */,
+				3C00343722846F20006EBC2F /* ExpandableTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,6 +351,28 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		DC9F1AC5B4B3194CD60F171E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Minichallenge3/Pods-Minichallenge3-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Minichallenge3/Pods-Minichallenge3-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		FCB354C0228077F000AB7ED2 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -354,9 +398,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				E3C030B22282F1E300AD53E0 /* HistoryShortcut.swift in Sources */,
+				3C0034392284723D006EBC2F /* Colors.swift in Sources */,
 				E3C030AE2282F1B500AD53E0 /* HistoryNodeProtocol.swift in Sources */,
+				3C003435228469BA006EBC2F /* ExpandableTableViewCell.swift in Sources */,
 				FCB35490228065AF00AB7ED2 /* ViewController.swift in Sources */,
 				E3C030B02282F1C500AD53E0 /* HistoryNode.swift in Sources */,
+				3C00343D22859E83006EBC2F /* ExpandableTableViewHeaderView.swift in Sources */,
 				E3C030B42282F1F300AD53E0 /* HistoryConnection.swift in Sources */,
 				E3C030AC2282F19500AD53E0 /* HistoryGraph.swift in Sources */,
 				FCB3548E228065AF00AB7ED2 /* AppDelegate.swift in Sources */,
@@ -537,8 +584,9 @@
 			baseConfigurationReference = 4405664E379635FBB9519A12 /* Pods-Minichallenge3.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = JGG8YW8SJU;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 446LGN7Z63;
 				INFOPLIST_FILE = Minichallenge3/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -546,6 +594,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Adriel.Minichallenge3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -556,8 +605,9 @@
 			baseConfigurationReference = B20FF8B7118109CF1BB19056 /* Pods-Minichallenge3.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = JGG8YW8SJU;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 446LGN7Z63;
 				INFOPLIST_FILE = Minichallenge3/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -565,6 +615,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Adriel.Minichallenge3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -576,7 +627,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JGG8YW8SJU;
+				DEVELOPMENT_TEAM = 446LGN7Z63;
 				INFOPLIST_FILE = Minichallenge3Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -597,7 +648,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JGG8YW8SJU;
+				DEVELOPMENT_TEAM = 446LGN7Z63;
 				INFOPLIST_FILE = Minichallenge3Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -617,7 +668,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JGG8YW8SJU;
+				DEVELOPMENT_TEAM = 446LGN7Z63;
 				INFOPLIST_FILE = Minichallenge3UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -637,7 +688,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JGG8YW8SJU;
+				DEVELOPMENT_TEAM = 446LGN7Z63;
 				INFOPLIST_FILE = Minichallenge3UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
