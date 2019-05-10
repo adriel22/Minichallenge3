@@ -49,17 +49,15 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         headerView.label.text = tableView.dataSource?.tableView?(tableView, titleForHeaderInSection: section)
         headerView.isCollapsed = !(section == selected)
         headerView.didTap = { sender in
-            let oldSelected = 
             self.selected = headerView.isCollapsed ? section : -1
-            
-//            UIView.animate(withDuration: 0.7,
-//                           delay: 0,
-//                           usingSpringWithDamping: 0.7,
-//                           initialSpringVelocity: 0.7,
-//                           options: [.allowUserInteraction, .layoutSubviews, .curveEaseInOut],
-//                           animations: {
-//                tableView.reloadData()
-//            })
+            UIView.animate(withDuration: 0.7,
+                           delay: 0,
+                           usingSpringWithDamping: 0.7,
+                           initialSpringVelocity: 0.7,
+                           options: [.allowUserInteraction, .layoutSubviews, .curveEaseInOut],
+                           animations: {
+                tableView.reloadData()
+            })
         }
         return headerView
     }
