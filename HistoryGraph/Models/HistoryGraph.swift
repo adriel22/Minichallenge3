@@ -101,8 +101,20 @@ public class HistoryGraph: CustomStringConvertible {
     /// - Parameters:
     ///   - originNode: the shortcut`s parent node
     ///   - destinyNode: the node represented by the shortcut
-    public func addShortcut(fromNode originNode: HistoryNodeProtocol, toNode destinyNode: HistoryNodeProtocol) {
-
+    public func addShortcut(fromNode originNode: HistoryNodeProtocol, toNode destinyNode: HistoryNodeProtocol, andPositionX positionX: Int, andPositionY positionY:Int) {
+        guard let originNode = originNode as? HistoryNode else {
+            return
+        }
+        guard let destinyNode = destinyNode as? HistoryNode else{
+            return
+        }
+        
+        let shortcut = HistoryShortcut(forNode: destinyNode, andParentNode: originNode, positionX: positionX, andPositionY: positionY)
+        
+        fatalError("The shortcut' position need of class grid for return the correct position")
+        
+        self.addNode(shortcut)
+        
     }
 
     /// checks if a node is the graph
