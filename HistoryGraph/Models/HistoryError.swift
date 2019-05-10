@@ -11,4 +11,6 @@ import Foundation
 enum HistoryError: String, Error, Equatable {
     case wrongNodePosition = "the node`s position is invalid"
     case duplicatedNode = "the node is already in the graph"
+    case impossibleMoving = "the node cant be moved due it connections"
+    case duplicatedConnection = "the connnection is already in the graph"
 }
