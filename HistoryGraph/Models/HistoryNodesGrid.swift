@@ -89,6 +89,12 @@ class HistoryNodesGrid: CustomStringConvertible {
                             andPositionY positionY: Int) throws {
 
         let validPosition: Bool = hasPosition(yIndex: positionY, xIndex: positionX)
+
+        guard validPosition else {
+            throw HistoryError.wrongNodePosition
+        }
+
+        let positionFree: Bool = positionIsFree(yIndex: positionY, xIndex: positionX)
         let hasNoParent: Bool = node.parent == nil
         let hasNoConnections: Bool
 
@@ -100,7 +106,7 @@ class HistoryNodesGrid: CustomStringConvertible {
             hasNoConnections = false
         }
 
-        guard validPosition else {
+        guard positionFree else {
             throw HistoryError.wrongNodePosition
         }
 
@@ -140,5 +146,11 @@ class HistoryNodesGrid: CustomStringConvertible {
         let existPosition: Bool = xIndex < graphWidth && yIndex < graphHeight
 
         return existPosition
+    }
+
+    func positionIsFree(yIndex: Int, xIndex: Int) -> Bool {
+        let positionIsFree: Bool = self[yIndex, xIndex] == nil
+
+        return positionIsFree
     }
 }

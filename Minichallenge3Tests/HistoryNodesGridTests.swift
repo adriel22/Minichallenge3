@@ -30,4 +30,97 @@ class HistoryNodesGridTests: XCTestCase {
 
         graph.nodes = []
     }
+
+    func test_moveNodeToPosition_sucess() {
+        // [ ][r][ ]    |   [ ][n2][r][ ]   |   [ ][ ][r][ ]
+        // [ ][ ][ ]    |   [ ][ ][ ][ ]    |   [ ][ ][n2][ ]
+        //              |                   |   [ ][ ][ ][ ]
+
+        let rootNode = HistoryNode.init(
+            withResume: "Root Node Resume",
+            text: "Root Node Text",
+            positionX: 0, andPositionY: 0
+        )
+
+        let node2 = HistoryNode.init(
+            withResume: "Node 2 Resume",
+            text: "Node 2 Text",
+            positionX: 0, andPositionY: 0
+        )
+
+        try? graph.addNode(rootNode)
+        try? graph.addNode(node2)
+
+        XCTAssertNoThrow(
+            try graph.grid.moveNodeToPosition(node: node2, toPositionX: 2, andPositionY: 1)
+        )
+    }
+
+    func test_moveNodeToPosition_invalidPositionUsedPosition() {
+        // [ ][r][ ]    |   [ ][r][ ]
+        // [ ][ ][ ]    |   [ ][n2][ ]
+        //              |   [ ][ ][ ]
+
+        let rootNode = HistoryNode.init(
+            withResume: "Root Node Resume",
+            text: "Root Node Text",
+            positionX: 0, andPositionY: 0
+        )
+
+        let node2 = HistoryNode.init(
+            withResume: "Node 2 Resume",
+            text: "Node 2 Text",
+            positionX: 1, andPositionY: 1
+        )
+
+        try? graph.addNode(rootNode)
+        try? graph.addNode(node2)
+
+        do {
+            try graph.grid.moveNodeToPosition(node: node2, toPositionX: 1, andPositionY: 0)
+            XCTAssert(false)
+        } catch HistoryError.wrongNodePosition {
+            XCTAssert(true)
+        } catch {
+            XCTAssert(false)
+        }
+    }
+
+    func test_moveNodeToPosition_invalidPositionWrongPosition() {
+        // [ ][r][ ]    |   [ ][r][ ]
+        // [ ][ ][ ]    |   [ ][n2][ ]
+        //              |   [ ][ ][ ]
+
+        let rootNode = HistoryNode.init(
+            withResume: "Root Node Resume",
+            text: "Root Node Text",
+            positionX: 0, andPositionY: 0
+        )
+
+        let node2 = HistoryNode.init(
+            withResume: "Node 2 Resume",
+            text: "Node 2 Text",
+            positionX: 1, andPositionY: 1
+        )
+
+        try? graph.addNode(rootNode)
+        try? graph.addNode(node2)
+
+        do {
+            try graph.grid.moveNodeToPosition(node: node2, toPositionX: 3, andPositionY: 3)
+            XCTAssert(false)
+        } catch HistoryError.wrongNodePosition {
+            XCTAssert(true)
+        } catch {
+            XCTAssert(false)
+        }
+    }
+
+    func test_moveNodeToPosition_impossibleMoveHasParent() {
+
+    }
+
+    func test_moveNodeToPosition_impossibleMoveHasConnections() {
+
+    }
 }
