@@ -63,9 +63,14 @@ struct HistoryGraph: CustomStringConvertible {
         guard let destinyNode = destinyNode as? HistoryNode else{
             return
         }
+        
         let shortcut = HistoryShortcut(forNode: destinyNode, andParentNode: originNode, positionX: positionX, andPositionY: positionY)
         
+        fatalError("The shortcut' position need of class grid for return the correct position")
+        
         self.addNode(shortcut)
+        
+        
         
     }
 
@@ -85,12 +90,24 @@ struct HistoryGraph: CustomStringConvertible {
     /// remove a node from the graph and all it connections and shortcuts
     ///
     /// - Parameter node: the node the be removed
-    func removeNode(_ node: HistoryNodeProtocol) {
-
+    mutating func removeNode(_ node: HistoryNodeProtocol) {
+        
+        guard let historyNode = node as? HistoryNode else {
+            return
+        }
+        
+        self.nodes.removeAll { (currentNode) -> Bool in
+            if currentNode === node {
+                return true }
+            else {
+                return false
+            }
+        }
+        
+        
     }
 
     /// remove a connection from the graph
-    ///
     /// - Parameter connection: the connection to be removed
     func removeConnection(_ connection: HistoryConnection) {
         
