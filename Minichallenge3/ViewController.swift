@@ -17,17 +17,17 @@ class ViewController: UIViewController {
     var selected = -1
     
     /// This array holds where the previewed story is on the table view (the section and row values)
-    var storiesMapForTableView: [[HistoryNode]] = [[],[],[],[],[],[],[],[]]
+    var storiesMapForTableView: [[HistoryNode]] = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
     
     /// This array actually holds all the stories
-    var stories: [[HistoryNode]] = [[],[],[],[],[],[],[],[]]
+    var stories: [[HistoryNode]] = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(color: .purpleWhite)
         
         let node  = HistoryNode(withResume: "Teste", andText: "Tetse")
-        for index in 0..<8 {
+        for index in 0..<storiesMapForTableView.count {
             stories[index].append(node)
         }
         
@@ -65,6 +65,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             self.selected = indexPath.section
             self.storiesMapForTableView[indexPath.section].append(story)
             allHistoriesTableView.insertRows(at: [indexPath], with: .automatic)
+            allHistoriesTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
         }
     }
     
@@ -100,6 +101,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? ExpandableTableViewCell
         cell?.selectionStyle = .none
+        cell?.label.text = stories[indexPath.section].first?.resume
         return cell!
     }
     
