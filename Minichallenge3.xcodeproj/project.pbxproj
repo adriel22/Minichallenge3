@@ -13,6 +13,7 @@
 		E331CCC62287B3070041379B /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E331CCC52287B3070041379B /* GraphView.swift */; };
 		E331CCCA228846B20041379B /* GraphViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E331CCC9228846B20041379B /* GraphViewDelegate.swift */; };
 		E331CCCC228846C20041379B /* GraphViewDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E331CCCB228846C20041379B /* GraphViewDatasource.swift */; };
+		E331CCCF2288802B0041379B /* Array+forearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E331CCCE2288802B0041379B /* Array+forearch.swift */; };
 		E3C030B822844F0800AD53E0 /* HistoryGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B722844F0800AD53E0 /* HistoryGraphTests.swift */; };
 		E3C030C5228478EB00AD53E0 /* HistoryGraph.h in Headers */ = {isa = PBXBuildFile; fileRef = E3C030C3228478EB00AD53E0 /* HistoryGraph.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E3C030C8228478EB00AD53E0 /* HistoryGraph.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3C030C1228478EB00AD53E0 /* HistoryGraph.framework */; };
@@ -82,6 +83,7 @@
 		E331CCC52287B3070041379B /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
 		E331CCC9228846B20041379B /* GraphViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewDelegate.swift; sourceTree = "<group>"; };
 		E331CCCB228846C20041379B /* GraphViewDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewDatasource.swift; sourceTree = "<group>"; };
+		E331CCCE2288802B0041379B /* Array+forearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+forearch.swift"; sourceTree = "<group>"; };
 		E3C030AB2282F19500AD53E0 /* HistoryGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryGraph.swift; sourceTree = "<group>"; };
 		E3C030AD2282F1B400AD53E0 /* HistoryNodeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryNodeProtocol.swift; sourceTree = "<group>"; };
 		E3C030AF2282F1C500AD53E0 /* HistoryNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryNode.swift; sourceTree = "<group>"; };
@@ -178,6 +180,14 @@
 			path = delegate;
 			sourceTree = "<group>";
 		};
+		E331CCCD228880100041379B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E331CCCE2288802B0041379B /* Array+forearch.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		E3C030AA2282F14700AD53E0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -238,6 +248,7 @@
 		FCB3548C228065AF00AB7ED2 /* Minichallenge3 */ = {
 			isa = PBXGroup;
 			children = (
+				E331CCCD228880100041379B /* Extensions */,
 				E331CCC42287B2F30041379B /* Views */,
 				FCB3548D228065AF00AB7ED2 /* AppDelegate.swift */,
 				FCB3548F228065AF00AB7ED2 /* ViewController.swift */,
@@ -505,6 +516,7 @@
 			files = (
 				E331CCCC228846C20041379B /* GraphViewDatasource.swift in Sources */,
 				FCB35490228065AF00AB7ED2 /* ViewController.swift in Sources */,
+				E331CCCF2288802B0041379B /* Array+forearch.swift in Sources */,
 				FCB3548E228065AF00AB7ED2 /* AppDelegate.swift in Sources */,
 				E331CCC62287B3070041379B /* GraphView.swift in Sources */,
 				E331CCCA228846B20041379B /* GraphViewDelegate.swift in Sources */,
