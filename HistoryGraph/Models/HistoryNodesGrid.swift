@@ -84,6 +84,9 @@ class HistoryNodesGrid: CustomStringConvertible {
     ///   - node: the target node
     ///   - positionX: position in horizontal axis
     ///   - positionY: position in the vertical axis
+    /// - Throws:
+    ///   - HistoryError.wrongNodePosition if target position is not free or is not valid.
+    ///   - HistoryError.impossibleMoving if the target node cant move because has connections or a parent node.
     func moveNodeToPosition(node: HistoryNodeProtocol,
                             toPositionX positionX: Int,
                             andPositionY positionY: Int) throws {
@@ -122,6 +125,13 @@ class HistoryNodesGrid: CustomStringConvertible {
         grid[positionY][positionX] = node
     }
 
+    /// Move a node to bellow of other.
+    ///
+    /// - Parameters:
+    ///   - bellowNode: the node to be bellow
+    ///   - node: the node that is on the top
+    /// - Throws:
+    ///   - HistoryError.impossibleMoving if the target node cant move because has connections or a parent node.
     func moveNode(_ bellowNode: HistoryNodeProtocol, toBellowOfNode node: HistoryNodeProtocol) throws {
         let destinyNodeNewLinePosition = node.positionY + 1
 
@@ -134,6 +144,10 @@ class HistoryNodesGrid: CustomStringConvertible {
         }
     }
 
+    /// It find the first position in the lineIndex line that is free
+    ///
+    /// - Parameter lineIndex: the index of the target line
+    /// - Returns: the column of the found position
     func findPositionInLine(atIndex lineIndex: Int) -> Int? {
         for colIndex in 0..<graphWidth where grid[lineIndex][colIndex] == nil {
             return colIndex
@@ -142,12 +156,24 @@ class HistoryNodesGrid: CustomStringConvertible {
         return nil
     }
 
+    /// Checks if the grid has the given position
+    ///
+    /// - Parameters:
+    ///   - yIndex: position y
+    ///   - xIndex: position x
+    /// - Returns: true if the grid has the position, false if not
     func hasPosition(yIndex: Int, xIndex: Int) -> Bool {
         let existPosition: Bool = xIndex < graphWidth && yIndex < graphHeight
 
         return existPosition
     }
 
+    /// Checks is the position is free on the grid
+    ///
+    /// - Parameters:
+    ///   - yIndex: position y
+    ///   - xIndex: position x
+    /// - Returns: true if the position is free, false if not
     func positionIsFree(yIndex: Int, xIndex: Int) -> Bool {
         let positionIsFree: Bool = self[yIndex, xIndex] == nil
 
