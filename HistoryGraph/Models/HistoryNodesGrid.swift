@@ -86,7 +86,8 @@ class HistoryNodesGrid: CustomStringConvertible {
     ///   - positionY: position in the vertical axis
     func moveNodeToPosition(node: HistoryNodeProtocol,
                             toPositionX positionX: Int,
-                            andPositionY positionY: Int) throws {
+                            andPositionY positionY: Int,
+                            removeFromOrigin: Bool = true) throws {
 
         let validPosition: Bool = hasPosition(yIndex: positionY, xIndex: positionX)
 
@@ -114,7 +115,9 @@ class HistoryNodesGrid: CustomStringConvertible {
             throw HistoryError.impossibleMoving
         }
 
-        grid[node.positionY][node.positionX] = nil
+        if removeFromOrigin{
+            grid[node.positionY][node.positionX] = nil
+        }
 
         node.positionX = positionX
         node.positionY = positionY
@@ -122,14 +125,19 @@ class HistoryNodesGrid: CustomStringConvertible {
         grid[positionY][positionX] = node
     }
 
-    func moveNode(_ bellowNode: HistoryNodeProtocol, toBellowOfNode node: HistoryNodeProtocol) throws {
+    func moveNode(
+        _ bellowNode: HistoryNodeProtocol,
+        toBellowOfNode node: HistoryNodeProtocol,
+        removeFromOrigin: Bool = true) throws {
+
         let destinyNodeNewLinePosition = node.positionY + 1
 
         if let newColPosition = findPositionInLine(atIndex: destinyNodeNewLinePosition) {
             try moveNodeToPosition(
                 node: bellowNode,
                 toPositionX: newColPosition,
-                andPositionY: destinyNodeNewLinePosition
+                andPositionY: destinyNodeNewLinePosition,
+                removeFromOrigin: removeFromOrigin
             )
         }
     }

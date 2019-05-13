@@ -13,4 +13,5 @@ enum HistoryError: String, Error, Equatable {
     case duplicatedNode = "the node is already in the graph"
     case impossibleMoving = "the node cant be moved due it connections"
     case duplicatedConnection = "the connnection is already in the graph"
+    case imposibleCreatePathToShortcut = "can't be created a connection for the same shortcut"
 }

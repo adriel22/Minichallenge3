@@ -33,19 +33,41 @@ public class HistoryGraph: CustomStringConvertible {
         self.grid.graph = self
     }
 
-    /// Adds a connection between two nodes
+    /// Adds a path between two nodes
     ///
     /// - Parameters:
     ///   - originNode: the origin node
     ///   - destinyNode: the destiny node
-    public func addConnection(fromNode originNode: HistoryNode,
-                              toNode destinyNode: HistoryNode,
-                              withTitle title: String) throws {
+    ///   - title: the title to a path
+    /// - Throws:   -Throw impossibleCreatePathToShortcut if destiny is a historyNode and
+    /// was impossible Moving or was in wrong node position. Throw another error that other function throw
+    public func addPath(
+        fromNode originNode: HistoryNode,
+        toNode destinyNode: HistoryNodeProtocol,
+        withTitle title: String) throws {
+
+        do {
+           try addConnection(fromNode: originNode, toNode: destinyNode, withTitle: title)
+        } catch let error as HistoryError
+            where error == .impossibleMoving || error == .wrongNodePosition {
+            guard let destinyHistoryNode = destinyNode as? HistoryNode else {
+                throw HistoryError.imposibleCreatePathToShortcut
+            }
+            try addShortcut(fromNode: originNode, toNode: destinyHistoryNode, withTitle: title)
+        } catch {
+            throw error
+        }
+    }
+
+    public func addConnection(
+        fromNode originNode: HistoryNode,
+        toNode destinyNode: HistoryNodeProtocol,
+        withTitle title: String) throws {
         /*
          if there is a connection origin-destiny, it stops
          
          if the destiny has a parent, it create a shortcut
-
+         
          if there is a connection "backing", it create a shortcut
          
          if the destiny has no parent neither connections, move the destiny node to origins bellow and connect them.
@@ -66,43 +88,42 @@ public class HistoryGraph: CustomStringConvertible {
                 originNode.connections.append(connection)
                 destinyNode.parent = originNode
             } else {
-                do {
-                    try grid.moveNode(destinyNode, toBellowOfNode: originNode)
+                try grid.moveNode(destinyNode, toBellowOfNode: originNode)
 
-                    addBordersToNode(destinyNode)
+                addBordersToNode(destinyNode)
 
-                    //connect them
-                    originNode.connections.append(connection)
-                    destinyNode.parent = originNode
-                } catch {
-                    //create the shortcut
-                    addShortcut(fromNode: originNode, toNode: destinyNode)
-                }
+                //connect them
+                originNode.connections.append(connection)
+                destinyNode.parent = originNode
             }
         } else {
-            addShortcut(fromNode: originNode, toNode: destinyNode)
+            throw HistoryError.impossibleMoving
         }
     }
-
     /// add a shortcut to a node
     ///
     /// - Parameters:
     ///   - originNode: the shortcut`s parent node
     ///   - destinyNode: the node represented by the shortcut
-    public func addShortcut(fromNode originNode: HistoryNodeProtocol, toNode destinyNode: HistoryNodeProtocol, andPositionX positionX: Int, andPositionY positionY:Int) {
-        guard let originNode = originNode as? HistoryNode else {
-            return
-        }
-        guard let destinyNode = destinyNode as? HistoryNode else{
-            return
-        }
-        
-        let shortcut = HistoryShortcut(forNode: destinyNode, andParentNode: originNode, positionX: positionX, andPositionY: positionY)
-        
-        fatalError("The shortcut' position need of class grid for return the correct position")
-        
-        self.addNode(shortcut)
-        
+    public func addShortcut(
+        fromNode originNode: HistoryNode,
+        toNode destinyNode: HistoryNode,
+        withTitle title: String) throws {
+
+        let shortcut = HistoryShortcut(
+            forNode: destinyNode,
+            andParentNode: nil,
+            positionX: 0,
+            andPositionY: 0
+        )
+
+        try grid.moveNode(shortcut, toBellowOfNode: originNode, removeFromOrigin: false)
+        addBordersToNode(destinyNode)
+        let connection = HistoryConnection(destinyNode: shortcut, title: title)
+        originNode.connections.append(connection)
+
+        shortcut.parent = originNode
+        originNode.shortcuts.append(shortcut)
     }
 
     /// checks if a node is the graph
@@ -164,7 +185,7 @@ public class HistoryGraph: CustomStringConvertible {
     ///
     /// - Parameter node: the node the be removed
     public func removeNode(_ node: HistoryNodeProtocol) {
-        //rever com os shortcuts
+        //rever com os shortcuts//revisto!!
 
         if let parentNode = node.parent as? HistoryNode {
             parentNode.removeConnection(toNode: node)
@@ -173,6 +194,12 @@ public class HistoryGraph: CustomStringConvertible {
         if let historyNode = node as? HistoryNode {
             for connection in historyNode.connections {
                 connection.destinyNode?.parent = nil
+            }
+        }
+
+        if let historyShortcut = node as? HistoryShortcut, let parent = historyShortcut.parent as? HistoryNode {
+            parent.shortcuts.removeAll { (currentShortcut) -> Bool in
+                currentShortcut === historyShortcut
             }
         }
 
@@ -198,7 +225,7 @@ public class HistoryGraph: CustomStringConvertible {
     ///
     /// - Parameter shortcut: the shortcut to be removed
     public func removeShortcut( _ shortcut: HistoryShortcut) {
-
+        
     }
 
     /// It checks the connection between two nodes
@@ -217,7 +244,7 @@ public class HistoryGraph: CustomStringConvertible {
     ///   - node1: the first node
     ///   - node2: the second node
     /// - Returns: true if it is connected, false if not
-    internal func checkConnection(fromNode1 node1: HistoryNode, toNode2 node2: HistoryNode) -> Bool {
+    internal func checkConnection(fromNode1 node1: HistoryNode, toNode2 node2: HistoryNodeProtocol) -> Bool {
         for connection in node1.connections {
             if let destinyNode = connection.destinyNode, destinyNode === node2 {
                 return true

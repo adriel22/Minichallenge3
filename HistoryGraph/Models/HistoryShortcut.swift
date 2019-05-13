@@ -9,6 +9,7 @@
 import Foundation
 
 public class HistoryShortcut: HistoryNodeProtocol {
+    weak var node: HistoryNode?
     public weak var parent: HistoryNodeProtocol?
 
     public var resume: String? {
@@ -37,14 +38,13 @@ public class HistoryShortcut: HistoryNodeProtocol {
         return "Shortcut for Node: \(self.node?.description ?? "None")"
     }
 
-    weak var node: HistoryNode?
 
     /// Initialize a shortcut for a node
     ///
     /// - Parameters:
     ///   - node: the target shortcut node
     ///   - parent: the parent of the shortcut
-    init(forNode node: HistoryNode, andParentNode parent: HistoryNode, positionX: Int, andPositionY positionY: Int) {
+    init(forNode node: HistoryNode, andParentNode parent: HistoryNode?, positionX: Int, andPositionY positionY: Int) {
         self.node = node
         self.parent = parent
         self.positionX = positionX

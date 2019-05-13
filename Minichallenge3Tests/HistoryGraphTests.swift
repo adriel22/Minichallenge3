@@ -182,7 +182,7 @@ class HistoryGraphTests: XCTestCase {
 
         try? graph.addNode(rootNode)
         try? graph.addNode(node2)
-        try? graph.addConnection(fromNode: rootNode, toNode: node2, withTitle: "action title")
+        try? graph.addPath(fromNode: rootNode, toNode: node2, withTitle: "action title")
         graph.removeNode(node2)
 
         XCTAssertTrue(graph.nodes.count == 1)
@@ -205,7 +205,7 @@ class HistoryGraphTests: XCTestCase {
 
         try? graph.addNode(rootNode)
         try? graph.addNode(node2)
-        try? graph.addConnection(fromNode: rootNode, toNode: node2, withTitle: "action title")
+        try? graph.addPath(fromNode: rootNode, toNode: node2, withTitle: "action title")
         graph.removeNode(rootNode)
 
         XCTAssertTrue(graph.nodes.count == 1)
@@ -236,8 +236,8 @@ class HistoryGraphTests: XCTestCase {
         try? graph.addNode(rootNode)
         try? graph.addNode(node3)
         try? graph.addNode(node2)
-        try? graph.addConnection(fromNode: rootNode, toNode: node2, withTitle: "action title")
-        try? graph.addConnection(fromNode: rootNode, toNode: node3, withTitle: "action title")
+        try? graph.addPath(fromNode: rootNode, toNode: node2, withTitle: "action title")
+        try? graph.addPath(fromNode: rootNode, toNode: node3, withTitle: "action title")
 
         XCTAssertTrue(graph.checkConnection(fromNode1: rootNode, toNode2: node2))
         XCTAssertTrue(graph.checkConnection(fromNode1: rootNode, toNode2: node3))
@@ -279,7 +279,7 @@ class HistoryGraphTests: XCTestCase {
 
         try? graph.addNode(rootNode)
         try? graph.addNode(node2)
-        try? graph.addConnection(fromNode: rootNode, toNode: node2, withTitle: "action title")
+        try? graph.addPath(fromNode: rootNode, toNode: node2, withTitle: "action title")
 
         XCTAssertTrue(graph.checkConnectionBetween(node1: rootNode, andNode2: node2))
         XCTAssertTrue(graph.checkConnectionBetween(node1: node2, andNode2: rootNode))
@@ -313,15 +313,15 @@ class HistoryGraphTests: XCTestCase {
         try? graph.addNode(node2)
         try? graph.addNode(node2Child)
 
-        try? graph.addConnection(fromNode: node2, toNode: node2Child, withTitle: "action")
+        try? graph.addPath(fromNode: node2, toNode: node2Child, withTitle: "action")
 
-        XCTAssertNoThrow(try graph.addConnection(fromNode: rootNode, toNode: node2, withTitle: "action"))
+        XCTAssertNoThrow(try graph.addPath(fromNode: rootNode, toNode: node2, withTitle: "action"))
         XCTAssert(rootNode.positionX == 1 && rootNode.positionY == 0)
         XCTAssert(node2.positionX == 1 && node2.positionY == 1)
         XCTAssert(node2Child.positionX == 1 && node2Child.positionY == 2)
     }
 
-    func test_addConnection_IsBellow() {
+    func test_addPathAndAddConnection_IsBellow() {
         // [ ][r][ ]    |   [ ][r][ ]
         // [ ][ ][ ]    |   [ ][n2][ ]
         //              |   [ ][ ][ ]
@@ -341,12 +341,12 @@ class HistoryGraphTests: XCTestCase {
         try? graph.addNode(rootNode)
         try? graph.addNode(node2)
 
-        XCTAssertNoThrow(try graph.addConnection(fromNode: rootNode, toNode: node2, withTitle: "action"))
+        XCTAssertNoThrow(try graph.addPath(fromNode: rootNode, toNode: node2, withTitle: "action"))
         XCTAssert(rootNode.positionX == 1 && rootNode.positionY == 0)
         XCTAssert(node2.positionX == 1 && node2.positionY == 1)
     }
 
-    func test_addConnection_needMoveChild() {
+    func test_addPathAndAddConnection_needMoveChild() {
         // [ ][r][ ]    |   [ ][n2][r][ ]   |   [ ][ ][ ][r][ ]
         // [ ][ ][ ]    |   [ ][ ][ ][ ]    |   [ ][n2][ ][ ][ ]
 
@@ -365,18 +365,18 @@ class HistoryGraphTests: XCTestCase {
         try? graph.addNode(rootNode)
         try? graph.addNode(node2)
 
-        XCTAssertNoThrow(try graph.addConnection(fromNode: rootNode, toNode: node2, withTitle: "action"))
+        XCTAssertNoThrow(try graph.addPath(fromNode: rootNode, toNode: node2, withTitle: "action"))
         XCTAssert(rootNode.positionX == 3 && rootNode.positionY == 0)
         XCTAssert(node2.positionX == 1 && node2.positionY == 1)
     }
 
-    func test_addConnection_duplicatedConnection() {
+    func test_addPathAndAddConnection_duplicatedConnection() {
         let rootNode = HistoryNode.init(
             withResume: "Root Node Resume",
             text: "Root Node Text",
             positionX: 0, andPositionY: 0
         )
-        
+ 
         let node2 = HistoryNode.init(
             withResume: "Node 2 Resume",
             text: "Node 2 Text",
@@ -385,10 +385,10 @@ class HistoryGraphTests: XCTestCase {
 
         try? graph.addNode(rootNode)
         try? graph.addNode(node2)
-        try? graph.addConnection(fromNode: rootNode, toNode: node2, withTitle: "action")
+        try? graph.addPath(fromNode: rootNode, toNode: node2, withTitle: "action")
 
         XCTAssertThrowsError(
-            try graph.addConnection(fromNode: rootNode, toNode: node2, withTitle: "action")
+            try graph.addPath(fromNode: rootNode, toNode: node2, withTitle: "action")
         )
     }
 
@@ -407,12 +407,49 @@ class HistoryGraphTests: XCTestCase {
 
         try? graph.addNode(rootNode)
         try? graph.addNode(node2)
-        try? graph.addConnection(fromNode: rootNode, toNode: node2, withTitle: "action")
+        try? graph.addPath(fromNode: rootNode, toNode: node2, withTitle: "action")
 
         if let connection = rootNode.connections.first {
             graph.removeConnection(connection, fromNode: rootNode)
         }
 
         XCTAssert(rootNode.connections.count == 0)
+    }
+
+    func test_addShortcut_sucess() {
+        let node1 = HistoryNode.init(withResume: "node1", text: "node1 text", positionX: 0, andPositionY: 0)
+        let node2 = HistoryNode.init(withResume: "node2", text: "node2 text", positionX: 0, andPositionY: 1)
+
+        try? graph.addNode(node1)
+        try? graph.addNode(node2)
+        try? graph.addPath(fromNode: node1, toNode: node2, withTitle: "The first connection")
+        XCTAssertNoThrow(
+        try graph.addShortcut(fromNode: node2, toNode: node1, withTitle: "Back to begin")
+        )
+    }
+
+    func test_addPath_wrongNodePositionAndAddShortcut() {
+        let node1 = HistoryNode.init(withResume: "node1", text: "node1 text", positionX: 0, andPositionY: 0)
+        let node2 = HistoryNode.init(withResume: "node2", text: "node2 text", positionX: 0, andPositionY: 1)
+        let node3 = HistoryNode.init(withResume: "node3", text: "node3 text", positionX: 1, andPositionY: 1)
+
+        try? graph.addNode(node1)
+        try? graph.addNode(node2)
+        try? graph.addPath(fromNode: node1, toNode: node2, withTitle: "The first connection")
+        try? graph.addPath(fromNode: node3, toNode: node2, withTitle: "the connection")
+        XCTAssertTrue(node3.shortcuts.count > 0)
+    }
+
+    func test_addPath_wrongNodePositionAndImpossibleCreatPathToShortcut() {
+        let node1 = HistoryNode.init(withResume: "node1", text: "node1 text", positionX: 0, andPositionY: 0)
+        let node2 = HistoryNode.init(withResume: "node2", text: "node2 text", positionX: 0, andPositionY: 1)
+        let node3 = HistoryNode.init(withResume: "node3", text: "node3 text", positionX: 1, andPositionY: 1)
+
+        try? graph.addNode(node1)
+        try? graph.addNode(node2)
+        try? graph.addPath(fromNode: node1, toNode: node2, withTitle: "The first connection")
+        try? graph.addPath(fromNode: node3, toNode: node2, withTitle: "connection")
+        let shortcut = node3.shortcuts.first!
+        XCTAssertThrowsError(try graph.addPath(fromNode: node1, toNode: shortcut, withTitle: "the connection"))
     }
 }
