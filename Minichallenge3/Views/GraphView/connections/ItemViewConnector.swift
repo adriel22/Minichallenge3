@@ -8,40 +8,62 @@
 
 import UIKit
 
+/// A class responsible for make views that connects two specific item views
 class ItemViewConnector {
     typealias ConnectionViewDescriptor = (originConnector: UIView, destinyConnector: UIView, bendConnector: UIView)
 
-    var firstItemConnector: UIView
-    var secondItemConnector: UIView
-    var bendItemConnector: UIView
+    var firstItemConnector = ItemViewConnector.makeConnector()
+    var secondItemConnector = ItemViewConnector.makeConnector()
+    var bendItemConnector = ItemViewConnector.makeConnector()
+
+    var originLineView: GraphLineView
+    var destinyLineView: GraphLineView
+
     var lineWidth: CGFloat
 
-    init(containerView: UIView, lineWidth: CGFloat) {
-        self.firstItemConnector = GraphConnectionView()
-        firstItemConnector.backgroundColor = UIColor.black
-        firstItemConnector.translatesAutoresizingMaskIntoConstraints = false
-
-        self.secondItemConnector = GraphConnectionView()
-        secondItemConnector.backgroundColor = UIColor.black
-        secondItemConnector.translatesAutoresizingMaskIntoConstraints = false
-
-        self.bendItemConnector = GraphConnectionView()
-        bendItemConnector.backgroundColor = UIColor.black
-        bendItemConnector.translatesAutoresizingMaskIntoConstraints = false
+    /// Initialize the view components of the connection
+    ///
+    /// - Parameters:
+    ///   - containerView: the containerView
+    ///   - lineWidth: the width of the connection line
+    ///   - originLineView: the line view for the origin item
+    ///   - destinyLineView: the line view for the destiny item
+    init(
+        withContainerView containerView: UIView,
+        lineWidth: CGFloat,
+        originLineView: GraphLineView,
+        andDestinyLineView destinyLineView: GraphLineView) {
 
         self.lineWidth = lineWidth
+
+        self.originLineView = originLineView
+        self.destinyLineView = destinyLineView
 
         containerView.addSubview(firstItemConnector)
         containerView.addSubview(secondItemConnector)
         containerView.addSubview(bendItemConnector)
     }
 
+    private static func makeConnector() -> GraphConnectionView {
+        let connector = GraphConnectionView()
+        connector.backgroundColor = UIColor.black
+        connector.translatesAutoresizingMaskIntoConstraints = false
+
+        return connector
+    }
+
+    /// Set the constraints for the connection view components.
+    ///
+    /// - Parameters:
+    ///   - originItem: the origin item view
+    ///   - destinyItem: the destiny item view
+    ///   - bendDistance: the bendDistance is the distance
+    /// between the origin item lineview end the begin of the connection view
+    ///   - direction: the direction of the connection
     func setConstraints(
         fromOriginItem originItem: GraphItemView,
         toDestinyItem destinyItem: GraphItemView,
         withBendDistance bendDistance: CGFloat,
-        andOriginLineView originLineView: GraphLineView,
-        andDestinyLineView destinyLineView: GraphLineView,
         andDirection direction: ItemViewConnectorDirection) {
 
         var constraints = [

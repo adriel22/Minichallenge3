@@ -173,7 +173,7 @@ class GraphView: UIScrollView {
         atLineWithIndex lineIndex: Int,
         usingDatasource datasource: GraphViewDatasource) {
 
-        guard let lineView = itemViews.first?.superview as? GraphLineView else {
+        guard let lineView = itemViews.first?.parentLine else {
             return
         }
 

@@ -20,7 +20,6 @@
 		E381E2C72288DCC500E25B78 /* ItemViewConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381E2C62288DCC500E25B78 /* ItemViewConnector.swift */; };
 		E381E2C92288DE8300E25B78 /* CGPoint+add.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381E2C82288DE8300E25B78 /* CGPoint+add.swift */; };
 		E381E2CB2288E0AF00E25B78 /* UIBezierPath+addPolygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381E2CA2288E0AF00E25B78 /* UIBezierPath+addPolygon.swift */; };
-		E381E2CD2289B57D00E25B78 /* Test.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E381E2CC2289B57D00E25B78 /* Test.storyboard */; };
 		E381E2CF2289BA9A00E25B78 /* GraphConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381E2CE2289BA9A00E25B78 /* GraphConnectionView.swift */; };
 		E381E2D12289C41800E25B78 /* NSLayoutConstraint+activate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381E2D02289C41800E25B78 /* NSLayoutConstraint+activate.swift */; };
 		E381E2D32289C58F00E25B78 /* ItemViewConnectorDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381E2D22289C58F00E25B78 /* ItemViewConnectorDirection.swift */; };
@@ -100,7 +99,6 @@
 		E381E2C62288DCC500E25B78 /* ItemViewConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewConnector.swift; sourceTree = "<group>"; };
 		E381E2C82288DE8300E25B78 /* CGPoint+add.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+add.swift"; sourceTree = "<group>"; };
 		E381E2CA2288E0AF00E25B78 /* UIBezierPath+addPolygon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBezierPath+addPolygon.swift"; sourceTree = "<group>"; };
-		E381E2CC2289B57D00E25B78 /* Test.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Test.storyboard; sourceTree = "<group>"; };
 		E381E2CE2289BA9A00E25B78 /* GraphConnectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphConnectionView.swift; sourceTree = "<group>"; };
 		E381E2D02289C41800E25B78 /* NSLayoutConstraint+activate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+activate.swift"; sourceTree = "<group>"; };
 		E381E2D22289C58F00E25B78 /* ItemViewConnectorDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewConnectorDirection.swift; sourceTree = "<group>"; };
@@ -294,7 +292,6 @@
 				FCB35499228065B000AB7ED2 /* LaunchScreen.storyboard */,
 				FCB3549C228065B000AB7ED2 /* Info.plist */,
 				FCB35494228065AF00AB7ED2 /* Minichallenge3.xcdatamodeld */,
-				E381E2CC2289B57D00E25B78 /* Test.storyboard */,
 			);
 			path = Minichallenge3;
 			sourceTree = "<group>";
@@ -471,7 +468,6 @@
 			files = (
 				FCB3549B228065B000AB7ED2 /* LaunchScreen.storyboard in Resources */,
 				FCB35498228065B000AB7ED2 /* Assets.xcassets in Resources */,
-				E381E2CD2289B57D00E25B78 /* Test.storyboard in Resources */,
 				FCB35493228065AF00AB7ED2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

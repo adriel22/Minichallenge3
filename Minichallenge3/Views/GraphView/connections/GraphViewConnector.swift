@@ -128,7 +128,12 @@ class GraphViewConnector {
                 let positionInContainerForOrigin = originLineView.convert(originItemView.center, to: containerView)
                 let positionInContainerForDestiny = destinyLineView.convert(destinyItemView.center, to: containerView)
 
-                let itemConnector = ItemViewConnector(containerView: containerView, lineWidth: 3)
+                let itemConnector = ItemViewConnector(
+                    withContainerView: containerView,
+                    lineWidth: 3, originLineView: originLineView,
+                    andDestinyLineView: destinyLineView
+                )
+                
                 let direction = positionInContainerForOrigin.x > positionInContainerForDestiny.x ?
                     ItemViewConnectorDirection.left :
                     ItemViewConnectorDirection.right
@@ -140,7 +145,6 @@ class GraphViewConnector {
                 itemConnector.setConstraints(
                     fromOriginItem: originItemView, toDestinyItem: destinyItemView,
                     withBendDistance: bendDistance,
-                    andOriginLineView: originLineView, andDestinyLineView: destinyLineView,
                     andDirection: direction
                 )
             }

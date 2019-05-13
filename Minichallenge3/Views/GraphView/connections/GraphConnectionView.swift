@@ -8,6 +8,4 @@
 
 import UIKit
 
-class GraphConnectionView: UIView {
-    
-}
+class GraphConnectionView: UIView { }
