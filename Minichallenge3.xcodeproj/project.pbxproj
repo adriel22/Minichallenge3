@@ -7,15 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C003435228469BA006EBC2F /* ExpandableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C003434228469B9006EBC2F /* ExpandableTableViewCell.swift */; };
+		3C00343722846F20006EBC2F /* ExpandableTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C00343622846F20006EBC2F /* ExpandableTableViewCell.xib */; };
+		3C0034392284723D006EBC2F /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0034382284723D006EBC2F /* Colors.swift */; };
+		3C00343D22859E83006EBC2F /* ExpandableTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C00343C22859E83006EBC2F /* ExpandableTableViewHeaderView.swift */; };
 		C77E46C789F9B2BADE16D712 /* Pods_Minichallenge3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CF4D23D356FA463D37FC974 /* Pods_Minichallenge3.framework */; };
 		E3C030AC2282F19500AD53E0 /* HistoryGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030AB2282F19500AD53E0 /* HistoryGraph.swift */; };
 		E3C030AE2282F1B500AD53E0 /* HistoryNodeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030AD2282F1B400AD53E0 /* HistoryNodeProtocol.swift */; };
 		E3C030B02282F1C500AD53E0 /* HistoryNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030AF2282F1C500AD53E0 /* HistoryNode.swift */; };
 		E3C030B22282F1E300AD53E0 /* HistoryShortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B12282F1E300AD53E0 /* HistoryShortcut.swift */; };
 		E3C030B42282F1F300AD53E0 /* HistoryConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B32282F1F300AD53E0 /* HistoryConnection.swift */; };
-		FC01B1982284603400126DE4 /* HasCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC01B1972284603400126DE4 /* HasCustomView.swift */; };
-		FC01B19A228461C600126DE4 /* MyNarratives.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC01B199228461C600126DE4 /* MyNarratives.swift */; };
-		FC01B19E228465CB00126DE4 /* MyNarrativesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC01B19D228465CB00126DE4 /* MyNarrativesViewController.swift */; };
+		FC031F6622899B7700998ABD /* SetNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC031F6522899B7700998ABD /* SetNavigation.swift */; };
 		FCB3548E228065AF00AB7ED2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB3548D228065AF00AB7ED2 /* AppDelegate.swift */; };
 		FCB35490228065AF00AB7ED2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB3548F228065AF00AB7ED2 /* ViewController.swift */; };
 		FCB35493228065AF00AB7ED2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCB35491228065AF00AB7ED2 /* Main.storyboard */; };
@@ -25,6 +27,8 @@
 		FCB354A6228065B000AB7ED2 /* Minichallenge3Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB354A5228065B000AB7ED2 /* Minichallenge3Tests.swift */; };
 		FCB354B1228065B000AB7ED2 /* Minichallenge3UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB354B0228065B000AB7ED2 /* Minichallenge3UITests.swift */; };
 		FCB354BF2280688D00AB7ED2 /* CITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB354BE2280688D00AB7ED2 /* CITest.swift */; };
+		FCFFDF492285BAF70003DD45 /* MyNarrativesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFFDF482285BAF70003DD45 /* MyNarrativesView.swift */; };
+		FCFFDF4C2285BBAB0003DD45 /* MyNarrativesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFFDF4B2285BBAB0003DD45 /* MyNarrativesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +49,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3C003434228469B9006EBC2F /* ExpandableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableTableViewCell.swift; sourceTree = "<group>"; };
+		3C00343622846F20006EBC2F /* ExpandableTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExpandableTableViewCell.xib; sourceTree = "<group>"; };
+		3C0034382284723D006EBC2F /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		3C00343C22859E83006EBC2F /* ExpandableTableViewHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandableTableViewHeaderView.swift; sourceTree = "<group>"; };
 		3CF4D23D356FA463D37FC974 /* Pods_Minichallenge3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Minichallenge3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4405664E379635FBB9519A12 /* Pods-Minichallenge3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Minichallenge3.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Minichallenge3/Pods-Minichallenge3.debug.xcconfig"; sourceTree = "<group>"; };
 		B20FF8B7118109CF1BB19056 /* Pods-Minichallenge3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Minichallenge3.release.xcconfig"; path = "Pods/Target Support Files/Pods-Minichallenge3/Pods-Minichallenge3.release.xcconfig"; sourceTree = "<group>"; };
@@ -53,9 +61,7 @@
 		E3C030AF2282F1C500AD53E0 /* HistoryNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryNode.swift; sourceTree = "<group>"; };
 		E3C030B12282F1E300AD53E0 /* HistoryShortcut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryShortcut.swift; sourceTree = "<group>"; };
 		E3C030B32282F1F300AD53E0 /* HistoryConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryConnection.swift; sourceTree = "<group>"; };
-		FC01B1972284603400126DE4 /* HasCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HasCustomView.swift; sourceTree = "<group>"; };
-		FC01B199228461C600126DE4 /* MyNarratives.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNarratives.swift; sourceTree = "<group>"; };
-		FC01B19D228465CB00126DE4 /* MyNarrativesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNarrativesViewController.swift; sourceTree = "<group>"; };
+		FC031F6522899B7700998ABD /* SetNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetNavigation.swift; sourceTree = "<group>"; };
 		FCB3548A228065AF00AB7ED2 /* Minichallenge3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Minichallenge3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCB3548D228065AF00AB7ED2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FCB3548F228065AF00AB7ED2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -71,6 +77,8 @@
 		FCB354B0228065B000AB7ED2 /* Minichallenge3UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Minichallenge3UITests.swift; sourceTree = "<group>"; };
 		FCB354B2228065B000AB7ED2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FCB354BE2280688D00AB7ED2 /* CITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CITest.swift; sourceTree = "<group>"; };
+		FCFFDF482285BAF70003DD45 /* MyNarrativesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNarrativesView.swift; sourceTree = "<group>"; };
+		FCFFDF4B2285BBAB0003DD45 /* MyNarrativesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNarrativesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +107,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3C00343322846986006EBC2F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3C003434228469B9006EBC2F /* ExpandableTableViewCell.swift */,
+				3C00343622846F20006EBC2F /* ExpandableTableViewCell.xib */,
+				3C00343C22859E83006EBC2F /* ExpandableTableViewHeaderView.swift */,
+				FCFFDF482285BAF70003DD45 /* MyNarrativesView.swift */,
+			);
+			path = View;
+			sourceTree = SOURCE_ROOT;
+		};
 		DABAE8F7599EAF4B2D921E49 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -128,30 +147,6 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		FC01B19522845EB600126DE4 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				FC01B199228461C600126DE4 /* MyNarratives.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		FC01B19622845EC600126DE4 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				FC01B1972284603400126DE4 /* HasCustomView.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
-		FC01B19B2284658900126DE4 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				FC01B19D228465CB00126DE4 /* MyNarrativesViewController.swift */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
 		FCB35481228065AF00AB7ED2 = {
 			isa = PBXGroup;
 			children = (
@@ -177,9 +172,9 @@
 		FCB3548C228065AF00AB7ED2 /* Minichallenge3 */ = {
 			isa = PBXGroup;
 			children = (
-				FC01B19B2284658900126DE4 /* Controllers */,
-				FC01B19622845EC600126DE4 /* Protocols */,
-				FC01B19522845EB600126DE4 /* Views */,
+				FCFFDF4A2285BB630003DD45 /* Controller */,
+				3C0034382284723D006EBC2F /* Colors.swift */,
+				3C00343322846986006EBC2F /* View */,
 				E3C030AA2282F14700AD53E0 /* Models */,
 				FCB3548D228065AF00AB7ED2 /* AppDelegate.swift */,
 				FCB3548F228065AF00AB7ED2 /* ViewController.swift */,
@@ -188,6 +183,7 @@
 				FCB35499228065B000AB7ED2 /* LaunchScreen.storyboard */,
 				FCB3549C228065B000AB7ED2 /* Info.plist */,
 				FCB35494228065AF00AB7ED2 /* Minichallenge3.xcdatamodeld */,
+				FC031F6522899B7700998ABD /* SetNavigation.swift */,
 			);
 			path = Minichallenge3;
 			sourceTree = "<group>";
@@ -211,6 +207,14 @@
 			path = Minichallenge3UITests;
 			sourceTree = "<group>";
 		};
+		FCFFDF4A2285BB630003DD45 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FCFFDF4B2285BBAB0003DD45 /* MyNarrativesViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -223,6 +227,7 @@
 				FCB35487228065AF00AB7ED2 /* Frameworks */,
 				FCB35488228065AF00AB7ED2 /* Resources */,
 				FCB354C0228077F000AB7ED2 /* ShellScript */,
+				DC9F1AC5B4B3194CD60F171E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -320,6 +325,7 @@
 				FCB3549B228065B000AB7ED2 /* LaunchScreen.storyboard in Resources */,
 				FCB35498228065B000AB7ED2 /* Assets.xcassets in Resources */,
 				FCB35493228065AF00AB7ED2 /* Main.storyboard in Resources */,
+				3C00343722846F20006EBC2F /* ExpandableTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,6 +368,28 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		DC9F1AC5B4B3194CD60F171E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Minichallenge3/Pods-Minichallenge3-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Minichallenge3/Pods-Minichallenge3-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		FCB354C0228077F000AB7ED2 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -386,13 +414,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC01B19E228465CB00126DE4 /* MyNarrativesViewController.swift in Sources */,
 				E3C030B22282F1E300AD53E0 /* HistoryShortcut.swift in Sources */,
+				FCFFDF4C2285BBAB0003DD45 /* MyNarrativesViewController.swift in Sources */,
+				FC031F6622899B7700998ABD /* SetNavigation.swift in Sources */,
+				FCFFDF492285BAF70003DD45 /* MyNarrativesView.swift in Sources */,
+				3C0034392284723D006EBC2F /* Colors.swift in Sources */,
 				E3C030AE2282F1B500AD53E0 /* HistoryNodeProtocol.swift in Sources */,
+				3C003435228469BA006EBC2F /* ExpandableTableViewCell.swift in Sources */,
 				FCB35490228065AF00AB7ED2 /* ViewController.swift in Sources */,
 				E3C030B02282F1C500AD53E0 /* HistoryNode.swift in Sources */,
-				FC01B19A228461C600126DE4 /* MyNarratives.swift in Sources */,
-				FC01B1982284603400126DE4 /* HasCustomView.swift in Sources */,
+				3C00343D22859E83006EBC2F /* ExpandableTableViewHeaderView.swift in Sources */,
 				E3C030B42282F1F300AD53E0 /* HistoryConnection.swift in Sources */,
 				E3C030AC2282F19500AD53E0 /* HistoryGraph.swift in Sources */,
 				FCB3548E228065AF00AB7ED2 /* AppDelegate.swift in Sources */,
@@ -573,6 +604,7 @@
 			baseConfigurationReference = 4405664E379635FBB9519A12 /* Pods-Minichallenge3.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JGG8YW8SJU;
 				INFOPLIST_FILE = Minichallenge3/Info.plist;
@@ -582,6 +614,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Adriel.Minichallenge3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -592,6 +625,7 @@
 			baseConfigurationReference = B20FF8B7118109CF1BB19056 /* Pods-Minichallenge3.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JGG8YW8SJU;
 				INFOPLIST_FILE = Minichallenge3/Info.plist;
@@ -601,6 +635,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Adriel.Minichallenge3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -612,7 +647,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JGG8YW8SJU;
+				DEVELOPMENT_TEAM = 446LGN7Z63;
 				INFOPLIST_FILE = Minichallenge3Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -633,7 +668,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JGG8YW8SJU;
+				DEVELOPMENT_TEAM = 446LGN7Z63;
 				INFOPLIST_FILE = Minichallenge3Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -653,7 +688,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JGG8YW8SJU;
+				DEVELOPMENT_TEAM = 446LGN7Z63;
 				INFOPLIST_FILE = Minichallenge3UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -673,7 +708,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JGG8YW8SJU;
+				DEVELOPMENT_TEAM = 446LGN7Z63;
 				INFOPLIST_FILE = Minichallenge3UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
