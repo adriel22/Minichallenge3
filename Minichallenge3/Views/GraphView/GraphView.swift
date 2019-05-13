@@ -21,7 +21,7 @@ class GraphView: UIScrollView {
             }
         }
     }
-    
+
     var lineViews: [GraphLineView] = []
 
     init() {
@@ -48,7 +48,7 @@ class GraphView: UIScrollView {
         insertItemViewsIn(lineViews: lineViews, usingDatasource: datasource)
         setConstraintsFor(lineViews: lineViews, usingDatasource: datasource)
         setConstraintsForItemViewsIn(lineViews: lineViews, usingDatasource: datasource)
-        
+
         self.lineViews = lineViews
     }
 
@@ -255,18 +255,18 @@ class GraphView: UIScrollView {
             containerView.rightAnchor.constraint(equalTo: self.rightAnchor)
         ])
     }
-    
+
     func itemView(forPosition position: GridPosition) -> GraphItemViewProtocol? {
         guard position.yPosition > 0 && position.yPosition < self.lineViews.count else {
             return nil
         }
-        
+
         let lineView = self.lineViews[position.yPosition]
-        
+
         guard position.xPosition > 0 && position.xPosition < lineView.itemViews.count else {
             return nil
         }
-        
+
         return lineView.itemViews[position.xPosition]
     }
 }

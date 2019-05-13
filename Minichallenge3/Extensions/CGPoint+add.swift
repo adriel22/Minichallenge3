@@ -16,11 +16,11 @@ extension CGPoint {
     public func addingToX(_ xAddition: CGFloat) -> CGPoint {
         return CGPoint(x: x + xAddition, y: y)
     }
-    
+
     public func addingToY(_ yAddition: CGFloat) -> CGPoint {
         return CGPoint(x: x, y: y + yAddition)
     }
-    
+
     public func translateToX(_ xPosition: CGFloat) -> CGPoint {
         return CGPoint(x: xPosition, y: y)
     }

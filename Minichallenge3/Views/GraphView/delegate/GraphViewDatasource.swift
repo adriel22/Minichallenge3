@@ -20,6 +20,6 @@ protocol GraphViewDatasource {
     func lineSpacing(forGraphView graphView: GraphView) -> CGFloat
     func columnSpacing(forGraphView graphView: GraphView) -> CGFloat
     func leftSpacing(forGraphView graphView: GraphView) -> CGFloat
-    
+
     func connections(forGraphView graphView: GraphView, fromItemAtPosition itemPosition: GridPosition) -> [GridPosition]
 }
