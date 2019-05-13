@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SnapKit
 
 class ExpandableTableViewCell: UITableViewCell {
 
@@ -19,6 +18,7 @@ class ExpandableTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        backgroundColor = UIColor(color: .purpleWhite)
 
         label = UILabel(frame: .zero)
         label.numberOfLines = 0
@@ -26,22 +26,20 @@ class ExpandableTableViewCell: UITableViewCell {
         label.text = "Jurema é uma verdadeira aventureira. Todos os seus dias são recheados de dificuldades e desafios. Embarque nessa aventura e ajude-a a conseguir alcançar suas metas."
         addSubview(label)
 
-        label.snp.makeConstraints { make in
-            make.top.equalTo(16)
-            make.leading.equalTo(16)
-            make.trailing.equalTo(-16)
-        }
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.topAnchor.constraint(equalTo: topAnchor, constant: 16).isActive = true
+        label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16).isActive = true
+        label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16).isActive = true
 
         separator = UIView(frame: .zero)
         separator.backgroundColor = .clear
         addSubview(separator)
 
-        separator.snp.makeConstraints { make in
-            make.top.equalTo(label.snp.bottom)
-            make.width.equalTo(UIScreen.main.bounds.width)
-            make.leading.equalTo(0)
-            make.height.equalTo(16)
-        }
+        separator.translatesAutoresizingMaskIntoConstraints = false
+        separator.topAnchor.constraint(equalTo: label.bottomAnchor).isActive = true
+        separator.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width).isActive = true
+        separator.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        separator.heightAnchor.constraint(equalToConstant: 16).isActive = true
 
         button = UIButton(frame: .zero)
         button.setTitle("Ver mais", for: .normal)
@@ -51,13 +49,12 @@ class ExpandableTableViewCell: UITableViewCell {
         button.round(radius: 4)
         addSubview(button)
 
-        button.snp.makeConstraints { make in
-            let screenWidthWithEdges = UIScreen.main.bounds.width - 32
-            make.width.equalTo(screenWidthWithEdges/3)
-            make.trailing.equalTo(-16)
-            make.top.equalTo(separator.snp.bottom)
-            make.height.equalTo((screenWidthWithEdges/3)/3.5)
-        }
+        button.translatesAutoresizingMaskIntoConstraints = false
+        let screenWidthWithEdges = UIScreen.main.bounds.width - 32
+        button.widthAnchor.constraint(equalToConstant: screenWidthWithEdges/3).isActive = true
+        button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16).isActive = true
+        button.topAnchor.constraint(equalTo: separator.bottomAnchor).isActive = true
+        button.heightAnchor.constraint(equalToConstant: (screenWidthWithEdges/3)/3.5).isActive = true
 
         button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
 
@@ -66,5 +63,4 @@ class ExpandableTableViewCell: UITableViewCell {
     @objc private func buttonTapped(_ sender: UIButton) {
         buttonAction?(sender)
     }
-
 }

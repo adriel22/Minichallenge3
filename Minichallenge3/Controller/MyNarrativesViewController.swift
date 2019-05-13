@@ -10,6 +10,7 @@ import UIKit
 
 class MyNarrativesViewController: UIViewController {
     let customView = MyNarrativeViews()
+    var clickedRow: IndexPath?
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -20,7 +21,9 @@ class MyNarrativesViewController: UIViewController {
         let tableView = customView.tableView
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(ExpandableTableViewCell.self, forCellReuseIdentifier: "cell")
+
+        let nib = UINib(nibName: "ExpandableTableViewCell", bundle: .main)
+        tableView.register(nib, forCellReuseIdentifier: "cell")
 
     }
     override func loadView() {
@@ -28,14 +31,38 @@ class MyNarrativesViewController: UIViewController {
     }
 
 }
-extension MyNarrativesViewController: UITableViewDelegate, UITableViewDataSource{
+extension MyNarrativesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 20
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? ExpandableTableViewCell
-        return cell!
+
+        if  indexPath == clickedRow {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? ExpandableTableViewCell
+
+            return cell!
+        }
+
+        let cell = UITableViewCell()
+        cell.textLabel?.text = "Jurema aventureira"
+        return cell
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath == clickedRow {
+            return 200
+        }
+        return UITableView.automaticDimension
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let indexClicked = clickedRow {
+            clickedRow = nil
+            tableView.reloadRows(at: [indexClicked], with: .automatic)
+        }
+            clickedRow = indexPath
+            tableView.reloadRows(at: [indexPath], with: .automatic)
+
+
     }
 
 }
