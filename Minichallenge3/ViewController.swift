@@ -13,6 +13,32 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var graphView: GraphView!
 
+    var graph: HistoryGraph = {
+        let graph = HistoryGraph.init(withName: "HistoryName", sinopse: "HistorySinopse", width: 3, andHeight: 3)
+
+        let rootNode = HistoryNode.init(withResume: "RootNode", text: "RootNode text", positionX: 2, andPositionY: 0)
+
+        let node2 = HistoryNode.init(withResume: "Node 2", text: "Node2 Text", positionX: 1, andPositionY: 1)
+        let node3 = HistoryNode.init(withResume: "Node 2", text: "Node2 Text", positionX: 2, andPositionY: 1)
+        let node4 = HistoryNode.init(withResume: "Node 2", text: "Node2 Text", positionX: 2, andPositionY: 2)
+        let node5 = HistoryNode.init(withResume: "Node 2", text: "Node2 Text", positionX: 1, andPositionY: 2)
+
+        try? graph.addNode(rootNode)
+        try? graph.addNode(node2)
+        try? graph.addNode(node3)
+        try? graph.addNode(node4)
+        try? graph.addNode(node5)
+
+        try? graph.addConnection(fromNode: rootNode, toNode: node2, withTitle: "action1")
+        try? graph.addConnection(fromNode: rootNode, toNode: node3, withTitle: "action1")
+        try? graph.addConnection(fromNode: node2, toNode: node4, withTitle: "action1")
+        try? graph.addConnection(fromNode: node3, toNode: node5, withTitle: "action2")
+
+        print(graph.grid)
+
+        return graph
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,16 +48,28 @@ class ViewController: UIViewController {
 
 extension ViewController: GraphViewDatasource {
     func connections(forGraphView graphView: GraphView, fromItemAtPosition itemPosition: GridPosition) -> [GridPosition] {
-        return []
+        guard let node = graph.grid[itemPosition.yPosition, itemPosition.xPosition] as? HistoryNode else {
+            return []
+        }
+
+        return node.connections.compactMap({ (historyConnection) -> GridPosition? in
+            guard let destinyNode = historyConnection.destinyNode else {
+                return nil
+            }
+
+            return (xPosition: destinyNode.positionX, yPosition: destinyNode.positionY)
+        })
     }
-    
+
     func gridSize(forGraphView graphView: GraphView) -> GridSize {
-        return (width: 10, height: 10)
+        let gridSize = graph.grid
+
+        return (width: gridSize.graphWidth, height: gridSize.graphHeight)
     }
 
-    func gridNodeView(forGraphView graphView: GraphView, inPosition position: GridPosition) -> GraphItemViewProtocol? {
+    func gridNodeView(forGraphView graphView: GraphView, inPosition position: GridPosition) -> GraphItemView? {
 
-        if position.xPosition == position.yPosition || position.xPosition == 0 || position.xPosition == 9 || position.yPosition == 9 {
+        guard let _ = graph.grid[position.yPosition, position.xPosition] else {
             return nil
         }
 
@@ -49,7 +87,7 @@ extension ViewController: GraphViewDatasource {
     }
 
     func lineSpacing(forGraphView graphView: GraphView) -> CGFloat {
-        return 10.0
+        return 50.0
     }
 
     func columnSpacing(forGraphView graphView: GraphView) -> CGFloat {

@@ -24,7 +24,7 @@ extension CGPoint {
     public func translateToX(_ xPosition: CGFloat) -> CGPoint {
         return CGPoint(x: xPosition, y: y)
     }
-    
+
     public func translateToY(_ yPosition: CGFloat) -> CGPoint {
         return CGPoint(x: x, y: yPosition)
     }

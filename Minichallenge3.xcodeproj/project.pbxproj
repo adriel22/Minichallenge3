@@ -15,12 +15,15 @@
 		E331CCCC228846C20041379B /* GraphViewDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E331CCCB228846C20041379B /* GraphViewDatasource.swift */; };
 		E331CCCF2288802B0041379B /* Array+forearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E331CCCE2288802B0041379B /* Array+forearch.swift */; };
 		E331CCD12288971D0041379B /* GraphLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E331CCD02288971D0041379B /* GraphLineView.swift */; };
-		E331CCD322889FEC0041379B /* GraphItemViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E331CCD222889FEC0041379B /* GraphItemViewProtocol.swift */; };
 		E381E2C32288D7B700E25B78 /* GraphItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381E2C22288D7B700E25B78 /* GraphItemView.swift */; };
 		E381E2C52288DC1D00E25B78 /* GraphViewConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381E2C42288DC1D00E25B78 /* GraphViewConnector.swift */; };
-		E381E2C72288DCC500E25B78 /* GraphConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381E2C62288DCC500E25B78 /* GraphConnectionView.swift */; };
+		E381E2C72288DCC500E25B78 /* ItemViewConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381E2C62288DCC500E25B78 /* ItemViewConnector.swift */; };
 		E381E2C92288DE8300E25B78 /* CGPoint+add.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381E2C82288DE8300E25B78 /* CGPoint+add.swift */; };
 		E381E2CB2288E0AF00E25B78 /* UIBezierPath+addPolygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381E2CA2288E0AF00E25B78 /* UIBezierPath+addPolygon.swift */; };
+		E381E2CD2289B57D00E25B78 /* Test.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E381E2CC2289B57D00E25B78 /* Test.storyboard */; };
+		E381E2CF2289BA9A00E25B78 /* GraphConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381E2CE2289BA9A00E25B78 /* GraphConnectionView.swift */; };
+		E381E2D12289C41800E25B78 /* NSLayoutConstraint+activate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381E2D02289C41800E25B78 /* NSLayoutConstraint+activate.swift */; };
+		E381E2D32289C58F00E25B78 /* ItemViewConnectorDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381E2D22289C58F00E25B78 /* ItemViewConnectorDirection.swift */; };
 		E3C030B822844F0800AD53E0 /* HistoryGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B722844F0800AD53E0 /* HistoryGraphTests.swift */; };
 		E3C030C5228478EB00AD53E0 /* HistoryGraph.h in Headers */ = {isa = PBXBuildFile; fileRef = E3C030C3228478EB00AD53E0 /* HistoryGraph.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E3C030C8228478EB00AD53E0 /* HistoryGraph.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3C030C1228478EB00AD53E0 /* HistoryGraph.framework */; };
@@ -92,12 +95,15 @@
 		E331CCCB228846C20041379B /* GraphViewDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewDatasource.swift; sourceTree = "<group>"; };
 		E331CCCE2288802B0041379B /* Array+forearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+forearch.swift"; sourceTree = "<group>"; };
 		E331CCD02288971D0041379B /* GraphLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphLineView.swift; sourceTree = "<group>"; };
-		E331CCD222889FEC0041379B /* GraphItemViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphItemViewProtocol.swift; sourceTree = "<group>"; };
 		E381E2C22288D7B700E25B78 /* GraphItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphItemView.swift; sourceTree = "<group>"; };
 		E381E2C42288DC1D00E25B78 /* GraphViewConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewConnector.swift; sourceTree = "<group>"; };
-		E381E2C62288DCC500E25B78 /* GraphConnectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphConnectionView.swift; sourceTree = "<group>"; };
+		E381E2C62288DCC500E25B78 /* ItemViewConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewConnector.swift; sourceTree = "<group>"; };
 		E381E2C82288DE8300E25B78 /* CGPoint+add.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+add.swift"; sourceTree = "<group>"; };
 		E381E2CA2288E0AF00E25B78 /* UIBezierPath+addPolygon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBezierPath+addPolygon.swift"; sourceTree = "<group>"; };
+		E381E2CC2289B57D00E25B78 /* Test.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Test.storyboard; sourceTree = "<group>"; };
+		E381E2CE2289BA9A00E25B78 /* GraphConnectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphConnectionView.swift; sourceTree = "<group>"; };
+		E381E2D02289C41800E25B78 /* NSLayoutConstraint+activate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+activate.swift"; sourceTree = "<group>"; };
+		E381E2D22289C58F00E25B78 /* ItemViewConnectorDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewConnectorDirection.swift; sourceTree = "<group>"; };
 		E3C030AB2282F19500AD53E0 /* HistoryGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryGraph.swift; sourceTree = "<group>"; };
 		E3C030AD2282F1B400AD53E0 /* HistoryNodeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryNodeProtocol.swift; sourceTree = "<group>"; };
 		E3C030AF2282F1C500AD53E0 /* HistoryNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryNode.swift; sourceTree = "<group>"; };
@@ -179,13 +185,11 @@
 		E331CCC7228846720041379B /* GraphView */ = {
 			isa = PBXGroup;
 			children = (
+				E381E2D4228A27EF00E25B78 /* connections */,
 				E331CCC8228846A40041379B /* delegate */,
 				E331CCC52287B3070041379B /* GraphView.swift */,
 				E331CCD02288971D0041379B /* GraphLineView.swift */,
-				E331CCD222889FEC0041379B /* GraphItemViewProtocol.swift */,
 				E381E2C22288D7B700E25B78 /* GraphItemView.swift */,
-				E381E2C42288DC1D00E25B78 /* GraphViewConnector.swift */,
-				E381E2C62288DCC500E25B78 /* GraphConnectionView.swift */,
 			);
 			path = GraphView;
 			sourceTree = "<group>";
@@ -205,8 +209,20 @@
 				E331CCCE2288802B0041379B /* Array+forearch.swift */,
 				E381E2C82288DE8300E25B78 /* CGPoint+add.swift */,
 				E381E2CA2288E0AF00E25B78 /* UIBezierPath+addPolygon.swift */,
+				E381E2D02289C41800E25B78 /* NSLayoutConstraint+activate.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		E381E2D4228A27EF00E25B78 /* connections */ = {
+			isa = PBXGroup;
+			children = (
+				E381E2C42288DC1D00E25B78 /* GraphViewConnector.swift */,
+				E381E2C62288DCC500E25B78 /* ItemViewConnector.swift */,
+				E381E2CE2289BA9A00E25B78 /* GraphConnectionView.swift */,
+				E381E2D22289C58F00E25B78 /* ItemViewConnectorDirection.swift */,
+			);
+			path = connections;
 			sourceTree = "<group>";
 		};
 		E3C030AA2282F14700AD53E0 /* Models */ = {
@@ -278,6 +294,7 @@
 				FCB35499228065B000AB7ED2 /* LaunchScreen.storyboard */,
 				FCB3549C228065B000AB7ED2 /* Info.plist */,
 				FCB35494228065AF00AB7ED2 /* Minichallenge3.xcdatamodeld */,
+				E381E2CC2289B57D00E25B78 /* Test.storyboard */,
 			);
 			path = Minichallenge3;
 			sourceTree = "<group>";
@@ -454,6 +471,7 @@
 			files = (
 				FCB3549B228065B000AB7ED2 /* LaunchScreen.storyboard in Resources */,
 				FCB35498228065B000AB7ED2 /* Assets.xcassets in Resources */,
+				E381E2CD2289B57D00E25B78 /* Test.storyboard in Resources */,
 				FCB35493228065AF00AB7ED2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -536,17 +554,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				E331CCCC228846C20041379B /* GraphViewDatasource.swift in Sources */,
-				E381E2C72288DCC500E25B78 /* GraphConnectionView.swift in Sources */,
+				E381E2C72288DCC500E25B78 /* ItemViewConnector.swift in Sources */,
 				FCB35490228065AF00AB7ED2 /* ViewController.swift in Sources */,
 				E331CCCF2288802B0041379B /* Array+forearch.swift in Sources */,
+				E381E2D32289C58F00E25B78 /* ItemViewConnectorDirection.swift in Sources */,
+				E381E2D12289C41800E25B78 /* NSLayoutConstraint+activate.swift in Sources */,
 				E381E2CB2288E0AF00E25B78 /* UIBezierPath+addPolygon.swift in Sources */,
 				E331CCD12288971D0041379B /* GraphLineView.swift in Sources */,
 				FCB3548E228065AF00AB7ED2 /* AppDelegate.swift in Sources */,
 				E331CCC62287B3070041379B /* GraphView.swift in Sources */,
 				E381E2C92288DE8300E25B78 /* CGPoint+add.swift in Sources */,
 				E381E2C52288DC1D00E25B78 /* GraphViewConnector.swift in Sources */,
+				E381E2CF2289BA9A00E25B78 /* GraphConnectionView.swift in Sources */,
 				E331CCCA228846B20041379B /* GraphViewDelegate.swift in Sources */,
-				E331CCD322889FEC0041379B /* GraphItemViewProtocol.swift in Sources */,
 				E381E2C32288D7B700E25B78 /* GraphItemView.swift in Sources */,
 				FCB35496228065AF00AB7ED2 /* Minichallenge3.xcdatamodeld in Sources */,
 			);

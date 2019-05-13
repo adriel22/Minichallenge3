@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="VPq-hT-2bR">
+            <objects>
+                <viewController id="1Ku-7U-QHZ" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gCy-LI-MWV">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kcc-pv-iSJ">
+                                <rect key="frame" x="87" y="259" width="240" height="128"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dVg-Nn-1BF">
+                                        <rect key="frame" x="84.5" y="33.5" width="71" height="61"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="71" id="8tt-12-08I"/>
+                                            <constraint firstAttribute="height" constant="61" id="W9h-bx-acL"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="dVg-Nn-1BF" firstAttribute="centerY" secondItem="kcc-pv-iSJ" secondAttribute="centerY" id="59E-Jn-wEg"/>
+                                    <constraint firstAttribute="height" constant="128" id="FZ1-ol-WfF"/>
+                                    <constraint firstItem="dVg-Nn-1BF" firstAttribute="centerX" secondItem="kcc-pv-iSJ" secondAttribute="centerX" id="Laz-SS-Ldb"/>
+                                    <constraint firstAttribute="width" constant="240" id="uYz-VM-dSQ"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZHS-Fs-6gs">
+                                <rect key="frame" x="87" y="540" width="240" height="128"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TkB-je-sP2">
+                                        <rect key="frame" x="84.5" y="33.5" width="71" height="61"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="71" id="4Zy-Nh-bsQ"/>
+                                            <constraint firstAttribute="height" constant="61" id="cbI-Pv-COT"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="gVO-OJ-uGB"/>
+                                    <constraint firstItem="TkB-je-sP2" firstAttribute="centerY" secondItem="ZHS-Fs-6gs" secondAttribute="centerY" id="lrZ-oO-hAT"/>
+                                    <constraint firstAttribute="width" constant="240" id="xGb-Z3-wKr"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="GRd-0Z-cIT" firstAttribute="trailing" secondItem="kcc-pv-iSJ" secondAttribute="trailing" constant="87" id="7Gs-2P-E6N"/>
+                            <constraint firstItem="TkB-je-sP2" firstAttribute="centerX" secondItem="dVg-Nn-1BF" secondAttribute="centerX" id="ETY-uE-MDh"/>
+                            <constraint firstItem="ZHS-Fs-6gs" firstAttribute="top" secondItem="kcc-pv-iSJ" secondAttribute="bottom" constant="153" id="EiB-uC-3XH"/>
+                            <constraint firstItem="ZHS-Fs-6gs" firstAttribute="top" secondItem="kcc-pv-iSJ" secondAttribute="bottom" constant="153" id="H9K-W9-1W3"/>
+                            <constraint firstItem="ZHS-Fs-6gs" firstAttribute="leading" secondItem="GRd-0Z-cIT" secondAttribute="leading" constant="87" id="PTS-z3-xJP"/>
+                            <constraint firstItem="kcc-pv-iSJ" firstAttribute="leading" secondItem="GRd-0Z-cIT" secondAttribute="leading" constant="87" id="TMs-WS-vAf"/>
+                            <constraint firstItem="GRd-0Z-cIT" firstAttribute="bottom" secondItem="ZHS-Fs-6gs" secondAttribute="bottom" constant="194" id="dzn-hz-8Y5"/>
+                            <constraint firstItem="kcc-pv-iSJ" firstAttribute="top" secondItem="GRd-0Z-cIT" secondAttribute="top" constant="215" id="qvr-At-HCy"/>
+                            <constraint firstItem="GRd-0Z-cIT" firstAttribute="trailing" secondItem="ZHS-Fs-6gs" secondAttribute="trailing" constant="87" id="rJS-iD-jI6"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="GRd-0Z-cIT"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dby-C3-MGb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="344.92753623188406" y="-260.49107142857144"/>
+        </scene>
+    </scenes>
+</document>

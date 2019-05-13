@@ -8,10 +8,10 @@
 
 import Foundation
 
-class HistoryNodesGrid: CustomStringConvertible {
+public class HistoryNodesGrid: CustomStringConvertible {
 
-    var graphWidth: Int
-    var graphHeight: Int
+    public var graphWidth: Int
+    public var graphHeight: Int
     weak var graph: HistoryGraph?
 
     lazy var grid: [[HistoryNodeProtocol?]] = {
@@ -21,7 +21,7 @@ class HistoryNodesGrid: CustomStringConvertible {
         return grid
     }()
 
-    var description: String {
+    public var description: String {
         var description = ""
 
         for line in grid {
@@ -35,7 +35,7 @@ class HistoryNodesGrid: CustomStringConvertible {
         return description
     }
 
-    subscript(yIndex: Int, xIndex: Int) -> HistoryNodeProtocol? {
+    public subscript(yIndex: Int, xIndex: Int) -> HistoryNodeProtocol? {
         get {
             return grid[yIndex][xIndex]
         }

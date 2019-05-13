@@ -12,7 +12,7 @@ class GraphView: UIScrollView {
 
     var containerView = UIView()
 
-    lazy var connector = GraphViewConnector(withGraphView: self)
+    var connector = GraphViewConnector()
 
     var datasource: GraphViewDatasource? {
         didSet {
@@ -50,6 +50,8 @@ class GraphView: UIScrollView {
         setConstraintsForItemViewsIn(lineViews: lineViews, usingDatasource: datasource)
 
         self.lineViews = lineViews
+
+        connector.build(withDatasource: datasource, graphView: self, andContainerView: containerView)
     }
 
     /// It create the line views
@@ -71,11 +73,11 @@ class GraphView: UIScrollView {
     /// - Returns: the node views
     private func getNodeViews(
         fromDatasource datasource: GraphViewDatasource,
-        forLineWithIndex lineIndex: Int) -> [GraphItemViewProtocol?] {
+        forLineWithIndex lineIndex: Int) -> [GraphItemView?] {
 
         let numberOfColumns = datasource.gridSize(forGraphView: self).width
 
-        return (0..<numberOfColumns).map { (currentColumnIndex) -> GraphItemViewProtocol? in
+        return (0..<numberOfColumns).map { (currentColumnIndex) -> GraphItemView? in
             let nodePosition = (xPosition: currentColumnIndex, yPosition: lineIndex)
             let nodeView = datasource.gridNodeView(forGraphView: self, inPosition: nodePosition)
 
@@ -167,7 +169,7 @@ class GraphView: UIScrollView {
     ///   - lineIndex: the index of the line that contains these items
     ///   - datasource: the data source of the graph
     private func setConstraintsFor(
-        itemViews: [GraphItemViewProtocol],
+        itemViews: [GraphItemView],
         atLineWithIndex lineIndex: Int,
         usingDatasource datasource: GraphViewDatasource) {
 
@@ -256,14 +258,14 @@ class GraphView: UIScrollView {
         ])
     }
 
-    func itemView(forPosition position: GridPosition) -> GraphItemViewProtocol? {
-        guard position.yPosition > 0 && position.yPosition < self.lineViews.count else {
+    func itemView(forPosition position: GridPosition) -> GraphItemView? {
+        guard position.yPosition >= 0 && position.yPosition < self.lineViews.count else {
             return nil
         }
 
         let lineView = self.lineViews[position.yPosition]
 
-        guard position.xPosition > 0 && position.xPosition < lineView.itemViews.count else {
+        guard position.xPosition >= 0 && position.xPosition < lineView.itemViews.count else {
             return nil
         }
 

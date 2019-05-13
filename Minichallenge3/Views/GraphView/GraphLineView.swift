@@ -10,8 +10,8 @@ import UIKit
 
 class GraphLineView: UIView {
 
-    var itemViews: [GraphItemViewProtocol] {
-        guard let itemViews = subviews as? [GraphItemViewProtocol] else {
+    var itemViews: [GraphItemView] {
+        guard let itemViews = subviews as? [GraphItemView] else {
             fatalError("The GraphLineView items must be of type: GraphItemView")
         }
 
