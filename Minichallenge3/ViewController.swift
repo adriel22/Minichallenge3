@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SnapKit
 
 class ViewController: UIViewController {
     
@@ -16,20 +15,15 @@ class ViewController: UIViewController {
     /// Holds the value of which section is showing it's content in the table view
     var selected = -1
     
-    /// This array holds where the previewed story is on the table view (the section and row values)
-    var storiesMapForTableView: [[HistoryNode]] = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
-    
-    /// This array actually holds all the stories
-    var stories: [[HistoryNode]] = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
+    typealias Story = (node: HistoryNode, isVisible: Bool)
+    var stories: [Story] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(color: .purpleWhite)
         
         let node  = HistoryNode(withResume: "Teste", andText: "Tetse")
-        for index in 0..<storiesMapForTableView.count {
-            stories[index].append(node)
-        }
+        (0..<5).forEach { _ in stories.append((node, false)) }
         
         allHistoriesTableView = UITableView(frame: .zero)
         allHistoriesTableView.backgroundColor = view.backgroundColor
@@ -38,12 +32,11 @@ class ViewController: UIViewController {
         allHistoriesTableView.delegate = self
         view.addSubview(allHistoriesTableView)
         
-        allHistoriesTableView.snp.makeConstraints { make in
-            make.top.equalTo(view)
-            make.trailing.equalTo(view)
-            make.bottom.equalTo(view)
-            make.leading.equalTo(view)
-        }
+        allHistoriesTableView.translatesAutoresizingMaskIntoConstraints = false
+        allHistoriesTableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        allHistoriesTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        allHistoriesTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        allHistoriesTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         
         let nib = UINib(nibName: "ExpandableTableViewCell", bundle: .main)
         allHistoriesTableView.register(nib, forCellReuseIdentifier: "cell")
@@ -53,7 +46,7 @@ class ViewController: UIViewController {
 
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return storiesMapForTableView.count
+        return stories.count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -61,16 +54,14 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func expandRow(from indexPath: IndexPath) {
-        if let story = self.stories[indexPath.section].first {
-            self.selected = indexPath.section
-            self.storiesMapForTableView[indexPath.section].append(story)
-            allHistoriesTableView.insertRows(at: [indexPath], with: .automatic)
-            allHistoriesTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
-        }
+        self.selected = indexPath.section
+        stories[indexPath.section].isVisible = true
+        allHistoriesTableView.insertRows(at: [indexPath], with: .automatic)
+        allHistoriesTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
     }
     
     func collapseRow(from indexPath: IndexPath) {
-        self.storiesMapForTableView[self.selected].removeFirst()
+        stories[indexPath.section].isVisible = false
         allHistoriesTableView.deleteRows(at: [indexPath], with: .automatic)
     }
     
@@ -95,13 +86,13 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return storiesMapForTableView[section].count
+        return stories[section].isVisible ? 1 : 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? ExpandableTableViewCell
         cell?.selectionStyle = .none
-        cell?.label.text = stories[indexPath.section].first?.resume
+        cell?.label.text = stories[indexPath.section].node.resume
         return cell!
     }
     
