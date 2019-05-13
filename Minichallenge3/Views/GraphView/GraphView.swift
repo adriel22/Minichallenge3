@@ -12,6 +12,8 @@ class GraphView: UIScrollView {
 
     var containerView = UIView()
 
+    lazy var connector = GraphViewConnector(withGraphView: self)
+
     var datasource: GraphViewDatasource? {
         didSet {
             if let datasource = datasource {
@@ -19,8 +21,8 @@ class GraphView: UIScrollView {
             }
         }
     }
-
-    var gridLineViews: [UIView] = []
+    
+    var lineViews: [GraphLineView] = []
 
     init() {
         super.init(frame: CGRect.zero)
@@ -46,15 +48,17 @@ class GraphView: UIScrollView {
         insertItemViewsIn(lineViews: lineViews, usingDatasource: datasource)
         setConstraintsFor(lineViews: lineViews, usingDatasource: datasource)
         setConstraintsForItemViewsIn(lineViews: lineViews, usingDatasource: datasource)
+        
+        self.lineViews = lineViews
     }
 
     /// It create the line views
     ///
     /// - Parameter numberOfLines: number of lines to create
     /// - Returns: the line views
-    private func create(_ numberOfLines: Int) -> [UIView] {
-        return (0..<numberOfLines).map { _ -> UIView in
-            let lineView = UIView()
+    private func create(_ numberOfLines: Int) -> [GraphLineView] {
+        return (0..<numberOfLines).map { _ -> GraphLineView in
+            let lineView = GraphLineView()
             return lineView
         }
     }
@@ -67,11 +71,11 @@ class GraphView: UIScrollView {
     /// - Returns: the node views
     private func getNodeViews(
         fromDatasource datasource: GraphViewDatasource,
-        forLineWithIndex lineIndex: Int) -> [UIView?] {
+        forLineWithIndex lineIndex: Int) -> [GraphItemViewProtocol?] {
 
         let numberOfColumns = datasource.gridSize(forGraphView: self).width
 
-        return (0..<numberOfColumns).map { (currentColumnIndex) -> UIView? in
+        return (0..<numberOfColumns).map { (currentColumnIndex) -> GraphItemViewProtocol? in
             let nodePosition = (xPosition: currentColumnIndex, yPosition: lineIndex)
             let nodeView = datasource.gridNodeView(forGraphView: self, inPosition: nodePosition)
 
@@ -84,7 +88,7 @@ class GraphView: UIScrollView {
     /// - Parameters:
     ///   - lineViews: the views of the graph lines
     ///   - containerView: the lines superview
-    private func insert(lineViews: [UIView], inContainerView containerView: UIView) {
+    private func insert(lineViews: [GraphLineView], inContainerView containerView: UIView) {
         lineViews.forEach { (currentLineView) in
             containerView.addSubview(currentLineView)
         }
@@ -98,7 +102,7 @@ class GraphView: UIScrollView {
     private func insert(nodeViews: [UIView?], inLineView lineView: UIView) {
         nodeViews.forEach { (nodeView) in
             guard let nodeView = nodeView else {
-                lineView.addSubview(UIView())
+                lineView.addSubview(GraphItemView())
                 return
             }
 
@@ -112,7 +116,7 @@ class GraphView: UIScrollView {
     /// - Parameters:
     ///   - lineViews: the live views that will contain the node views
     ///   - datasource: the data source of the graph
-    private func insertItemViewsIn(lineViews: [UIView], usingDatasource datasource: GraphViewDatasource) {
+    private func insertItemViewsIn(lineViews: [GraphLineView], usingDatasource datasource: GraphViewDatasource) {
         let numberOfLines = lineViews.count
 
         (0..<numberOfLines).forEach { [weak self] (currentLineViewIndex) in
@@ -132,55 +136,28 @@ class GraphView: UIScrollView {
     /// - Parameters:
     ///   - lineViews: the line views
     ///   - datasource: the graph datasource
-    private func setConstraintsFor(lineViews: [UIView], usingDatasource datasource: GraphViewDatasource) {
+    private func setConstraintsFor(lineViews: [GraphLineView], usingDatasource datasource: GraphViewDatasource) {
         guard let containerView = lineViews.first?.superview else {
             return
         }
 
-        lineViews.forEach { [weak self] (lastLineView, currentLineView) in
+        let leftSpacing = datasource.leftSpacing(forGraphView: self)
+
+        lineViews.forEach { [weak self] (lastLineView, currentLineView, currentLineViewIndex) in
             guard let self = self else { return }
 
             let lineSpacing = datasource.lineSpacing(forGraphView: self)
             let lineTopAnchor = self.lineViewTopAnchor(forLastLineView: lastLineView, inContainerView: containerView)
-            self.setConstraintsFor(
-                lineView: currentLineView,
+            let leftSpacing = currentLineViewIndex.isMultiple(of: 2) ? 0 : leftSpacing
+
+            currentLineView.setConstraintsFor(
                 withTopAnchor: lineTopAnchor,
                 andLineMargin: lineSpacing,
-                containerView: containerView
+                andLeftMargin: leftSpacing
             )
         }
 
-        if let lastLineView = lineViews.last {
-            containerView.bottomAnchor.constraint(equalTo: lastLineView.bottomAnchor).isActive = true
-            containerView.rightAnchor.constraint(equalTo: lastLineView.rightAnchor).isActive = true
-        }
-    }
-
-    /// It sets the constraints for a lineview.
-    ///
-    /// - Parameters:
-    ///   - lineView: the line view
-    ///   - topAnchor: the top anchor of the line.
-    /// If the line is bellow of other, this constraint must be the top line bottom anchor.
-    /// If the line is the first one, this must be the container parent top anchor.
-    ///   - lineMargin: a space beteween the lines
-    ///   - containerView: the line superview
-    private func setConstraintsFor(
-        lineView: UIView,
-        withTopAnchor topAnchor: NSLayoutYAxisAnchor,
-        andLineMargin lineMargin: CGFloat,
-        containerView: UIView) {
-
-        lineView.translatesAutoresizingMaskIntoConstraints = false
-
-        let lineViewHeightConstraint = lineView.heightAnchor.constraint(greaterThanOrEqualToConstant: 150)
-        lineViewHeightConstraint.priority = .defaultHigh
-
-        NSLayoutConstraint.activate([
-            lineView.topAnchor.constraint(equalTo: topAnchor, constant: lineMargin),
-            lineView.leftAnchor.constraint(equalTo: containerView.leftAnchor),
-            lineViewHeightConstraint
-        ])
+        lineViews.last?.setClosingConstraints()
     }
 
     /// It sets the constraints for a list of item views
@@ -190,11 +167,11 @@ class GraphView: UIScrollView {
     ///   - lineIndex: the index of the line that contains these items
     ///   - datasource: the data source of the graph
     private func setConstraintsFor(
-        itemViews: [UIView],
+        itemViews: [GraphItemViewProtocol],
         atLineWithIndex lineIndex: Int,
         usingDatasource datasource: GraphViewDatasource) {
 
-        guard let lineView = itemViews.first?.superview else {
+        guard let lineView = itemViews.first?.superview as? GraphLineView else {
             return
         }
 
@@ -206,12 +183,10 @@ class GraphView: UIScrollView {
             let itemLeftAnchor = itemViewLeftAnchor(forLastItemView: lastItemView, inLineView: lineView)
             let itemWidthAnchor = datasource.columnWidth(forGraphView: self, inXPosition: currentColumnIndex)
 
-            setConstraintsFor(
-                itemView: currentItemView,
+            currentItemView.setConstraintsFor(
                 leftAnchor: itemLeftAnchor,
                 widthAnchor: itemWidthAnchor,
-                columnMargin: columnsMargin,
-                inLineView: lineView
+                columnMargin: columnsMargin
             )
         }
 
@@ -220,42 +195,18 @@ class GraphView: UIScrollView {
         }
     }
 
-    /// It sets the constraints for a item view
-    ///
-    /// - Parameters:
-    ///   - itemView: the item view
-    ///   - leftAnchor: the item view left anchor.
-    /// If the item is the first in the column, this must be the line left anchor.
-    /// If the item is after other item, this must be the first item right anchor.
-    ///   - widthAnchor: the width of the item.
-    ///   - columnMargin: a margin between the columns
-    ///   - lineView: the item superview
-    private func setConstraintsFor(
-        itemView: UIView,
-        leftAnchor: NSLayoutXAxisAnchor,
-        widthAnchor: CGFloat,
-        columnMargin: CGFloat,
-        inLineView lineView: UIView) {
-
-        itemView.translatesAutoresizingMaskIntoConstraints = false
-
-        NSLayoutConstraint.activate([
-            itemView.widthAnchor.constraint(equalToConstant: widthAnchor),
-            itemView.leftAnchor.constraint(equalTo: leftAnchor, constant: columnMargin),
-            itemView.topAnchor.constraint(equalTo: lineView.topAnchor),
-            itemView.bottomAnchor.constraint(lessThanOrEqualTo: lineView.bottomAnchor)
-        ])
-    }
-
     /// Its sets the constraints for the item views that are inside the given line views.
     ///
     /// - Parameters:
     ///   - lineViews: the line views that contains the item views.
     ///   - datasource: the datasource of the graph
-    private func setConstraintsForItemViewsIn(lineViews: [UIView], usingDatasource datasource: GraphViewDatasource) {
+    private func setConstraintsForItemViewsIn(
+        lineViews: [GraphLineView],
+        usingDatasource datasource: GraphViewDatasource) {
+
         lineViews.forEach { (_, currentLineView, currentLineViewIndex) in
             setConstraintsFor(
-                itemViews: currentLineView.subviews,
+                itemViews: currentLineView.itemViews,
                 atLineWithIndex: currentLineViewIndex,
                 usingDatasource: datasource
             )
@@ -303,5 +254,19 @@ class GraphView: UIScrollView {
             containerView.leftAnchor.constraint(equalTo: self.leftAnchor),
             containerView.rightAnchor.constraint(equalTo: self.rightAnchor)
         ])
+    }
+    
+    func itemView(forPosition position: GridPosition) -> GraphItemViewProtocol? {
+        guard position.yPosition > 0 && position.yPosition < self.lineViews.count else {
+            return nil
+        }
+        
+        let lineView = self.lineViews[position.yPosition]
+        
+        guard position.xPosition > 0 && position.xPosition < lineView.itemViews.count else {
+            return nil
+        }
+        
+        return lineView.itemViews[position.xPosition]
     }
 }

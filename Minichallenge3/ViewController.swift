@@ -21,17 +21,21 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: GraphViewDatasource {
+    func connections(forGraphView graphView: GraphView, fromItemAtPosition itemPosition: GridPosition) -> [GridPosition] {
+        return []
+    }
+    
     func gridSize(forGraphView graphView: GraphView) -> GridSize {
         return (width: 10, height: 10)
     }
 
-    func gridNodeView(forGraphView graphView: GraphView, inPosition position: GridPosition) -> UIView? {
+    func gridNodeView(forGraphView graphView: GraphView, inPosition position: GridPosition) -> GraphItemViewProtocol? {
 
         if position.xPosition == position.yPosition || position.xPosition == 0 || position.xPosition == 9 || position.yPosition == 9 {
             return nil
         }
 
-        let view = UIView.init()
+        let view = GraphItemView.init()
         view.backgroundColor = UIColor.red
         view.translatesAutoresizingMaskIntoConstraints = false
 
@@ -50,5 +54,9 @@ extension ViewController: GraphViewDatasource {
 
     func columnSpacing(forGraphView graphView: GraphView) -> CGFloat {
         return 10.0
+    }
+
+    func leftSpacing(forGraphView graphView: GraphView) -> CGFloat {
+        return 100
     }
 }

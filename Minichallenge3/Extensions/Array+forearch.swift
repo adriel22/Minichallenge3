@@ -18,14 +18,14 @@ extension Array {
             lastElement = currentElement
         }
     }
-    
+
     func forEach(completion: ((Element?, Element, Int) -> Void)) {
         var lastElement: Element?
         var currentIndex = 0
-        
+
         self.forEach { (currentElement) in
             completion(lastElement, currentElement, currentIndex)
-            
+
             lastElement = currentElement
             currentIndex += 1
         }

@@ -15,8 +15,11 @@ public typealias GridPosition = (yPosition: Int, xPosition: Int)
 protocol GraphViewDatasource {
 
     func gridSize(forGraphView graphView: GraphView) -> GridSize
-    func gridNodeView(forGraphView graphView: GraphView, inPosition position: GridPosition) -> UIView?
+    func gridNodeView(forGraphView graphView: GraphView, inPosition position: GridPosition) -> GraphItemViewProtocol?
     func columnWidth(forGraphView graphView: GraphView, inXPosition xPosition: Int) -> CGFloat
     func lineSpacing(forGraphView graphView: GraphView) -> CGFloat
     func columnSpacing(forGraphView graphView: GraphView) -> CGFloat
+    func leftSpacing(forGraphView graphView: GraphView) -> CGFloat
+    
+    func connections(forGraphView graphView: GraphView, fromItemAtPosition itemPosition: GridPosition) -> [GridPosition]
 }
