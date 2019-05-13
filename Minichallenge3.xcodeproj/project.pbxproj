@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C77E46C789F9B2BADE16D712 /* Pods_Minichallenge3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CF4D23D356FA463D37FC974 /* Pods_Minichallenge3.framework */; };
 		E3012A722285A7B000AB008F /* HistoryNodesGridTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3012A712285A7B000AB008F /* HistoryNodesGridTests.swift */; };
+		E3012A742285BCAD00AB008F /* HistoryConnectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3012A732285BCAD00AB008F /* HistoryConnectionTests.swift */; };
 		E3C030B822844F0800AD53E0 /* HistoryGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B722844F0800AD53E0 /* HistoryGraphTests.swift */; };
 		E3C030C5228478EB00AD53E0 /* HistoryGraph.h in Headers */ = {isa = PBXBuildFile; fileRef = E3C030C3228478EB00AD53E0 /* HistoryGraph.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E3C030C8228478EB00AD53E0 /* HistoryGraph.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3C030C1228478EB00AD53E0 /* HistoryGraph.framework */; };
@@ -74,6 +75,7 @@
 		4405664E379635FBB9519A12 /* Pods-Minichallenge3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Minichallenge3.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Minichallenge3/Pods-Minichallenge3.debug.xcconfig"; sourceTree = "<group>"; };
 		B20FF8B7118109CF1BB19056 /* Pods-Minichallenge3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Minichallenge3.release.xcconfig"; path = "Pods/Target Support Files/Pods-Minichallenge3/Pods-Minichallenge3.release.xcconfig"; sourceTree = "<group>"; };
 		E3012A712285A7B000AB008F /* HistoryNodesGridTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryNodesGridTests.swift; sourceTree = "<group>"; };
+		E3012A732285BCAD00AB008F /* HistoryConnectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryConnectionTests.swift; sourceTree = "<group>"; };
 		E3C030AB2282F19500AD53E0 /* HistoryGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryGraph.swift; sourceTree = "<group>"; };
 		E3C030AD2282F1B400AD53E0 /* HistoryNodeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryNodeProtocol.swift; sourceTree = "<group>"; };
 		E3C030AF2282F1C500AD53E0 /* HistoryNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryNode.swift; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 				FCB354A5228065B000AB7ED2 /* Minichallenge3Tests.swift */,
 				E3C030B722844F0800AD53E0 /* HistoryGraphTests.swift */,
 				E3012A712285A7B000AB008F /* HistoryNodesGridTests.swift */,
+				E3012A732285BCAD00AB008F /* HistoryConnectionTests.swift */,
 				FCB354A7228065B000AB7ED2 /* Info.plist */,
 				FCB354BE2280688D00AB7ED2 /* CITest.swift */,
 			);
@@ -477,6 +480,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3012A742285BCAD00AB008F /* HistoryConnectionTests.swift in Sources */,
 				FCB354A6228065B000AB7ED2 /* Minichallenge3Tests.swift in Sources */,
 				FCB354BF2280688D00AB7ED2 /* CITest.swift in Sources */,
 				E3012A722285A7B000AB008F /* HistoryNodesGridTests.swift in Sources */,
