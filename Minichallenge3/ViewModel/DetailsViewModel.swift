@@ -6,12 +6,20 @@
 //  Copyright © 2019 Adriel Freire. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-class DetailsViewModel {
+class DetailsViewModel: NSObject {
     var story: HistoryNode
     
     init(story: HistoryNode) {
         self.story = story
+    }
+    
+    func textUpdated(with text: String) {
+        
+    }
+    
+    func branchAdded(withNodeTitle title: String) {
+        
     }
 }

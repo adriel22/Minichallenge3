@@ -12,7 +12,10 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            let navigationController = UINavigationController(rootViewController: DetailsViewController())
+            self.present(navigationController, animated: true, completion: nil)
+        }
     }
 
 }
