@@ -24,10 +24,6 @@ class DetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let image = UIImage(named: "Dismiss")
-        navigationItem.title = "Jurema, a aventureira da vida real"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(dismiss(_:)))
-        
         let screenBounds = UIScreen.main.bounds
         let navigationBarStatusBarHeight = UIApplication.shared.statusBarFrame.height
                                         + navigationController!.navigationBar.frame.height
@@ -35,6 +31,7 @@ class DetailsViewController: UIViewController {
         let halfScreenSize = CGSize(width: screenBounds.width, height: (screenBounds.height - navigationBarStatusBarHeight)/2)
         
         scrollView = UIScrollView(frame: .zero)
+        scrollView.backgroundColor = UIColor(color: .yellowWhite)
         scrollView.frame = CGRect(origin: .zero, size: screenSize)
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
@@ -54,14 +51,24 @@ class DetailsViewController: UIViewController {
         downnodeView.frame.origin.y = halfScreenSize.height
         scrollView.addSubview(downnodeView)
         
+        configureNavigationBar()
+        setDelegatesAndDataSources()
+        
+    }
+    
+    func configureNavigationBar() {
+        let image = UIImage(named: "Dismiss")
+        navigationItem.title = "Jurema, a aventureira da vida real"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(dismiss(_:)))
+    }
+    
+    func setDelegatesAndDataSources() {
         upnodeView.text.delegate = self
         upnodeView.branches.delegate = self
-        upnodeView.branches.dataSource = self
-        
         downnodeView.text.delegate = self
         downnodeView.branches.delegate = self
+        upnodeView.branches.dataSource = self
         downnodeView.branches.dataSource = self
-        
     }
     
     
@@ -77,8 +84,10 @@ class DetailsViewController: UIViewController {
     }
 
     @objc func goOn(_ sender: UIButton) {
-        if viewModel.story.connections.isEmpty { return }
-        guard let destiny = viewModel.story.connections[selected].destinyNode as? HistoryNode else { return }
+        var branches = viewModel.story.connections
+        if branches.isEmpty { return }
+        guard let destiny = branches[selected].destinyNode as? HistoryNode else { return }
+        downnodeView.text.resignFirstResponder()
         viewModel.story = destiny
         viewModel.update(self)
     }
@@ -90,32 +99,49 @@ class DetailsViewController: UIViewController {
 }
 
 extension DetailsViewController: UITextViewDelegate {
+    func moveView(up: Bool) {
+        let screenBounds = UIScreen.main.bounds
+        let navigationBarStatusBarHeight = UIApplication.shared.statusBarFrame.height
+            + navigationController!.navigationBar.frame.height
+        let halfScreenSize = CGSize(width: screenBounds.width, height: (screenBounds.height - navigationBarStatusBarHeight)/2)
+        UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: [.curveEaseInOut, .allowUserInteraction, .transitionCurlUp], animations: {
+            self.scrollView.contentOffset.y = up ? halfScreenSize.height : 0
+            self.downnodeView.text.frame.size.height += up ? -50 : 50
+            self.downnodeView.goOnButton.frame.origin.y += up ? -50 : 50
+        })
+    }
+    
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        if textView === downnodeView.text {
+            var branches = viewModel.story.connections
+            return !branches.isEmpty
+        }
+        return true
+    }
+    
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView === downnodeView.text {
-            let screenBounds = UIScreen.main.bounds
-            let navigationBarStatusBarHeight = UIApplication.shared.statusBarFrame.height
-                + navigationController!.navigationBar.frame.height
-            let halfScreenSize = CGSize(width: screenBounds.width, height: (screenBounds.height - navigationBarStatusBarHeight)/2)
-            UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: [.curveEaseInOut, .allowUserInteraction, .transitionCurlUp], animations: {
-                self.scrollView.contentOffset.y = halfScreenSize.height
-                self.downnodeView.text.frame.size.height -= 50
-                self.downnodeView.goOnButton.frame.origin.y -= 50
-            })
+            moveView(up: true)
         }
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView === downnodeView.text {
-            UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: [.curveEaseInOut, .allowUserInteraction, .transitionCurlUp], animations: {
-                self.scrollView.contentOffset.y = 0
-                self.downnodeView.text.frame.size.height += 50
-                self.downnodeView.goOnButton.frame.origin.y += 50
-            })
+           moveView(up: false)
         }
     }
     
     func textViewDidChange(_ textView: UITextView) {
-        viewModel.textUpdated(with: textView.text)
+        if textView === upnodeView.text {
+            viewModel.textUpdated(with: textView.text, inNode: viewModel.story)
+        }
+        
+        if textView === downnodeView.text {
+            var branches = viewModel.story.connections
+            if branches.isEmpty { return }
+            guard let node =  branches[selected].destinyNode as? HistoryNode else { return }
+            viewModel.textUpdated(with: textView.text, inNode: node)
+        }
     }
 }
 
@@ -138,7 +164,6 @@ extension DetailsViewController: UICollectionViewDataSource, UICollectionViewDel
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selected = indexPath.item
-        collectionView.reloadData()
         viewModel.update(self)
     }
     

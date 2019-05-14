@@ -21,14 +21,15 @@ class DetailsViewModel: NSObject {
         story.connections.append(connection)
     }
     
-    func textUpdated(with text: String) {
-        
+    func textUpdated(with text: String, inNode node: HistoryNode) {
+        node.text = text
     }
     
     func update(_ view: DetailsViewController) {
         view.upnodeView.text.text = story.text
         view.upnodeView.branches.reloadData()
-        let downnodeText = !story.connections.isEmpty ? story.connections[view.selected].destinyNode?.text : ""
+        var branches = story.connections
+        let downnodeText = !branches.isEmpty ? branches[view.selected].destinyNode?.text : ""
         view.downnodeView.text.text = downnodeText
     }
     
