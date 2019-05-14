@@ -20,8 +20,8 @@ class ViewController: UIViewController {
 
         let node2 = HistoryNode.init(withResume: "Node 2", text: "Node2 Text", positionX: 1, andPositionY: 1)
         let node3 = HistoryNode.init(withResume: "Node 2", text: "Node2 Text", positionX: 2, andPositionY: 1)
-        let node4 = HistoryNode.init(withResume: "Node 2", text: "Node2 Text", positionX: 2, andPositionY: 2)
-        let node5 = HistoryNode.init(withResume: "Node 2", text: "Node2 Text", positionX: 1, andPositionY: 2)
+        let node4 = HistoryNode.init(withResume: "Node 2", text: "Node2 Text", positionX: 1, andPositionY: 2)
+        let node5 = HistoryNode.init(withResume: "Node 2", text: "Node2 Text", positionX: 2, andPositionY: 2)
 
         try? graph.addNode(rootNode)
         try? graph.addNode(node2)
@@ -43,6 +43,13 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 
         graphView.datasource = self
+
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { (timer) in
+            self.graphView.addLine(inPosition: 0)
+//            Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (_) in
+//                self.graphView.addLine(inPosition: 1)
+//            })
+        }
     }
 }
 
@@ -70,7 +77,10 @@ extension ViewController: GraphViewDatasource {
     func gridNodeView(forGraphView graphView: GraphView, inPosition position: GridPosition) -> GraphItemView? {
 
         guard let _ = graph.grid[position.yPosition, position.xPosition] else {
-            return nil
+            let graphView = GraphItemView.init()
+            graphView.backgroundColor = UIColor.blue
+            graphView.layer.opacity = 0.1
+            return graphView
         }
 
         let view = GraphItemView.init()

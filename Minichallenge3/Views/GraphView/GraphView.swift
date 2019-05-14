@@ -13,6 +13,8 @@ class GraphView: UIScrollView {
     var containerView = UIView()
 
     var connector = GraphViewConnector()
+    
+    var graphOperator = GraphViewOperator()
 
     var datasource: GraphViewDatasource? {
         didSet {
@@ -33,6 +35,19 @@ class GraphView: UIScrollView {
         super.init(coder: aDecoder)
 
         addSubview(containerView)
+    }
+
+    public func addLine(inPosition position: Int) {
+        guard let datasource = self.datasource else {
+            return
+        }
+
+        graphOperator.addLine(
+            inPosition: position,
+            inContainerView: containerView,
+            withDataSource: datasource,
+            andGraphView: self
+        )
     }
 
     /// It builds the graphView and set it constraints.
@@ -71,7 +86,7 @@ class GraphView: UIScrollView {
     ///   - datasource: the graph datasource
     ///   - lineIndex: the line index
     /// - Returns: the node views
-    private func getNodeViews(
+    internal func getNodeViews(
         fromDatasource datasource: GraphViewDatasource,
         forLineWithIndex lineIndex: Int) -> [GraphItemView?] {
 
@@ -101,7 +116,7 @@ class GraphView: UIScrollView {
     /// - Parameters:
     ///   - nodeViews: the node views to insert
     ///   - lineView: the nodes parent line
-    private func insert(nodeViews: [UIView?], inLineView lineView: UIView) {
+    internal func insert(nodeViews: [UIView?], inLineView lineView: UIView) {
         nodeViews.forEach { (nodeView) in
             guard let nodeView = nodeView else {
                 lineView.addSubview(GraphItemView())
@@ -152,7 +167,9 @@ class GraphView: UIScrollView {
             let lineTopAnchor = self.lineViewTopAnchor(forLastLineView: lastLineView, inContainerView: containerView)
             let leftSpacing = currentLineViewIndex.isMultiple(of: 2) ? 0 : leftSpacing
 
-            currentLineView.setConstraintsFor(
+            currentLineView.hasLeftSpace = leftSpacing != 0
+
+            currentLineView.setConstraints(
                 withTopAnchor: lineTopAnchor,
                 andLineMargin: lineSpacing,
                 andLeftMargin: leftSpacing
@@ -168,7 +185,7 @@ class GraphView: UIScrollView {
     ///   - itemViews: the item views list
     ///   - lineIndex: the index of the line that contains these items
     ///   - datasource: the data source of the graph
-    private func setConstraintsFor(
+    internal func setConstraintsFor(
         itemViews: [GraphItemView],
         atLineWithIndex lineIndex: Int,
         usingDatasource datasource: GraphViewDatasource) {
@@ -221,7 +238,7 @@ class GraphView: UIScrollView {
     ///   - lastLineView: the line view that appear before the lineview
     ///   - containerView: the line superview
     /// - Returns: the top anchor for the given line view
-    private func lineViewTopAnchor(
+    internal func lineViewTopAnchor(
         forLastLineView lastLineView: UIView?,
         inContainerView containerView: UIView) -> NSLayoutYAxisAnchor {
 

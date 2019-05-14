@@ -15,6 +15,8 @@ class GraphItemView: UIView {
         return self.superview as? GraphLineView
     }
 
+    var connectors: [ItemViewConnector] = []
+
     override func layoutSubviews() {
         didLayoutSubViewsCompletions.forEach { (completion) in
             completion()

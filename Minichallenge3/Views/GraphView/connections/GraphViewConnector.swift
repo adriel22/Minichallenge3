@@ -133,7 +133,9 @@ class GraphViewConnector {
                     lineWidth: 3, originLineView: originLineView,
                     andDestinyLineView: destinyLineView
                 )
-                
+
+                originItemView.connectors.append(itemConnector)
+
                 let direction = positionInContainerForOrigin.x > positionInContainerForDestiny.x ?
                     ItemViewConnectorDirection.left :
                     ItemViewConnectorDirection.right

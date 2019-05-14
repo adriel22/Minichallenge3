@@ -10,6 +10,7 @@
 		C77E46C789F9B2BADE16D712 /* Pods_Minichallenge3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CF4D23D356FA463D37FC974 /* Pods_Minichallenge3.framework */; };
 		E3012A722285A7B000AB008F /* HistoryNodesGridTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3012A712285A7B000AB008F /* HistoryNodesGridTests.swift */; };
 		E3012A742285BCAD00AB008F /* HistoryConnectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3012A732285BCAD00AB008F /* HistoryConnectionTests.swift */; };
+		E32A379B228A4FD700E2F8B1 /* GraphViewOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32A379A228A4FD700E2F8B1 /* GraphViewOperator.swift */; };
 		E331CCC62287B3070041379B /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E331CCC52287B3070041379B /* GraphView.swift */; };
 		E331CCCA228846B20041379B /* GraphViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E331CCC9228846B20041379B /* GraphViewDelegate.swift */; };
 		E331CCCC228846C20041379B /* GraphViewDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E331CCCB228846C20041379B /* GraphViewDatasource.swift */; };
@@ -89,6 +90,7 @@
 		B20FF8B7118109CF1BB19056 /* Pods-Minichallenge3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Minichallenge3.release.xcconfig"; path = "Pods/Target Support Files/Pods-Minichallenge3/Pods-Minichallenge3.release.xcconfig"; sourceTree = "<group>"; };
 		E3012A712285A7B000AB008F /* HistoryNodesGridTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryNodesGridTests.swift; sourceTree = "<group>"; };
 		E3012A732285BCAD00AB008F /* HistoryConnectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryConnectionTests.swift; sourceTree = "<group>"; };
+		E32A379A228A4FD700E2F8B1 /* GraphViewOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewOperator.swift; sourceTree = "<group>"; };
 		E331CCC52287B3070041379B /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
 		E331CCC9228846B20041379B /* GraphViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewDelegate.swift; sourceTree = "<group>"; };
 		E331CCCB228846C20041379B /* GraphViewDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewDatasource.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 				E331CCC52287B3070041379B /* GraphView.swift */,
 				E331CCD02288971D0041379B /* GraphLineView.swift */,
 				E381E2C22288D7B700E25B78 /* GraphItemView.swift */,
+				E32A379A228A4FD700E2F8B1 /* GraphViewOperator.swift */,
 			);
 			path = GraphView;
 			sourceTree = "<group>";
@@ -555,6 +558,7 @@
 				E331CCCF2288802B0041379B /* Array+forearch.swift in Sources */,
 				E381E2D32289C58F00E25B78 /* ItemViewConnectorDirection.swift in Sources */,
 				E381E2D12289C41800E25B78 /* NSLayoutConstraint+activate.swift in Sources */,
+				E32A379B228A4FD700E2F8B1 /* GraphViewOperator.swift in Sources */,
 				E381E2CB2288E0AF00E25B78 /* UIBezierPath+addPolygon.swift in Sources */,
 				E331CCD12288971D0041379B /* GraphLineView.swift in Sources */,
 				FCB3548E228065AF00AB7ED2 /* AppDelegate.swift in Sources */,
