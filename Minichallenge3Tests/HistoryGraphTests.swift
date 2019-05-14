@@ -161,7 +161,7 @@ class HistoryGraphTests: XCTestCase {
         )
 
         try? graph.addNode(rootNode)
-        graph.removeNode(rootNode)
+        try? graph.removeNode(rootNode)
 
         XCTAssertTrue(graph.nodes.count == 0)
         XCTAssertTrue(graph.grid[rootNode.positionY, rootNode.positionX] == nil)
@@ -183,7 +183,7 @@ class HistoryGraphTests: XCTestCase {
         try? graph.addNode(rootNode)
         try? graph.addNode(node2)
         try? graph.addPath(fromNode: rootNode, toNode: node2, withTitle: "action title")
-        graph.removeNode(node2)
+        try? graph.removeNode(node2)
 
         XCTAssertTrue(graph.nodes.count == 1)
         XCTAssertTrue(graph.grid[node2.positionY, node2.positionX] == nil)
@@ -206,7 +206,7 @@ class HistoryGraphTests: XCTestCase {
         try? graph.addNode(rootNode)
         try? graph.addNode(node2)
         try? graph.addPath(fromNode: rootNode, toNode: node2, withTitle: "action title")
-        graph.removeNode(rootNode)
+        try? graph.removeNode(rootNode)
 
         XCTAssertTrue(graph.nodes.count == 1)
         XCTAssertTrue(graph.grid[rootNode.positionY, rootNode.positionX] == nil)
@@ -410,7 +410,7 @@ class HistoryGraphTests: XCTestCase {
         try? graph.addPath(fromNode: rootNode, toNode: node2, withTitle: "action")
 
         if let connection = rootNode.connections.first {
-            graph.removeConnection(connection, fromNode: rootNode)
+            try? graph.removeConnection(connection, fromNode: rootNode)
         }
 
         XCTAssert(rootNode.connections.count == 0)
@@ -431,22 +431,27 @@ class HistoryGraphTests: XCTestCase {
     func test_addPath_wrongNodePositionAndAddShortcut() {
         let node1 = HistoryNode.init(withResume: "node1", text: "node1 text", positionX: 0, andPositionY: 0)
         let node2 = HistoryNode.init(withResume: "node2", text: "node2 text", positionX: 0, andPositionY: 1)
-        let node3 = HistoryNode.init(withResume: "node3", text: "node3 text", positionX: 1, andPositionY: 1)
+        let node3 = HistoryNode.init(withResume: "node3", text: "node3 text", positionX: 2, andPositionY: 1)
 
         try? graph.addNode(node1)
         try? graph.addNode(node2)
+        try? graph.addNode(node3)
         try? graph.addPath(fromNode: node1, toNode: node2, withTitle: "The first connection")
         try? graph.addPath(fromNode: node3, toNode: node2, withTitle: "the connection")
         XCTAssertTrue(node3.shortcuts.count > 0)
     }
 
     func test_addPath_wrongNodePositionAndImpossibleCreatPathToShortcut() {
+        // [ ][r][ ]    |   [ ][  ][r][ ]   |   [ ][ ][r][ ]
+        // [ ][ ][ ]    |   [ ][n2][ ][ ]   |   [ ][n2][n3][ ]
+        //                  [ ][  ][ ][ ]   |   [ ][  ][ ][ ]
         let node1 = HistoryNode.init(withResume: "node1", text: "node1 text", positionX: 0, andPositionY: 0)
         let node2 = HistoryNode.init(withResume: "node2", text: "node2 text", positionX: 0, andPositionY: 1)
-        let node3 = HistoryNode.init(withResume: "node3", text: "node3 text", positionX: 1, andPositionY: 1)
+        let node3 = HistoryNode.init(withResume: "node3", text: "node3 text", positionX: 2, andPositionY: 1)
 
         try? graph.addNode(node1)
         try? graph.addNode(node2)
+        try? graph.addNode(node3)
         try? graph.addPath(fromNode: node1, toNode: node2, withTitle: "The first connection")
         try? graph.addPath(fromNode: node3, toNode: node2, withTitle: "connection")
         let shortcut = node3.shortcuts.first!

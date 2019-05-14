@@ -80,6 +80,11 @@ public class HistoryGraph: CustomStringConvertible {
         guard !checkConnection(fromNode1: originNode, toNode2: destinyNode) else {
             throw HistoryError.duplicatedConnection
         }
+        let graphContainsNode = containsNode(originNode) && containsNode(destinyNode)
+
+        guard graphContainsNode else {
+            throw HistoryError.dontContainsNode
+        }
 
         if destinyNode.parent == nil {
             let connection = HistoryConnection(destinyNode: destinyNode, title: title)
@@ -112,7 +117,6 @@ public class HistoryGraph: CustomStringConvertible {
 
         let shortcut = HistoryShortcut(
             forNode: destinyNode,
-            andParentNode: nil,
             positionX: 0,
             andPositionY: 0
         )
@@ -184,8 +188,11 @@ public class HistoryGraph: CustomStringConvertible {
     /// remove a node from the graph and all it connections and shortcuts
     ///
     /// - Parameter node: the node the be removed
-    public func removeNode(_ node: HistoryNodeProtocol) {
+    public func removeNode(_ node: HistoryNodeProtocol) throws {
         //rever com os shortcuts//revisto!!
+        guard containsNode(node) else {
+            throw HistoryError.dontContainsNode
+        }
 
         if let parentNode = node.parent as? HistoryNode {
             parentNode.removeConnection(toNode: node)
@@ -195,12 +202,14 @@ public class HistoryGraph: CustomStringConvertible {
             for connection in historyNode.connections {
                 connection.destinyNode?.parent = nil
             }
+
+            for shortcut in historyNode.shortcuts {
+                try? removeShortcut(shortcut)
+            }
         }
 
-        if let historyShortcut = node as? HistoryShortcut, let parent = historyShortcut.parent as? HistoryNode {
-            parent.shortcuts.removeAll { (currentShortcut) -> Bool in
-                currentShortcut === historyShortcut
-            }
+        if let historyShortcut = node as? HistoryShortcut {
+            try? removeShortcut(historyShortcut)
         }
 
         self.nodes.removeAll { currentNode in
@@ -213,7 +222,11 @@ public class HistoryGraph: CustomStringConvertible {
     /// remove a connection from the graph
     ///
     /// - Parameter connection: the connection to be removed
-    public func removeConnection(_ connection: HistoryConnection, fromNode node: HistoryNode) {
+    public func removeConnection(_ connection: HistoryConnection, fromNode node: HistoryNode) throws {
+        guard containsNode(node) else {
+            throw HistoryError.dontContainsNode
+        }
+
         connection.destinyNode?.parent = nil
 
         node.connections.removeAll { (currentConnection) -> Bool in
@@ -224,8 +237,14 @@ public class HistoryGraph: CustomStringConvertible {
     /// remove a shortcut from the graph
     ///
     /// - Parameter shortcut: the shortcut to be removed
-    public func removeShortcut( _ shortcut: HistoryShortcut) {
+    public func removeShortcut( _ shortcut: HistoryShortcut) throws {
+        guard containsNode(shortcut) else {
+            throw HistoryError.dontContainsNode
+        }
         
+        if let parent = shortcut.parent as? HistoryNode {
+            parent.shortcuts.removeAll(where: { $0 === shortcut})
+        }
     }
 
     /// It checks the connection between two nodes
