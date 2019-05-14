@@ -15,8 +15,8 @@ public class HistoryNode: HistoryNodeProtocol {
     public var text: String?
 
     public weak var parent: HistoryNodeProtocol?
-    var shortcuts: [HistoryShortcut] = []
-    var connections: [HistoryConnection] = []
+    public var shortcuts: [HistoryShortcut] = []
+    public var connections: [HistoryConnection] = []
 
     public var description: String {
         return "Resume: \(self.resume ?? "None"), Position: (y: \(positionY), x: \(positionX))"

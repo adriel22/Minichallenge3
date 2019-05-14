@@ -10,11 +10,11 @@ import Foundation
 
 public class HistoryGraph: CustomStringConvertible {
 
-    var nodes: [HistoryNodeProtocol] = []
-    var historyName: String
-    var sinopse: String
+    public var nodes: [HistoryNodeProtocol] = []
+    public var historyName: String
+    public var sinopse: String
 
-    var grid: HistoryNodesGrid
+    public var grid: HistoryNodesGrid
 
     public var description: String {
         var description = ""

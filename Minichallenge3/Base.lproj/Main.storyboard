@@ -17,9 +17,24 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GdT-ys-KmY" customClass="GraphView" customModule="Minichallenge3" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="GdT-ys-KmY" secondAttribute="trailing" id="7SC-fQ-N56"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="GdT-ys-KmY" secondAttribute="bottom" id="Yaq-he-aFz"/>
+                            <constraint firstItem="GdT-ys-KmY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="njP-ke-CtC"/>
+                            <constraint firstItem="GdT-ys-KmY" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="t2q-Zm-uPH"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="graphView" destination="GdT-ys-KmY" id="2sE-sd-OQ8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
