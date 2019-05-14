@@ -10,6 +10,23 @@
 		C77E46C789F9B2BADE16D712 /* Pods_Minichallenge3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CF4D23D356FA463D37FC974 /* Pods_Minichallenge3.framework */; };
 		E3012A722285A7B000AB008F /* HistoryNodesGridTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3012A712285A7B000AB008F /* HistoryNodesGridTests.swift */; };
 		E3012A742285BCAD00AB008F /* HistoryConnectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3012A732285BCAD00AB008F /* HistoryConnectionTests.swift */; };
+		E32A379B228A4FD700E2F8B1 /* GraphViewOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32A379A228A4FD700E2F8B1 /* GraphViewOperator.swift */; };
+		E32A379E228B011300E2F8B1 /* MyNarrativesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32A379C228B011300E2F8B1 /* MyNarrativesView.swift */; };
+		E32A379F228B011300E2F8B1 /* CustomNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32A379D228B011300E2F8B1 /* CustomNavigation.swift */; };
+		E32A37A1228B013600E2F8B1 /* MyNarrativesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32A37A0228B013600E2F8B1 /* MyNarrativesViewController.swift */; };
+		E331CCC62287B3070041379B /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E331CCC52287B3070041379B /* GraphView.swift */; };
+		E331CCCA228846B20041379B /* GraphViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E331CCC9228846B20041379B /* GraphViewDelegate.swift */; };
+		E331CCCC228846C20041379B /* GraphViewDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E331CCCB228846C20041379B /* GraphViewDatasource.swift */; };
+		E331CCCF2288802B0041379B /* Array+forearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E331CCCE2288802B0041379B /* Array+forearch.swift */; };
+		E331CCD12288971D0041379B /* GraphLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E331CCD02288971D0041379B /* GraphLineView.swift */; };
+		E381E2C32288D7B700E25B78 /* GraphItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381E2C22288D7B700E25B78 /* GraphItemView.swift */; };
+		E381E2C52288DC1D00E25B78 /* GraphViewConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381E2C42288DC1D00E25B78 /* GraphViewConnector.swift */; };
+		E381E2C72288DCC500E25B78 /* ItemViewConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381E2C62288DCC500E25B78 /* ItemViewConnector.swift */; };
+		E381E2C92288DE8300E25B78 /* CGPoint+add.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381E2C82288DE8300E25B78 /* CGPoint+add.swift */; };
+		E381E2CB2288E0AF00E25B78 /* UIBezierPath+addPolygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381E2CA2288E0AF00E25B78 /* UIBezierPath+addPolygon.swift */; };
+		E381E2CF2289BA9A00E25B78 /* GraphConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381E2CE2289BA9A00E25B78 /* GraphConnectionView.swift */; };
+		E381E2D12289C41800E25B78 /* NSLayoutConstraint+activate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381E2D02289C41800E25B78 /* NSLayoutConstraint+activate.swift */; };
+		E381E2D32289C58F00E25B78 /* ItemViewConnectorDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381E2D22289C58F00E25B78 /* ItemViewConnectorDirection.swift */; };
 		E3C030B822844F0800AD53E0 /* HistoryGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B722844F0800AD53E0 /* HistoryGraphTests.swift */; };
 		E3C030C5228478EB00AD53E0 /* HistoryGraph.h in Headers */ = {isa = PBXBuildFile; fileRef = E3C030C3228478EB00AD53E0 /* HistoryGraph.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E3C030C8228478EB00AD53E0 /* HistoryGraph.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3C030C1228478EB00AD53E0 /* HistoryGraph.framework */; };
@@ -21,10 +38,14 @@
 		E3C030D2228479DC00AD53E0 /* HistoryShortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B12282F1E300AD53E0 /* HistoryShortcut.swift */; };
 		E3C030D3228479DC00AD53E0 /* HistoryConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B32282F1F300AD53E0 /* HistoryConnection.swift */; };
 		E3C030D4228479DC00AD53E0 /* HistoryNodesGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B5228322FC00AD53E0 /* HistoryNodesGrid.swift */; };
+		FC02E8DB228AE14700537429 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02E8DA228AE14700537429 /* Colors.swift */; };
+		FC02E93C228AFFC100537429 /* ExpandableTableViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC02E938228AFFC100537429 /* ExpandableTableViewHeaderView.xib */; };
+		FC02E93D228AFFC100537429 /* ExpandableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02E939228AFFC100537429 /* ExpandableTableViewCell.swift */; };
+		FC02E93E228AFFC100537429 /* ExpandableTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02E93A228AFFC100537429 /* ExpandableTableViewHeaderView.swift */; };
+		FC02E93F228AFFC100537429 /* ExpandableTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC02E93B228AFFC100537429 /* ExpandableTableViewCell.xib */; };
 		FCB3548E228065AF00AB7ED2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB3548D228065AF00AB7ED2 /* AppDelegate.swift */; };
 		FCB35490228065AF00AB7ED2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB3548F228065AF00AB7ED2 /* ViewController.swift */; };
 		FCB35493228065AF00AB7ED2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCB35491228065AF00AB7ED2 /* Main.storyboard */; };
-		FCB35496228065AF00AB7ED2 /* Minichallenge3.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FCB35494228065AF00AB7ED2 /* Minichallenge3.xcdatamodeld */; };
 		FCB35498228065B000AB7ED2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCB35497228065B000AB7ED2 /* Assets.xcassets */; };
 		FCB3549B228065B000AB7ED2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCB35499228065B000AB7ED2 /* LaunchScreen.storyboard */; };
 		FCB354A6228065B000AB7ED2 /* Minichallenge3Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB354A5228065B000AB7ED2 /* Minichallenge3Tests.swift */; };
@@ -76,6 +97,23 @@
 		B20FF8B7118109CF1BB19056 /* Pods-Minichallenge3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Minichallenge3.release.xcconfig"; path = "Pods/Target Support Files/Pods-Minichallenge3/Pods-Minichallenge3.release.xcconfig"; sourceTree = "<group>"; };
 		E3012A712285A7B000AB008F /* HistoryNodesGridTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryNodesGridTests.swift; sourceTree = "<group>"; };
 		E3012A732285BCAD00AB008F /* HistoryConnectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryConnectionTests.swift; sourceTree = "<group>"; };
+		E32A379A228A4FD700E2F8B1 /* GraphViewOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewOperator.swift; sourceTree = "<group>"; };
+		E32A379C228B011300E2F8B1 /* MyNarrativesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyNarrativesView.swift; sourceTree = "<group>"; };
+		E32A379D228B011300E2F8B1 /* CustomNavigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNavigation.swift; sourceTree = "<group>"; };
+		E32A37A0228B013600E2F8B1 /* MyNarrativesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyNarrativesViewController.swift; sourceTree = "<group>"; };
+		E331CCC52287B3070041379B /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
+		E331CCC9228846B20041379B /* GraphViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewDelegate.swift; sourceTree = "<group>"; };
+		E331CCCB228846C20041379B /* GraphViewDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewDatasource.swift; sourceTree = "<group>"; };
+		E331CCCE2288802B0041379B /* Array+forearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+forearch.swift"; sourceTree = "<group>"; };
+		E331CCD02288971D0041379B /* GraphLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphLineView.swift; sourceTree = "<group>"; };
+		E381E2C22288D7B700E25B78 /* GraphItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphItemView.swift; sourceTree = "<group>"; };
+		E381E2C42288DC1D00E25B78 /* GraphViewConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewConnector.swift; sourceTree = "<group>"; };
+		E381E2C62288DCC500E25B78 /* ItemViewConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewConnector.swift; sourceTree = "<group>"; };
+		E381E2C82288DE8300E25B78 /* CGPoint+add.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+add.swift"; sourceTree = "<group>"; };
+		E381E2CA2288E0AF00E25B78 /* UIBezierPath+addPolygon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBezierPath+addPolygon.swift"; sourceTree = "<group>"; };
+		E381E2CE2289BA9A00E25B78 /* GraphConnectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphConnectionView.swift; sourceTree = "<group>"; };
+		E381E2D02289C41800E25B78 /* NSLayoutConstraint+activate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+activate.swift"; sourceTree = "<group>"; };
+		E381E2D22289C58F00E25B78 /* ItemViewConnectorDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewConnectorDirection.swift; sourceTree = "<group>"; };
 		E3C030AB2282F19500AD53E0 /* HistoryGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryGraph.swift; sourceTree = "<group>"; };
 		E3C030AD2282F1B400AD53E0 /* HistoryNodeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryNodeProtocol.swift; sourceTree = "<group>"; };
 		E3C030AF2282F1C500AD53E0 /* HistoryNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryNode.swift; sourceTree = "<group>"; };
@@ -87,6 +125,11 @@
 		E3C030C1228478EB00AD53E0 /* HistoryGraph.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HistoryGraph.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3C030C3228478EB00AD53E0 /* HistoryGraph.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HistoryGraph.h; sourceTree = "<group>"; };
 		E3C030C4228478EB00AD53E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FC02E8DA228AE14700537429 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		FC02E938228AFFC100537429 /* ExpandableTableViewHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpandableTableViewHeaderView.xib; sourceTree = "<group>"; };
+		FC02E939228AFFC100537429 /* ExpandableTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandableTableViewCell.swift; sourceTree = "<group>"; };
+		FC02E93A228AFFC100537429 /* ExpandableTableViewHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandableTableViewHeaderView.swift; sourceTree = "<group>"; };
+		FC02E93B228AFFC100537429 /* ExpandableTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpandableTableViewCell.xib; sourceTree = "<group>"; };
 		FCB3548A228065AF00AB7ED2 /* Minichallenge3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Minichallenge3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCB3548D228065AF00AB7ED2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FCB3548F228065AF00AB7ED2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -146,6 +189,61 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E331CCC42287B2F30041379B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E32A379D228B011300E2F8B1 /* CustomNavigation.swift */,
+				E32A379C228B011300E2F8B1 /* MyNarrativesView.swift */,
+				FC02E92B228AFEBF00537429 /* ExpandableCell */,
+				E331CCC7228846720041379B /* GraphView */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E331CCC7228846720041379B /* GraphView */ = {
+			isa = PBXGroup;
+			children = (
+				E381E2D4228A27EF00E25B78 /* connections */,
+				E331CCC8228846A40041379B /* delegate */,
+				E331CCC52287B3070041379B /* GraphView.swift */,
+				E331CCD02288971D0041379B /* GraphLineView.swift */,
+				E381E2C22288D7B700E25B78 /* GraphItemView.swift */,
+				E32A379A228A4FD700E2F8B1 /* GraphViewOperator.swift */,
+			);
+			path = GraphView;
+			sourceTree = "<group>";
+		};
+		E331CCC8228846A40041379B /* delegate */ = {
+			isa = PBXGroup;
+			children = (
+				E331CCC9228846B20041379B /* GraphViewDelegate.swift */,
+				E331CCCB228846C20041379B /* GraphViewDatasource.swift */,
+			);
+			path = delegate;
+			sourceTree = "<group>";
+		};
+		E331CCCD228880100041379B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E331CCCE2288802B0041379B /* Array+forearch.swift */,
+				E381E2C82288DE8300E25B78 /* CGPoint+add.swift */,
+				E381E2CA2288E0AF00E25B78 /* UIBezierPath+addPolygon.swift */,
+				E381E2D02289C41800E25B78 /* NSLayoutConstraint+activate.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		E381E2D4228A27EF00E25B78 /* connections */ = {
+			isa = PBXGroup;
+			children = (
+				E381E2C42288DC1D00E25B78 /* GraphViewConnector.swift */,
+				E381E2C62288DCC500E25B78 /* ItemViewConnector.swift */,
+				E381E2CE2289BA9A00E25B78 /* GraphConnectionView.swift */,
+				E381E2D22289C58F00E25B78 /* ItemViewConnectorDirection.swift */,
+			);
+			path = connections;
+			sourceTree = "<group>";
+		};
 		E3C030AA2282F14700AD53E0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -179,6 +277,25 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		FC02E8DC228AE18900537429 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E32A37A0228B013600E2F8B1 /* MyNarrativesViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		FC02E92B228AFEBF00537429 /* ExpandableCell */ = {
+			isa = PBXGroup;
+			children = (
+				FC02E939228AFFC100537429 /* ExpandableTableViewCell.swift */,
+				FC02E93B228AFFC100537429 /* ExpandableTableViewCell.xib */,
+				FC02E93A228AFFC100537429 /* ExpandableTableViewHeaderView.swift */,
+				FC02E938228AFFC100537429 /* ExpandableTableViewHeaderView.xib */,
+			);
+			path = ExpandableCell;
+			sourceTree = "<group>";
+		};
 		FCB35481228065AF00AB7ED2 = {
 			isa = PBXGroup;
 			children = (
@@ -206,6 +323,10 @@
 		FCB3548C228065AF00AB7ED2 /* Minichallenge3 */ = {
 			isa = PBXGroup;
 			children = (
+				E331CCCD228880100041379B /* Extensions */,
+				E331CCC42287B2F30041379B /* Views */,
+				FC02E8DC228AE18900537429 /* Controllers */,
+				FC02E8DA228AE14700537429 /* Colors.swift */,
 				FCB3548D228065AF00AB7ED2 /* AppDelegate.swift */,
 				FCB3548F228065AF00AB7ED2 /* ViewController.swift */,
 				FCB35491228065AF00AB7ED2 /* Main.storyboard */,
@@ -388,8 +509,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				FCB3549B228065B000AB7ED2 /* LaunchScreen.storyboard in Resources */,
+				FC02E93F228AFFC100537429 /* ExpandableTableViewCell.xib in Resources */,
 				FCB35498228065B000AB7ED2 /* Assets.xcassets in Resources */,
 				FCB35493228065AF00AB7ED2 /* Main.storyboard in Resources */,
+				FC02E93C228AFFC100537429 /* ExpandableTableViewHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,9 +593,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E32A379E228B011300E2F8B1 /* MyNarrativesView.swift in Sources */,
+				E331CCCC228846C20041379B /* GraphViewDatasource.swift in Sources */,
+				E32A37A1228B013600E2F8B1 /* MyNarrativesViewController.swift in Sources */,
+				FC02E93D228AFFC100537429 /* ExpandableTableViewCell.swift in Sources */,
+				E381E2C72288DCC500E25B78 /* ItemViewConnector.swift in Sources */,
 				FCB35490228065AF00AB7ED2 /* ViewController.swift in Sources */,
+				E331CCCF2288802B0041379B /* Array+forearch.swift in Sources */,
+				E381E2D32289C58F00E25B78 /* ItemViewConnectorDirection.swift in Sources */,
+				E381E2D12289C41800E25B78 /* NSLayoutConstraint+activate.swift in Sources */,
+				E32A379B228A4FD700E2F8B1 /* GraphViewOperator.swift in Sources */,
+				E381E2CB2288E0AF00E25B78 /* UIBezierPath+addPolygon.swift in Sources */,
+				E331CCD12288971D0041379B /* GraphLineView.swift in Sources */,
+				E331CCC62287B3070041379B /* GraphView.swift in Sources */,
+				E381E2C92288DE8300E25B78 /* CGPoint+add.swift in Sources */,
+				E381E2C52288DC1D00E25B78 /* GraphViewConnector.swift in Sources */,
+				E381E2CF2289BA9A00E25B78 /* GraphConnectionView.swift in Sources */,
+				FC02E93E228AFFC100537429 /* ExpandableTableViewHeaderView.swift in Sources */,
+				E331CCCA228846B20041379B /* GraphViewDelegate.swift in Sources */,
+				E32A379F228B011300E2F8B1 /* CustomNavigation.swift in Sources */,
+				E381E2C32288D7B700E25B78 /* GraphItemView.swift in Sources */,
+				FC02E8DB228AE14700537429 /* Colors.swift in Sources */,
 				FCB3548E228065AF00AB7ED2 /* AppDelegate.swift in Sources */,
-				FCB35496228065AF00AB7ED2 /* Minichallenge3.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -543,7 +685,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = JGG8YW8SJU;
+				DEVELOPMENT_TEAM = Z8P97P3QB4;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -571,7 +713,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = JGG8YW8SJU;
+				DEVELOPMENT_TEAM = Z8P97P3QB4;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
