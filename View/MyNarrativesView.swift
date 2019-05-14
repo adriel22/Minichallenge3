@@ -9,19 +9,22 @@
 import Foundation
 import  UIKit
 
-class MyNarrativeViews: UIView, SetNavigation {
+class MyNarrativeViews: UIView {
     let tableView: UITableView
-    let navigationBar = UINavigationBar()
+    var navigationBar: CustomNavigation
+    private var tableTopConstraint: NSLayoutConstraint!
 
     override init(frame: CGRect) {
         tableView = UITableView()
+        navigationBar = CustomNavigation("Minhas Narrativas")
 
         super.init(frame: frame)
 
         self.addSubview(tableView)
+        self.addSubview(navigationBar)
+//        tableView.addSubview(navigationBar)
         setTable()
-
-        setNavigation(in: tableView, withTitle: "Minhas Narrativas")
+        self.backgroundColor = UIColor.red
 
     }
 
@@ -32,11 +35,21 @@ class MyNarrativeViews: UIView, SetNavigation {
     func setTable() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         let tableWidthConstraint = NSLayoutConstraint(item: tableView, attribute: .width, relatedBy: .equal, toItem: self, attribute: .width, multiplier: 1, constant: 0)
-        let tableHeightConstraint = NSLayoutConstraint(item: tableView, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 1, constant: 0)
         let tableCenterXConstraint = NSLayoutConstraint(item: tableView, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0)
-        let tableCenterYConstraint = NSLayoutConstraint(item: tableView, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0)
-        self.addConstraints([tableWidthConstraint, tableHeightConstraint, tableCenterXConstraint, tableCenterYConstraint])
+        tableTopConstraint = NSLayoutConstraint(item: tableView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: navigationBar.height + 10)
+        let tableBottomConstraint = NSLayoutConstraint(item: tableView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: 0)
+        self.addConstraints([tableWidthConstraint, tableBottomConstraint, tableCenterXConstraint, tableTopConstraint])
+//        tableView.contentInset.top = UIScreen.main.bounds.height * 0.2
+//        tableView.bounces = false
+    }
 
+    func updateTableConstraint(_ height: CGFloat) {
+        if navigationBar.height > navigationBar.minimunHeight && navigationBar.height < navigationBar.maximunHeight {
+            self.removeConstraint(tableTopConstraint)
+            tableTopConstraint = NSLayoutConstraint(item: tableView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: navigationBar.maximunHeight - height)
+            self.addConstraint(tableTopConstraint)
+            self.updateConstraints()
+        }
     }
 
 }

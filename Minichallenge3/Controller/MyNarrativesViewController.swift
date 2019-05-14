@@ -24,6 +24,7 @@ class MyNarrativesViewController: UIViewController {
 
         let nib = UINib(nibName: "ExpandableTableViewCell", bundle: .main)
         tableView.register(nib, forCellReuseIdentifier: "cell")
+        tableView.scrollToRow(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
 
     }
     override func loadView() {
@@ -33,7 +34,7 @@ class MyNarrativesViewController: UIViewController {
 }
 extension MyNarrativesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return 30
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -62,7 +63,11 @@ extension MyNarrativesViewController: UITableViewDelegate, UITableViewDataSource
             clickedRow = indexPath
             tableView.reloadRows(at: [indexPath], with: .automatic)
 
-
+    }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let scroll = scrollView.contentOffset.y
+        customView.navigationBar.updateHeight(customView.navigationBar.maximunHeight - scroll)
+        customView.updateTableConstraint(scroll)
     }
 
 }

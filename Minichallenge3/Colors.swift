@@ -11,8 +11,7 @@ import UIKit
 
 // MARK: - Extension for initialize a color with hex value
 extension UIColor {
-    
-    
+
     /// Init for int RGBA values
     ///
     /// - Parameters:
@@ -54,7 +53,6 @@ extension UIView {
     }
 }
 
-
 enum AppColors: Int {
     case darkerBlue = 0x020026
     case darkBlue = 0x151E3F
@@ -63,4 +61,3 @@ enum AppColors: Int {
     case purpleWhite = 0xFFFAFF
     case yellowWhite = 0xFFFCF4
 }
-

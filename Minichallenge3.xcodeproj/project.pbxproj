@@ -17,6 +17,7 @@
 		E3C030B02282F1C500AD53E0 /* HistoryNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030AF2282F1C500AD53E0 /* HistoryNode.swift */; };
 		E3C030B22282F1E300AD53E0 /* HistoryShortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B12282F1E300AD53E0 /* HistoryShortcut.swift */; };
 		E3C030B42282F1F300AD53E0 /* HistoryConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B32282F1F300AD53E0 /* HistoryConnection.swift */; };
+		FC00CBE5228A4C4000C6C9DD /* CustomNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC00CBE4228A4C4000C6C9DD /* CustomNavigation.swift */; };
 		FC031F6622899B7700998ABD /* SetNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC031F6522899B7700998ABD /* SetNavigation.swift */; };
 		FCB3548E228065AF00AB7ED2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB3548D228065AF00AB7ED2 /* AppDelegate.swift */; };
 		FCB35490228065AF00AB7ED2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB3548F228065AF00AB7ED2 /* ViewController.swift */; };
@@ -61,6 +62,7 @@
 		E3C030AF2282F1C500AD53E0 /* HistoryNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryNode.swift; sourceTree = "<group>"; };
 		E3C030B12282F1E300AD53E0 /* HistoryShortcut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryShortcut.swift; sourceTree = "<group>"; };
 		E3C030B32282F1F300AD53E0 /* HistoryConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryConnection.swift; sourceTree = "<group>"; };
+		FC00CBE4228A4C4000C6C9DD /* CustomNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigation.swift; sourceTree = "<group>"; };
 		FC031F6522899B7700998ABD /* SetNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetNavigation.swift; sourceTree = "<group>"; };
 		FCB3548A228065AF00AB7ED2 /* Minichallenge3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Minichallenge3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCB3548D228065AF00AB7ED2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				3C00343622846F20006EBC2F /* ExpandableTableViewCell.xib */,
 				3C00343C22859E83006EBC2F /* ExpandableTableViewHeaderView.swift */,
 				FCFFDF482285BAF70003DD45 /* MyNarrativesView.swift */,
+				FC00CBE4228A4C4000C6C9DD /* CustomNavigation.swift */,
 			);
 			path = View;
 			sourceTree = SOURCE_ROOT;
@@ -396,6 +399,7 @@
 				FC031F6622899B7700998ABD /* SetNavigation.swift in Sources */,
 				FCFFDF492285BAF70003DD45 /* MyNarrativesView.swift in Sources */,
 				3C0034392284723D006EBC2F /* Colors.swift in Sources */,
+				FC00CBE5228A4C4000C6C9DD /* CustomNavigation.swift in Sources */,
 				E3C030AE2282F1B500AD53E0 /* HistoryNodeProtocol.swift in Sources */,
 				3C003435228469BA006EBC2F /* ExpandableTableViewCell.swift in Sources */,
 				FCB35490228065AF00AB7ED2 /* ViewController.swift in Sources */,
