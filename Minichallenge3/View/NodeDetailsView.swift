@@ -30,17 +30,22 @@ class NodeDetailsView: UIView {
         self.init(frame: .zero)
         self.position = position
         positionSet()
+        
+        if position == .up {
+            backgroundColor = UIColor(color: .purpleWhite)
+        } else {
+            backgroundColor = UIColor(color: .yellowWhite)
+        }
     }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = UIColor(color: .purpleWhite)
-        
         text = UITextView(frame: .zero)
         text.backgroundColor = .clear
         text.textColor = UIColor(color: .darkerBlue)
         text.font = UIFont(name: "Baskerville", size: 17)
+        text.addDoneButtonOnKeyboard()
         addSubview(text)
         
         text.translatesAutoresizingMaskIntoConstraints = false

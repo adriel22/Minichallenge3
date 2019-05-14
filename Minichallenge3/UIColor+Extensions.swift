@@ -48,13 +48,6 @@ extension UIColor {
     }
 }
 
-extension UIView {
-    func round(radius: CGFloat) {
-        layer.cornerRadius = radius
-        layer.masksToBounds = true
-    }
-}
-
 
 enum AppColors: Int {
     case darkerBlue = 0x020026

@@ -9,6 +9,6 @@
 import Foundation
 
 struct HistoryConnection {
-    weak var destinyNode: HistoryNodeProtocol?
+    var destinyNode: HistoryNodeProtocol?
     var title: String
 }

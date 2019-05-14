@@ -11,9 +11,11 @@
 		3CD89FCE2289A0A300793496 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD89FCD2289A0A300793496 /* DetailsViewController.swift */; };
 		3CD89FD32289A33200793496 /* BranchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD89FD12289A33200793496 /* BranchCollectionViewCell.swift */; };
 		3CD89FD42289A33200793496 /* BranchCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CD89FD22289A33200793496 /* BranchCollectionViewCell.xib */; };
-		3CD89FD62289A55100793496 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD89FD52289A55100793496 /* Colors.swift */; };
-		3CD89FDE2289B1DA00793496 /* String+calculateSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD89FDD2289B1DA00793496 /* String+calculateSize.swift */; };
 		3CD89FE02289BD7300793496 /* NodeDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD89FDF2289BD7300793496 /* NodeDetailsView.swift */; };
+		3CD89FE22289FAAD00793496 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD89FE12289FAAD00793496 /* String+Extensions.swift */; };
+		3CD89FE42289FAD100793496 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD89FE32289FAD000793496 /* UIColor+Extensions.swift */; };
+		3CD89FE62289FAE400793496 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD89FE52289FAE400793496 /* UIView+Extensions.swift */; };
+		3CD89FE82289FB0800793496 /* UITextView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD89FE72289FB0800793496 /* UITextView+Extensions.swift */; };
 		C77E46C789F9B2BADE16D712 /* Pods_Minichallenge3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CF4D23D356FA463D37FC974 /* Pods_Minichallenge3.framework */; };
 		E3C030AC2282F19500AD53E0 /* HistoryGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030AB2282F19500AD53E0 /* HistoryGraph.swift */; };
 		E3C030AE2282F1B500AD53E0 /* HistoryNodeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030AD2282F1B400AD53E0 /* HistoryNodeProtocol.swift */; };
@@ -53,9 +55,11 @@
 		3CD89FCD2289A0A300793496 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		3CD89FD12289A33200793496 /* BranchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchCollectionViewCell.swift; sourceTree = "<group>"; };
 		3CD89FD22289A33200793496 /* BranchCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BranchCollectionViewCell.xib; sourceTree = "<group>"; };
-		3CD89FD52289A55100793496 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
-		3CD89FDD2289B1DA00793496 /* String+calculateSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+calculateSize.swift"; sourceTree = "<group>"; };
 		3CD89FDF2289BD7300793496 /* NodeDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeDetailsView.swift; sourceTree = "<group>"; };
+		3CD89FE12289FAAD00793496 /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		3CD89FE32289FAD000793496 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
+		3CD89FE52289FAE400793496 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		3CD89FE72289FB0800793496 /* UITextView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Extensions.swift"; sourceTree = "<group>"; };
 		3CF4D23D356FA463D37FC974 /* Pods_Minichallenge3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Minichallenge3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4405664E379635FBB9519A12 /* Pods-Minichallenge3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Minichallenge3.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Minichallenge3/Pods-Minichallenge3.debug.xcconfig"; sourceTree = "<group>"; };
 		B20FF8B7118109CF1BB19056 /* Pods-Minichallenge3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Minichallenge3.release.xcconfig"; path = "Pods/Target Support Files/Pods-Minichallenge3/Pods-Minichallenge3.release.xcconfig"; sourceTree = "<group>"; };
@@ -188,8 +192,10 @@
 		FCB3548C228065AF00AB7ED2 /* Minichallenge3 */ = {
 			isa = PBXGroup;
 			children = (
-				3CD89FD52289A55100793496 /* Colors.swift */,
-				3CD89FDD2289B1DA00793496 /* String+calculateSize.swift */,
+				3CD89FE52289FAE400793496 /* UIView+Extensions.swift */,
+				3CD89FE32289FAD000793496 /* UIColor+Extensions.swift */,
+				3CD89FE12289FAAD00793496 /* String+Extensions.swift */,
+				3CD89FE72289FB0800793496 /* UITextView+Extensions.swift */,
 				3CD89FCA2289A05F00793496 /* View */,
 				3CD89FC92289A05F00793496 /* ViewModel */,
 				E3C030AA2282F14700AD53E0 /* Models */,
@@ -399,9 +405,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3CD89FDE2289B1DA00793496 /* String+calculateSize.swift in Sources */,
 				3CD89FD32289A33200793496 /* BranchCollectionViewCell.swift in Sources */,
-				3CD89FD62289A55100793496 /* Colors.swift in Sources */,
+				3CD89FE42289FAD100793496 /* UIColor+Extensions.swift in Sources */,
 				E3C030B22282F1E300AD53E0 /* HistoryShortcut.swift in Sources */,
 				E3C030AE2282F1B500AD53E0 /* HistoryNodeProtocol.swift in Sources */,
 				FCB35490228065AF00AB7ED2 /* ViewController.swift in Sources */,
@@ -409,10 +414,13 @@
 				E3C030B42282F1F300AD53E0 /* HistoryConnection.swift in Sources */,
 				E3C030AC2282F19500AD53E0 /* HistoryGraph.swift in Sources */,
 				3CD89FE02289BD7300793496 /* NodeDetailsView.swift in Sources */,
+				3CD89FE22289FAAD00793496 /* String+Extensions.swift in Sources */,
 				FCB3548E228065AF00AB7ED2 /* AppDelegate.swift in Sources */,
 				FCB35496228065AF00AB7ED2 /* Minichallenge3.xcdatamodeld in Sources */,
+				3CD89FE62289FAE400793496 /* UIView+Extensions.swift in Sources */,
 				3CD89FCC2289A08200793496 /* DetailsViewModel.swift in Sources */,
 				3CD89FCE2289A0A300793496 /* DetailsViewController.swift in Sources */,
+				3CD89FE82289FB0800793496 /* UITextView+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

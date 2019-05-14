@@ -15,11 +15,21 @@ class DetailsViewModel: NSObject {
         self.story = story
     }
     
+    func addBranch() {
+        let newNode = HistoryNode(withResume: "", andText: "")
+        let connection = HistoryConnection(destinyNode: newNode, title: "")
+        story.connections.append(connection)
+    }
+    
     func textUpdated(with text: String) {
         
     }
     
-    func branchAdded(withNodeTitle title: String) {
-        
+    func update(_ view: DetailsViewController) {
+        view.upnodeView.text.text = story.text
+        view.upnodeView.branches.reloadData()
+        let downnodeText = !story.connections.isEmpty ? story.connections[view.selected].destinyNode?.text : ""
+        view.downnodeView.text.text = downnodeText
     }
+    
 }

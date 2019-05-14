@@ -10,81 +10,110 @@ import UIKit
 
 class DetailsViewController: UIViewController {
 
+    var scrollView: UIScrollView!
     var upnodeView: NodeDetailsView!
     var downnodeView: NodeDetailsView!
-    var viewModel: DetailsViewModel!
+    var viewModel: DetailsViewModel! {
+        didSet {
+            viewModel.update(self)
+        }
+    }
     
     var selected = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let image = UIImage(named: "Dismiss")
         navigationItem.title = "Jurema, a aventureira da vida real"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(dismiss(_:)))
         
         let screenBounds = UIScreen.main.bounds
         let navigationBarStatusBarHeight = UIApplication.shared.statusBarFrame.height
                                         + navigationController!.navigationBar.frame.height
-        let size = CGSize(width: screenBounds.width, height: (screenBounds.height - navigationBarStatusBarHeight)/2)
+        let screenSize = CGSize(width: screenBounds.width, height: screenBounds.height - navigationBarStatusBarHeight)
+        let halfScreenSize = CGSize(width: screenBounds.width, height: (screenBounds.height - navigationBarStatusBarHeight)/2)
         
+        scrollView = UIScrollView(frame: .zero)
+        scrollView.frame = CGRect(origin: .zero, size: screenSize)
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.isScrollEnabled = false
+        scrollView.contentSize = screenSize
+        scrollView.contentSize.height += halfScreenSize.height
+        view.addSubview(scrollView)
         
         upnodeView = NodeDetailsView(position: .up)
         upnodeView.addBranchButton.addTarget(self, action: #selector(addBranch(_:)), for: .touchUpInside)
-        upnodeView.frame.size = size
-        view.addSubview(upnodeView)
+        upnodeView.frame.size = halfScreenSize
+        scrollView.addSubview(upnodeView)
         
         downnodeView = NodeDetailsView(position: .down)
         downnodeView.goOnButton.addTarget(self, action: #selector(goOn(_:)), for: .touchUpInside)
-        downnodeView.frame.size = size
-        downnodeView.frame.origin.y = size.height
-        view.addSubview(downnodeView)
-        
-        let str1 = "Jurema é uma jovem moça a qual, talvez, quem sabe, maybe, entende muito do que acontece "
-        let str2 = "na corriqueira vida dos outros, talento esse que também é conhecido como o tal do fofoqueirismo"
-        let str = "\(str1)\(str2)"
-        
-        let str3 = "Certo dia, Jurema descobriu uma fofoca super intrigante. Porém, contudo, todavia, entretanto, "
-        let str4 = "ela está receosa em contá-la para sua mais que amiga, sua friend, Marivalda. E aí você contaria?"
-        let branchResume = "\(str3)\(str4)"
-        
-        let story = HistoryNode(withResume: str, andText: "Teste")
-        let secNode = HistoryNode(withResume: branchResume, andText: "Teste")
-        let connection = HistoryConnection(destinyNode: secNode, title: "O grande babado")
-        story.connections.append(connection)
-        story.connections.append(connection)
-        story.connections.append(connection)
-        story.connections.append(connection)
-        story.connections.append(connection)
-        
-        upnodeView.text.text = str
-        downnodeView.text.text = branchResume
-
-        viewModel = DetailsViewModel(story: story)
+        downnodeView.frame.size = halfScreenSize
+        downnodeView.frame.origin.y = halfScreenSize.height
+        scrollView.addSubview(downnodeView)
         
         upnodeView.text.delegate = self
         upnodeView.branches.delegate = self
         upnodeView.branches.dataSource = self
         
+        downnodeView.text.delegate = self
         downnodeView.branches.delegate = self
         downnodeView.branches.dataSource = self
         
     }
     
-    func updateDownNodeView() {
-        
-    }
-    
     
     @objc func addBranch(_ sender: UIButton) {
+        viewModel.addBranch()
+        upnodeView.branches.reloadData()
         
+        let indexPath = IndexPath(item: self.viewModel.story.connections.count - 1, section: 0)
+        upnodeView.branches.scrollToItem(at: indexPath, at: .right, animated: true)
+        
+        self.selected = indexPath.item
+        self.downnodeView.text.text = ""
     }
 
     @objc func goOn(_ sender: UIButton) {
-        
+        if viewModel.story.connections.isEmpty { return }
+        guard let destiny = viewModel.story.connections[selected].destinyNode as? HistoryNode else { return }
+        viewModel.story = destiny
+        viewModel.update(self)
+    }
+    
+    @objc func dismiss(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
     }
     
 }
 
 extension DetailsViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView === downnodeView.text {
+            let screenBounds = UIScreen.main.bounds
+            let navigationBarStatusBarHeight = UIApplication.shared.statusBarFrame.height
+                + navigationController!.navigationBar.frame.height
+            let halfScreenSize = CGSize(width: screenBounds.width, height: (screenBounds.height - navigationBarStatusBarHeight)/2)
+            UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: [.curveEaseInOut, .allowUserInteraction, .transitionCurlUp], animations: {
+                self.scrollView.contentOffset.y = halfScreenSize.height
+                self.downnodeView.text.frame.size.height -= 50
+                self.downnodeView.goOnButton.frame.origin.y -= 50
+            })
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView === downnodeView.text {
+            UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: [.curveEaseInOut, .allowUserInteraction, .transitionCurlUp], animations: {
+                self.scrollView.contentOffset.y = 0
+                self.downnodeView.text.frame.size.height += 50
+                self.downnodeView.goOnButton.frame.origin.y += 50
+            })
+        }
+    }
+    
     func textViewDidChange(_ textView: UITextView) {
         viewModel.textUpdated(with: textView.text)
     }
@@ -92,6 +121,7 @@ extension DetailsViewController: UITextViewDelegate {
 
 extension DetailsViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        guard let viewModel = self.viewModel else { return 0 }
         return viewModel.story.connections.count
     }
     
@@ -109,7 +139,7 @@ extension DetailsViewController: UICollectionViewDataSource, UICollectionViewDel
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selected = indexPath.item
         collectionView.reloadData()
-        updateDownNodeView()
+        viewModel.update(self)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

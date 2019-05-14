@@ -15,7 +15,7 @@ class BranchCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        round(radius: 10)
+        round(radius: 4)
         
         selectionBackground = UIView(frame: .zero)
         selectionBackground.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
