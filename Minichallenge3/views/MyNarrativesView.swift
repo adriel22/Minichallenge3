@@ -22,7 +22,6 @@ class MyNarrativeViews: UIView {
 
         self.addSubview(tableView)
         self.addSubview(navigationBar)
-//        tableView.addSubview(navigationBar)
         setTable()
         self.backgroundColor = UIColor.red
 
@@ -39,8 +38,6 @@ class MyNarrativeViews: UIView {
         tableTopConstraint = NSLayoutConstraint(item: tableView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: navigationBar.height + 10)
         let tableBottomConstraint = NSLayoutConstraint(item: tableView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: 0)
         self.addConstraints([tableWidthConstraint, tableBottomConstraint, tableCenterXConstraint, tableTopConstraint])
-//        tableView.contentInset.top = UIScreen.main.bounds.height * 0.2
-//        tableView.bounces = false
     }
 
     func updateTableConstraint(_ height: CGFloat) {

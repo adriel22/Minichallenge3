@@ -7,18 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3C003435228469BA006EBC2F /* ExpandableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C003434228469B9006EBC2F /* ExpandableTableViewCell.swift */; };
-		3C00343722846F20006EBC2F /* ExpandableTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C00343622846F20006EBC2F /* ExpandableTableViewCell.xib */; };
-		3C0034392284723D006EBC2F /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0034382284723D006EBC2F /* Colors.swift */; };
-		3C00343D22859E83006EBC2F /* ExpandableTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C00343C22859E83006EBC2F /* ExpandableTableViewHeaderView.swift */; };
 		C77E46C789F9B2BADE16D712 /* Pods_Minichallenge3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CF4D23D356FA463D37FC974 /* Pods_Minichallenge3.framework */; };
-		E3C030AC2282F19500AD53E0 /* HistoryGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030AB2282F19500AD53E0 /* HistoryGraph.swift */; };
-		E3C030AE2282F1B500AD53E0 /* HistoryNodeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030AD2282F1B400AD53E0 /* HistoryNodeProtocol.swift */; };
-		E3C030B02282F1C500AD53E0 /* HistoryNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030AF2282F1C500AD53E0 /* HistoryNode.swift */; };
-		E3C030B22282F1E300AD53E0 /* HistoryShortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B12282F1E300AD53E0 /* HistoryShortcut.swift */; };
-		E3C030B42282F1F300AD53E0 /* HistoryConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B32282F1F300AD53E0 /* HistoryConnection.swift */; };
-		FC00CBE5228A4C4000C6C9DD /* CustomNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC00CBE4228A4C4000C6C9DD /* CustomNavigation.swift */; };
-		FC031F6622899B7700998ABD /* SetNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC031F6522899B7700998ABD /* SetNavigation.swift */; };
+		E3012A722285A7B000AB008F /* HistoryNodesGridTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3012A712285A7B000AB008F /* HistoryNodesGridTests.swift */; };
+		E3C030B822844F0800AD53E0 /* HistoryGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B722844F0800AD53E0 /* HistoryGraphTests.swift */; };
+		E3C030C5228478EB00AD53E0 /* HistoryGraph.h in Headers */ = {isa = PBXBuildFile; fileRef = E3C030C3228478EB00AD53E0 /* HistoryGraph.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E3C030C8228478EB00AD53E0 /* HistoryGraph.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3C030C1228478EB00AD53E0 /* HistoryGraph.framework */; };
+		E3C030C9228478EB00AD53E0 /* HistoryGraph.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3C030C1228478EB00AD53E0 /* HistoryGraph.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E3C030CE228479DC00AD53E0 /* HistoryError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030BA22845ECE00AD53E0 /* HistoryError.swift */; };
+		E3C030CF228479DC00AD53E0 /* HistoryGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030AB2282F19500AD53E0 /* HistoryGraph.swift */; };
+		E3C030D0228479DC00AD53E0 /* HistoryNodeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030AD2282F1B400AD53E0 /* HistoryNodeProtocol.swift */; };
+		E3C030D1228479DC00AD53E0 /* HistoryNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030AF2282F1C500AD53E0 /* HistoryNode.swift */; };
+		E3C030D2228479DC00AD53E0 /* HistoryShortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B12282F1E300AD53E0 /* HistoryShortcut.swift */; };
+		E3C030D3228479DC00AD53E0 /* HistoryConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B32282F1F300AD53E0 /* HistoryConnection.swift */; };
+		E3C030D4228479DC00AD53E0 /* HistoryNodesGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B5228322FC00AD53E0 /* HistoryNodesGrid.swift */; };
+		FC02E8DB228AE14700537429 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02E8DA228AE14700537429 /* Colors.swift */; };
+		FC02E8DE228AE27300537429 /* MyNarrativesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02E8DD228AE27300537429 /* MyNarrativesViewController.swift */; };
+		FC02E8E6228AE2AB00537429 /* ExpandableTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC02E8E0228AE2AB00537429 /* ExpandableTableViewCell.xib */; };
+		FC02E8E7228AE2AB00537429 /* ExpandableTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02E8E1228AE2AB00537429 /* ExpandableTableViewHeaderView.swift */; };
+		FC02E8E8228AE2AB00537429 /* ExpandableTableViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC02E8E2228AE2AB00537429 /* ExpandableTableViewHeaderView.xib */; };
+		FC02E8E9228AE2AB00537429 /* CustomNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02E8E3228AE2AB00537429 /* CustomNavigation.swift */; };
+		FC02E8EA228AE2AB00537429 /* MyNarrativesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02E8E4228AE2AB00537429 /* MyNarrativesView.swift */; };
+		FC02E8EB228AE2AB00537429 /* ExpandableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02E8E5228AE2AB00537429 /* ExpandableTableViewCell.swift */; };
 		FCB3548E228065AF00AB7ED2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB3548D228065AF00AB7ED2 /* AppDelegate.swift */; };
 		FCB35490228065AF00AB7ED2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB3548F228065AF00AB7ED2 /* ViewController.swift */; };
 		FCB35493228065AF00AB7ED2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCB35491228065AF00AB7ED2 /* Main.storyboard */; };
@@ -28,11 +37,16 @@
 		FCB354A6228065B000AB7ED2 /* Minichallenge3Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB354A5228065B000AB7ED2 /* Minichallenge3Tests.swift */; };
 		FCB354B1228065B000AB7ED2 /* Minichallenge3UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB354B0228065B000AB7ED2 /* Minichallenge3UITests.swift */; };
 		FCB354BF2280688D00AB7ED2 /* CITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB354BE2280688D00AB7ED2 /* CITest.swift */; };
-		FCFFDF492285BAF70003DD45 /* MyNarrativesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFFDF482285BAF70003DD45 /* MyNarrativesView.swift */; };
-		FCFFDF4C2285BBAB0003DD45 /* MyNarrativesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFFDF4B2285BBAB0003DD45 /* MyNarrativesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		E3C030C6228478EB00AD53E0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FCB35482228065AF00AB7ED2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E3C030C0228478EB00AD53E0;
+			remoteInfo = HistoryGraph;
+		};
 		FCB354A2228065B000AB7ED2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FCB35482228065AF00AB7ED2 /* Project object */;
@@ -49,21 +63,44 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		E3C030CD228478EB00AD53E0 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E3C030C9228478EB00AD53E0 /* HistoryGraph.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		3C003434228469B9006EBC2F /* ExpandableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableTableViewCell.swift; sourceTree = "<group>"; };
-		3C00343622846F20006EBC2F /* ExpandableTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExpandableTableViewCell.xib; sourceTree = "<group>"; };
-		3C0034382284723D006EBC2F /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
-		3C00343C22859E83006EBC2F /* ExpandableTableViewHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandableTableViewHeaderView.swift; sourceTree = "<group>"; };
 		3CF4D23D356FA463D37FC974 /* Pods_Minichallenge3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Minichallenge3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4405664E379635FBB9519A12 /* Pods-Minichallenge3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Minichallenge3.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Minichallenge3/Pods-Minichallenge3.debug.xcconfig"; sourceTree = "<group>"; };
 		B20FF8B7118109CF1BB19056 /* Pods-Minichallenge3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Minichallenge3.release.xcconfig"; path = "Pods/Target Support Files/Pods-Minichallenge3/Pods-Minichallenge3.release.xcconfig"; sourceTree = "<group>"; };
+		E3012A712285A7B000AB008F /* HistoryNodesGridTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryNodesGridTests.swift; sourceTree = "<group>"; };
 		E3C030AB2282F19500AD53E0 /* HistoryGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryGraph.swift; sourceTree = "<group>"; };
 		E3C030AD2282F1B400AD53E0 /* HistoryNodeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryNodeProtocol.swift; sourceTree = "<group>"; };
 		E3C030AF2282F1C500AD53E0 /* HistoryNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryNode.swift; sourceTree = "<group>"; };
 		E3C030B12282F1E300AD53E0 /* HistoryShortcut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryShortcut.swift; sourceTree = "<group>"; };
 		E3C030B32282F1F300AD53E0 /* HistoryConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryConnection.swift; sourceTree = "<group>"; };
-		FC00CBE4228A4C4000C6C9DD /* CustomNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigation.swift; sourceTree = "<group>"; };
-		FC031F6522899B7700998ABD /* SetNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetNavigation.swift; sourceTree = "<group>"; };
+		E3C030B5228322FC00AD53E0 /* HistoryNodesGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryNodesGrid.swift; sourceTree = "<group>"; };
+		E3C030B722844F0800AD53E0 /* HistoryGraphTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryGraphTests.swift; sourceTree = "<group>"; };
+		E3C030BA22845ECE00AD53E0 /* HistoryError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryError.swift; sourceTree = "<group>"; };
+		E3C030C1228478EB00AD53E0 /* HistoryGraph.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HistoryGraph.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E3C030C3228478EB00AD53E0 /* HistoryGraph.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HistoryGraph.h; sourceTree = "<group>"; };
+		E3C030C4228478EB00AD53E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FC02E8DA228AE14700537429 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		FC02E8DD228AE27300537429 /* MyNarrativesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyNarrativesViewController.swift; sourceTree = "<group>"; };
+		FC02E8E0228AE2AB00537429 /* ExpandableTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpandableTableViewCell.xib; sourceTree = "<group>"; };
+		FC02E8E1228AE2AB00537429 /* ExpandableTableViewHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandableTableViewHeaderView.swift; sourceTree = "<group>"; };
+		FC02E8E2228AE2AB00537429 /* ExpandableTableViewHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpandableTableViewHeaderView.xib; sourceTree = "<group>"; };
+		FC02E8E3228AE2AB00537429 /* CustomNavigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNavigation.swift; sourceTree = "<group>"; };
+		FC02E8E4228AE2AB00537429 /* MyNarrativesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyNarrativesView.swift; sourceTree = "<group>"; };
+		FC02E8E5228AE2AB00537429 /* ExpandableTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandableTableViewCell.swift; sourceTree = "<group>"; };
 		FCB3548A228065AF00AB7ED2 /* Minichallenge3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Minichallenge3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCB3548D228065AF00AB7ED2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FCB3548F228065AF00AB7ED2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -79,15 +116,21 @@
 		FCB354B0228065B000AB7ED2 /* Minichallenge3UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Minichallenge3UITests.swift; sourceTree = "<group>"; };
 		FCB354B2228065B000AB7ED2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FCB354BE2280688D00AB7ED2 /* CITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CITest.swift; sourceTree = "<group>"; };
-		FCFFDF482285BAF70003DD45 /* MyNarrativesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNarrativesView.swift; sourceTree = "<group>"; };
-		FCFFDF4B2285BBAB0003DD45 /* MyNarrativesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNarrativesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		E3C030BE228478EB00AD53E0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FCB35487228065AF00AB7ED2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3C030C8228478EB00AD53E0 /* HistoryGraph.framework in Frameworks */,
 				C77E46C789F9B2BADE16D712 /* Pods_Minichallenge3.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -109,18 +152,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3C00343322846986006EBC2F /* View */ = {
-			isa = PBXGroup;
-			children = (
-				3C003434228469B9006EBC2F /* ExpandableTableViewCell.swift */,
-				3C00343622846F20006EBC2F /* ExpandableTableViewCell.xib */,
-				3C00343C22859E83006EBC2F /* ExpandableTableViewHeaderView.swift */,
-				FCFFDF482285BAF70003DD45 /* MyNarrativesView.swift */,
-				FC00CBE4228A4C4000C6C9DD /* CustomNavigation.swift */,
-			);
-			path = View;
-			sourceTree = SOURCE_ROOT;
-		};
 		DABAE8F7599EAF4B2D921E49 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -132,13 +163,25 @@
 		E3C030AA2282F14700AD53E0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E3C030BA22845ECE00AD53E0 /* HistoryError.swift */,
 				E3C030AB2282F19500AD53E0 /* HistoryGraph.swift */,
 				E3C030AD2282F1B400AD53E0 /* HistoryNodeProtocol.swift */,
 				E3C030AF2282F1C500AD53E0 /* HistoryNode.swift */,
 				E3C030B12282F1E300AD53E0 /* HistoryShortcut.swift */,
 				E3C030B32282F1F300AD53E0 /* HistoryConnection.swift */,
+				E3C030B5228322FC00AD53E0 /* HistoryNodesGrid.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		E3C030C2228478EB00AD53E0 /* HistoryGraph */ = {
+			isa = PBXGroup;
+			children = (
+				E3C030AA2282F14700AD53E0 /* Models */,
+				E3C030C3228478EB00AD53E0 /* HistoryGraph.h */,
+				E3C030C4228478EB00AD53E0 /* Info.plist */,
+			);
+			path = HistoryGraph;
 			sourceTree = "<group>";
 		};
 		E63AF8B70B6E719FFBCF5BDE /* Pods */ = {
@@ -150,10 +193,32 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		FC02E8DC228AE18900537429 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FC02E8DD228AE27300537429 /* MyNarrativesViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		FC02E8DF228AE28400537429 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				FC02E8E3228AE2AB00537429 /* CustomNavigation.swift */,
+				FC02E8E5228AE2AB00537429 /* ExpandableTableViewCell.swift */,
+				FC02E8E0228AE2AB00537429 /* ExpandableTableViewCell.xib */,
+				FC02E8E1228AE2AB00537429 /* ExpandableTableViewHeaderView.swift */,
+				FC02E8E2228AE2AB00537429 /* ExpandableTableViewHeaderView.xib */,
+				FC02E8E4228AE2AB00537429 /* MyNarrativesView.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
 		FCB35481228065AF00AB7ED2 = {
 			isa = PBXGroup;
 			children = (
 				FCB3548C228065AF00AB7ED2 /* Minichallenge3 */,
+				E3C030C2228478EB00AD53E0 /* HistoryGraph */,
 				FCB354A4228065B000AB7ED2 /* Minichallenge3Tests */,
 				FCB354AF228065B000AB7ED2 /* Minichallenge3UITests */,
 				FCB3548B228065AF00AB7ED2 /* Products */,
@@ -168,6 +233,7 @@
 				FCB3548A228065AF00AB7ED2 /* Minichallenge3.app */,
 				FCB354A1228065B000AB7ED2 /* Minichallenge3Tests.xctest */,
 				FCB354AC228065B000AB7ED2 /* Minichallenge3UITests.xctest */,
+				E3C030C1228478EB00AD53E0 /* HistoryGraph.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -175,11 +241,9 @@
 		FCB3548C228065AF00AB7ED2 /* Minichallenge3 */ = {
 			isa = PBXGroup;
 			children = (
-				FC031F6522899B7700998ABD /* SetNavigation.swift */,
-				FCFFDF4A2285BB630003DD45 /* Controller */,
-				3C0034382284723D006EBC2F /* Colors.swift */,
-				3C00343322846986006EBC2F /* View */,
-				E3C030AA2282F14700AD53E0 /* Models */,
+				FC02E8DF228AE28400537429 /* views */,
+				FC02E8DC228AE18900537429 /* Controllers */,
+				FC02E8DA228AE14700537429 /* Colors.swift */,
 				FCB3548D228065AF00AB7ED2 /* AppDelegate.swift */,
 				FCB3548F228065AF00AB7ED2 /* ViewController.swift */,
 				FCB35491228065AF00AB7ED2 /* Main.storyboard */,
@@ -195,6 +259,8 @@
 			isa = PBXGroup;
 			children = (
 				FCB354A5228065B000AB7ED2 /* Minichallenge3Tests.swift */,
+				E3C030B722844F0800AD53E0 /* HistoryGraphTests.swift */,
+				E3012A712285A7B000AB008F /* HistoryNodesGridTests.swift */,
 				FCB354A7228065B000AB7ED2 /* Info.plist */,
 				FCB354BE2280688D00AB7ED2 /* CITest.swift */,
 			);
@@ -210,17 +276,38 @@
 			path = Minichallenge3UITests;
 			sourceTree = "<group>";
 		};
-		FCFFDF4A2285BB630003DD45 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				FCFFDF4B2285BBAB0003DD45 /* MyNarrativesViewController.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		E3C030BC228478EB00AD53E0 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E3C030C5228478EB00AD53E0 /* HistoryGraph.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		E3C030C0228478EB00AD53E0 /* HistoryGraph */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E3C030CA228478EB00AD53E0 /* Build configuration list for PBXNativeTarget "HistoryGraph" */;
+			buildPhases = (
+				E3C030BC228478EB00AD53E0 /* Headers */,
+				E3C030BD228478EB00AD53E0 /* Sources */,
+				E3C030BE228478EB00AD53E0 /* Frameworks */,
+				E3C030BF228478EB00AD53E0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HistoryGraph;
+			productName = HistoryGraph;
+			productReference = E3C030C1228478EB00AD53E0 /* HistoryGraph.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		FCB35489228065AF00AB7ED2 /* Minichallenge3 */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FCB354B5228065B000AB7ED2 /* Build configuration list for PBXNativeTarget "Minichallenge3" */;
@@ -230,10 +317,12 @@
 				FCB35487228065AF00AB7ED2 /* Frameworks */,
 				FCB35488228065AF00AB7ED2 /* Resources */,
 				FCB354C0228077F000AB7ED2 /* ShellScript */,
+				E3C030CD228478EB00AD53E0 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				E3C030C7228478EB00AD53E0 /* PBXTargetDependency */,
 			);
 			name = Minichallenge3;
 			productName = Minichallenge3;
@@ -286,6 +375,9 @@
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Adriel Freire";
 				TargetAttributes = {
+					E3C030C0228478EB00AD53E0 = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
 					FCB35489228065AF00AB7ED2 = {
 						CreatedOnToolsVersion = 10.2;
 					};
@@ -315,19 +407,28 @@
 				FCB35489228065AF00AB7ED2 /* Minichallenge3 */,
 				FCB354A0228065B000AB7ED2 /* Minichallenge3Tests */,
 				FCB354AB228065B000AB7ED2 /* Minichallenge3UITests */,
+				E3C030C0228478EB00AD53E0 /* HistoryGraph */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		E3C030BF228478EB00AD53E0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FCB35488228065AF00AB7ED2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC02E8E8228AE2AB00537429 /* ExpandableTableViewHeaderView.xib in Resources */,
 				FCB3549B228065B000AB7ED2 /* LaunchScreen.storyboard in Resources */,
 				FCB35498228065B000AB7ED2 /* Assets.xcassets in Resources */,
 				FCB35493228065AF00AB7ED2 /* Main.storyboard in Resources */,
-				3C00343722846F20006EBC2F /* ExpandableTableViewCell.xib in Resources */,
+				FC02E8E6228AE2AB00537429 /* ExpandableTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,25 +491,33 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		E3C030BD228478EB00AD53E0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E3C030D1228479DC00AD53E0 /* HistoryNode.swift in Sources */,
+				E3C030D2228479DC00AD53E0 /* HistoryShortcut.swift in Sources */,
+				E3C030CE228479DC00AD53E0 /* HistoryError.swift in Sources */,
+				E3C030D0228479DC00AD53E0 /* HistoryNodeProtocol.swift in Sources */,
+				E3C030D3228479DC00AD53E0 /* HistoryConnection.swift in Sources */,
+				E3C030CF228479DC00AD53E0 /* HistoryGraph.swift in Sources */,
+				E3C030D4228479DC00AD53E0 /* HistoryNodesGrid.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FCB35486228065AF00AB7ED2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E3C030B22282F1E300AD53E0 /* HistoryShortcut.swift in Sources */,
-				FCFFDF4C2285BBAB0003DD45 /* MyNarrativesViewController.swift in Sources */,
-				FC031F6622899B7700998ABD /* SetNavigation.swift in Sources */,
-				FCFFDF492285BAF70003DD45 /* MyNarrativesView.swift in Sources */,
-				3C0034392284723D006EBC2F /* Colors.swift in Sources */,
-				FC00CBE5228A4C4000C6C9DD /* CustomNavigation.swift in Sources */,
-				E3C030AE2282F1B500AD53E0 /* HistoryNodeProtocol.swift in Sources */,
-				3C003435228469BA006EBC2F /* ExpandableTableViewCell.swift in Sources */,
+				FC02E8E9228AE2AB00537429 /* CustomNavigation.swift in Sources */,
+				FC02E8EA228AE2AB00537429 /* MyNarrativesView.swift in Sources */,
+				FC02E8EB228AE2AB00537429 /* ExpandableTableViewCell.swift in Sources */,
 				FCB35490228065AF00AB7ED2 /* ViewController.swift in Sources */,
-				E3C030B02282F1C500AD53E0 /* HistoryNode.swift in Sources */,
-				3C00343D22859E83006EBC2F /* ExpandableTableViewHeaderView.swift in Sources */,
-				E3C030B42282F1F300AD53E0 /* HistoryConnection.swift in Sources */,
-				E3C030AC2282F19500AD53E0 /* HistoryGraph.swift in Sources */,
+				FC02E8DB228AE14700537429 /* Colors.swift in Sources */,
 				FCB3548E228065AF00AB7ED2 /* AppDelegate.swift in Sources */,
+				FC02E8DE228AE27300537429 /* MyNarrativesViewController.swift in Sources */,
 				FCB35496228065AF00AB7ED2 /* Minichallenge3.xcdatamodeld in Sources */,
+				FC02E8E7228AE2AB00537429 /* ExpandableTableViewHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,6 +527,8 @@
 			files = (
 				FCB354A6228065B000AB7ED2 /* Minichallenge3Tests.swift in Sources */,
 				FCB354BF2280688D00AB7ED2 /* CITest.swift in Sources */,
+				E3012A722285A7B000AB008F /* HistoryNodesGridTests.swift in Sources */,
+				E3C030B822844F0800AD53E0 /* HistoryGraphTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,6 +543,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		E3C030C7228478EB00AD53E0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E3C030C0228478EB00AD53E0 /* HistoryGraph */;
+			targetProxy = E3C030C6228478EB00AD53E0 /* PBXContainerItemProxy */;
+		};
 		FCB354A3228065B000AB7ED2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = FCB35489228065AF00AB7ED2 /* Minichallenge3 */;
@@ -464,6 +580,62 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		E3C030CB228478EB00AD53E0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = JGG8YW8SJU;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = HistoryGraph/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = paulino.elias.HistoryGraph;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		E3C030CC228478EB00AD53E0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = JGG8YW8SJU;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = HistoryGraph/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = paulino.elias.HistoryGraph;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		FCB354B3228065B000AB7ED2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -584,9 +756,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4405664E379635FBB9519A12 /* Pods-Minichallenge3.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = JGG8YW8SJU;
 				INFOPLIST_FILE = Minichallenge3/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -595,7 +767,6 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Adriel.Minichallenge3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -605,9 +776,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B20FF8B7118109CF1BB19056 /* Pods-Minichallenge3.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = JGG8YW8SJU;
 				INFOPLIST_FILE = Minichallenge3/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -616,7 +787,6 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Adriel.Minichallenge3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -628,7 +798,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 446LGN7Z63;
+				DEVELOPMENT_TEAM = JGG8YW8SJU;
 				INFOPLIST_FILE = Minichallenge3Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -649,7 +819,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 446LGN7Z63;
+				DEVELOPMENT_TEAM = JGG8YW8SJU;
 				INFOPLIST_FILE = Minichallenge3Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -669,7 +839,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 446LGN7Z63;
+				DEVELOPMENT_TEAM = JGG8YW8SJU;
 				INFOPLIST_FILE = Minichallenge3UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -689,7 +859,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 446LGN7Z63;
+				DEVELOPMENT_TEAM = JGG8YW8SJU;
 				INFOPLIST_FILE = Minichallenge3UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -707,6 +877,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		E3C030CA228478EB00AD53E0 /* Build configuration list for PBXNativeTarget "HistoryGraph" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E3C030CB228478EB00AD53E0 /* Debug */,
+				E3C030CC228478EB00AD53E0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		FCB35485228065AF00AB7ED2 /* Build configuration list for PBXProject "Minichallenge3" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
