@@ -412,7 +412,6 @@ class HistoryGraphTests: XCTestCase {
         if let connection = rootNode.connections.first {
             graph.removeConnection(connection, fromNode: rootNode)
         }
-
         XCTAssert(rootNode.connections.count == 0)
     }
 }
