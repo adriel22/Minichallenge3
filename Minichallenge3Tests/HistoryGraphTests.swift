@@ -376,7 +376,7 @@ class HistoryGraphTests: XCTestCase {
             text: "Root Node Text",
             positionX: 0, andPositionY: 0
         )
-        
+
         let node2 = HistoryNode.init(
             withResume: "Node 2 Resume",
             text: "Node 2 Text",
@@ -412,7 +412,6 @@ class HistoryGraphTests: XCTestCase {
         if let connection = rootNode.connections.first {
             graph.removeConnection(connection, fromNode: rootNode)
         }
-
         XCTAssert(rootNode.connections.count == 0)
     }
 }
