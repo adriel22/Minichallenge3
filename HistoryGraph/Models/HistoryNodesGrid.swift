@@ -89,7 +89,8 @@ public class HistoryNodesGrid: CustomStringConvertible {
     ///   - HistoryError.impossibleMoving if the target node cant move because has connections or a parent node.
     func moveNodeToPosition(node: HistoryNodeProtocol,
                             toPositionX positionX: Int,
-                            andPositionY positionY: Int) throws {
+                            andPositionY positionY: Int,
+                            removeFromOrigin: Bool = true) throws {
 
         let validPosition: Bool = hasPosition(yIndex: positionY, xIndex: positionX)
 
@@ -117,7 +118,9 @@ public class HistoryNodesGrid: CustomStringConvertible {
             throw HistoryError.impossibleMoving
         }
 
-        grid[node.positionY][node.positionX] = nil
+        if removeFromOrigin{
+            grid[node.positionY][node.positionX] = nil
+        }
 
         node.positionX = positionX
         node.positionY = positionY
@@ -132,14 +135,18 @@ public class HistoryNodesGrid: CustomStringConvertible {
     ///   - node: the node that is on the top
     /// - Throws:
     ///   - HistoryError.impossibleMoving if the target node cant move because has connections or a parent node.
-    func moveNode(_ bellowNode: HistoryNodeProtocol, toBellowOfNode node: HistoryNodeProtocol) throws {
+    func moveNode(
+        _ bellowNode: HistoryNodeProtocol,
+        toBellowOfNode node: HistoryNodeProtocol,
+        removeFromOrigin: Bool = true) throws {
         let destinyNodeNewLinePosition = node.positionY + 1
 
         if let newColPosition = findPositionInLine(atIndex: destinyNodeNewLinePosition) {
             try moveNodeToPosition(
                 node: bellowNode,
                 toPositionX: newColPosition,
-                andPositionY: destinyNodeNewLinePosition
+                andPositionY: destinyNodeNewLinePosition,
+                removeFromOrigin: removeFromOrigin
             )
         }
     }
