@@ -11,6 +11,9 @@
 		E3012A722285A7B000AB008F /* HistoryNodesGridTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3012A712285A7B000AB008F /* HistoryNodesGridTests.swift */; };
 		E3012A742285BCAD00AB008F /* HistoryConnectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3012A732285BCAD00AB008F /* HistoryConnectionTests.swift */; };
 		E32A379B228A4FD700E2F8B1 /* GraphViewOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32A379A228A4FD700E2F8B1 /* GraphViewOperator.swift */; };
+		E32A379E228B011300E2F8B1 /* MyNarrativesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32A379C228B011300E2F8B1 /* MyNarrativesView.swift */; };
+		E32A379F228B011300E2F8B1 /* CustomNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32A379D228B011300E2F8B1 /* CustomNavigation.swift */; };
+		E32A37A1228B013600E2F8B1 /* MyNarrativesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32A37A0228B013600E2F8B1 /* MyNarrativesViewController.swift */; };
 		E331CCC62287B3070041379B /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E331CCC52287B3070041379B /* GraphView.swift */; };
 		E331CCCA228846B20041379B /* GraphViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E331CCC9228846B20041379B /* GraphViewDelegate.swift */; };
 		E331CCCC228846C20041379B /* GraphViewDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E331CCCB228846C20041379B /* GraphViewDatasource.swift */; };
@@ -36,9 +39,6 @@
 		E3C030D3228479DC00AD53E0 /* HistoryConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B32282F1F300AD53E0 /* HistoryConnection.swift */; };
 		E3C030D4228479DC00AD53E0 /* HistoryNodesGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B5228322FC00AD53E0 /* HistoryNodesGrid.swift */; };
 		FC02E8DB228AE14700537429 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02E8DA228AE14700537429 /* Colors.swift */; };
-		FC02E923228AFE4900537429 /* MyNarrativesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02E91D228AFE4700537429 /* MyNarrativesView.swift */; };
-		FC02E928228AFE4900537429 /* CustomNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02E922228AFE4800537429 /* CustomNavigation.swift */; };
-		FC02E92A228AFE8D00537429 /* MyNarrativesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02E929228AFE8C00537429 /* MyNarrativesViewController.swift */; };
 		FC02E93C228AFFC100537429 /* ExpandableTableViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC02E938228AFFC100537429 /* ExpandableTableViewHeaderView.xib */; };
 		FC02E93D228AFFC100537429 /* ExpandableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02E939228AFFC100537429 /* ExpandableTableViewCell.swift */; };
 		FC02E93E228AFFC100537429 /* ExpandableTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02E93A228AFFC100537429 /* ExpandableTableViewHeaderView.swift */; };
@@ -98,6 +98,9 @@
 		E3012A712285A7B000AB008F /* HistoryNodesGridTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryNodesGridTests.swift; sourceTree = "<group>"; };
 		E3012A732285BCAD00AB008F /* HistoryConnectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryConnectionTests.swift; sourceTree = "<group>"; };
 		E32A379A228A4FD700E2F8B1 /* GraphViewOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewOperator.swift; sourceTree = "<group>"; };
+		E32A379C228B011300E2F8B1 /* MyNarrativesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyNarrativesView.swift; sourceTree = "<group>"; };
+		E32A379D228B011300E2F8B1 /* CustomNavigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNavigation.swift; sourceTree = "<group>"; };
+		E32A37A0228B013600E2F8B1 /* MyNarrativesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyNarrativesViewController.swift; sourceTree = "<group>"; };
 		E331CCC52287B3070041379B /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
 		E331CCC9228846B20041379B /* GraphViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewDelegate.swift; sourceTree = "<group>"; };
 		E331CCCB228846C20041379B /* GraphViewDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewDatasource.swift; sourceTree = "<group>"; };
@@ -123,9 +126,6 @@
 		E3C030C3228478EB00AD53E0 /* HistoryGraph.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HistoryGraph.h; sourceTree = "<group>"; };
 		E3C030C4228478EB00AD53E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC02E8DA228AE14700537429 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
-		FC02E91D228AFE4700537429 /* MyNarrativesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyNarrativesView.swift; path = ../../../View/MyNarrativesView.swift; sourceTree = "<group>"; };
-		FC02E922228AFE4800537429 /* CustomNavigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomNavigation.swift; path = ../../../View/CustomNavigation.swift; sourceTree = "<group>"; };
-		FC02E929228AFE8C00537429 /* MyNarrativesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyNarrativesViewController.swift; path = ../../../Controller/MyNarrativesViewController.swift; sourceTree = "<group>"; };
 		FC02E938228AFFC100537429 /* ExpandableTableViewHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpandableTableViewHeaderView.xib; sourceTree = "<group>"; };
 		FC02E939228AFFC100537429 /* ExpandableTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandableTableViewCell.swift; sourceTree = "<group>"; };
 		FC02E93A228AFFC100537429 /* ExpandableTableViewHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandableTableViewHeaderView.swift; sourceTree = "<group>"; };
@@ -192,9 +192,9 @@
 		E331CCC42287B2F30041379B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E32A379D228B011300E2F8B1 /* CustomNavigation.swift */,
+				E32A379C228B011300E2F8B1 /* MyNarrativesView.swift */,
 				FC02E92B228AFEBF00537429 /* ExpandableCell */,
-				FC02E922228AFE4800537429 /* CustomNavigation.swift */,
-				FC02E91D228AFE4700537429 /* MyNarrativesView.swift */,
 				E331CCC7228846720041379B /* GraphView */,
 			);
 			path = Views;
@@ -280,7 +280,7 @@
 		FC02E8DC228AE18900537429 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				FC02E929228AFE8C00537429 /* MyNarrativesViewController.swift */,
+				E32A37A0228B013600E2F8B1 /* MyNarrativesViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -593,10 +593,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC02E92A228AFE8D00537429 /* MyNarrativesViewController.swift in Sources */,
+				E32A379E228B011300E2F8B1 /* MyNarrativesView.swift in Sources */,
 				E331CCCC228846C20041379B /* GraphViewDatasource.swift in Sources */,
+				E32A37A1228B013600E2F8B1 /* MyNarrativesViewController.swift in Sources */,
 				FC02E93D228AFFC100537429 /* ExpandableTableViewCell.swift in Sources */,
-				FC02E923228AFE4900537429 /* MyNarrativesView.swift in Sources */,
 				E381E2C72288DCC500E25B78 /* ItemViewConnector.swift in Sources */,
 				FCB35490228065AF00AB7ED2 /* ViewController.swift in Sources */,
 				E331CCCF2288802B0041379B /* Array+forearch.swift in Sources */,
@@ -608,10 +608,10 @@
 				E331CCC62287B3070041379B /* GraphView.swift in Sources */,
 				E381E2C92288DE8300E25B78 /* CGPoint+add.swift in Sources */,
 				E381E2C52288DC1D00E25B78 /* GraphViewConnector.swift in Sources */,
-				FC02E928228AFE4900537429 /* CustomNavigation.swift in Sources */,
 				E381E2CF2289BA9A00E25B78 /* GraphConnectionView.swift in Sources */,
 				FC02E93E228AFFC100537429 /* ExpandableTableViewHeaderView.swift in Sources */,
 				E331CCCA228846B20041379B /* GraphViewDelegate.swift in Sources */,
+				E32A379F228B011300E2F8B1 /* CustomNavigation.swift in Sources */,
 				E381E2C32288D7B700E25B78 /* GraphItemView.swift in Sources */,
 				FC02E8DB228AE14700537429 /* Colors.swift in Sources */,
 				FCB3548E228065AF00AB7ED2 /* AppDelegate.swift in Sources */,
@@ -685,7 +685,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = JGG8YW8SJU;
+				DEVELOPMENT_TEAM = Z8P97P3QB4;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -713,7 +713,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = JGG8YW8SJU;
+				DEVELOPMENT_TEAM = Z8P97P3QB4;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
