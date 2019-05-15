@@ -12,8 +12,6 @@ import CoreData
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
-    
-
     var window: UIWindow?
 
 
@@ -22,6 +20,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().tintColor = UIColor(color: .yellowWhite)
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(color: .yellowWhite)]
         UINavigationBar.appearance().isTranslucent = false
+        
+//        let controller = MyNarrativesViewController()
+//        window = UIWindow(frame: UIScreen.main.bounds)
+//        window?.rootViewController = controller
+//        window?.makeKeyAndVisible()
+        
+        let controller = DetailsViewController()
+        let story = HistoryNode(withResume: "RESUME", text: "TEXT", positionX: 2, andPositionY: 0)
+        controller.viewModel = DetailsViewModel(story: story)
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = UINavigationController(rootViewController: controller)
+        window?.makeKeyAndVisible()
+        
+        let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
+        if statusBar.responds(to:#selector(setter: UIView.backgroundColor)) {
+            statusBar.backgroundColor = UIColor(color: .darkBlue)
+        }
+        
         return true
     }
 

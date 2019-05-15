@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import Minichallenge3
+@testable import HistoryGraph
 
 class Minichallenge3Tests: XCTestCase {
 
@@ -31,5 +31,4 @@ class Minichallenge3Tests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-
 }

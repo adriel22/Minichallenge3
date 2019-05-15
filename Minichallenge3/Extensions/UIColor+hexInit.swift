@@ -47,14 +47,3 @@ extension UIColor {
         self.init(rgb: color.rawValue)
     }
 }
-
-
-enum AppColors: Int {
-    case darkerBlue = 0x020026
-    case darkBlue = 0x151E3F
-    case red = 0xAD343E
-    case green = 0x93C176
-    case purpleWhite = 0xFFFAFF
-    case yellowWhite = 0xFFFCF4
-}
-

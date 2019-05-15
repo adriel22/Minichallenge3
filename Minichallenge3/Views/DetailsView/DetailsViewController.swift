@@ -15,7 +15,11 @@ class DetailsViewController: UIViewController {
     var downnodeView: NodeDetailsView!
     var viewModel: DetailsViewModel! {
         didSet {
-            viewModel.update(self)
+            if let scrollView = scrollView,
+                let upnodeView = upnodeView,
+                let downnodeView = downnodeView {
+                viewModel.update(self)
+            }
         }
     }
     

@@ -16,9 +16,9 @@ class DetailsViewModel: NSObject {
     }
     
     func addBranch() {
-        let newNode = HistoryNode(withResume: "", andText: "")
-        let connection = HistoryConnection(destinyNode: newNode, title: "")
-        story.connections.append(connection)
+//        let newNode = HistoryNode(withResume: "", text: "", positionX: <#Int#>, andPositionY: <#Int#>)
+//        let connection = HistoryConnection(destinyNode: newNode, title: "")
+//        story.connections.append(connection)
     }
     
     func textUpdated(with text: String, inNode node: HistoryNode) {
