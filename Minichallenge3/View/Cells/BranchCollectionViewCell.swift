@@ -13,8 +13,8 @@ class BranchCollectionViewCell: UICollectionViewCell {
     private var selectionBackground: UIView!
     var label: UILabel!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         round(radius: 4)
         
         selectionBackground = UIView(frame: .zero)
@@ -22,23 +22,27 @@ class BranchCollectionViewCell: UICollectionViewCell {
         selectionBackground.round(radius: 4)
         addSubview(selectionBackground)
         
-        selectionBackground.translatesAutoresizingMaskIntoConstraints = false
-        selectionBackground.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        selectionBackground.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        selectionBackground.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        selectionBackground.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        
         label = UILabel(frame: .zero)
         label.textColor = UIColor(color: .darkerBlue)
         label.font = .systemFont(ofSize: 13)
         label.textAlignment = .center
         addSubview(label)
         
+        setConstraints()
+        
+    }
+    
+    func setConstraints() {
+        selectionBackground.translatesAutoresizingMaskIntoConstraints = false
+        selectionBackground.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        selectionBackground.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        selectionBackground.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        selectionBackground.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        
         label.translatesAutoresizingMaskIntoConstraints = false
         label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8).isActive = true
         label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8).isActive = true
         label.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        
     }
     
     func select() {
@@ -53,4 +57,8 @@ class BranchCollectionViewCell: UICollectionViewCell {
         label.font = .systemFont(ofSize: 13, weight: .regular)
     }
 
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
 }

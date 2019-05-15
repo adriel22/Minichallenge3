@@ -10,7 +10,6 @@
 		3CD89FCC2289A08200793496 /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD89FCB2289A08200793496 /* DetailsViewModel.swift */; };
 		3CD89FCE2289A0A300793496 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD89FCD2289A0A300793496 /* DetailsViewController.swift */; };
 		3CD89FD32289A33200793496 /* BranchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD89FD12289A33200793496 /* BranchCollectionViewCell.swift */; };
-		3CD89FD42289A33200793496 /* BranchCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CD89FD22289A33200793496 /* BranchCollectionViewCell.xib */; };
 		3CD89FE02289BD7300793496 /* NodeDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD89FDF2289BD7300793496 /* NodeDetailsView.swift */; };
 		3CD89FE22289FAAD00793496 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD89FE12289FAAD00793496 /* String+Extensions.swift */; };
 		3CD89FE42289FAD100793496 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD89FE32289FAD000793496 /* UIColor+Extensions.swift */; };
@@ -52,10 +51,9 @@
 
 /* Begin PBXFileReference section */
 		3CD89FCB2289A08200793496 /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
-		3CD89FCD2289A0A300793496 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		3CD89FCD2289A0A300793496 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetailsViewController.swift; path = Minichallenge3/View/DetailsViewController.swift; sourceTree = SOURCE_ROOT; };
 		3CD89FD12289A33200793496 /* BranchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchCollectionViewCell.swift; sourceTree = "<group>"; };
-		3CD89FD22289A33200793496 /* BranchCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BranchCollectionViewCell.xib; sourceTree = "<group>"; };
-		3CD89FDF2289BD7300793496 /* NodeDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeDetailsView.swift; sourceTree = "<group>"; };
+		3CD89FDF2289BD7300793496 /* NodeDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NodeDetailsView.swift; path = ../NodeDetailsView.swift; sourceTree = "<group>"; };
 		3CD89FE12289FAAD00793496 /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		3CD89FE32289FAD000793496 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		3CD89FE52289FAE400793496 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
@@ -122,9 +120,7 @@
 		3CD89FCA2289A05F00793496 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				3CD89FD02289A2F900793496 /* Cells */,
-				3CD89FCD2289A0A300793496 /* DetailsViewController.swift */,
-				3CD89FDF2289BD7300793496 /* NodeDetailsView.swift */,
+				3CD89FF0228CB1C800793496 /* DetailsView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -133,9 +129,19 @@
 			isa = PBXGroup;
 			children = (
 				3CD89FD12289A33200793496 /* BranchCollectionViewCell.swift */,
-				3CD89FD22289A33200793496 /* BranchCollectionViewCell.xib */,
 			);
-			path = Cells;
+			name = Cells;
+			path = ../Cells;
+			sourceTree = "<group>";
+		};
+		3CD89FF0228CB1C800793496 /* DetailsView */ = {
+			isa = PBXGroup;
+			children = (
+				3CD89FD02289A2F900793496 /* Cells */,
+				3CD89FCD2289A0A300793496 /* DetailsViewController.swift */,
+				3CD89FDF2289BD7300793496 /* NodeDetailsView.swift */,
+			);
+			path = DetailsView;
 			sourceTree = "<group>";
 		};
 		DABAE8F7599EAF4B2D921E49 /* Frameworks */ = {
@@ -337,7 +343,6 @@
 			files = (
 				FCB3549B228065B000AB7ED2 /* LaunchScreen.storyboard in Resources */,
 				FCB35498228065B000AB7ED2 /* Assets.xcassets in Resources */,
-				3CD89FD42289A33200793496 /* BranchCollectionViewCell.xib in Resources */,
 				FCB35493228065AF00AB7ED2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -113,7 +113,7 @@ extension DetailsViewController: UITextViewDelegate {
     
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
         if textView === downnodeView.text {
-            var branches = viewModel.story.connections
+            let branches = viewModel.story.connections
             return !branches.isEmpty
         }
         return true
