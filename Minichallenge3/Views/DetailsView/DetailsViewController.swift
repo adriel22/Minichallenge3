@@ -10,54 +10,53 @@ import UIKit
 
 class DetailsViewController: UIViewController {
 
-    var scrollView: UIScrollView!
-    var upnodeView: NodeDetailsView!
-    var downnodeView: NodeDetailsView!
-    var viewModel: DetailsViewModel! {
+    lazy var scrollView: UIScrollView! = UIScrollView(frame: .zero)
+    lazy var upnodeView: NodeDetailsView! = NodeDetailsView(position: .up)
+    lazy var downnodeView: NodeDetailsView! = NodeDetailsView(position: .down)
+    
+    var viewModel: DetailsViewModel? {
         didSet {
-            if let scrollView = scrollView,
-                let upnodeView = upnodeView,
-                let downnodeView = downnodeView {
-                viewModel.update(self)
-            }
+            viewModel?.update(self)
         }
     }
     
-    var selected = 0
-    
+    lazy var selected = 0
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        configureScrollView()
+        view.addSubview(scrollView)
+
+        configureUpnodeView()
+        scrollView.addSubview(upnodeView)
         
-        let screenBounds = UIScreen.main.bounds
-        let navigationBarStatusBarHeight = UIApplication.shared.statusBarFrame.height
-                                        + navigationController!.navigationBar.frame.height
-        let screenSize = CGSize(width: screenBounds.width, height: screenBounds.height - navigationBarStatusBarHeight)
-        let halfScreenSize = CGSize(width: screenBounds.width, height: (screenBounds.height - navigationBarStatusBarHeight)/2)
-        
-        scrollView = UIScrollView(frame: .zero)
+        configureDownnodeVode()
+        scrollView.addSubview(downnodeView)
+
+        configureNavigationBar()
+        setDelegatesAndDataSources()
+        setConstraints()
+    }
+    
+    func configureScrollView() {
         scrollView.backgroundColor = UIColor(color: .yellowWhite)
-        scrollView.frame = CGRect(origin: .zero, size: screenSize)
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.isScrollEnabled = false
-        scrollView.contentSize = screenSize
-        scrollView.contentSize.height += halfScreenSize.height
-        view.addSubview(scrollView)
-        
-        upnodeView = NodeDetailsView(position: .up)
-        upnodeView.addBranchButton.addTarget(self, action: #selector(addBranch(_:)), for: .touchUpInside)
-        upnodeView.frame.size = halfScreenSize
-        scrollView.addSubview(upnodeView)
-        
-        downnodeView = NodeDetailsView(position: .down)
-        downnodeView.goOnButton.addTarget(self, action: #selector(goOn(_:)), for: .touchUpInside)
-        downnodeView.frame.size = halfScreenSize
-        downnodeView.frame.origin.y = halfScreenSize.height
-        scrollView.addSubview(downnodeView)
-        
-        configureNavigationBar()
-        setDelegatesAndDataSources()
-        
+        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 1.5)
+    }
+    
+    func configureUpnodeView() {
+        upnodeView.addBranchButton.addTarget(self,
+                                             action: #selector(addBranch(_:)),
+                                             for: .touchUpInside)
+    }
+    
+    func configureDownnodeVode() {
+         downnodeView.goOnButton.addTarget(self,
+                                           action: #selector(goOn(_:)),
+                                           for: .touchUpInside)
     }
     
     func configureNavigationBar() {
@@ -75,25 +74,52 @@ class DetailsViewController: UIViewController {
         downnodeView.branches.dataSource = self
     }
     
+    func setConstraints() {
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        
+        upnodeView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            upnodeView.topAnchor.constraint(equalTo: view.topAnchor),
+            upnodeView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            upnodeView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            upnodeView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5)
+        ])
+        
+        downnodeView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            downnodeView.topAnchor.constraint(equalTo: upnodeView.bottomAnchor),
+            downnodeView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            downnodeView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            downnodeView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5)
+        ])
+    }
+    
     
     @objc func addBranch(_ sender: UIButton) {
-        viewModel.addBranch()
-        upnodeView.branches.reloadData()
-        
-        let indexPath = IndexPath(item: self.viewModel.story.connections.count - 1, section: 0)
-        upnodeView.branches.scrollToItem(at: indexPath, at: .right, animated: true)
-        
-        self.selected = indexPath.item
-        self.downnodeView.text.text = ""
+//        viewModel?.addBranch()
+//        upnodeView.branches.reloadData()
+//
+//        let indexPath = IndexPath(item: self.viewModel.story.connections.count - 1, section: 0)
+//        upnodeView.branches.scrollToItem(at: indexPath, at: .right, animated: true)
+//
+//        self.selected = indexPath.item
+//        self.downnodeView.text.text = ""
     }
 
     @objc func goOn(_ sender: UIButton) {
-        var branches = viewModel.story.connections
-        if branches.isEmpty { return }
-        guard let destiny = branches[selected].destinyNode as? HistoryNode else { return }
-        downnodeView.text.resignFirstResponder()
-        viewModel.story = destiny
-        viewModel.update(self)
+        if let branches = viewModel?.story.connections {
+            if branches.isEmpty { return }
+            guard let destiny = branches[selected].destinyNode as? HistoryNode else { return }
+            downnodeView.text.resignFirstResponder()
+            viewModel?.story = destiny
+            viewModel?.update(self)
+        }
     }
     
     @objc func dismiss(_ sender: UIBarButtonItem) {
@@ -104,21 +130,29 @@ class DetailsViewController: UIViewController {
 
 extension DetailsViewController: UITextViewDelegate {
     func moveView(up: Bool) {
-        let screenBounds = UIScreen.main.bounds
-        let navigationBarStatusBarHeight = UIApplication.shared.statusBarFrame.height
-            + navigationController!.navigationBar.frame.height
-        let halfScreenSize = CGSize(width: screenBounds.width, height: (screenBounds.height - navigationBarStatusBarHeight)/2)
-        UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: [.curveEaseInOut, .allowUserInteraction, .transitionCurlUp], animations: {
-            self.scrollView.contentOffset.y = up ? halfScreenSize.height : 0
+        UIView.animate(withDuration: 0.7,
+                       delay: 0,
+                       usingSpringWithDamping: 0.7,
+                       initialSpringVelocity: 0.7,
+                       options: [.curveEaseInOut, .allowUserInteraction, .transitionCurlUp],
+                       animations: {
+                        
+            let statusBarHeight = UIApplication.shared.statusBarFrame.height
+            let navigationBarHeight = self.navigationController!.navigationBar.frame.height
+            let halfScreenHeight = (UIScreen.main.bounds.height - statusBarHeight - navigationBarHeight)/2
+            
+            self.scrollView.contentOffset.y = up ? halfScreenHeight : 0
             self.downnodeView.text.frame.size.height += up ? -50 : 50
             self.downnodeView.goOnButton.frame.origin.y += up ? -50 : 50
+                        
         })
     }
     
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
         if textView === downnodeView.text {
-            let branches = viewModel.story.connections
-            return !branches.isEmpty
+            if let branches = viewModel?.story.connections {
+                return !branches.isEmpty
+            }
         }
         return true
     }
@@ -137,14 +171,17 @@ extension DetailsViewController: UITextViewDelegate {
     
     func textViewDidChange(_ textView: UITextView) {
         if textView === upnodeView.text {
-            viewModel.textUpdated(with: textView.text, inNode: viewModel.story)
+            if let viewModel = viewModel {
+                viewModel.textUpdated(with: textView.text, inNode: viewModel.story)
+            }
         }
         
         if textView === downnodeView.text {
-            var branches = viewModel.story.connections
-            if branches.isEmpty { return }
-            guard let node =  branches[selected].destinyNode as? HistoryNode else { return }
-            viewModel.textUpdated(with: textView.text, inNode: node)
+            if let branches = viewModel?.story.connections {
+                if branches.isEmpty { return }
+                guard let node =  branches[selected].destinyNode as? HistoryNode else { return }
+                viewModel?.textUpdated(with: textView.text, inNode: node)
+            }
         }
     }
 }
@@ -157,7 +194,7 @@ extension DetailsViewController: UICollectionViewDataSource, UICollectionViewDel
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? BranchCollectionViewCell
-        cell?.label.text = viewModel.story.connections[indexPath.item].title
+        cell?.label.text = viewModel?.story.connections[indexPath.item].title
         if indexPath.item == selected {
             cell?.select()
         } else {
@@ -168,12 +205,12 @@ extension DetailsViewController: UICollectionViewDataSource, UICollectionViewDel
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selected = indexPath.item
-        viewModel.update(self)
+        viewModel?.update(self)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let font = UIFont.systemFont(ofSize: 13)
-        let string = viewModel.story.connections[indexPath.item].title
+        let string = viewModel?.story.connections[indexPath.item].title ?? ""
         let width = string.width(usingFont: font) + 32
         return CGSize(width: width, height: 48)
     }
