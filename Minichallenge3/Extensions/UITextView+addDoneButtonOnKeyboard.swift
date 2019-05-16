@@ -9,7 +9,7 @@
 import UIKit
 
 extension UITextView {
-    
+
     @IBInspectable var doneAccessory: Bool {
         get {
             return self.doneAccessory
@@ -31,7 +31,7 @@ extension UITextView {
         let items = [flexSpace, done]
         doneToolbar.items = items
         doneToolbar.sizeToFit()
-        
+
         self.inputAccessoryView = doneToolbar
     }
     
