@@ -16,9 +16,7 @@ class DetailsViewModel: NSObject {
     }
     
     func addBranch() {
-//        let newNode = HistoryNode(withResume: "", text: "", positionX: <#Int#>, andPositionY: <#Int#>)
-//        let connection = HistoryConnection(destinyNode: newNode, title: "")
-//        story.connections.append(connection)
+        
     }
     
     func textUpdated(with text: String, inNode node: HistoryNode) {
@@ -26,11 +24,11 @@ class DetailsViewModel: NSObject {
     }
     
     func update(_ view: DetailsViewController) {
-        view.upnodeView.text.text = story.text
-        view.upnodeView.branches.reloadData()
         var branches = story.connections
-        let downnodeText = !branches.isEmpty ? branches[view.selected].destinyNode?.text : ""
-        view.downnodeView.text.text = downnodeText
+        let destinyNode = !branches.isEmpty ? branches[view.selected].destinyNode : nil
+        let downnodeText = destinyNode?.text
+        view.downnodeView.reload(withText: downnodeText)
+        view.upnodeView.reload(withText: story.text)
     }
     
 }

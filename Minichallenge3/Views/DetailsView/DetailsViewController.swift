@@ -48,15 +48,15 @@ class DetailsViewController: UIViewController {
     }
     
     func configureUpnodeView() {
-        upnodeView.addBranchButton.addTarget(self,
-                                             action: #selector(addBranch(_:)),
-                                             for: .touchUpInside)
+        upnodeView.addTargetForAddBranchButton(target: self,
+                                               selector: #selector(addBranch(_:)),
+                                               forEvent: .touchUpInside)
     }
     
     func configureDownnodeVode() {
-         downnodeView.goOnButton.addTarget(self,
-                                           action: #selector(goOn(_:)),
-                                           for: .touchUpInside)
+        downnodeView.addTargetForGoOnButton(target: self,
+                                            selector: #selector(goOn(_:)),
+                                            forEvent: .touchUpInside)
     }
     
     func configureNavigationBar() {
@@ -66,12 +66,10 @@ class DetailsViewController: UIViewController {
     }
     
     func setDelegatesAndDataSources() {
-        upnodeView.text.delegate = self
-        upnodeView.branches.delegate = self
-        downnodeView.text.delegate = self
-        downnodeView.branches.delegate = self
-        upnodeView.branches.dataSource = self
-        downnodeView.branches.dataSource = self
+        upnodeView.delegate = self
+        downnodeView.delegate = self
+        upnodeView.dataSource = self
+        downnodeView.dataSource = self
     }
     
     func setConstraints() {
@@ -102,21 +100,14 @@ class DetailsViewController: UIViewController {
     
     
     @objc func addBranch(_ sender: UIButton) {
-//        viewModel?.addBranch()
-//        upnodeView.branches.reloadData()
-//
-//        let indexPath = IndexPath(item: self.viewModel.story.connections.count - 1, section: 0)
-//        upnodeView.branches.scrollToItem(at: indexPath, at: .right, animated: true)
-//
-//        self.selected = indexPath.item
-//        self.downnodeView.text.text = ""
+        viewModel?.addBranch()
     }
 
     @objc func goOn(_ sender: UIButton) {
         if let branches = viewModel?.story.connections {
             if branches.isEmpty { return }
             guard let destiny = branches[selected].destinyNode as? HistoryNode else { return }
-            downnodeView.text.resignFirstResponder()
+            downnodeView.textView.resignFirstResponder()
             viewModel?.story = destiny
             viewModel?.update(self)
         }
@@ -142,14 +133,13 @@ extension DetailsViewController: UITextViewDelegate {
             let halfScreenHeight = (UIScreen.main.bounds.height - statusBarHeight - navigationBarHeight)/2
             
             self.scrollView.contentOffset.y = up ? halfScreenHeight : 0
-            self.downnodeView.text.frame.size.height += up ? -50 : 50
-            self.downnodeView.goOnButton.frame.origin.y += up ? -50 : 50
+            self.downnodeView.adjustTextViewAndGoOnButton(offset: up ? -50 : 50)
                         
         })
     }
     
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
-        if textView === downnodeView.text {
+        if textView === downnodeView.textView {
             if let branches = viewModel?.story.connections {
                 return !branches.isEmpty
             }
@@ -158,25 +148,25 @@ extension DetailsViewController: UITextViewDelegate {
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView === downnodeView.text {
+        if textView === downnodeView.textView {
             moveView(up: true)
         }
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        if textView === downnodeView.text {
+        if textView === downnodeView.textView {
            moveView(up: false)
         }
     }
     
     func textViewDidChange(_ textView: UITextView) {
-        if textView === upnodeView.text {
+        if textView === upnodeView.textView {
             if let viewModel = viewModel {
                 viewModel.textUpdated(with: textView.text, inNode: viewModel.story)
             }
         }
         
-        if textView === downnodeView.text {
+        if textView === downnodeView.textView {
             if let branches = viewModel?.story.connections {
                 if branches.isEmpty { return }
                 guard let node =  branches[selected].destinyNode as? HistoryNode else { return }
@@ -194,7 +184,7 @@ extension DetailsViewController: UICollectionViewDataSource, UICollectionViewDel
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? BranchCollectionViewCell
-        cell?.label.text = viewModel?.story.connections[indexPath.item].title
+        cell?.title = viewModel?.story.connections[indexPath.item].title
         if indexPath.item == selected {
             cell?.select()
         } else {

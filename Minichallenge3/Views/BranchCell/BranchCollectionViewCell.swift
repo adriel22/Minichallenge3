@@ -10,29 +10,42 @@ import UIKit
 
 class BranchCollectionViewCell: UICollectionViewCell {
 
-    private var selectionBackground: UIView!
-    var label: UILabel!
+    private lazy var selectionBackground: UIView! = UIView(frame: .zero)
+    private lazy var label: UILabel! = UILabel(frame: .zero)
+    
+    var title: String? = "" {
+        didSet {
+            if let label = label {
+                label.text = title
+            }
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         round(radius: 4)
         
-        selectionBackground = UIView(frame: .zero)
-        selectionBackground.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
-        selectionBackground.round(radius: 4)
+        configureBackground()
         addSubview(selectionBackground)
         
-        label = UILabel(frame: .zero)
-        label.textColor = UIColor(color: .darkerBlue)
-        label.font = .systemFont(ofSize: 13)
-        label.textAlignment = .center
-        addSubview(label)
-        
+        configureLabel()
         setConstraints()
         
     }
     
-    func setConstraints() {
+    private func configureBackground() {
+        selectionBackground.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
+        selectionBackground.round(radius: 4)
+    }
+    
+    private func configureLabel() {
+        label.textColor = UIColor(color: .darkerBlue)
+        label.font = .systemFont(ofSize: 13)
+        label.textAlignment = .center
+        addSubview(label)
+    }
+    
+    private func setConstraints() {
         selectionBackground.translatesAutoresizingMaskIntoConstraints = false
         selectionBackground.topAnchor.constraint(equalTo: topAnchor).isActive = true
         selectionBackground.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
