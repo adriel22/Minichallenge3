@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import HistoryGraph
 
 class DetailsViewController: UIViewController {
 
