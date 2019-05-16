@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		92E92CEC228C59A9000494BA /* HistoryGraphDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E92CEB228C59A9000494BA /* HistoryGraphDelegate.swift */; };
+		92E92CEE228CFE75000494BA /* HistoryGridDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E92CED228CFE75000494BA /* HistoryGridDelegate.swift */; };
 		C77E46C789F9B2BADE16D712 /* Pods_Minichallenge3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CF4D23D356FA463D37FC974 /* Pods_Minichallenge3.framework */; };
 		E3012A722285A7B000AB008F /* HistoryNodesGridTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3012A712285A7B000AB008F /* HistoryNodesGridTests.swift */; };
 		E3012A742285BCAD00AB008F /* HistoryConnectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3012A732285BCAD00AB008F /* HistoryConnectionTests.swift */; };
@@ -95,6 +97,8 @@
 /* Begin PBXFileReference section */
 		3CF4D23D356FA463D37FC974 /* Pods_Minichallenge3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Minichallenge3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4405664E379635FBB9519A12 /* Pods-Minichallenge3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Minichallenge3.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Minichallenge3/Pods-Minichallenge3.debug.xcconfig"; sourceTree = "<group>"; };
+		92E92CEB228C59A9000494BA /* HistoryGraphDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryGraphDelegate.swift; sourceTree = "<group>"; };
+		92E92CED228CFE75000494BA /* HistoryGridDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryGridDelegate.swift; sourceTree = "<group>"; };
 		B20FF8B7118109CF1BB19056 /* Pods-Minichallenge3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Minichallenge3.release.xcconfig"; path = "Pods/Target Support Files/Pods-Minichallenge3/Pods-Minichallenge3.release.xcconfig"; sourceTree = "<group>"; };
 		E3012A712285A7B000AB008F /* HistoryNodesGridTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryNodesGridTests.swift; sourceTree = "<group>"; };
 		E3012A732285BCAD00AB008F /* HistoryConnectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryConnectionTests.swift; sourceTree = "<group>"; };
@@ -252,11 +256,13 @@
 			children = (
 				E3C030BA22845ECE00AD53E0 /* HistoryError.swift */,
 				E3C030AB2282F19500AD53E0 /* HistoryGraph.swift */,
+				92E92CEB228C59A9000494BA /* HistoryGraphDelegate.swift */,
 				E3C030AD2282F1B400AD53E0 /* HistoryNodeProtocol.swift */,
 				E3C030AF2282F1C500AD53E0 /* HistoryNode.swift */,
 				E3C030B12282F1E300AD53E0 /* HistoryShortcut.swift */,
 				E3C030B32282F1F300AD53E0 /* HistoryConnection.swift */,
 				E3C030B5228322FC00AD53E0 /* HistoryNodesGrid.swift */,
+				92E92CED228CFE75000494BA /* HistoryGridDelegate.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -594,9 +600,11 @@
 				E3C030D2228479DC00AD53E0 /* HistoryShortcut.swift in Sources */,
 				E3C030CE228479DC00AD53E0 /* HistoryError.swift in Sources */,
 				E3C030D0228479DC00AD53E0 /* HistoryNodeProtocol.swift in Sources */,
+				92E92CEC228C59A9000494BA /* HistoryGraphDelegate.swift in Sources */,
 				E3C030D3228479DC00AD53E0 /* HistoryConnection.swift in Sources */,
 				E3C030CF228479DC00AD53E0 /* HistoryGraph.swift in Sources */,
 				E3C030D4228479DC00AD53E0 /* HistoryNodesGrid.swift in Sources */,
+				92E92CEE228CFE75000494BA /* HistoryGridDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

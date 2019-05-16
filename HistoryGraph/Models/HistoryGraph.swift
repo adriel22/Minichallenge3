@@ -25,6 +25,8 @@ public class HistoryGraph: CustomStringConvertible {
 
         return description
     }
+    
+    public weak var delegate: HistoryGraphDelegate?
 
     public init(withName name: String, sinopse: String, width: Int, andHeight height: Int) {
         self.historyName = name
@@ -128,6 +130,8 @@ public class HistoryGraph: CustomStringConvertible {
 
         shortcut.parent = originNode
         originNode.shortcuts.append(shortcut)
+
+        grid.delegate?.addShortcut(inPosition: (shortcut.positionX, shortcut.positionY))
     }
 
     /// checks if a node is the graph
@@ -164,6 +168,8 @@ public class HistoryGraph: CustomStringConvertible {
         nodes.append(node)
 
         addBordersToNode(node)
+
+        grid.delegate?.addNode(inPosition: (node.positionX, node.positionY))
     }
 
     /// Add lines and columns in the node sides if it is in the grid border
