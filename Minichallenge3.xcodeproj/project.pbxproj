@@ -38,11 +38,17 @@
 		E3C030D2228479DC00AD53E0 /* HistoryShortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B12282F1E300AD53E0 /* HistoryShortcut.swift */; };
 		E3C030D3228479DC00AD53E0 /* HistoryConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B32282F1F300AD53E0 /* HistoryConnection.swift */; };
 		E3C030D4228479DC00AD53E0 /* HistoryNodesGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B5228322FC00AD53E0 /* HistoryNodesGrid.swift */; };
-		FC02E8DB228AE14700537429 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02E8DA228AE14700537429 /* Colors.swift */; };
-		FC02E93C228AFFC100537429 /* ExpandableTableViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC02E938228AFFC100537429 /* ExpandableTableViewHeaderView.xib */; };
 		FC02E93D228AFFC100537429 /* ExpandableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02E939228AFFC100537429 /* ExpandableTableViewCell.swift */; };
 		FC02E93E228AFFC100537429 /* ExpandableTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02E93A228AFFC100537429 /* ExpandableTableViewHeaderView.swift */; };
-		FC02E93F228AFFC100537429 /* ExpandableTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC02E93B228AFFC100537429 /* ExpandableTableViewCell.xib */; };
+		FC02F5DA228D8B31008F0777 /* UITextView+addDoneButtonOnKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02F5D5228D8B31008F0777 /* UITextView+addDoneButtonOnKeyboard.swift */; };
+		FC02F5DB228D8B31008F0777 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02F5D6228D8B31008F0777 /* AppColors.swift */; };
+		FC02F5DC228D8B31008F0777 /* UIColor+hexInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02F5D7228D8B31008F0777 /* UIColor+hexInit.swift */; };
+		FC02F5DD228D8B31008F0777 /* String+calculateSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02F5D8228D8B31008F0777 /* String+calculateSize.swift */; };
+		FC02F5DE228D8B31008F0777 /* UIView+round.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02F5D9228D8B31008F0777 /* UIView+round.swift */; };
+		FC02F5E6228D8E32008F0777 /* NodeDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02F5E4228D8E32008F0777 /* NodeDetailsView.swift */; };
+		FC02F5E7228D8E32008F0777 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02F5E5228D8E32008F0777 /* DetailsViewController.swift */; };
+		FC02F5EA228D8EA2008F0777 /* BranchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02F5E9228D8EA2008F0777 /* BranchCollectionViewCell.swift */; };
+		FC02F5ED228D8F08008F0777 /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02F5EC228D8F08008F0777 /* DetailsViewModel.swift */; };
 		FC060916228C6A1B008C98AE /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC060915228C6A1B008C98AE /* CardView.swift */; };
 		FCB3548E228065AF00AB7ED2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB3548D228065AF00AB7ED2 /* AppDelegate.swift */; };
 		FCB35490228065AF00AB7ED2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB3548F228065AF00AB7ED2 /* ViewController.swift */; };
@@ -126,11 +132,17 @@
 		E3C030C1228478EB00AD53E0 /* HistoryGraph.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HistoryGraph.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3C030C3228478EB00AD53E0 /* HistoryGraph.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HistoryGraph.h; sourceTree = "<group>"; };
 		E3C030C4228478EB00AD53E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FC02E8DA228AE14700537429 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
-		FC02E938228AFFC100537429 /* ExpandableTableViewHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpandableTableViewHeaderView.xib; sourceTree = "<group>"; };
 		FC02E939228AFFC100537429 /* ExpandableTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandableTableViewCell.swift; sourceTree = "<group>"; };
 		FC02E93A228AFFC100537429 /* ExpandableTableViewHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandableTableViewHeaderView.swift; sourceTree = "<group>"; };
-		FC02E93B228AFFC100537429 /* ExpandableTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpandableTableViewCell.xib; sourceTree = "<group>"; };
+		FC02F5D5228D8B31008F0777 /* UITextView+addDoneButtonOnKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+addDoneButtonOnKeyboard.swift"; sourceTree = "<group>"; };
+		FC02F5D6228D8B31008F0777 /* AppColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
+		FC02F5D7228D8B31008F0777 /* UIColor+hexInit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+hexInit.swift"; sourceTree = "<group>"; };
+		FC02F5D8228D8B31008F0777 /* String+calculateSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+calculateSize.swift"; sourceTree = "<group>"; };
+		FC02F5D9228D8B31008F0777 /* UIView+round.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+round.swift"; sourceTree = "<group>"; };
+		FC02F5E4228D8E32008F0777 /* NodeDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeDetailsView.swift; sourceTree = "<group>"; };
+		FC02F5E5228D8E32008F0777 /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		FC02F5E9228D8EA2008F0777 /* BranchCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BranchCollectionViewCell.swift; sourceTree = "<group>"; };
+		FC02F5EC228D8F08008F0777 /* DetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
 		FC060915228C6A1B008C98AE /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		FCB3548A228065AF00AB7ED2 /* Minichallenge3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Minichallenge3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCB3548D228065AF00AB7ED2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -194,6 +206,8 @@
 		E331CCC42287B2F30041379B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FC02F5E8228D8E70008F0777 /* BranchCell */,
+				FC02F5DF228D8DCF008F0777 /* DetailViews */,
 				E32A379D228B011300E2F8B1 /* CustomNavigation.swift */,
 				E32A379C228B011300E2F8B1 /* MyNarrativesView.swift */,
 				FC02E92B228AFEBF00537429 /* ExpandableCell */,
@@ -228,6 +242,11 @@
 		E331CCCD228880100041379B /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				FC02F5D6228D8B31008F0777 /* AppColors.swift */,
+				FC02F5D8228D8B31008F0777 /* String+calculateSize.swift */,
+				FC02F5D7228D8B31008F0777 /* UIColor+hexInit.swift */,
+				FC02F5D5228D8B31008F0777 /* UITextView+addDoneButtonOnKeyboard.swift */,
+				FC02F5D9228D8B31008F0777 /* UIView+round.swift */,
 				E331CCCE2288802B0041379B /* Array+forearch.swift */,
 				E381E2C82288DE8300E25B78 /* CGPoint+add.swift */,
 				E381E2CA2288E0AF00E25B78 /* UIBezierPath+addPolygon.swift */,
@@ -283,6 +302,7 @@
 		FC02E8DC228AE18900537429 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FC02F5E5228D8E32008F0777 /* DetailsViewController.swift */,
 				E32A37A0228B013600E2F8B1 /* MyNarrativesViewController.swift */,
 			);
 			path = Controllers;
@@ -292,11 +312,33 @@
 			isa = PBXGroup;
 			children = (
 				FC02E939228AFFC100537429 /* ExpandableTableViewCell.swift */,
-				FC02E93B228AFFC100537429 /* ExpandableTableViewCell.xib */,
 				FC02E93A228AFFC100537429 /* ExpandableTableViewHeaderView.swift */,
-				FC02E938228AFFC100537429 /* ExpandableTableViewHeaderView.xib */,
 			);
 			path = ExpandableCell;
+			sourceTree = "<group>";
+		};
+		FC02F5DF228D8DCF008F0777 /* DetailViews */ = {
+			isa = PBXGroup;
+			children = (
+				FC02F5E4228D8E32008F0777 /* NodeDetailsView.swift */,
+			);
+			path = DetailViews;
+			sourceTree = "<group>";
+		};
+		FC02F5E8228D8E70008F0777 /* BranchCell */ = {
+			isa = PBXGroup;
+			children = (
+				FC02F5E9228D8EA2008F0777 /* BranchCollectionViewCell.swift */,
+			);
+			path = BranchCell;
+			sourceTree = "<group>";
+		};
+		FC02F5EB228D8EDE008F0777 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				FC02F5EC228D8F08008F0777 /* DetailsViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		FC060914228C69FC008C98AE /* CardView */ = {
@@ -334,10 +376,10 @@
 		FCB3548C228065AF00AB7ED2 /* Minichallenge3 */ = {
 			isa = PBXGroup;
 			children = (
+				FC02F5EB228D8EDE008F0777 /* ViewModels */,
 				E331CCCD228880100041379B /* Extensions */,
 				E331CCC42287B2F30041379B /* Views */,
 				FC02E8DC228AE18900537429 /* Controllers */,
-				FC02E8DA228AE14700537429 /* Colors.swift */,
 				FCB3548D228065AF00AB7ED2 /* AppDelegate.swift */,
 				FCB3548F228065AF00AB7ED2 /* ViewController.swift */,
 				FCB35491228065AF00AB7ED2 /* Main.storyboard */,
@@ -520,10 +562,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				FCB3549B228065B000AB7ED2 /* LaunchScreen.storyboard in Resources */,
-				FC02E93F228AFFC100537429 /* ExpandableTableViewCell.xib in Resources */,
 				FCB35498228065B000AB7ED2 /* Assets.xcassets in Resources */,
 				FCB35493228065AF00AB7ED2 /* Main.storyboard in Resources */,
-				FC02E93C228AFFC100537429 /* ExpandableTableViewHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -609,23 +649,31 @@
 				E32A37A1228B013600E2F8B1 /* MyNarrativesViewController.swift in Sources */,
 				FC02E93D228AFFC100537429 /* ExpandableTableViewCell.swift in Sources */,
 				E381E2C72288DCC500E25B78 /* ItemViewConnector.swift in Sources */,
+				FC02F5DE228D8B31008F0777 /* UIView+round.swift in Sources */,
+				FC02F5E7228D8E32008F0777 /* DetailsViewController.swift in Sources */,
+				FC02F5DA228D8B31008F0777 /* UITextView+addDoneButtonOnKeyboard.swift in Sources */,
 				FCB35490228065AF00AB7ED2 /* ViewController.swift in Sources */,
 				E331CCCF2288802B0041379B /* Array+forearch.swift in Sources */,
+				FC02F5DD228D8B31008F0777 /* String+calculateSize.swift in Sources */,
 				E381E2D32289C58F00E25B78 /* ItemViewConnectorDirection.swift in Sources */,
 				E381E2D12289C41800E25B78 /* NSLayoutConstraint+activate.swift in Sources */,
 				E32A379B228A4FD700E2F8B1 /* GraphViewOperator.swift in Sources */,
 				E381E2CB2288E0AF00E25B78 /* UIBezierPath+addPolygon.swift in Sources */,
+				FC02F5DC228D8B31008F0777 /* UIColor+hexInit.swift in Sources */,
 				E331CCD12288971D0041379B /* GraphLineView.swift in Sources */,
 				E331CCC62287B3070041379B /* GraphView.swift in Sources */,
 				E381E2C92288DE8300E25B78 /* CGPoint+add.swift in Sources */,
 				E381E2C52288DC1D00E25B78 /* GraphViewConnector.swift in Sources */,
+				FC02F5EA228D8EA2008F0777 /* BranchCollectionViewCell.swift in Sources */,
 				E381E2CF2289BA9A00E25B78 /* GraphConnectionView.swift in Sources */,
 				FC02E93E228AFFC100537429 /* ExpandableTableViewHeaderView.swift in Sources */,
 				E331CCCA228846B20041379B /* GraphViewDelegate.swift in Sources */,
 				FC060916228C6A1B008C98AE /* CardView.swift in Sources */,
+				FC02F5E6228D8E32008F0777 /* NodeDetailsView.swift in Sources */,
 				E32A379F228B011300E2F8B1 /* CustomNavigation.swift in Sources */,
+				FC02F5DB228D8B31008F0777 /* AppColors.swift in Sources */,
+				FC02F5ED228D8F08008F0777 /* DetailsViewModel.swift in Sources */,
 				E381E2C32288D7B700E25B78 /* GraphItemView.swift in Sources */,
-				FC02E8DB228AE14700537429 /* Colors.swift in Sources */,
 				FCB3548E228065AF00AB7ED2 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -868,7 +916,8 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JGG8YW8SJU;
 				INFOPLIST_FILE = Minichallenge3/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -877,6 +926,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Adriel.Minichallenge3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -888,7 +938,8 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JGG8YW8SJU;
 				INFOPLIST_FILE = Minichallenge3/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -897,6 +948,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Adriel.Minichallenge3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
