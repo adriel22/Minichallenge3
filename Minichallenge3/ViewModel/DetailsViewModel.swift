@@ -10,13 +10,14 @@ import UIKit
 
 class DetailsViewModel: NSObject {
     var story: HistoryNode
+    var graph: HistoryGraph
     
-    init(story: HistoryNode) {
+    init(story: HistoryNode, graph: HistoryGraph) {
         self.story = story
+        self.graph = graph
     }
     
     func addBranch() {
-        
     }
     
     func textUpdated(with text: String, inNode node: HistoryNode) {

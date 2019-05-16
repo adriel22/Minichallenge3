@@ -26,9 +26,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        window?.rootViewController = controller
 //        window?.makeKeyAndVisible()
         
-        let controller = DetailsViewController()
         let story = HistoryNode(withResume: "RESUME", text: "TEXT", positionX: 2, andPositionY: 0)
-        controller.viewModel = DetailsViewModel(story: story)
+        let graph = HistoryGraph(withName: "Juremoids", sinopse: "blablabla", width: 3, andHeight: 3)
+        try? graph.addNode(story)
+        
+        let controller = DetailsViewController()
+        controller.viewModel = DetailsViewModel(story: story, graph: graph)
+        
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = UINavigationController(rootViewController: controller)
         window?.makeKeyAndVisible()

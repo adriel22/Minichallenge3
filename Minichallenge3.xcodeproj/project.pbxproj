@@ -18,13 +18,6 @@
 		3C200C06228CBD4F002F7FAF /* BranchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C200C05228CBD4F002F7FAF /* BranchCollectionViewCell.swift */; };
 		3C200C07228CBDC1002F7FAF /* HistoryGraph.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3C030C1228478EB00AD53E0 /* HistoryGraph.framework */; };
 		3C200C08228CBDC1002F7FAF /* HistoryGraph.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3C030C1228478EB00AD53E0 /* HistoryGraph.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		3C200C0C228CBDD1002F7FAF /* HistoryError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030BA22845ECE00AD53E0 /* HistoryError.swift */; };
-		3C200C0D228CBDD1002F7FAF /* HistoryGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030AB2282F19500AD53E0 /* HistoryGraph.swift */; };
-		3C200C0E228CBDD1002F7FAF /* HistoryNodeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030AD2282F1B400AD53E0 /* HistoryNodeProtocol.swift */; };
-		3C200C0F228CBDD1002F7FAF /* HistoryNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030AF2282F1C500AD53E0 /* HistoryNode.swift */; };
-		3C200C10228CBDD1002F7FAF /* HistoryShortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B12282F1E300AD53E0 /* HistoryShortcut.swift */; };
-		3C200C11228CBDD1002F7FAF /* HistoryConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B32282F1F300AD53E0 /* HistoryConnection.swift */; };
-		3C200C12228CBDD1002F7FAF /* HistoryNodesGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B5228322FC00AD53E0 /* HistoryNodesGrid.swift */; };
 		C77E46C789F9B2BADE16D712 /* Pods_Minichallenge3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CF4D23D356FA463D37FC974 /* Pods_Minichallenge3.framework */; };
 		E3012A722285A7B000AB008F /* HistoryNodesGridTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3012A712285A7B000AB008F /* HistoryNodesGridTests.swift */; };
 		E3012A742285BCAD00AB008F /* HistoryConnectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3012A732285BCAD00AB008F /* HistoryConnectionTests.swift */; };
@@ -644,7 +637,6 @@
 				E331CCCC228846C20041379B /* GraphViewDatasource.swift in Sources */,
 				E32A37A1228B013600E2F8B1 /* MyNarrativesViewController.swift in Sources */,
 				FC02E93D228AFFC100537429 /* ExpandableTableViewCell.swift in Sources */,
-				3C200C11228CBDD1002F7FAF /* HistoryConnection.swift in Sources */,
 				E381E2C72288DCC500E25B78 /* ItemViewConnector.swift in Sources */,
 				3C200BEE228CBC69002F7FAF /* UITextView+addDoneButtonOnKeyboard.swift in Sources */,
 				FCB35490228065AF00AB7ED2 /* ViewController.swift in Sources */,
@@ -653,26 +645,20 @@
 				E381E2D32289C58F00E25B78 /* ItemViewConnectorDirection.swift in Sources */,
 				3C200BEF228CBC69002F7FAF /* UIView+round.swift in Sources */,
 				3C200C02228CBD47002F7FAF /* DetailsViewController.swift in Sources */,
-				3C200C0F228CBDD1002F7FAF /* HistoryNode.swift in Sources */,
 				E381E2D12289C41800E25B78 /* NSLayoutConstraint+activate.swift in Sources */,
-				3C200C0E228CBDD1002F7FAF /* HistoryNodeProtocol.swift in Sources */,
 				E32A379B228A4FD700E2F8B1 /* GraphViewOperator.swift in Sources */,
 				E381E2CB2288E0AF00E25B78 /* UIBezierPath+addPolygon.swift in Sources */,
 				E331CCD12288971D0041379B /* GraphLineView.swift in Sources */,
 				3C200BFE228CBCED002F7FAF /* DetailsViewModel.swift in Sources */,
-				3C200C0D228CBDD1002F7FAF /* HistoryGraph.swift in Sources */,
 				E331CCC62287B3070041379B /* GraphView.swift in Sources */,
-				3C200C10228CBDD1002F7FAF /* HistoryShortcut.swift in Sources */,
 				3C200C03228CBD47002F7FAF /* NodeDetailsView.swift in Sources */,
 				E381E2C92288DE8300E25B78 /* CGPoint+add.swift in Sources */,
 				3C200C06228CBD4F002F7FAF /* BranchCollectionViewCell.swift in Sources */,
 				E381E2C52288DC1D00E25B78 /* GraphViewConnector.swift in Sources */,
 				3C200BEC228CBC69002F7FAF /* AppColors.swift in Sources */,
-				3C200C0C228CBDD1002F7FAF /* HistoryError.swift in Sources */,
 				E381E2CF2289BA9A00E25B78 /* GraphConnectionView.swift in Sources */,
 				FC02E93E228AFFC100537429 /* ExpandableTableViewHeaderView.swift in Sources */,
 				E331CCCA228846B20041379B /* GraphViewDelegate.swift in Sources */,
-				3C200C12228CBDD1002F7FAF /* HistoryNodesGrid.swift in Sources */,
 				E32A379F228B011300E2F8B1 /* CustomNavigation.swift in Sources */,
 				E381E2C32288D7B700E25B78 /* GraphItemView.swift in Sources */,
 				3C200BED228CBC69002F7FAF /* UIColor+hexInit.swift in Sources */,
