@@ -21,6 +21,8 @@ class ItemViewConnector {
 
     var lineWidth: CGFloat
 
+    var allConstraints: [NSLayoutConstraint] = []
+
     /// Initialize the view components of the connection
     ///
     /// - Parameters:
@@ -53,9 +55,25 @@ class ItemViewConnector {
     }
 
     func removeAllConstraints() {
-        firstItemConnector.removeConstraints(firstItemConnector.constraints)
-        secondItemConnector.removeConstraints(secondItemConnector.constraints)
-        bendItemConnector.removeConstraints(bendItemConnector.constraints)
+//        for constraint in firstItemConnector.constraints {
+//            constraint.isActive = false
+//            firstItemConnector.removeConstraint(constraint)
+//        }
+//        for constraint in secondItemConnector.constraints {
+//            constraint.isActive = false
+//            secondItemConnector.removeConstraint(constraint)
+//        }
+//        for constraint in bendItemConnector.constraints {
+//            constraint.isActive = false
+//            bendItemConnector.removeConstraint(constraint)
+//        }
+        
+        for constraint in allConstraints {
+            constraint.isActive = false
+        }
+//        firstItemConnector.removeConstraints(firstItemConnector.constraints)
+//        secondItemConnector.removeConstraints(secondItemConnector.constraints)
+//        bendItemConnector.removeConstraints(bendItemConnector.constraints)
     }
 
     /// Set the constraints for the connection view components.
@@ -101,6 +119,8 @@ class ItemViewConnector {
         }
 
         removeAllConstraints()
+
+        self.allConstraints = constraints
         NSLayoutConstraint.activate(constraints: constraints, withPriority: .defaultLow)
     }
 

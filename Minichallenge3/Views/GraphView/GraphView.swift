@@ -50,6 +50,19 @@ class GraphView: UIScrollView {
         )
     }
 
+    public func addColumn(inPosition position: Int) {
+        guard let datasource = self.datasource else {
+            return
+        }
+
+        graphOperator.insertColumn(
+            inPosition: position,
+            inContainerView: containerView,
+            withDataSource: datasource,
+            andGraphView: self
+        )
+    }
+
     public func appendLine() {
         guard let datasource = self.datasource else {
             return
@@ -61,12 +74,12 @@ class GraphView: UIScrollView {
             andGraphView: self
         )
     }
-    
+
     public func removeLine(atPosition position: Int) {
         guard let datasource = self.datasource else {
             return
         }
-        
+
         graphOperator.removeLine(
             inPosition: position,
             inContainerView: containerView,
@@ -279,7 +292,7 @@ class GraphView: UIScrollView {
     ///   - lastItemView: the item that appear before the given item view
     ///   - lineView: the item superview
     /// - Returns: the left anchor of the given item view
-    private func itemViewLeftAnchor(
+    internal func itemViewLeftAnchor(
         forLastItemView lastItemView: UIView?,
         inLineView lineView: UIView) -> NSLayoutXAxisAnchor {
 

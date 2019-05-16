@@ -17,6 +17,9 @@ class GraphItemView: UIView {
 
     var connectors: [ItemViewConnector] = []
 
+    var oldLeftAnchor: NSLayoutConstraint?
+    var oldRightAnchor: NSLayoutConstraint?
+
     override func layoutSubviews() {
         didLayoutSubViewsCompletions.forEach { (completion) in
             completion()
@@ -40,14 +43,44 @@ class GraphItemView: UIView {
             return
         }
 
+        removeOpenConstraints()
+
         translatesAutoresizingMaskIntoConstraints = false
+
+        let currentLeftAnchor = self.leftAnchor.constraint(equalTo: leftAnchor, constant: columnMargin)
+        self.oldLeftAnchor = currentLeftAnchor
 
         NSLayoutConstraint.activate([
             self.widthAnchor.constraint(equalToConstant: widthAnchor),
-            self.leftAnchor.constraint(equalTo: leftAnchor, constant: columnMargin),
+            currentLeftAnchor,
             self.topAnchor.constraint(equalTo: lineView.topAnchor),
             self.bottomAnchor.constraint(lessThanOrEqualTo: lineView.bottomAnchor)
         ])
+    }
+
+    func removeOpenConstraints() {
+        if let leftAnchor = self.oldLeftAnchor {
+            leftAnchor.isActive = false
+            removeConstraint(leftAnchor)
+        }
+    }
+
+    func removeClosingConstraints() {
+        if let rightAnchor = self.oldRightAnchor {
+            rightAnchor.isActive = false
+            removeConstraint(rightAnchor)
+        }
+    }
+
+    func setClosingConstraints() {
+        guard let lineView = superview else {
+            return
+        }
+
+        removeClosingConstraints()
+        let currentRightAnchor = rightAnchor.constraint(equalTo: lineView.rightAnchor)
+        currentRightAnchor.isActive = true
+        self.oldRightAnchor = currentRightAnchor
     }
 
     /// Wait for the layout of subviews of two Graph Items

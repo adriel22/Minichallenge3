@@ -107,13 +107,13 @@ class GraphLineView: UIView {
             removeConstraint(oldRightAnchor)
         }
     }
-    
+
     func removeOpenConstraints() {
         if let oldTopAnchor = self.oldLineTopAnchor {
             oldTopAnchor.isActive = false
             removeConstraint(oldTopAnchor)
         }
-        
+
         if let olfLeftAnchor = self.oldLineLeftAnchor {
             olfLeftAnchor.isActive = false
             removeConstraint(olfLeftAnchor)

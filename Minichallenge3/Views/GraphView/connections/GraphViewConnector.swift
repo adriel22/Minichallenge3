@@ -24,7 +24,7 @@ class GraphViewConnector {
                andContainerView containerView: UIView) {
 
         let numberOfColumns = datasource.gridSize(forGraphView: graphView).width
-        let connectorMargin = datasource.lineSpacing(forGraphView: graphView) / 10
+        let connectorMargin = connectionMargin(forLineSpacing: datasource.lineSpacing(forGraphView: graphView))
 
         let connectorOffset = itemConnectorsOffset(
             withNumberOfColumns: numberOfColumns,
@@ -65,17 +65,34 @@ class GraphViewConnector {
             (0..<gridSize.width).forEach({ (currentColumnIndex) in
                 let currentItemPosition = (xPosition: currentColumnIndex, yPosition: currentLineIndex)
 
-                let connectionsFromCurrentPosition = datasource
-                    .connections(forGraphView: graphView, fromItemAtPosition: currentItemPosition)
-                    .map({ (currentDestinyPosition) -> Connection in
-
-                        return (originPosition: currentItemPosition, destinyPosition: currentDestinyPosition)
-                    })
-                connections.append(contentsOf: connectionsFromCurrentPosition)
+                connections.append(contentsOf:
+                    findConnection(
+                        atPosition: currentItemPosition,
+                        withDatasource: datasource,
+                        andGraphView: graphView
+                    )
+                )
             })
         }
-
         return connections
+    }
+
+    func findConnection(
+        atPosition position: GridPosition,
+        withDatasource datasource: GraphViewDatasource,
+        andGraphView graphView: GraphView) -> [Connection] {
+
+        return datasource.connections(forGraphView: graphView, fromItemAtPosition: position)
+                         .map({ (currentDestinyPosition) -> Connection in
+
+                            return (originPosition: position, destinyPosition: currentDestinyPosition)
+                        })
+    }
+
+    func connectionMargin(forLineSpacing lineSpacing: CGFloat) -> CGFloat {
+        let connectorMargin = lineSpacing / 10
+
+        return connectorMargin
     }
 
     /// Calculate the offset for the connector horizontal line height.
@@ -124,17 +141,17 @@ class GraphViewConnector {
                 return
             }
 
+            let itemConnector = ItemViewConnector(
+                withContainerView: containerView,
+                lineWidth: 3, originLineView: originLineView,
+                andDestinyLineView: destinyLineView
+            )
+
+            originItemView.connectors.append(itemConnector)
+
             let layoutChangeCompletion = {
                 let positionInContainerForOrigin = originLineView.convert(originItemView.center, to: containerView)
                 let positionInContainerForDestiny = destinyLineView.convert(destinyItemView.center, to: containerView)
-
-                let itemConnector = ItemViewConnector(
-                    withContainerView: containerView,
-                    lineWidth: 3, originLineView: originLineView,
-                    andDestinyLineView: destinyLineView
-                )
-
-                originItemView.connectors.append(itemConnector)
 
                 let direction = positionInContainerForOrigin.x > positionInContainerForDestiny.x ?
                     ItemViewConnectorDirection.left :
