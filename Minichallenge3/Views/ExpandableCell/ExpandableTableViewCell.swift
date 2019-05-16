@@ -57,7 +57,6 @@ class ExpandableTableViewCell: UITableViewCell {
         button.heightAnchor.constraint(equalToConstant: (screenWidthWithEdges/3)/3.5).isActive = true
 
         button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
-
     }
 
     @objc private func buttonTapped(_ sender: UIButton) {

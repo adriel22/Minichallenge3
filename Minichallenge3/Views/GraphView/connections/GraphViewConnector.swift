@@ -124,7 +124,7 @@ class GraphViewConnector {
                 return
             }
 
-            GraphItemView.waitForSubviewLayout(item1: originItemView, item2: destinyItemView) {
+            let layoutChangeCompletion = {
                 let positionInContainerForOrigin = originLineView.convert(originItemView.center, to: containerView)
                 let positionInContainerForDestiny = destinyLineView.convert(destinyItemView.center, to: containerView)
 
@@ -150,6 +150,9 @@ class GraphViewConnector {
                     andDirection: direction
                 )
             }
+
+            GraphLineView.waitForSubviewLayout(line1: originLineView, line2: destinyLineView, completion: layoutChangeCompletion)
+            GraphItemView.waitForSubviewLayout(item1: originItemView, item2: destinyItemView, completion: layoutChangeCompletion)
         }
     }
 

@@ -45,10 +45,20 @@ class ViewController: UIViewController {
         graphView.datasource = self
 
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { (timer) in
-            self.graphView.addLine(inPosition: 0)
-//            Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (_) in
-//                self.graphView.addLine(inPosition: 1)
-//            })
+
+            let node6 = HistoryNode.init(withResume: "Node 2", text: "Node2 Text", positionX: 1, andPositionY: 3)
+            try? self.graph.addNode(node6)
+            self.graphView.appendLine()
+            
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (_) in
+                self.graphView.removeLine(atPosition: 3)
+//                Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (_) in
+//                    self.graphView.addLine(inPosition: 2)
+//                    Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (_) in
+//                        self.graphView.addLine(inPosition: 3)
+//                    })
+//                })
+            })
         }
     }
 }

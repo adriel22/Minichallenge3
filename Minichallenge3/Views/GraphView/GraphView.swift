@@ -13,7 +13,7 @@ class GraphView: UIScrollView {
     var containerView = UIView()
 
     var connector = GraphViewConnector()
-    
+
     var graphOperator = GraphViewOperator()
 
     var datasource: GraphViewDatasource? {
@@ -42,7 +42,32 @@ class GraphView: UIScrollView {
             return
         }
 
-        graphOperator.addLine(
+        graphOperator.insertLine(
+            inPosition: position,
+            inContainerView: containerView,
+            withDataSource: datasource,
+            andGraphView: self
+        )
+    }
+
+    public func appendLine() {
+        guard let datasource = self.datasource else {
+            return
+        }
+
+        graphOperator.appendLine(
+            inContainerView: containerView,
+            withDataSource: datasource,
+            andGraphView: self
+        )
+    }
+    
+    public func removeLine(atPosition position: Int) {
+        guard let datasource = self.datasource else {
+            return
+        }
+        
+        graphOperator.removeLine(
             inPosition: position,
             inContainerView: containerView,
             withDataSource: datasource,

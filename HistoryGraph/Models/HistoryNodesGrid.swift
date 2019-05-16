@@ -118,7 +118,7 @@ public class HistoryNodesGrid: CustomStringConvertible {
             throw HistoryError.impossibleMoving
         }
 
-        if removeFromOrigin{
+        if removeFromOrigin {
             grid[node.positionY][node.positionX] = nil
         }
 

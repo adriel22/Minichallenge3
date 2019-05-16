@@ -52,6 +52,12 @@ class ItemViewConnector {
         return connector
     }
 
+    func removeAllConstraints() {
+        firstItemConnector.removeConstraints(firstItemConnector.constraints)
+        secondItemConnector.removeConstraints(secondItemConnector.constraints)
+        bendItemConnector.removeConstraints(bendItemConnector.constraints)
+    }
+
     /// Set the constraints for the connection view components.
     ///
     /// - Parameters:
@@ -94,6 +100,7 @@ class ItemViewConnector {
             ])
         }
 
+        removeAllConstraints()
         NSLayoutConstraint.activate(constraints: constraints, withPriority: .defaultLow)
     }
 

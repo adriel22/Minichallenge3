@@ -25,11 +25,22 @@ class GraphLineView: UIView {
 
         return false
     }
-    
+
     var hasLeftSpace: Bool = false
 
-    private var oldLineTopAnchor: NSLayoutConstraint?
-    private var oldLineLeftAnchor: NSLayoutConstraint?
+    var oldLineTopAnchor: NSLayoutConstraint?
+    var oldLineLeftAnchor: NSLayoutConstraint?
+    var oldLineBottomAnchor: NSLayoutConstraint?
+    var oldLineRightAnchor: NSLayoutConstraint?
+    var leftMargin: CGFloat?
+
+    var didLayoutSubViewsCompletions: [(() -> Void)] = []
+
+    override func layoutSubviews() {
+        didLayoutSubViewsCompletions.forEach { (completion) in
+            completion()
+        }
+    }
 
     /// It sets the constraints for a lineview.
     ///
@@ -47,15 +58,7 @@ class GraphLineView: UIView {
             return
         }
 
-        if let oldTopAnchor = self.oldLineTopAnchor {
-            oldTopAnchor.isActive = false
-            removeConstraint(oldTopAnchor)
-        }
-
-        if let olfLeftAnchor = self.oldLineLeftAnchor {
-            olfLeftAnchor.isActive = false
-            removeConstraint(olfLeftAnchor)
-        }
+        removeOpenConstraints()
 
         translatesAutoresizingMaskIntoConstraints = false
 
@@ -64,9 +67,10 @@ class GraphLineView: UIView {
 
         let currentTopAnchor = self.topAnchor.constraint(equalTo: topAnchor, constant: lineMargin)
         self.oldLineTopAnchor = currentTopAnchor
-        
+
         let currentLeftAnchor = leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: leftMargin)
         self.oldLineLeftAnchor = currentLeftAnchor
+        self.leftMargin = leftMargin
 
         NSLayoutConstraint.activate([
             currentTopAnchor,
@@ -81,9 +85,65 @@ class GraphLineView: UIView {
             return
         }
 
+        let currentBottomAnchor = containerView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        let currentRightAnchor = containerView.rightAnchor.constraint(equalTo: rightAnchor)
+        self.oldLineBottomAnchor = currentBottomAnchor
+        self.oldLineRightAnchor = currentRightAnchor
+
         NSLayoutConstraint.activate([
-            containerView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            containerView.rightAnchor.constraint(equalTo: rightAnchor)
+            currentBottomAnchor,
+            currentRightAnchor
         ])
+    }
+
+    func removeClosingConstraints() {
+        if let oldBottomAnchor = self.oldLineBottomAnchor {
+            oldBottomAnchor.isActive = false
+            removeConstraint(oldBottomAnchor)
+        }
+
+        if let oldRightAnchor = self.oldLineRightAnchor {
+            oldRightAnchor.isActive = false
+            removeConstraint(oldRightAnchor)
+        }
+    }
+    
+    func removeOpenConstraints() {
+        if let oldTopAnchor = self.oldLineTopAnchor {
+            oldTopAnchor.isActive = false
+            removeConstraint(oldTopAnchor)
+        }
+        
+        if let olfLeftAnchor = self.oldLineLeftAnchor {
+            olfLeftAnchor.isActive = false
+            removeConstraint(olfLeftAnchor)
+        }
+    }
+
+    static public func waitForSubviewLayout(
+        line1: GraphLineView,
+        line2: GraphLineView,
+        completion: @escaping () -> Void) {
+
+        var line1WasLayout = false
+        var line2WasLayout = false
+
+        line1.didLayoutSubViewsCompletions.append {
+            line1WasLayout = true
+            if line2WasLayout {
+                completion()
+                line2WasLayout = false
+                line1WasLayout = false
+            }
+        }
+
+        line2.didLayoutSubViewsCompletions.append {
+            line2WasLayout = true
+            if line1WasLayout {
+                completion()
+                line2WasLayout = false
+                line1WasLayout = false
+            }
+        }
     }
 }
