@@ -60,7 +60,7 @@ class ItemViewConnector {
             //remover
         }
     }
-    
+
     func removeFromSuperview() {
         firstItemConnector.removeFromSuperview()
         secondItemConnector.removeFromSuperview()

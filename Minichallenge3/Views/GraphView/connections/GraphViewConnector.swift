@@ -175,7 +175,7 @@ class GraphViewConnector {
             originLineView.didLayoutSubViewsCompletions.append(layoutChangeCompletion)
             destinyLineView.didLayoutSubViewsCompletions.append(layoutChangeCompletion)
 
-            (containerView as? GraphLineView)?.didLayoutSubViewsCompletions.append(layoutChangeCompletion)
+//            (containerView as? GraphLineView)?.didLayoutSubViewsCompletions.append(layoutChangeCompletion)
         }
     }
 

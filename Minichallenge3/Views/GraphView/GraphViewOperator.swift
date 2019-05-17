@@ -65,6 +65,52 @@ class GraphViewOperator {
         })
     }
 
+    public func addItem(
+        inPosition position: GridPosition,
+        inContainerView containerView: UIView,
+        withDatasource datasoure: GraphViewDatasource,
+        andGraphView graphView: GraphView,
+        removingCurrent: Bool) {
+
+        guard isValidColumn(position: position.xPosition, inGraphView: graphView),
+              isValidLine(position: position.yPosition, inGraphView: graphView),
+              let newItem = datasoure.gridNodeView(forGraphView: graphView, inPosition: position) else {
+            return
+        }
+
+        let currentItem = graphView.lineViews[position.yPosition].itemViews[position.xPosition]
+
+        guard currentItem is GraphItemEmptyView || removingCurrent else {
+            return
+        }
+
+        let columnWidth  = datasoure.columnWidth(forGraphView: graphView, inXPosition: position.xPosition)
+        let columnSpacing = datasoure.columnSpacing(forGraphView: graphView)
+        let isTheLastInTheItem = position.xPosition == graphView.lineViews[position.yPosition].itemViews.count
+        let positionXIsGreatherThenZero = position.xPosition > 0
+        let parentLine = graphView.lineViews[position.yPosition]
+        let parentItem = positionXIsGreatherThenZero ?
+            graphView.lineViews[position.yPosition].itemViews[position.xPosition - 1] : nil
+
+        currentItem.removeOpenConstraints()
+        currentItem.removeClosingConstraints()
+        currentItem.removeFromSuperview()
+
+        parentLine.addSubview(newItem)
+        newItem.setConstraintsFor(
+            leftAnchor: graphView.itemViewLeftAnchor(
+                forLastItemView: parentItem,
+                inLineView: parentLine
+            ),
+            widthAnchor: columnWidth,
+            columnMargin: columnSpacing
+        )
+
+        if isTheLastInTheItem {
+            newItem.setClosingConstraints()
+        }
+    }
+
     public func removeColumn(
         inPosition position: Int,
         inContainerView containerView: UIView,
@@ -311,7 +357,7 @@ class GraphViewOperator {
             ) {
             return newItemView
         } else {
-            return GraphItemView()
+            return GraphItemEmptyView()
         }
     }
 

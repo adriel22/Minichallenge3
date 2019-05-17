@@ -48,13 +48,14 @@ class ViewController: UIViewController {
     
             let node6 = HistoryNode.init(withResume: "Node 2", text: "Node2 Text", positionX: 1, andPositionY: 3)
             try? self.graph.addNode(node6)
-//            self.graphView.appendLine()
+            self.graphView.appendLine()
+            self.graphView.addItem(atPositon: (xPosition: 1, yPosition: 3))
             
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (_) in
-                self.graphView.addColumn(inPosition: 0)
+//                self.graphView.addColumn(inPosition: 0)
                 Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (_) in
 //                    self.graphView.addLine(inPosition: 3)
-                    self.graphView.removeColumn(atPosition: 4)
+//                    self.graphView.removeColumn(atPosition: 4)
                 })
 //                self.graphView.addLine(inPosition: 3)
 //                self.graphView.addLine(inPosition: 3)
@@ -93,15 +94,21 @@ extension ViewController: GraphViewDatasource {
     func gridNodeView(forGraphView graphView: GraphView, inPosition position: GridPosition) -> GraphItemView? {
 
         guard let _ = graph.grid[position.yPosition, position.xPosition] else {
-            let graphView = GraphItemView.init()
-            graphView.backgroundColor = UIColor.blue
-            graphView.layer.opacity = 0.1
-            return graphView
+//            let graphView = GraphItemView.init()
+//            graphView.backgroundColor = UIColor.blue
+//            graphView.layer.opacity = 0.1
+//            return graphView
+            return nil
         }
-
         let view = GraphItemView.init()
         view.backgroundColor = UIColor.red
         view.translatesAutoresizingMaskIntoConstraints = false
+
+        if position.xPosition == 1 && position.yPosition == 3 {
+            view.backgroundColor = UIColor.green
+        }
+        
+        
 
         view.heightAnchor.constraint(equalToConstant: CGFloat.random(in: 100..<200)).isActive = true
 
