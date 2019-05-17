@@ -50,8 +50,9 @@ class ViewController: UIViewController {
             try? self.graph.addNode(node6)
             self.graphView.appendLine()
             self.graphView.addItem(atPositon: (xPosition: 1, yPosition: 3))
-            
+            print(self.graph.grid)
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (_) in
+                self.graphView.removeItem(atPositon: (xPosition: 1, yPosition: 3))
 //                self.graphView.addColumn(inPosition: 0)
                 Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (_) in
 //                    self.graphView.addLine(inPosition: 3)
@@ -100,6 +101,7 @@ extension ViewController: GraphViewDatasource {
 //            return graphView
             return nil
         }
+
         let view = GraphItemView.init()
         view.backgroundColor = UIColor.red
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -107,8 +109,6 @@ extension ViewController: GraphViewDatasource {
         if position.xPosition == 1 && position.yPosition == 3 {
             view.backgroundColor = UIColor.green
         }
-        
-        
 
         view.heightAnchor.constraint(equalToConstant: CGFloat.random(in: 100..<200)).isActive = true
 

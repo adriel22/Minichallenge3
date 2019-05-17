@@ -112,12 +112,12 @@ class GraphView: UIScrollView {
             andGraphView: self
         )
     }
-    
+
     public func addItem(atPositon positon: GridPosition, removingCurrent: Bool = false) {
         guard let datasource = self.datasource else {
             return
         }
-        
+
         graphOperator.addItem(
             inPosition: positon,
             inContainerView: containerView,
@@ -126,14 +126,19 @@ class GraphView: UIScrollView {
             removingCurrent: false
         )
     }
-    
-//    public func removeItem(atPositon positon: GridPosition) {
-//        guard let datasource = self.datasource else {
-//            return
-//        }
-//
-//        graphOperator.addItem(inPosition: <#T##GridPosition#>, inContainerView: <#T##UIView#>, withDatasource: <#T##GraphViewDatasource#>, andGraphView: <#T##GraphView#>, removingCurrent: <#T##Bool#>)
-//    }
+
+    public func removeItem(atPositon positon: GridPosition) {
+        guard let datasource = self.datasource else {
+            return
+        }
+
+        graphOperator.removeItem(
+            inPosition: positon,
+            inContainerView: containerView,
+            withDatasource: datasource,
+            andGraphView: self
+        )
+    }
 
     /// It builds the graphView and set it constraints.
     ///

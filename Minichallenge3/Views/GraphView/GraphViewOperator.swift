@@ -65,6 +65,64 @@ class GraphViewOperator {
         })
     }
 
+    public func replace(
+        item1: GraphItemView, andItem2 item2: GraphItemView,
+        atPosition position: GridPosition,
+        withDatasource datasoure: GraphViewDatasource,
+        andGraphView graphView: GraphView) {
+
+        let columnWidth  = datasoure.columnWidth(forGraphView: graphView, inXPosition: position.xPosition)
+        let columnSpacing = datasoure.columnSpacing(forGraphView: graphView)
+        let isTheLastInTheItem = position.xPosition == graphView.lineViews[position.yPosition].itemViews.count
+        let positionXIsGreatherThenZero = position.xPosition > 0
+        let parentLine = graphView.lineViews[position.yPosition]
+        let parentItem = positionXIsGreatherThenZero ?
+            graphView.lineViews[position.yPosition].itemViews[position.xPosition - 1] : nil
+
+        item1.removeOpenConstraints()
+        item1.removeClosingConstraints()
+        item1.removeFromSuperview()
+
+        parentLine.insertSubview(item2, at: position.xPosition)
+        item2.setConstraintsFor(
+            leftAnchor: graphView.itemViewLeftAnchor(
+                forLastItemView: parentItem,
+                inLineView: parentLine
+            ),
+            widthAnchor: columnWidth,
+            columnMargin: columnSpacing
+        )
+
+        if isTheLastInTheItem {
+            item2.setClosingConstraints()
+        }
+
+        animateViewInsertion(newLineView: item2)
+    }
+
+    public func removeItem(
+        inPosition position: GridPosition,
+        inContainerView containerView: UIView,
+        withDatasource datasoure: GraphViewDatasource,
+        andGraphView graphView: GraphView) {
+
+        guard isValidColumn(position: position.xPosition, inGraphView: graphView),
+            isValidLine(position: position.yPosition, inGraphView: graphView) else {
+                return
+        }
+
+        let newItem = GraphItemEmptyView()
+        let currentItem = graphView.lineViews[position.yPosition].itemViews[position.xPosition]
+
+        replace(
+            item1: currentItem,
+            andItem2: newItem,
+            atPosition: position,
+            withDatasource: datasoure,
+            andGraphView: graphView
+        )
+    }
+
     public func addItem(
         inPosition position: GridPosition,
         inContainerView containerView: UIView,
@@ -84,31 +142,13 @@ class GraphViewOperator {
             return
         }
 
-        let columnWidth  = datasoure.columnWidth(forGraphView: graphView, inXPosition: position.xPosition)
-        let columnSpacing = datasoure.columnSpacing(forGraphView: graphView)
-        let isTheLastInTheItem = position.xPosition == graphView.lineViews[position.yPosition].itemViews.count
-        let positionXIsGreatherThenZero = position.xPosition > 0
-        let parentLine = graphView.lineViews[position.yPosition]
-        let parentItem = positionXIsGreatherThenZero ?
-            graphView.lineViews[position.yPosition].itemViews[position.xPosition - 1] : nil
-
-        currentItem.removeOpenConstraints()
-        currentItem.removeClosingConstraints()
-        currentItem.removeFromSuperview()
-
-        parentLine.addSubview(newItem)
-        newItem.setConstraintsFor(
-            leftAnchor: graphView.itemViewLeftAnchor(
-                forLastItemView: parentItem,
-                inLineView: parentLine
-            ),
-            widthAnchor: columnWidth,
-            columnMargin: columnSpacing
+        replace(
+            item1: currentItem,
+            andItem2: newItem,
+            atPosition: position,
+            withDatasource: datasoure,
+            andGraphView: graphView
         )
-
-        if isTheLastInTheItem {
-            newItem.setClosingConstraints()
-        }
     }
 
     public func removeColumn(
