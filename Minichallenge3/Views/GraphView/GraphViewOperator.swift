@@ -65,6 +65,48 @@ class GraphViewOperator {
         })
     }
 
+    public func removeColumn(
+        inPosition position: Int,
+        inContainerView containerView: UIView,
+        withDataSource datasource: GraphViewDatasource,
+        andGraphView graphView: GraphView) {
+
+        guard isValidColumn(position: position, inGraphView: graphView) else {
+            return
+        }
+
+        let positionIsGreatherThenZero = position > 0
+        let defaultWidthAnchor = datasource.columnWidth(forGraphView: graphView, inXPosition: position)
+        let defaultColumnSpacing = datasource.columnSpacing(forGraphView: graphView)
+
+        graphView.lineViews.forEach { (_, currentLine, _) in
+            let parentColumnFromPosition = positionIsGreatherThenZero ? currentLine.itemViews[position - 1] : nil
+            let columnToRemove = currentLine.itemViews[position]
+            let hasNextLine = position + 1 < currentLine.itemViews.count
+            let nextColumn = hasNextLine ? currentLine.itemViews[position + 1] : nil
+
+            columnToRemove.removeFromSuperview()
+
+            columnToRemove.removeOpenConstraints()
+            columnToRemove.removeClosingConstraints()
+
+            if let nextColumn = nextColumn {
+                nextColumn.setConstraintsFor(leftAnchor:
+                    graphView.itemViewLeftAnchor(
+                        forLastItemView: parentColumnFromPosition,
+                        inLineView: currentLine
+                    ),
+                    widthAnchor: defaultWidthAnchor,
+                    columnMargin: defaultColumnSpacing
+                )
+            } else if let parentColumnFromPosition = parentColumnFromPosition {
+                parentColumnFromPosition.setClosingConstraints()
+            }
+
+            animateViewRemotion(containerView: containerView)
+        }
+    }
+
     public func removeLine(
         inPosition position: Int,
         inContainerView containerView: UIView,

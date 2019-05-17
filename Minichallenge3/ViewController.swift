@@ -53,7 +53,8 @@ class ViewController: UIViewController {
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (_) in
                 self.graphView.addColumn(inPosition: 0)
                 Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (_) in
-                    self.graphView.addLine(inPosition: 3)
+//                    self.graphView.addLine(inPosition: 3)
+                    self.graphView.removeColumn(atPosition: 4)
                 })
 //                self.graphView.addLine(inPosition: 3)
 //                self.graphView.addLine(inPosition: 3)

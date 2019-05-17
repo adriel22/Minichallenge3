@@ -100,6 +100,19 @@ class GraphView: UIScrollView {
         )
     }
 
+    public func removeColumn(atPosition position: Int) {
+        guard let datasource = self.datasource else {
+            return
+        }
+        
+        graphOperator.removeColumn(
+            inPosition: position,
+            inContainerView: containerView,
+            withDataSource: datasource,
+            andGraphView: self
+        )
+    }
+
     /// It builds the graphView and set it constraints.
     ///
     /// - Parameters:
