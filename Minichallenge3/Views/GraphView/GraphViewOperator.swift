@@ -58,7 +58,7 @@ class GraphViewOperator {
         })
     }
 
-    func animateLineRemotion(containerView: UIView) {
+    func animateViewRemotion(containerView: UIView) {
 
         UIView.animate(withDuration: 0.2, animations: {
             containerView.layoutIfNeeded()
@@ -111,7 +111,7 @@ class GraphViewOperator {
             parentLineFromPosition.setClosingConstraints()
         }
 
-        animateLineRemotion(containerView: containerView)
+        animateViewRemotion(containerView: containerView)
     }
 
     public func appendLine(
@@ -152,6 +152,47 @@ class GraphViewOperator {
         )
 
         animateViewInsertion(newLineView: newLineView)
+    }
+
+    func appendColumn(
+        inContainerView containerView: UIView,
+        withDataSource datasource: GraphViewDatasource,
+        andGraphView graphView: GraphView) {
+
+        graphView.lineViews.forEach { (_, currentLine, currentLineIndex) in
+            let lastItem = currentLine.itemViews.last
+            let currentGridPosition = (xPosition: currentLine.itemViews.count, yPosition: currentLineIndex)
+            let defaultWidth = datasource.columnWidth(forGraphView: graphView, inXPosition: currentLine.itemViews.count)
+            let columnMargin = datasource.columnSpacing(forGraphView: graphView)
+            let defaultLineSpacing = datasource.lineSpacing(forGraphView: graphView)
+            let connectorMargins = graphView.connector.connectionMargin(forLineSpacing: defaultLineSpacing)
+            let newItemView = loadItemView(
+                fromDatasource: datasource, inGraphView: graphView,
+                atPosition: currentGridPosition
+            )
+            currentLine.addSubview(newItemView)
+            lastItem?.removeClosingConstraints()
+            newItemView.setConstraintsFor(
+                leftAnchor: graphView.itemViewLeftAnchor(
+                    forLastItemView: lastItem,
+                    inLineView: currentLine
+                ),
+                widthAnchor: defaultWidth,
+                columnMargin: columnMargin
+            )
+
+            newItemView.setClosingConstraints()
+
+            setConnections(
+                graphView: graphView,
+                usingDatasource: datasource,
+                forGridPosition: currentGridPosition,
+                withConnectorMargins: connectorMargins,
+                andContainerView: containerView
+            )
+
+            animateViewRemotion(containerView: containerView)
+        }
     }
 
     public func insertLine(
@@ -216,6 +257,22 @@ class GraphViewOperator {
         animateViewInsertion(newLineView: newLineView)
     }
 
+    func loadItemView(
+        fromDatasource
+        datasource: GraphViewDatasource,
+        inGraphView graphView: GraphView,
+        atPosition position: GridPosition) -> GraphItemView {
+
+        if let newItemView = datasource.gridNodeView(
+            forGraphView: graphView,
+            inPosition: position
+            ) {
+            return newItemView
+        } else {
+            return GraphItemView()
+        }
+    }
+
     func insertColumn(
         inPosition position: Int,
         inContainerView containerView: UIView,
@@ -230,23 +287,17 @@ class GraphViewOperator {
         let defaultWidthAnchor = datasource.columnWidth(forGraphView: graphView, inXPosition: position)
         let defaultLineSpacing = datasource.lineSpacing(forGraphView: graphView)
         let positionIsGreatherThenZero = position > 0
-        let numberOfColumns = datasource.gridSize(forGraphView: graphView).width
+        let connectorMargins = graphView.connector.connectionMargin(forLineSpacing: defaultLineSpacing)
 
         graphView.lineViews.forEach { (_, currentLine, currentLinePosition) in
             let parentItemFromPosition = positionIsGreatherThenZero ? currentLine.itemViews[position - 1] : nil
             let currentItemInPosition = currentLine.itemViews[position]
             let currentGridPosition = (xPosition: position, yPosition: currentLinePosition)
 
-            let newItemView: GraphItemView = {
-                if let newItemView = datasource.gridNodeView(
-                    forGraphView: graphView,
-                    inPosition: currentGridPosition
-                ) {
-                    return newItemView
-                } else {
-                    return GraphItemView()
-                }
-            }()
+            let newItemView = loadItemView(
+                fromDatasource: datasource, inGraphView: graphView,
+                atPosition: currentGridPosition
+            )
 
             currentLine.insertSubview(newItemView, at: position)
             newItemView.setConstraintsFor(
@@ -264,23 +315,13 @@ class GraphViewOperator {
                 columnMargin: columnMargin
             )
 
-            let connectorMargins = graphView.connector.connectionMargin(forLineSpacing: defaultLineSpacing)
-
-//            graphView.connector.addConnectionViews(
-//                fromConnections: graphView.connector.findConnection(
-//                    atPosition: currentGridPosition,
-//                    withDatasource: datasource,
-//                    andGraphView: graphView),
-//                withConnectorMargins: connectorMargins,
-//                connectorsOffset: graphView.connector.itemConnectorsOffset(
-//                    withNumberOfColumns: numberOfColumns,
-//                    connectorMargins: connectorMargins,
-//                    datasource: datasource,
-//                    andGraphView: graphView
-//                ),
-//                containerView: containerView,
-//                andGraphView: graphView
-//            )
+            setConnections(
+                graphView: graphView,
+                usingDatasource: datasource,
+                forGridPosition: currentGridPosition,
+                withConnectorMargins: connectorMargins,
+                andContainerView: containerView
+            )
 
             animateViewInsertion(newLineView: newItemView)
         }
@@ -306,6 +347,32 @@ class GraphViewOperator {
             itemViews: newLineView.itemViews,
             atLineWithIndex: position,
             usingDatasource: datasource
+        )
+    }
+
+    private func setConnections(
+        graphView: GraphView,
+        usingDatasource datasource: GraphViewDatasource,
+        forGridPosition position: GridPosition,
+        withConnectorMargins connectorMargin: CGFloat,
+        andContainerView containerView: UIView) {
+
+        let numberOfColumns = datasource.gridSize(forGraphView: graphView).width
+
+        graphView.connector.addConnectionViews(
+            fromConnections: graphView.connector.findConnection(
+                atPosition: position,
+                withDatasource: datasource,
+                andGraphView: graphView),
+            withConnectorMargins: connectorMargin,
+            connectorsOffset: graphView.connector.itemConnectorsOffset(
+                withNumberOfColumns: numberOfColumns,
+                connectorMargins: connectorMargin,
+                datasource: datasource,
+                andGraphView: graphView
+            ),
+            containerView: containerView,
+            andGraphView: graphView
         )
     }
 }

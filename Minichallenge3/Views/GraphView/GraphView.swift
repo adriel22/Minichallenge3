@@ -10,7 +10,7 @@ import UIKit
 
 class GraphView: UIScrollView {
 
-    var containerView = UIView()
+    var containerView = GraphLineView()
 
     var connector = GraphViewConnector()
 
@@ -69,6 +69,18 @@ class GraphView: UIScrollView {
         }
 
         graphOperator.appendLine(
+            inContainerView: containerView,
+            withDataSource: datasource,
+            andGraphView: self
+        )
+    }
+
+    public func appendColumn() {
+        guard let datasource = self.datasource else {
+            return
+        }
+
+        graphOperator.appendColumn(
             inContainerView: containerView,
             withDataSource: datasource,
             andGraphView: self
@@ -248,7 +260,7 @@ class GraphView: UIScrollView {
         }
 
         if let lastItemView = itemViews.last {
-            lineView.rightAnchor.constraint(equalTo: lastItemView.rightAnchor).isActive = true
+            lastItemView.setClosingConstraints()
         }
     }
 
