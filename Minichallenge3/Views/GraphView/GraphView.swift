@@ -140,6 +140,18 @@ class GraphView: UIScrollView {
         )
     }
 
+    func reloadData() {
+        guard let datasource = self.datasource else {
+            return
+        }
+
+        for lineView in self.lineViews {
+            lineView.removeFromSuperview()
+        }
+
+        build(datasource: datasource, inContainerView: containerView)
+    }
+
     /// It builds the graphView and set it constraints.
     ///
     /// - Parameters:
