@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class HistoryGraph: CustomStringConvertible {
+open class HistoryGraph: CustomStringConvertible {
 
     public var nodes: [HistoryNodeProtocol] = []
     public var historyName: String
