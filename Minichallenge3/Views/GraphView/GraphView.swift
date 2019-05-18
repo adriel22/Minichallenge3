@@ -10,7 +10,7 @@ import UIKit
 
 class GraphView: UIScrollView {
 
-    var containerView = GraphLineView()
+    var containerView = UIView()
 
     var connector = GraphViewConnector()
 
@@ -37,6 +37,24 @@ class GraphView: UIScrollView {
         addSubview(containerView)
     }
 
+    private func prepareOperationContext(
+        contextCompletion: (_ context: GraphViewOperator.Context, _ finishedCompletion: @escaping () -> Void) -> Void) {
+        guard let datasource = self.datasource else {
+            return
+        }
+        connector.removeConnectors(fromContainerView: containerView)
+
+        self.connector = GraphViewConnector()
+
+        let context = (graphView: self, containerView: containerView, datasource: datasource)
+        contextCompletion(context) { [weak self] in
+            guard let self = self else {
+                return
+            }
+            self.connector.build(withDatasource: datasource, graphView: self, andContainerView: self.containerView)
+        }
+    }
+
     public func addLine(inPosition position: Int) {
         guard let datasource = self.datasource else {
             return
@@ -44,23 +62,25 @@ class GraphView: UIScrollView {
 
         graphOperator.insertLine(
             inPosition: position,
-            inContainerView: containerView,
-            withDataSource: datasource,
-            andGraphView: self
-        )
+            withContext: (
+                graphView: self,
+                containerView: containerView,
+                datasource: datasource
+            )
+        ) {
+            
+        }
     }
 
     public func addColumn(inPosition position: Int) {
-        guard let datasource = self.datasource else {
-            return
+        
+        prepareOperationContext { (context, finishedOperationCompletion) in
+            graphOperator.insertColumn(
+                inPosition: position,
+                withContext: context,
+                completion: finishedOperationCompletion
+            )
         }
-
-        graphOperator.insertColumn(
-            inPosition: position,
-            inContainerView: containerView,
-            withDataSource: datasource,
-            andGraphView: self
-        )
     }
 
     public func appendLine() {
@@ -69,10 +89,14 @@ class GraphView: UIScrollView {
         }
 
         graphOperator.appendLine(
-            inContainerView: containerView,
-            withDataSource: datasource,
-            andGraphView: self
-        )
+            withContext: (
+                graphView: self,
+                containerView: containerView,
+                datasource: datasource
+            )
+        ) {
+            
+        }
     }
 
     public func appendColumn() {
@@ -81,10 +105,14 @@ class GraphView: UIScrollView {
         }
 
         graphOperator.appendColumn(
-            inContainerView: containerView,
-            withDataSource: datasource,
-            andGraphView: self
-        )
+            withContext: (
+                graphView: self,
+                containerView: containerView,
+                datasource: datasource
+            )
+        ) {
+            
+        }
     }
 
     public func removeLine(atPosition position: Int) {
@@ -94,10 +122,14 @@ class GraphView: UIScrollView {
 
         graphOperator.removeLine(
             inPosition: position,
-            inContainerView: containerView,
-            withDataSource: datasource,
-            andGraphView: self
-        )
+            withContext: (
+                graphView: self,
+                containerView: containerView,
+                datasource: datasource
+            )
+        ) {
+            
+        }
     }
 
     public func removeColumn(atPosition position: Int) {
@@ -107,10 +139,14 @@ class GraphView: UIScrollView {
 
         graphOperator.removeColumn(
             inPosition: position,
-            inContainerView: containerView,
-            withDataSource: datasource,
-            andGraphView: self
-        )
+            withContext: (
+                graphView: self,
+                containerView: containerView,
+                datasource: datasource
+            )
+        ) {
+            
+        }
     }
 
     public func addItem(atPositon positon: GridPosition, removingCurrent: Bool = false) {
@@ -120,11 +156,15 @@ class GraphView: UIScrollView {
 
         graphOperator.addItem(
             inPosition: positon,
-            inContainerView: containerView,
-            withDatasource: datasource,
-            andGraphView: self,
+            withContext: (
+                graphView: self,
+                containerView: containerView,
+                datasource: datasource
+            ),
             removingCurrent: false
-        )
+        ) {
+
+        }
     }
 
     public func removeItem(atPositon positon: GridPosition) {
@@ -134,10 +174,14 @@ class GraphView: UIScrollView {
 
         graphOperator.removeItem(
             inPosition: positon,
-            inContainerView: containerView,
-            withDatasource: datasource,
-            andGraphView: self
-        )
+            withContext: (
+                graphView: self,
+                containerView: containerView,
+                datasource: datasource
+            )
+        ) {
+            
+        }
     }
 
     func reloadData() {
@@ -389,5 +433,9 @@ class GraphView: UIScrollView {
         }
 
         return lineView.itemViews[position.xPosition]
+    }
+    
+    func connectionMargin(forLineSpacing lineSpacing: CGFloat) -> CGFloat {
+        return connector.connectionMargin(forLineSpacing: lineSpacing)
     }
 }

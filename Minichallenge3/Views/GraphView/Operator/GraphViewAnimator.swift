@@ -6,4 +6,33 @@
 //  Copyright © 2019 Adriel Freire. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class GraphViewAnimator {
+    func animateViewInsertion(newLineView: UIView, completion: @escaping () -> Void) {
+        newLineView.layer.opacity = 0
+
+        print("bla3")
+        UIView.animate(withDuration: 0.2, animations: {
+            newLineView.superview?.layoutIfNeeded()
+        }, completion: { (_) in
+            UIView.animate(withDuration: 0.2, animations: {
+                newLineView.layer.opacity = 1
+            }, completion: { (done) in
+                guard done else {
+                    return
+                }
+                completion()
+            })
+        })
+    }
+
+    func animateViewRemotion(containerView: UIView, completion: @escaping () -> Void) {
+
+        UIView.animate(withDuration: 0.2, animations: {
+            containerView.layoutIfNeeded()
+        }, completion: {(_) in
+            completion()
+        })
+    }
+}

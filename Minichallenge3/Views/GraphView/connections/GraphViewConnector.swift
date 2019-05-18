@@ -149,10 +149,14 @@ class GraphViewConnector {
                 andDestinyLineView: destinyLineView
             )
 
-            originItemView.connectors.append(itemConnector)
+//            originItemView.connectors.append(itemConnector)
             self.currentItemConnectors.append(itemConnector)
 
-            let layoutChangeCompletion = {
+            let layoutChangeCompletion = { [weak self] in
+                guard self != nil else {
+                    return
+                }
+                
                 let posForOrigin = originItemView.convert(originItemView.bounds.origin, to: containerView)
                 let posForDestiny = destinyItemView.convert(destinyItemView.bounds.origin, to: containerView)
                 let positionInContainerForOrigin = originLineView.convert(originItemView.center, to: containerView)
@@ -170,7 +174,7 @@ class GraphViewConnector {
                 let bendDistance = connectorMargins +
                     (connectorsOffset * CGFloat(connection.originPosition.xPosition))
 
-                itemConnector.createLine(fromPoint: posForOrigin, toPoint: posForDestiny, inContainerView: containerView)
+                itemConnector.createLine(fromPoint: positionInContainerForOrigin, toPoint: positionInContainerForDestiny, inContainerView: containerView)
 
 //                itemConnector.setConstraints(
 //                    fromOriginItem: originItemView, toDestinyItem: destinyItemView,
@@ -187,6 +191,12 @@ class GraphViewConnector {
             destinyLineView.didLayoutSubViewsCompletions.append(layoutChangeCompletion)
 
             (containerView as? GraphLineView)?.didLayoutSubViewsCompletions.append(layoutChangeCompletion)
+        }
+    }
+
+    func removeConnectors(fromContainerView containerView: UIView) {
+        for connector in currentItemConnectors {
+            connector.lineLayer?.removeFromSuperlayer()
         }
     }
 
