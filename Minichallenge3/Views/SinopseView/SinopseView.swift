@@ -25,6 +25,18 @@ class SinopseView: UIView {
         return label
     }()
     
+    lazy var blurEffectView: UIVisualEffectView = {
+        let blurEffect = UIBlurEffect(style: .light)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        blurEffectView.frame = self.bounds
+        
+        blurEffectView.backgroundColor = UIColor.clear
+        blurEffectView.alpha = 0.9
+        
+        return blurEffectView
+    }()
+    
     init() {
         super.init(frame: CGRect.zero)
         setup()
@@ -38,7 +50,10 @@ class SinopseView: UIView {
     func setup() {
         translatesAutoresizingMaskIntoConstraints = false
         label.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(blurEffectView)
         addSubview(label)
+        
+        backgroundColor = UIColor.clear
     }
     
     func setConstraints(superView: UIView) {
@@ -50,7 +65,7 @@ class SinopseView: UIView {
             
             leftAnchor.constraint(equalTo: superView.leftAnchor),
             rightAnchor.constraint(equalTo: superView.rightAnchor),
-            topAnchor.constraint(equalTo: superView.topAnchor),
+            topAnchor.constraint(equalTo: superView.topAnchor)
         ]
         
         NSLayoutConstraint.activate(constraints)

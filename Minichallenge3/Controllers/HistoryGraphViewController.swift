@@ -47,15 +47,15 @@ class HistoryGraphViewController: UIViewController {
     }
     
     func setupView() {
-        view.addSubview(sinopseView)
         view.addSubview(graphView)
+        view.addSubview(sinopseView)
         
         view.backgroundColor = UIColor.white
     }
     
     func setConstraints() {
         let constraints = [
-            graphView.topAnchor.constraint(equalTo: sinopseView.bottomAnchor, constant: 10),
+            graphView.topAnchor.constraint(equalTo: view.topAnchor),
             graphView.leftAnchor.constraint(equalTo: view.leftAnchor),
             graphView.rightAnchor.constraint(equalTo: view.rightAnchor),
             graphView.bottomAnchor.constraint(equalTo: view.bottomAnchor)

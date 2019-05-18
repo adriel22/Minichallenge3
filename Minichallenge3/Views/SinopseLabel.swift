@@ -34,6 +34,6 @@ class SinopseLabel: UILabel {
         textAlignment = .center
         textColor = UIColor(color: .darkBlue)
         translatesAutoresizingMaskIntoConstraints = false
-        backgroundColor = UIColor.white
+        backgroundColor = UIColor.clear
     }
 }
