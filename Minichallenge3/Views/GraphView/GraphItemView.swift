@@ -8,20 +8,15 @@
 
 import UIKit
 
-class GraphItemView: UIView {
-    var didLayoutSubViewsCompletions: [(() -> Void)] = []
-
+class GraphItemView: NotifierView {
     var parentLine: GraphLineView? {
         return self.superview as? GraphLineView
     }
 
     var connectors: [ItemViewConnector] = []
 
-    override func layoutSubviews() {
-        didLayoutSubViewsCompletions.forEach { (completion) in
-            completion()
-        }
-    }
+    var oldLeftAnchor: NSLayoutConstraint?
+    var oldRightAnchor: NSLayoutConstraint?
 
     /// It sets the constraints for a item view
     ///
@@ -40,46 +35,44 @@ class GraphItemView: UIView {
             return
         }
 
+        removeOpenConstraints()
+
         translatesAutoresizingMaskIntoConstraints = false
 
+        let currentLeftAnchor = self.leftAnchor.constraint(equalTo: leftAnchor, constant: columnMargin)
+        self.oldLeftAnchor = currentLeftAnchor
+
+        let width = self.widthAnchor.constraint(equalToConstant: widthAnchor)
         NSLayoutConstraint.activate([
-            self.widthAnchor.constraint(equalToConstant: widthAnchor),
-            self.leftAnchor.constraint(equalTo: leftAnchor, constant: columnMargin),
+            width,
+            currentLeftAnchor,
             self.topAnchor.constraint(equalTo: lineView.topAnchor),
             self.bottomAnchor.constraint(lessThanOrEqualTo: lineView.bottomAnchor)
         ])
     }
 
-    /// Wait for the layout of subviews of two Graph Items
-    ///
-    /// - Parameters:
-    ///   - item1: the first item
-    ///   - item2: the second item
-    ///   - completion: a completion called when the layout happens
-    static public func waitForSubviewLayout(
-        item1: GraphItemView,
-        item2: GraphItemView,
-        completion: @escaping () -> Void) {
+    func removeOpenConstraints() {
+        if let leftAnchor = self.oldLeftAnchor {
+            leftAnchor.isActive = false
+            removeConstraint(leftAnchor)
+        }
+    }
 
-        var item1WasLayout = false
-        var item2WasLayout = false
+    func removeClosingConstraints() {
+        if let rightAnchor = self.oldRightAnchor {
+            rightAnchor.isActive = false
+            removeConstraint(rightAnchor)
+        }
+    }
 
-        item1.didLayoutSubViewsCompletions.append {
-            item1WasLayout = true
-            if item2WasLayout {
-                completion()
-                item2WasLayout = false
-                item1WasLayout = false
-            }
+    func setClosingConstraints() {
+        guard let lineView = superview else {
+            return
         }
 
-        item2.didLayoutSubViewsCompletions.append {
-            item2WasLayout = true
-            if item1WasLayout {
-                completion()
-                item2WasLayout = false
-                item1WasLayout = false
-            }
-        }
+        removeClosingConstraints()
+        let currentRightAnchor = rightAnchor.constraint(equalTo: lineView.rightAnchor)
+        currentRightAnchor.isActive = true
+        self.oldRightAnchor = currentRightAnchor
     }
 }

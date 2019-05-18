@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GraphLineView: UIView {
+class GraphLineView: NotifierView {
 
     var itemViews: [GraphItemView] {
         guard let itemViews = subviews as? [GraphItemView] else {
@@ -25,11 +25,14 @@ class GraphLineView: UIView {
 
         return false
     }
-    
+
     var hasLeftSpace: Bool = false
 
-    private var oldLineTopAnchor: NSLayoutConstraint?
-    private var oldLineLeftAnchor: NSLayoutConstraint?
+    var oldLineTopAnchor: NSLayoutConstraint?
+    var oldLineLeftAnchor: NSLayoutConstraint?
+    var oldLineBottomAnchor: NSLayoutConstraint?
+    var oldLineRightAnchor: NSLayoutConstraint?
+    var leftMargin: CGFloat?
 
     /// It sets the constraints for a lineview.
     ///
@@ -47,15 +50,7 @@ class GraphLineView: UIView {
             return
         }
 
-        if let oldTopAnchor = self.oldLineTopAnchor {
-            oldTopAnchor.isActive = false
-            removeConstraint(oldTopAnchor)
-        }
-
-        if let olfLeftAnchor = self.oldLineLeftAnchor {
-            olfLeftAnchor.isActive = false
-            removeConstraint(olfLeftAnchor)
-        }
+        removeOpenConstraints()
 
         translatesAutoresizingMaskIntoConstraints = false
 
@@ -64,13 +59,18 @@ class GraphLineView: UIView {
 
         let currentTopAnchor = self.topAnchor.constraint(equalTo: topAnchor, constant: lineMargin)
         self.oldLineTopAnchor = currentTopAnchor
-        
+
         let currentLeftAnchor = leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: leftMargin)
         self.oldLineLeftAnchor = currentLeftAnchor
+        self.leftMargin = leftMargin
+
+        let currentRightAnchor = rightAnchor.constraint(lessThanOrEqualTo: containerView.rightAnchor)
+        self.oldLineRightAnchor = currentRightAnchor
 
         NSLayoutConstraint.activate([
             currentTopAnchor,
             currentLeftAnchor,
+            currentRightAnchor,
             lineViewHeightConstraint
         ])
     }
@@ -81,9 +81,35 @@ class GraphLineView: UIView {
             return
         }
 
+        let currentBottomAnchor = containerView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        self.oldLineBottomAnchor = currentBottomAnchor
+
         NSLayoutConstraint.activate([
-            containerView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            containerView.rightAnchor.constraint(equalTo: rightAnchor)
+            currentBottomAnchor
         ])
+    }
+
+    func removeClosingConstraints() {
+        if let oldBottomAnchor = self.oldLineBottomAnchor {
+            oldBottomAnchor.isActive = false
+            removeConstraint(oldBottomAnchor)
+        }
+    }
+
+    func removeOpenConstraints() {
+        if let oldTopAnchor = self.oldLineTopAnchor {
+            oldTopAnchor.isActive = false
+            removeConstraint(oldTopAnchor)
+        }
+
+        if let olfLeftAnchor = self.oldLineLeftAnchor {
+            olfLeftAnchor.isActive = false
+            removeConstraint(olfLeftAnchor)
+        }
+
+        if let oldRightAnchor = self.oldLineRightAnchor {
+            oldRightAnchor.isActive = false
+            removeConstraint(oldRightAnchor)
+        }
     }
 }

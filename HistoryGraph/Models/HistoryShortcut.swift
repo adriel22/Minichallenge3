@@ -38,7 +38,6 @@ public class HistoryShortcut: HistoryNodeProtocol {
         return "Shortcut for Node: \(self.node?.description ?? "None")"
     }
 
-
     /// Initialize a shortcut for a node
     ///
     /// - Parameters:

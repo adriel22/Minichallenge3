@@ -20,7 +20,7 @@ extension UIBezierPath {
         }
 
         if closePolygon {
-            move(to: firstPoint)
+            addLine(to: firstPoint)
         }
     }
 }
