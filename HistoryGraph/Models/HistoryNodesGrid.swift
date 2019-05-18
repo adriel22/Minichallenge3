@@ -155,7 +155,7 @@ public class HistoryNodesGrid: CustomStringConvertible {
     ///
     /// - Parameter lineIndex: the index of the target line
     /// - Returns: the column of the found position
-    func findPositionInLine(atIndex lineIndex: Int) -> Int? {
+    public func findPositionInLine(atIndex lineIndex: Int) -> Int? {
         for colIndex in 0..<graphWidth where grid[lineIndex][colIndex] == nil {
             return colIndex
         }
