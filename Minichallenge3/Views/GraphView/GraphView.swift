@@ -10,9 +10,9 @@ import UIKit
 
 class GraphView: UIScrollView {
 
-    var containerView = GraphLineView()
+    var containerView = NotifierView()
 
-    var connector: GraphViewConnector = GraphViewConnector()
+    var connector = GraphViewConnector()
 
     var graphOperator = GraphViewOperator()
 

@@ -32,4 +32,12 @@ extension CGPoint {
     public func translateToY(_ yPosition: CGFloat) -> CGPoint {
         return CGPoint(x: x, y: yPosition)
     }
+
+    public func translateToX(of point: CGPoint) -> CGPoint {
+        return CGPoint(x: point.x, y: y)
+    }
+
+    public func translateToY(of point: CGPoint) -> CGPoint {
+        return CGPoint(x: x, y: point.y)
+    }
 }

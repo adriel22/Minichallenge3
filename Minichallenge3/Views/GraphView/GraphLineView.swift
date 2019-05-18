@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GraphLineView: UIView {
+class GraphLineView: NotifierView {
 
     var itemViews: [GraphItemView] {
         guard let itemViews = subviews as? [GraphItemView] else {
@@ -33,14 +33,6 @@ class GraphLineView: UIView {
     var oldLineBottomAnchor: NSLayoutConstraint?
     var oldLineRightAnchor: NSLayoutConstraint?
     var leftMargin: CGFloat?
-
-    var didLayoutSubViewsCompletions: [(() -> Void)] = []
-
-    override func layoutSubviews() {
-        didLayoutSubViewsCompletions.forEach { (completion) in
-            completion()
-        }
-    }
 
     /// It sets the constraints for a lineview.
     ///
@@ -117,33 +109,6 @@ class GraphLineView: UIView {
         if let olfLeftAnchor = self.oldLineLeftAnchor {
             olfLeftAnchor.isActive = false
             removeConstraint(olfLeftAnchor)
-        }
-    }
-
-    static public func waitForSubviewLayout(
-        line1: GraphLineView,
-        line2: GraphLineView,
-        completion: @escaping () -> Void) {
-
-        var line1WasLayout = false
-        var line2WasLayout = false
-
-        line1.didLayoutSubViewsCompletions.append {
-            line1WasLayout = true
-            if line2WasLayout {
-                completion()
-                line2WasLayout = false
-                line1WasLayout = false
-            }
-        }
-
-        line2.didLayoutSubViewsCompletions.append {
-            line2WasLayout = true
-            if line1WasLayout {
-                completion()
-                line2WasLayout = false
-                line1WasLayout = false
-            }
         }
     }
 }

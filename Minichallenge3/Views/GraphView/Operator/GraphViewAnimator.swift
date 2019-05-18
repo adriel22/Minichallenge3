@@ -9,6 +9,25 @@
 import UIKit
 
 class GraphViewAnimator {
+
+    func animateViewsInsertion(views: [UIView], completion: @escaping () -> Void) {
+
+        views.set(atributte: \.layer.opacity, value: 0)
+
+        UIView.animate(withDuration: 0.2, animations: {
+            views.call(method: UIView.layoutIfNeeded)
+        }, completion: { (_) in
+            UIView.animate(withDuration: 0.2, animations: {
+                views.set(atributte: \.layer.opacity, value: 1)
+            }, completion: { (done) in
+                guard done else {
+                    return
+                }
+                completion()
+            })
+        })
+    }
+
     func animateViewInsertion(newLineView: UIView, completion: @escaping () -> Void) {
         newLineView.layer.opacity = 0
 

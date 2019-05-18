@@ -8,9 +8,7 @@
 
 import UIKit
 
-class GraphItemView: UIView {
-    var didLayoutSubViewsCompletions: [(() -> Void)] = []
-
+class GraphItemView: NotifierView {
     var parentLine: GraphLineView? {
         return self.superview as? GraphLineView
     }
@@ -19,12 +17,6 @@ class GraphItemView: UIView {
 
     var oldLeftAnchor: NSLayoutConstraint?
     var oldRightAnchor: NSLayoutConstraint?
-
-    override func layoutSubviews() {
-        didLayoutSubViewsCompletions.forEach { (completion) in
-            completion()
-        }
-    }
 
     /// It sets the constraints for a item view
     ///
@@ -51,7 +43,6 @@ class GraphItemView: UIView {
         self.oldLeftAnchor = currentLeftAnchor
 
         let width = self.widthAnchor.constraint(equalToConstant: widthAnchor)
-//        width.priority = .defaultHigh
         NSLayoutConstraint.activate([
             width,
             currentLeftAnchor,
@@ -83,38 +74,5 @@ class GraphItemView: UIView {
         let currentRightAnchor = rightAnchor.constraint(equalTo: lineView.rightAnchor)
         currentRightAnchor.isActive = true
         self.oldRightAnchor = currentRightAnchor
-    }
-
-    /// Wait for the layout of subviews of two Graph Items
-    ///
-    /// - Parameters:
-    ///   - item1: the first item
-    ///   - item2: the second item
-    ///   - completion: a completion called when the layout happens
-    static public func waitForSubviewLayout(
-        item1: GraphItemView,
-        item2: GraphItemView,
-        completion: @escaping () -> Void) {
-
-        var item1WasLayout = false
-        var item2WasLayout = false
-
-        item1.didLayoutSubViewsCompletions.append {
-            item1WasLayout = true
-            if item2WasLayout {
-                completion()
-                item2WasLayout = false
-                item1WasLayout = false
-            }
-        }
-
-        item2.didLayoutSubViewsCompletions.append {
-            item2WasLayout = true
-            if item1WasLayout {
-                completion()
-                item2WasLayout = false
-                item1WasLayout = false
-            }
-        }
     }
 }

@@ -351,7 +351,7 @@ class GraphViewOperator {
             inGraphView: context.graphView,
             usingDatasource: context.datasource
         )
-        
+
         animator.animateViewInsertion(newLineView: newLineView, completion: completion)
     }
 
@@ -382,40 +382,43 @@ class GraphViewOperator {
         let positionIsGreatherThenZero = position > 0
         let connectorMargins = context.graphView.connector.connectionMargin(forLineSpacing: defaultLineSpacing)
 
-        context.graphView.lineViews.forEach { (_, currentLine, currentLinePosition) in
-            let parentItemFromPosition = positionIsGreatherThenZero ? currentLine.itemViews[position - 1] : nil
-            let currentItemInPosition = currentLine.itemViews[position]
-            let currentGridPosition = (xPosition: position, yPosition: currentLinePosition)
+        animator.animateViewsInsertion(
+            views: context.graphView.lineViews.enumerated().map {(currentLinePosition, currentLine) -> GraphItemView in
+                let parentItemFromPosition = positionIsGreatherThenZero ? currentLine.itemViews[position - 1] : nil
+                let currentItemInPosition = currentLine.itemViews[position]
+                let currentGridPosition = (xPosition: position, yPosition: currentLinePosition)
 
-            let newItemView = loadItemView(
-                fromDatasource: context.datasource, inGraphView: context.graphView,
-                atPosition: currentGridPosition
-            )
+                let newItemView = loadItemView(
+                    fromDatasource: context.datasource, inGraphView: context.graphView,
+                    atPosition: currentGridPosition
+                )
 
-            currentLine.insertSubview(newItemView, at: position)
-            newItemView.setConstraintsFor(
-                leftAnchor: context.graphView.itemViewLeftAnchor(
-                    forLastItemView: parentItemFromPosition,
-                    inLineView: currentLine
-                ),
-                widthAnchor: defaultWidthAnchor,
-                columnMargin: columnMargin
-            )
+                currentLine.insertSubview(newItemView, at: position)
+                newItemView.setConstraintsFor(
+                    leftAnchor: context.graphView.itemViewLeftAnchor(
+                        forLastItemView: parentItemFromPosition,
+                        inLineView: currentLine
+                    ),
+                    widthAnchor: defaultWidthAnchor,
+                    columnMargin: columnMargin
+                )
 
-            currentItemInPosition.setConstraintsFor(
-                leftAnchor: newItemView.rightAnchor,
-                widthAnchor: defaultWidthAnchor,
-                columnMargin: columnMargin
-            )
+                currentItemInPosition.setConstraintsFor(
+                    leftAnchor: newItemView.rightAnchor,
+                    widthAnchor: defaultWidthAnchor,
+                    columnMargin: columnMargin
+                )
 
-            setConnections(
-                withContext: context,
-                position: currentGridPosition,
-                andConnectorMargins: connectorMargins
-            )
+                setConnections(
+                    withContext: context,
+                    position: currentGridPosition,
+                    andConnectorMargins: connectorMargins
+                )
 
-            animator.animateViewInsertion(newLineView: newItemView, completion: completion)
-        }
+                return newItemView
+            },
+            completion: completion
+        )
     }
 
     private func setItems(
@@ -449,14 +452,14 @@ class GraphViewOperator {
             fromConnections: context.graphView.connector.findConnection(
                 atPosition: position,
                 withDatasource: context.datasource,
-                andGraphView: context.graphView) ?? [],
+                andGraphView: context.graphView),
             withConnectorMargins: connectorMargin,
             connectorsOffset: context.graphView.connector.itemConnectorsOffset(
                 withNumberOfColumns: numberOfColumns,
                 connectorMargins: connectorMargin,
                 datasource: context.datasource,
                 andGraphView: context.graphView
-            ) ?? 0,
+            ),
             containerView: context.containerView,
             andGraphView: context.graphView
         )

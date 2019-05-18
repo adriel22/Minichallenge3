@@ -146,7 +146,6 @@ class ItemViewConnector {
     }
 
     func createLine(fromPoint point1: CGPoint, toPoint point2: CGPoint, inContainerView containerView: UIView) {
-        lineLayer?.removeFromSuperlayer()
 
 //        let bezierRect = CGRect(fromPoint: point1, toPoint: point2)
         self.lineLayer?.removeFromSuperlayer()
@@ -159,6 +158,46 @@ class ItemViewConnector {
         connectorLayer.strokeColor = UIColor.green.cgColor
         connectorLayer.fillColor = UIColor.green.cgColor
         connectorLayer.lineWidth = lineWidth
+
+        containerView.layer.insertSublayer(connectorLayer, at: 0)
+        self.lineLayer = connectorLayer
+    }
+
+    func createLine(
+        fromItemView1 originItemView: GraphItemView,
+        toItemView2 destinyItemView: GraphItemView,
+        withBendDistance bendDistance: CGFloat,
+        inContainerView containerView: UIView) {
+
+        lineLayer?.removeFromSuperlayer()
+
+        let originLineViewBottom = originLineView.frame.maxY
+
+        let positionInContainerForOrigin = originLineView.convert(
+            originItemView.center.translateToY(originItemView.frame.maxY),
+            to: containerView
+        )
+
+        let positionInContainerForDestiny = destinyLineView.convert(
+            destinyItemView.center.translateToY(destinyItemView.frame.minY),
+            to: containerView
+        )
+
+        let connectionPoints = [
+            positionInContainerForOrigin,
+            positionInContainerForOrigin.translateToY(originLineViewBottom + bendDistance),
+            positionInContainerForOrigin.translateToY(originLineViewBottom + bendDistance).translateToX(of: positionInContainerForDestiny),
+            positionInContainerForDestiny
+        ]
+
+        let bezierPath = UIBezierPath()
+        bezierPath.addPolygon(withPoints: connectionPoints, closePolygon: false)
+
+        let connectorLayer = CAShapeLayer()
+        connectorLayer.path = bezierPath.cgPath
+        connectorLayer.strokeColor = UIColor.green.cgColor
+        connectorLayer.lineWidth = lineWidth
+        connectorLayer.fillColor = UIColor.clear.cgColor
 
         containerView.layer.insertSublayer(connectorLayer, at: 0)
         self.lineLayer = connectorLayer

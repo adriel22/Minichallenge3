@@ -174,7 +174,9 @@ class GraphViewConnector {
                 let bendDistance = connectorMargins +
                     (connectorsOffset * CGFloat(connection.originPosition.xPosition))
 
-                itemConnector.createLine(fromPoint: positionInContainerForOrigin, toPoint: positionInContainerForDestiny, inContainerView: containerView)
+//                itemConnector.createLine(fromPoint: positionInContainerForOrigin, toPoint: positionInContainerForDestiny, inContainerView: containerView)
+                
+                itemConnector.createLine(fromItemView1: originItemView, toItemView2: destinyItemView, withBendDistance: bendDistance, inContainerView: containerView)
 
 //                itemConnector.setConstraints(
 //                    fromOriginItem: originItemView, toDestinyItem: destinyItemView,
@@ -183,14 +185,12 @@ class GraphViewConnector {
 //                )
             }
 
-            GraphLineView.waitForSubviewLayout(line1: originLineView, line2: destinyLineView, completion: layoutChangeCompletion)
-            GraphItemView.waitForSubviewLayout(item1: originItemView, item2: destinyItemView, completion: layoutChangeCompletion)
+            layoutChangeCompletion()
+
             destinyItemView.didLayoutSubViewsCompletions.append(layoutChangeCompletion)
             originItemView.didLayoutSubViewsCompletions.append(layoutChangeCompletion)
             originLineView.didLayoutSubViewsCompletions.append(layoutChangeCompletion)
             destinyLineView.didLayoutSubViewsCompletions.append(layoutChangeCompletion)
-
-            (containerView as? GraphLineView)?.didLayoutSubViewsCompletions.append(layoutChangeCompletion)
         }
     }
 
