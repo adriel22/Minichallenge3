@@ -34,8 +34,6 @@ class ViewController: UIViewController {
         try? graph.addConnection(fromNode: node2, toNode: node4, withTitle: "action1")
         try? graph.addConnection(fromNode: node3, toNode: node5, withTitle: "action2")
 
-        print(graph.grid)
-
         return graph
     }()
 
@@ -75,7 +73,7 @@ class ViewController: UIViewController {
                     
                     try? self.graph.addConnection(fromNode: self.rootNode, toNode: node6, withTitle: "bla")
 
-                    self.graphView.reloadConnections()
+//                    self.graphView.reloadData()
 
 //                    self.graphView.addLine(inPosition: 3)
 //                    self.graphView.removeColumn(atPosition: 4)

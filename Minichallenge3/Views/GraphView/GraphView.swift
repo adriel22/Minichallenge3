@@ -108,22 +108,22 @@ class GraphView: UIScrollView {
             return
         }
 
-        for lineView in self.lineViews {
-            lineView.removeFromSuperview()
-        }
+        containerView.removeFromSuperview()
+        self.containerView = NotifierView()
+        addSubview(containerView)
+        setConstraints()
 
         build(datasource: datasource, inContainerView: containerView)
     }
-    
+
     func reloadConnections() {
         guard let datasource = self.datasource else {
             return
         }
-        
+
         connector.removeConnectors(fromContainerView: containerView)
         connector.build(withDatasource: datasource, graphView: self, andContainerView: containerView)
     }
-    
 
     /// It builds the graphView and set it constraints.
     ///
@@ -339,16 +339,20 @@ class GraphView: UIScrollView {
         }
         return lastItemView.rightAnchor
     }
-
-    override func didMoveToSuperview() {
+    
+    private func setConstraints() {
         containerView.translatesAutoresizingMaskIntoConstraints = false
-
+        
         NSLayoutConstraint.activate([
             containerView.topAnchor.constraint(equalTo: self.topAnchor),
             containerView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             containerView.leftAnchor.constraint(equalTo: self.leftAnchor),
             containerView.rightAnchor.constraint(equalTo: self.rightAnchor)
-        ])
+            ])
+    }
+
+    override func didMoveToSuperview() {
+        setConstraints()
     }
 
     func itemView(forPosition position: GridPosition) -> GraphItemView? {

@@ -76,6 +76,7 @@ class GraphViewConnector {
                 )
             })
         }
+
         return connections
     }
 
@@ -155,6 +156,7 @@ class GraphViewConnector {
                 guard self != nil else {
                     return
                 }
+
                 let bendDistance = connectorMargins +
                     (connectorsOffset * CGFloat(connection.originPosition.xPosition))
 
@@ -175,5 +177,6 @@ class GraphViewConnector {
         for connector in currentItemConnectors {
             connector.lineLayer?.removeFromSuperlayer()
         }
+        currentItemConnectors = []
     }
 }

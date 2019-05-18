@@ -66,8 +66,7 @@ class GraphLineView: NotifierView {
 
         let currentRightAnchor = rightAnchor.constraint(lessThanOrEqualTo: containerView.rightAnchor)
         self.oldLineRightAnchor = currentRightAnchor
-        
-        
+
         NSLayoutConstraint.activate([
             currentTopAnchor,
             currentLeftAnchor,
@@ -83,9 +82,7 @@ class GraphLineView: NotifierView {
         }
 
         let currentBottomAnchor = containerView.bottomAnchor.constraint(equalTo: bottomAnchor)
-//        let currentRightAnchor = containerView.rightAnchor.constraint(equalTo: rightAnchor)
         self.oldLineBottomAnchor = currentBottomAnchor
-//        self.oldLineRightAnchor = currentRightAnchor
 
         NSLayoutConstraint.activate([
             currentBottomAnchor
@@ -97,11 +94,6 @@ class GraphLineView: NotifierView {
             oldBottomAnchor.isActive = false
             removeConstraint(oldBottomAnchor)
         }
-//
-//        if let oldRightAnchor = self.oldLineRightAnchor {
-//            oldRightAnchor.isActive = false
-//            removeConstraint(oldRightAnchor)
-//        }
     }
 
     func removeOpenConstraints() {
@@ -114,7 +106,7 @@ class GraphLineView: NotifierView {
             olfLeftAnchor.isActive = false
             removeConstraint(olfLeftAnchor)
         }
-        
+
         if let oldRightAnchor = self.oldLineRightAnchor {
             oldRightAnchor.isActive = false
             removeConstraint(oldRightAnchor)
