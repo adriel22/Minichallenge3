@@ -96,7 +96,6 @@ class CardView: GraphItemView, CardViewProtocol {
         textView.heightAnchor.constraint(greaterThanOrEqualToConstant: 100).isActive = true
         
         textView.tag = 1
-
     }
 
     private func setOpacityLayer() {
@@ -113,6 +112,7 @@ class CardView: GraphItemView, CardViewProtocol {
         opacityView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         opacityView.tag = 1
     }
+
     private func setIcon(withImage image: UIImage, andColor color: UIColor) {
         let icon = UIImageView(image: image)
         icon.contentMode = .scaleAspectFit
@@ -128,6 +128,7 @@ class CardView: GraphItemView, CardViewProtocol {
         icon.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         icon.tag = 1
     }
+
     private func addShadow() {
         self.layer.masksToBounds = false
         self.layer.shadowOffset = CGSize(width: 0, height: 0)

@@ -6,8 +6,8 @@
 //  Copyright © 2019 Adriel Freire. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-protocol CardViewProtocol {
+protocol CardViewProtocol: GraphItemView {
     func setup(withViewModel viewModel: HistoryNodeViewModel)
 }

@@ -122,7 +122,7 @@ class GraphViewOperator {
               let newItem = context.datasource.gridNodeView(forGraphView: context.graphView, inPosition: position) else {
             return
         }
-
+        
         let currentItem = context.graphView.lineViews[position.yPosition].itemViews[position.xPosition]
 
         guard currentItem is GraphItemEmptyView || removingCurrent else {
@@ -138,6 +138,16 @@ class GraphViewOperator {
             withDatasource: context.datasource,
             andGraphView: context.graphView,
             completion: completion
+        )
+        
+        guard let delegate = context.graphView.graphDelegate else {
+            return
+        }
+        
+        newItem.eventHandler = GraphViewEventHandler(
+            withItemView: newItem,
+            inPosition: position,
+            andGraphDelegate: delegate
         )
     }
 
@@ -442,6 +452,12 @@ class GraphViewOperator {
             atLineWithIndex: position,
             usingDatasource: datasource
         )
+        
+        guard let delegate = graphView.graphDelegate else {
+            return
+        }
+
+        graphView.setEventHandlers(delegate: delegate)
     }
 
     private func setConnections(withContext context: Context, position: GridPosition, andConnectorMargins connectorMargin: CGFloat) {

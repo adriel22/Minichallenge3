@@ -51,6 +51,10 @@ class HistoryGraphViewModel {
         })
     }
     
+    func nodeWasSelected() {
+        
+    }
+    
     func optionWasSelected(atPositon positon: Int) {
         switch positon {
         case 0:

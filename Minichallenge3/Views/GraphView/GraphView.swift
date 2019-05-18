@@ -16,10 +16,21 @@ class GraphView: UIScrollView {
 
     var graphOperator = GraphViewOperator()
 
-    var datasource: GraphViewDatasource? {
+    weak var datasource: GraphViewDatasource? {
         didSet {
             if let datasource = datasource {
                 build(datasource: datasource, inContainerView: containerView)
+                if let delegate = graphDelegate {
+                    self.setEventHandlers(delegate: delegate)
+                }
+            }
+        }
+    }
+    
+    weak var graphDelegate: GraphViewDelegate? {
+        didSet {
+            if let delegate = graphDelegate {
+                setEventHandlers(delegate: delegate)
             }
         }
     }
@@ -114,6 +125,10 @@ class GraphView: UIScrollView {
         setConstraints()
 
         build(datasource: datasource, inContainerView: containerView)
+        guard let delegate = self.graphDelegate else {
+            return
+        }
+        setEventHandlers(delegate: delegate)
     }
 
     func reloadConnections() {
@@ -123,6 +138,23 @@ class GraphView: UIScrollView {
 
         connector.removeConnectors(fromContainerView: containerView)
         connector.build(withDatasource: datasource, graphView: self, andContainerView: containerView)
+    }
+    
+    func setEventHandlers(delegate: GraphViewDelegate) {
+        lineViews.forEach { (_, currentLineView, currentLineIndex) in
+            currentLineView.itemViews.forEach(completion: { (_, currentItemView, currentItemIndex) in
+                let itemPosition = (yPosition: currentLineIndex, xPosition: currentItemIndex)
+                guard currentItemView.eventHandler == nil, !(currentItemView is GraphItemEmptyView) else {
+                    return
+                }
+                
+                currentItemView.eventHandler = GraphViewEventHandler(
+                    withItemView: currentItemView,
+                    inPosition: itemPosition,
+                    andGraphDelegate: delegate
+                )
+            })
+        }
     }
 
     /// It builds the graphView and set it constraints.
@@ -192,12 +224,9 @@ class GraphView: UIScrollView {
     /// - Parameters:
     ///   - nodeViews: the node views to insert
     ///   - lineView: the nodes parent line
-    internal func insert(nodeViews: [UIView?], inLineView lineView: UIView) {
+    internal func insert(nodeViews: [GraphItemView?], inLineView lineView: UIView) {
         nodeViews.forEach { (nodeView) in
-            guard let nodeView = nodeView else {
-                lineView.addSubview(GraphItemEmptyView())
-                return
-            }
+            let nodeView = nodeView ?? GraphItemEmptyView()
 
             lineView.addSubview(nodeView)
         }
@@ -277,7 +306,7 @@ class GraphView: UIScrollView {
 
             let itemLeftAnchor = itemViewLeftAnchor(forLastItemView: lastItemView, inLineView: lineView)
             let itemWidthAnchor = datasource.columnWidth(forGraphView: self, inXPosition: currentColumnIndex)
-
+            
             currentItemView.setConstraintsFor(
                 leftAnchor: itemLeftAnchor,
                 widthAnchor: itemWidthAnchor,

@@ -12,7 +12,7 @@ import UIKit
 typealias GridSize = (width: Int, height: Int)
 public typealias GridPosition = (yPosition: Int, xPosition: Int)
 
-protocol GraphViewDatasource {
+protocol GraphViewDatasource: AnyObject {
 
     func gridSize(forGraphView graphView: GraphView) -> GridSize
     func gridNodeView(forGraphView graphView: GraphView, inPosition position: GridPosition) -> GraphItemView?

@@ -22,6 +22,7 @@ class HistoryGraphViewController: UIViewController {
 
         graphView.translatesAutoresizingMaskIntoConstraints = false
         graphView.datasource = self
+        graphView.graphDelegate = self
 
         return graphView
     }()
@@ -60,7 +61,7 @@ class HistoryGraphViewController: UIViewController {
             graphView.rightAnchor.constraint(equalTo: view.rightAnchor),
             graphView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ]
-        
+
         NSLayoutConstraint.activate(constraints)
     }
     
@@ -68,9 +69,22 @@ class HistoryGraphViewController: UIViewController {
         let history = RAMHistoryDAO()
         return history.get(elementWithID: 0)
     }
+    
+    func cardForNodeType(_ nodeType: HistoryGraphViewModelNodeType) -> CardViewProtocol {
+        switch nodeType {
+        case .normal:
+            return CardView()
+        case .shortcut:
+            return CardView()
+        }
+    }
 }
 
-extension HistoryGraphViewController: GraphViewDatasource {
+extension HistoryGraphViewController: GraphViewDatasource, GraphViewDelegate {
+    func itemWasSelectedAt(postion: GridPosition) {
+        
+    }
+    
     func connections(forGraphView graphView: GraphView, fromItemAtPosition itemPosition: GridPosition) -> [GridPosition] {
         return viewModel.gridConnections(fromPositionGridPosition: itemPosition)
     }
@@ -80,16 +94,17 @@ extension HistoryGraphViewController: GraphViewDatasource {
     }
     
     func gridNodeView(forGraphView graphView: GraphView, inPosition position: GridPosition) -> GraphItemView? {
-        guard let cellViewModel = viewModel.viewModelForNode(atPosition: position) else {
+        guard let cellViewModel = viewModel.viewModelForNode(atPosition: position),
+              let nodeType = cellViewModel.nodeType else {
        
             return nil
         }
 
-        let view = CardView.init()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.setup(withViewModel: cellViewModel)
+        let card = cardForNodeType(nodeType)
+        card.translatesAutoresizingMaskIntoConstraints = false
+        card.setup(withViewModel: cellViewModel)
 
-        return view
+        return card
     }
     
     func columnWidth(forGraphView graphView: GraphView, inXPosition xPosition: Int) -> CGFloat {

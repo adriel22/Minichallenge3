@@ -12,13 +12,27 @@ class HistoryNodeViewModel {
     private var historyGraph: HistoryGraph
     private var historyNode: HistoryNodeProtocol
     var currentState: HistoryGraphState
+
     var nodeResume: String? {
         return historyNode.resume ?? historyNode.text
     }
-    
+
+    var nodeType: HistoryGraphViewModelNodeType? {
+        switch historyNode {
+        case is HistoryNode:
+            return .normal
+        case is HistoryShortcut:
+            return .shortcut
+        default:
+            return nil
+        }
+    }
+
     init(withHistoryGraph historyGraph: HistoryGraph, andHistoryNode historyNode: HistoryNodeProtocol, withState state: HistoryGraphState) {
         self.historyGraph = historyGraph
         self.historyNode = historyNode
         self.currentState = state
     }
+    
+    
 }

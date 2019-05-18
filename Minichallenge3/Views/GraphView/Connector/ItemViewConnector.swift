@@ -68,7 +68,7 @@ class ItemViewConnector {
 
         let connectorLayer = CAShapeLayer()
         connectorLayer.path = bezierPath.cgPath
-        connectorLayer.strokeColor = UIColor.green.cgColor
+        connectorLayer.strokeColor = UIColor(color: .gray).cgColor
         connectorLayer.lineWidth = lineWidth
         connectorLayer.fillColor = UIColor.clear.cgColor
 
