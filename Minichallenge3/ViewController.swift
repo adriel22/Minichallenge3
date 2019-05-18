@@ -123,9 +123,11 @@ extension ViewController: GraphViewDatasource {
             return nil
         }
 
-        let view = GraphItemView.init()
-        view.backgroundColor = UIColor.red
+//        let view = GraphItemView.init()
+//        view.backgroundColor = UIColor.red
+        let view = CardView.init()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.setCardText("Certo dia, Jurema descobriu uma fofoca super intrigante. Porém, contudo, todavia, entretanto, ela está receosa em contá-la para sua mais que amiga, sua friend, Marivalda. E aí você contaria?")
 
 //        if position.xPosition == 1 && position.yPosition == 3 {
 //            view.backgroundColor = UIColor.green

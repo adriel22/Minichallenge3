@@ -12,6 +12,7 @@ import UIKit
 // MARK: - Extension for initialize a color with hex value
 extension UIColor {
 
+
     /// Init for int RGBA values
     ///
     /// - Parameters:
@@ -23,9 +24,10 @@ extension UIColor {
         assert(red >= 0 && red <= 255, "Invalid red component")
         assert(green >= 0 && green <= 255, "Invalid green component")
         assert(blue >= 0 && blue <= 255, "Invalid blue component")
-
+        
         self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: CGFloat(alpha))
     }
+
 
     /// Init for hex value
     ///
@@ -44,20 +46,4 @@ extension UIColor {
     convenience init(color: AppColors) {
         self.init(rgb: color.rawValue)
     }
-}
-
-extension UIView {
-    func round(radius: CGFloat) {
-        layer.cornerRadius = radius
-        layer.masksToBounds = true
-    }
-}
-
-enum AppColors: Int {
-    case darkerBlue = 0x020026
-    case darkBlue = 0x151E3F
-    case red = 0xAD343E
-    case green = 0x93C176
-    case purpleWhite = 0xFFFAFF
-    case yellowWhite = 0xFFFCF4
 }

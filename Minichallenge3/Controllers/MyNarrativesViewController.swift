@@ -22,9 +22,8 @@ class MyNarrativesViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
 
-        let nib = UINib(nibName: "ExpandableTableViewCell", bundle: .main)
-        tableView.register(nib, forCellReuseIdentifier: "cell")
         tableView.scrollToRow(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
+        tableView.register(ExpandableTableViewCell.self, forCellReuseIdentifier: "cell")
 
     }
     override func loadView() {

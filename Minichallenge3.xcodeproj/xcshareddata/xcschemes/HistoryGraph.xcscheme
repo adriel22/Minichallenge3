@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D06E8A078882A92AD768396125729DAA"
-               BuildableName = "Pods_Minichallenge3.framework"
-               BlueprintName = "Pods-Minichallenge3"
-               ReferencedContainer = "container:Pods.xcodeproj">
+               BlueprintIdentifier = "E3C030C0228478EB00AD53E0"
+               BuildableName = "HistoryGraph.framework"
+               BlueprintName = "HistoryGraph"
+               ReferencedContainer = "container:Minichallenge3.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,10 +45,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D06E8A078882A92AD768396125729DAA"
-            BuildableName = "Pods_Minichallenge3.framework"
-            BlueprintName = "Pods-Minichallenge3"
-            ReferencedContainer = "container:Pods.xcodeproj">
+            BlueprintIdentifier = "E3C030C0228478EB00AD53E0"
+            BuildableName = "HistoryGraph.framework"
+            BlueprintName = "HistoryGraph"
+            ReferencedContainer = "container:Minichallenge3.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -60,6 +60,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "E3C030C0228478EB00AD53E0"
+            BuildableName = "HistoryGraph.framework"
+            BlueprintName = "HistoryGraph"
+            ReferencedContainer = "container:Minichallenge3.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

@@ -14,6 +14,8 @@ public class HistoryNodesGrid: CustomStringConvertible {
     public var graphHeight: Int
     weak var graph: HistoryGraph?
 
+    public weak var delegate: HistoryGridDelegate?
+
     lazy var grid: [[HistoryNodeProtocol?]] = {
         let gridLine = [HistoryNodeProtocol?](repeating: nil, count: graphWidth)
         let grid = [[HistoryNodeProtocol?]](repeating: gridLine, count: graphHeight)
@@ -60,6 +62,8 @@ public class HistoryNodesGrid: CustomStringConvertible {
         })
 
         graphWidth += 1
+
+        delegate?.addedColumToGrid(inPosition: 0)
     }
 
     /// add a column to the end of the grid
@@ -69,6 +73,7 @@ public class HistoryNodesGrid: CustomStringConvertible {
         }
 
         graphWidth += 1
+        delegate?.addedColumToGrid(inPosition: graphWidth)
     }
 
     /// add a line in the vertical end of the grid
@@ -76,6 +81,8 @@ public class HistoryNodesGrid: CustomStringConvertible {
 
         grid.append([HistoryNodeProtocol?].init(repeating: nil, count: graphWidth))
         graphHeight += 1
+
+        delegate?.addedLineToGrid(inPosition: graphHeight)
     }
 
     /// Move a node to the given position. Only works if it parent is nill, and it has no connections.
@@ -122,10 +129,17 @@ public class HistoryNodesGrid: CustomStringConvertible {
             grid[node.positionY][node.positionX] = nil
         }
 
+        let oldPosition = (node.positionX, node.positionY)
+        let newPosition = (positionX, positionY)
+
+        delegate?.movedNodeToPosition(fromPosition: oldPosition, toPosition: newPosition)
+
         node.positionX = positionX
         node.positionY = positionY
 
         grid[positionY][positionX] = node
+
+
     }
 
     /// Move a node to bellow of other.
