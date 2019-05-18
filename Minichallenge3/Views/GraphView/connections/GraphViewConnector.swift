@@ -12,6 +12,8 @@ typealias Connection = (originPosition: GridPosition, destinyPosition: GridPosit
 
 /// A class responsible for connect the itemViews of a graphView
 class GraphViewConnector {
+    
+    var currentItemConnectors: [ItemViewConnector] = []
 
     /// Place the connector views in the graph containerView
     ///
@@ -148,34 +150,43 @@ class GraphViewConnector {
             )
 
             originItemView.connectors.append(itemConnector)
+            self.currentItemConnectors.append(itemConnector)
 
             let layoutChangeCompletion = {
-
+                let posForOrigin = originItemView.convert(originItemView.bounds.origin, to: containerView)
+                let posForDestiny = destinyItemView.convert(destinyItemView.bounds.origin, to: containerView)
                 let positionInContainerForOrigin = originLineView.convert(originItemView.center, to: containerView)
                 let positionInContainerForDestiny = destinyLineView.convert(destinyItemView.center, to: containerView)
+//                if posForOrigin.x.isEqual(to: 0.0) || posForDestiny.x.isEqual(to: 0.0) {
+//                    return
+//                }
+//                print(positionInContainerForOrigin.x, positionInContainerForDestiny.x, posForOrigin.x, posForDestiny.x )
 
-                let direction = positionInContainerForOrigin.x > positionInContainerForDestiny.x ?
-                    ItemViewConnectorDirection.left :
-                    ItemViewConnectorDirection.right
+//                let direction = posForOrigin.x > posForDestiny.x ?
+//                    ItemViewConnectorDirection.left :
+//                    ItemViewConnectorDirection.right
 
                 /// The bendDistance is the distance from the originLineView to the begin of the connector view
                 let bendDistance = connectorMargins +
                     (connectorsOffset * CGFloat(connection.originPosition.xPosition))
 
-                itemConnector.setConstraints(
-                    fromOriginItem: originItemView, toDestinyItem: destinyItemView,
-                    withBendDistance: bendDistance,
-                    andDirection: direction
-                )
+                itemConnector.createLine(fromPoint: posForOrigin, toPoint: posForDestiny, inContainerView: containerView)
+
+//                itemConnector.setConstraints(
+//                    fromOriginItem: originItemView, toDestinyItem: destinyItemView,
+//                    withBendDistance: bendDistance,
+//                    andDirection: direction
+//                )
             }
 
             GraphLineView.waitForSubviewLayout(line1: originLineView, line2: destinyLineView, completion: layoutChangeCompletion)
             GraphItemView.waitForSubviewLayout(item1: originItemView, item2: destinyItemView, completion: layoutChangeCompletion)
-
+            destinyItemView.didLayoutSubViewsCompletions.append(layoutChangeCompletion)
+            originItemView.didLayoutSubViewsCompletions.append(layoutChangeCompletion)
             originLineView.didLayoutSubViewsCompletions.append(layoutChangeCompletion)
             destinyLineView.didLayoutSubViewsCompletions.append(layoutChangeCompletion)
 
-//            (containerView as? GraphLineView)?.didLayoutSubViewsCompletions.append(layoutChangeCompletion)
+            (containerView as? GraphLineView)?.didLayoutSubViewsCompletions.append(layoutChangeCompletion)
         }
     }
 

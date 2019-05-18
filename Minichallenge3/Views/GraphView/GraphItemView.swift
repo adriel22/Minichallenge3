@@ -50,8 +50,10 @@ class GraphItemView: UIView {
         let currentLeftAnchor = self.leftAnchor.constraint(equalTo: leftAnchor, constant: columnMargin)
         self.oldLeftAnchor = currentLeftAnchor
 
+        let width = self.widthAnchor.constraint(equalToConstant: widthAnchor)
+//        width.priority = .defaultHigh
         NSLayoutConstraint.activate([
-            self.widthAnchor.constraint(equalToConstant: widthAnchor),
+            width,
             currentLeftAnchor,
             self.topAnchor.constraint(equalTo: lineView.topAnchor),
             self.bottomAnchor.constraint(lessThanOrEqualTo: lineView.bottomAnchor)

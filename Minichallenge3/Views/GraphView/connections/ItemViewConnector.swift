@@ -22,6 +22,8 @@ class ItemViewConnector {
     var lineWidth: CGFloat
 
     var allConstraints: [NSLayoutConstraint] = []
+    
+    var lineLayer: CAShapeLayer?
 
     /// Initialize the view components of the connection
     ///
@@ -56,7 +58,7 @@ class ItemViewConnector {
 
     func removeAllConstraints() {
         for constraint in allConstraints {
-            constraint.isActive = false
+            constraint .isActive = false
             //remover
         }
     }
@@ -90,28 +92,76 @@ class ItemViewConnector {
             secondItemConnector.centerXAnchor.constraint(equalTo: destinyItem.centerXAnchor),
             secondItemConnector.bottomAnchor.constraint(equalTo: destinyLineView.topAnchor),
             secondItemConnector.widthAnchor.constraint(equalToConstant: lineWidth),
-            secondItemConnector.topAnchor.constraint(equalTo: bendItemConnector.bottomAnchor),
+            secondItemConnector.topAnchor.constraint(equalTo: firstItemConnector.bottomAnchor, constant: CGFloat(-3)),
 
             bendItemConnector.heightAnchor.constraint(equalToConstant: lineWidth),
-            bendItemConnector.topAnchor.constraint(equalTo: firstItemConnector.bottomAnchor)
+//            bendItemConnector.widthAnchor.constraint(equalToConstant: 50)
         ]
+
+//        switch direction {
+//        case .left:
+//            constraints.append(contentsOf: [
+//                bendItemConnector.leftAnchor.constraint(equalTo: secondItemConnector.leftAnchor),
+//                bendItemConnector.rightAnchor.constraint(equalTo: firstItemConnector.rightAnchor)
+//            ])
+//        case .right:
+//            constraints.append(contentsOf: [
+//                firstItemConnector.leftAnchor.constraint(equalTo: bendItemConnector.leftAnchor),
+//                secondItemConnector.rightAnchor.constraint(equalTo: bendItemConnector.rightAnchor)
+//            ])
+//        }
 
         switch direction {
         case .left:
             constraints.append(contentsOf: [
-                bendItemConnector.leftAnchor.constraint(equalTo: secondItemConnector.leftAnchor),
-                bendItemConnector.rightAnchor.constraint(equalTo: firstItemConnector.rightAnchor)
+//                bendItemConnector.leftAnchor.constraint(equalTo: secondItemConnector.leftAnchor),
+//                bendItemConnector.rightAnchor.constraint(equalTo: firstItemConnector.rightAnchor)
+                secondItemConnector.trailingAnchor.constraint(equalTo: bendItemConnector.leadingAnchor),
+                bendItemConnector.topAnchor.constraint(equalTo: secondItemConnector.topAnchor),
+                bendItemConnector.trailingAnchor.constraint(equalTo: firstItemConnector.leadingAnchor)
+
             ])
+
+            secondItemConnector.backgroundColor = .red
+            firstItemConnector.backgroundColor = .red
+            bendItemConnector.backgroundColor = .red
         case .right:
             constraints.append(contentsOf: [
-                bendItemConnector.leftAnchor.constraint(equalTo: firstItemConnector.leftAnchor),
-                bendItemConnector.rightAnchor.constraint(equalTo: secondItemConnector.rightAnchor)
+//                firstItemConnector.leftAnchor.constraint(equalTo: bendItemConnector.leftAnchor),
+//                secondItemConnector.rightAnchor.constraint(equalTo: bendItemConnector.rightAnchor)
+                bendItemConnector.topAnchor.constraint(equalTo: secondItemConnector.topAnchor),
+                bendItemConnector.leadingAnchor.constraint(equalTo: firstItemConnector.leadingAnchor),
+                bendItemConnector.trailingAnchor.constraint(equalTo: secondItemConnector.leadingAnchor)
             ])
+
+            secondItemConnector.backgroundColor = .blue
+            firstItemConnector.backgroundColor = .blue
+            bendItemConnector.backgroundColor = .blue
         }
 
         removeAllConstraints()
         self.allConstraints = constraints
-        NSLayoutConstraint.activate(constraints: constraints, withPriority: .defaultLow)
+//        NSLayoutConstraint.activate(constraints: constraints, withPriority: .defaultLow)
+        NSLayoutConstraint.activate(constraints)
+    }
+
+    func createLine(fromPoint point1: CGPoint, toPoint point2: CGPoint, inContainerView containerView: UIView) {
+        lineLayer?.removeFromSuperlayer()
+
+//        let bezierRect = CGRect(fromPoint: point1, toPoint: point2)
+        self.lineLayer?.removeFromSuperlayer()
+        let bezierPath = UIBezierPath()
+        bezierPath.move(to: point1)
+        bezierPath.addLine(to: point2)
+
+        let connectorLayer = CAShapeLayer()
+        connectorLayer.path = bezierPath.cgPath
+        connectorLayer.strokeColor = UIColor.green.cgColor
+        connectorLayer.fillColor = UIColor.green.cgColor
+        connectorLayer.lineWidth = lineWidth
+
+        containerView.layer.insertSublayer(connectorLayer, at: 0)
+        self.lineLayer = connectorLayer
     }
 
     required init?(coder aDecoder: NSCoder) {

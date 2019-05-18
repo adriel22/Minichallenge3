@@ -95,6 +95,13 @@ class GraphViewOperator {
 
         if isTheLastInTheItem {
             item2.setClosingConstraints()
+        } else {
+            let childItem = graphView.lineViews[position.yPosition].itemViews[position.xPosition + 1]
+            childItem.setConstraintsFor(
+                leftAnchor: item2.rightAnchor,
+                widthAnchor: columnWidth,
+                columnMargin: columnSpacing
+            )
         }
 
         animateViewInsertion(newLineView: item2)

@@ -12,6 +12,10 @@ extension CGPoint {
     public static func + (lhs: CGPoint, rhs: CGPoint) -> CGPoint {
         return CGPoint(x: lhs.x + rhs.x, y: lhs.y + rhs.y)
     }
+    
+    public static func - (lhs: CGPoint, rhs: CGPoint) -> CGPoint {
+        return CGPoint(x: lhs.x - rhs.x, y: lhs.y - rhs.y)
+    }
 
     public func addingToX(_ xAddition: CGFloat) -> CGPoint {
         return CGPoint(x: x + xAddition, y: y)
