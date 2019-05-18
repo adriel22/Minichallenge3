@@ -16,4 +16,3 @@ enum AppColors: Int {
     case purpleWhite = 0xFFFAFF
     case yellowWhite = 0xFFFCF4
 }
-
