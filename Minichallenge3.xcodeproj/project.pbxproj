@@ -14,7 +14,6 @@
 		E32A379E228B011300E2F8B1 /* MyNarrativesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32A379C228B011300E2F8B1 /* MyNarrativesView.swift */; };
 		E32A379F228B011300E2F8B1 /* CustomNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32A379D228B011300E2F8B1 /* CustomNavigation.swift */; };
 		E32A37A1228B013600E2F8B1 /* MyNarrativesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32A37A0228B013600E2F8B1 /* MyNarrativesViewController.swift */; };
-		E32A37A3228ED41C00E2F8B1 /* GraphConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32A37A2228ED41C00E2F8B1 /* GraphConnectionView.swift */; };
 		E32A37A5228ED44300E2F8B1 /* GraphItemEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32A37A4228ED44300E2F8B1 /* GraphItemEmptyView.swift */; };
 		E32A37A7228EE69E00E2F8B1 /* CGRect+init.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32A37A6228EE69E00E2F8B1 /* CGRect+init.swift */; };
 		E32A37AA229040B300E2F8B1 /* OperationAnimationStage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32A37A9229040B300E2F8B1 /* OperationAnimationStage.swift */; };
@@ -107,7 +106,6 @@
 		E32A379C228B011300E2F8B1 /* MyNarrativesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyNarrativesView.swift; sourceTree = "<group>"; };
 		E32A379D228B011300E2F8B1 /* CustomNavigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNavigation.swift; sourceTree = "<group>"; };
 		E32A37A0228B013600E2F8B1 /* MyNarrativesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyNarrativesViewController.swift; sourceTree = "<group>"; };
-		E32A37A2228ED41C00E2F8B1 /* GraphConnectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphConnectionView.swift; sourceTree = "<group>"; };
 		E32A37A4228ED44300E2F8B1 /* GraphItemEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphItemEmptyView.swift; sourceTree = "<group>"; };
 		E32A37A6228EE69E00E2F8B1 /* CGRect+init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+init.swift"; sourceTree = "<group>"; };
 		E32A37A9229040B300E2F8B1 /* OperationAnimationStage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationAnimationStage.swift; sourceTree = "<group>"; };
@@ -226,8 +224,8 @@
 			isa = PBXGroup;
 			children = (
 				E32A37A82290406D00E2F8B1 /* Operator */,
-				E381E2D4228A27EF00E25B78 /* connections */,
-				E331CCC8228846A40041379B /* delegate */,
+				E381E2D4228A27EF00E25B78 /* Connector */,
+				E331CCC8228846A40041379B /* Delegate */,
 				E331CCC52287B3070041379B /* GraphView.swift */,
 				E331CCD02288971D0041379B /* GraphLineView.swift */,
 				E381E2C22288D7B700E25B78 /* GraphItemView.swift */,
@@ -237,13 +235,13 @@
 			path = GraphView;
 			sourceTree = "<group>";
 		};
-		E331CCC8228846A40041379B /* delegate */ = {
+		E331CCC8228846A40041379B /* Delegate */ = {
 			isa = PBXGroup;
 			children = (
 				E331CCC9228846B20041379B /* GraphViewDelegate.swift */,
 				E331CCCB228846C20041379B /* GraphViewDatasource.swift */,
 			);
-			path = delegate;
+			path = Delegate;
 			sourceTree = "<group>";
 		};
 		E331CCCD228880100041379B /* Extensions */ = {
@@ -259,15 +257,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		E381E2D4228A27EF00E25B78 /* connections */ = {
+		E381E2D4228A27EF00E25B78 /* Connector */ = {
 			isa = PBXGroup;
 			children = (
 				E381E2C42288DC1D00E25B78 /* GraphViewConnector.swift */,
 				E381E2C62288DCC500E25B78 /* ItemViewConnector.swift */,
 				E381E2D22289C58F00E25B78 /* ItemViewConnectorDirection.swift */,
-				E32A37A2228ED41C00E2F8B1 /* GraphConnectionView.swift */,
 			);
-			path = connections;
+			path = Connector;
 			sourceTree = "<group>";
 		};
 		E3C030AA2282F14700AD53E0 /* Models */ = {
@@ -628,7 +625,6 @@
 				FCB35490228065AF00AB7ED2 /* ViewController.swift in Sources */,
 				E32A37AA229040B300E2F8B1 /* OperationAnimationStage.swift in Sources */,
 				E331CCCF2288802B0041379B /* Array+forearch.swift in Sources */,
-				E32A37A3228ED41C00E2F8B1 /* GraphConnectionView.swift in Sources */,
 				E32A37AE2290580500E2F8B1 /* Array+UIView.swift in Sources */,
 				E32A37A7228EE69E00E2F8B1 /* CGRect+init.swift in Sources */,
 				E381E2D32289C58F00E25B78 /* ItemViewConnectorDirection.swift in Sources */,

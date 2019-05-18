@@ -114,6 +114,16 @@ class GraphView: UIScrollView {
 
         build(datasource: datasource, inContainerView: containerView)
     }
+    
+    func reloadConnections() {
+        guard let datasource = self.datasource else {
+            return
+        }
+        
+        connector.removeConnectors(fromContainerView: containerView)
+        connector.build(withDatasource: datasource, graphView: self, andContainerView: containerView)
+    }
+    
 
     /// It builds the graphView and set it constraints.
     ///
@@ -131,6 +141,7 @@ class GraphView: UIScrollView {
 
         self.lineViews = lineViews
 
+        connector.removeConnectors(fromContainerView: containerView)
         connector.build(withDatasource: datasource, graphView: self, andContainerView: containerView)
     }
 

@@ -64,9 +64,14 @@ class GraphLineView: NotifierView {
         self.oldLineLeftAnchor = currentLeftAnchor
         self.leftMargin = leftMargin
 
+        let currentRightAnchor = rightAnchor.constraint(lessThanOrEqualTo: containerView.rightAnchor)
+        self.oldLineRightAnchor = currentRightAnchor
+        
+        
         NSLayoutConstraint.activate([
             currentTopAnchor,
             currentLeftAnchor,
+            currentRightAnchor,
             lineViewHeightConstraint
         ])
     }
@@ -78,13 +83,12 @@ class GraphLineView: NotifierView {
         }
 
         let currentBottomAnchor = containerView.bottomAnchor.constraint(equalTo: bottomAnchor)
-        let currentRightAnchor = containerView.rightAnchor.constraint(equalTo: rightAnchor)
+//        let currentRightAnchor = containerView.rightAnchor.constraint(equalTo: rightAnchor)
         self.oldLineBottomAnchor = currentBottomAnchor
-        self.oldLineRightAnchor = currentRightAnchor
+//        self.oldLineRightAnchor = currentRightAnchor
 
         NSLayoutConstraint.activate([
-            currentBottomAnchor,
-            currentRightAnchor
+            currentBottomAnchor
         ])
     }
 
@@ -93,11 +97,11 @@ class GraphLineView: NotifierView {
             oldBottomAnchor.isActive = false
             removeConstraint(oldBottomAnchor)
         }
-
-        if let oldRightAnchor = self.oldLineRightAnchor {
-            oldRightAnchor.isActive = false
-            removeConstraint(oldRightAnchor)
-        }
+//
+//        if let oldRightAnchor = self.oldLineRightAnchor {
+//            oldRightAnchor.isActive = false
+//            removeConstraint(oldRightAnchor)
+//        }
     }
 
     func removeOpenConstraints() {
@@ -109,6 +113,11 @@ class GraphLineView: NotifierView {
         if let olfLeftAnchor = self.oldLineLeftAnchor {
             olfLeftAnchor.isActive = false
             removeConstraint(olfLeftAnchor)
+        }
+        
+        if let oldRightAnchor = self.oldLineRightAnchor {
+            oldRightAnchor.isActive = false
+            removeConstraint(oldRightAnchor)
         }
     }
 }

@@ -13,10 +13,10 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var graphView: GraphView!
 
-    var graph: HistoryGraph = {
+    var rootNode = HistoryNode.init(withResume: "RootNode", text: "RootNode text", positionX: 2, andPositionY: 0)
+    
+    lazy var graph: HistoryGraph = {
         let graph = HistoryGraph.init(withName: "HistoryName", sinopse: "HistorySinopse", width: 3, andHeight: 3)
-
-        let rootNode = HistoryNode.init(withResume: "RootNode", text: "RootNode text", positionX: 2, andPositionY: 0)
 
         let node2 = HistoryNode.init(withResume: "Node 2", text: "Node2 Text", positionX: 1, andPositionY: 1)
         let node3 = HistoryNode.init(withResume: "Node 2", text: "Node2 Text", positionX: 2, andPositionY: 1)
@@ -44,7 +44,7 @@ class ViewController: UIViewController {
 
         graphView.datasource = self
 
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { (_) in
+        Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { (_) in
             let node6 = HistoryNode.init(withResume: "Node 2", text: "Node2 Text", positionX: 0, andPositionY: 1)
             try? self.graph.addNode(node6)
             print(self.graph.grid)
@@ -53,21 +53,42 @@ class ViewController: UIViewController {
 //            self.graphView.appendLine()
 //            self.graphView.addItem(atPositon: (xPosition: 1, yPosition: 3))
 //            print(self.graph.grid)
-            Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (_) in
+            Timer.scheduledTimer(withTimeInterval: 2, repeats: false, block: { (_) in
+                let node7 = HistoryNode.init(withResume: "Node 2", text: "Node2 Text", positionX: 1, andPositionY: 3)
+                try? self.graph.addNode(node7)
+                
+                let node8 = HistoryNode.init(withResume: "Node 2", text: "Node2 Text", positionX: 1, andPositionY: 2)
+                try? self.graph.addNode(node8)
+                
+                print(self.graph.grid)
+                self.graphView.appendLine()
+                self.graphView.addItem(atPositon: (xPosition: node7.positionX, yPosition: node7.positionY))
+                self.graphView.addItem(atPositon: (xPosition: node8.positionX, yPosition: node8.positionY))
+                
+//                self.graphView.reloadConnections()
+                
 //                self.graphView.removeItem(atPositon: (xPosition: 1, yPosition: 3))
 //                self.graphView.addColumn(inPosition: 0)
                 Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (_) in
+                    try? self.graph.addConnection(fromNode: node8, toNode: node7, withTitle: "bla")
+                    try? self.graph.addConnection(fromNode: node6, toNode: node8, withTitle: "bla")
+                    
+                    try? self.graph.addConnection(fromNode: self.rootNode, toNode: node6, withTitle: "bla")
+
+                    self.graphView.reloadConnections()
+
 //                    self.graphView.addLine(inPosition: 3)
 //                    self.graphView.removeColumn(atPosition: 4)
                 })
 //                self.graphView.addLine(inPosition: 3)
 //                self.graphView.addLine(inPosition: 3)
-//                Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (_) in
+                Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (_) in
+//                    self.graphView.addColumn(inPosition: 3)
 //                    self.graphView.addLine(inPosition: 2)
 //                    Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (_) in
 //                        self.graphView.addLine(inPosition: 3)
 //                    })
-//                })
+                })
             })
         }
     }
