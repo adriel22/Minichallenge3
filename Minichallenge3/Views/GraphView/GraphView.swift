@@ -10,9 +10,9 @@ import UIKit
 
 class GraphView: UIScrollView {
 
-    var containerView = UIView()
+    var containerView = GraphLineView()
 
-    var connector = GraphViewConnector()
+    var connector: GraphViewConnector = GraphViewConnector()
 
     var graphOperator = GraphViewOperator()
 
@@ -46,7 +46,7 @@ class GraphView: UIScrollView {
 
         self.connector = GraphViewConnector()
 
-        let context = (graphView: self, containerView: containerView, datasource: datasource)
+        let context = (graphView: self, containerView: containerView as UIView, datasource: datasource)
         contextCompletion(context) { [weak self] in
             guard let self = self else {
                 return
@@ -56,131 +56,50 @@ class GraphView: UIScrollView {
     }
 
     public func addLine(inPosition position: Int) {
-        guard let datasource = self.datasource else {
-            return
-        }
-
-        graphOperator.insertLine(
-            inPosition: position,
-            withContext: (
-                graphView: self,
-                containerView: containerView,
-                datasource: datasource
-            )
-        ) {
-            
+        prepareOperationContext { (context, finishedOperationCompletion) in
+            graphOperator.insertLine(inPosition: position, withContext: context, completion: finishedOperationCompletion)
         }
     }
 
     public func addColumn(inPosition position: Int) {
-        
         prepareOperationContext { (context, finishedOperationCompletion) in
-            graphOperator.insertColumn(
-                inPosition: position,
-                withContext: context,
-                completion: finishedOperationCompletion
-            )
+            graphOperator.insertColumn(inPosition: position, withContext: context, completion: finishedOperationCompletion)
         }
     }
 
     public func appendLine() {
-        guard let datasource = self.datasource else {
-            return
-        }
-
-        graphOperator.appendLine(
-            withContext: (
-                graphView: self,
-                containerView: containerView,
-                datasource: datasource
-            )
-        ) {
-            
+        prepareOperationContext { (context, finishedOperationCompletion) in
+            graphOperator.appendLine(withContext: context, completion: finishedOperationCompletion)
         }
     }
 
     public func appendColumn() {
-        guard let datasource = self.datasource else {
-            return
-        }
-
-        graphOperator.appendColumn(
-            withContext: (
-                graphView: self,
-                containerView: containerView,
-                datasource: datasource
-            )
-        ) {
-            
+        prepareOperationContext { (context, finishedOperationCompletion) in
+            graphOperator.appendColumn(withContext: context, completion: finishedOperationCompletion)
         }
     }
 
     public func removeLine(atPosition position: Int) {
-        guard let datasource = self.datasource else {
-            return
-        }
-
-        graphOperator.removeLine(
-            inPosition: position,
-            withContext: (
-                graphView: self,
-                containerView: containerView,
-                datasource: datasource
-            )
-        ) {
-            
+        prepareOperationContext { (context, finishedOperationCompletion) in
+            graphOperator.removeLine(inPosition: position, withContext: context, completion: finishedOperationCompletion)
         }
     }
 
     public func removeColumn(atPosition position: Int) {
-        guard let datasource = self.datasource else {
-            return
-        }
-
-        graphOperator.removeColumn(
-            inPosition: position,
-            withContext: (
-                graphView: self,
-                containerView: containerView,
-                datasource: datasource
-            )
-        ) {
-            
+        prepareOperationContext { (context, finishedOperationCompletion) in
+            graphOperator.removeColumn(inPosition: position, withContext: context, completion: finishedOperationCompletion)
         }
     }
 
     public func addItem(atPositon positon: GridPosition, removingCurrent: Bool = false) {
-        guard let datasource = self.datasource else {
-            return
-        }
-
-        graphOperator.addItem(
-            inPosition: positon,
-            withContext: (
-                graphView: self,
-                containerView: containerView,
-                datasource: datasource
-            ),
-            removingCurrent: false
-        ) {
-
+        prepareOperationContext { (context, finishedOperationCompletion) in
+            graphOperator.addItem(inPosition: positon, withContext: context, removingCurrent: removingCurrent, completion: finishedOperationCompletion)
         }
     }
 
     public func removeItem(atPositon positon: GridPosition) {
-        guard let datasource = self.datasource else {
-            return
-        }
-
-        graphOperator.removeItem(
-            inPosition: positon,
-            withContext: (
-                graphView: self,
-                containerView: containerView,
-                datasource: datasource
-            )
-        ) {
-            
+        prepareOperationContext { (context, finishedOperationCompletion) in
+            graphOperator.removeItem(inPosition: positon, withContext: context, completion: finishedOperationCompletion)
         }
     }
 
@@ -433,9 +352,5 @@ class GraphView: UIScrollView {
         }
 
         return lineView.itemViews[position.xPosition]
-    }
-    
-    func connectionMargin(forLineSpacing lineSpacing: CGFloat) -> CGFloat {
-        return connector.connectionMargin(forLineSpacing: lineSpacing)
     }
 }

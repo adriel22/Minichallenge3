@@ -12,7 +12,6 @@ class GraphViewAnimator {
     func animateViewInsertion(newLineView: UIView, completion: @escaping () -> Void) {
         newLineView.layer.opacity = 0
 
-        print("bla3")
         UIView.animate(withDuration: 0.2, animations: {
             newLineView.superview?.layoutIfNeeded()
         }, completion: { (_) in

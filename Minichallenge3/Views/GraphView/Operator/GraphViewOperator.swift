@@ -269,7 +269,7 @@ class GraphViewOperator {
             let defaultWidth = context.datasource.columnWidth(forGraphView: context.graphView, inXPosition: currentLine.itemViews.count)
             let columnMargin = context.datasource.columnSpacing(forGraphView: context.graphView)
             let defaultLineSpacing = context.datasource.lineSpacing(forGraphView: context.graphView)
-            let connectorMargins = context.graphView.connectionMargin(forLineSpacing: defaultLineSpacing)
+            let connectorMargins = context.graphView.connector.connectionMargin(forLineSpacing: defaultLineSpacing)
             let newItemView = loadItemView(
                 fromDatasource: context.datasource, inGraphView: context.graphView,
                 atPosition: currentGridPosition
@@ -380,7 +380,7 @@ class GraphViewOperator {
         let defaultWidthAnchor = context.datasource.columnWidth(forGraphView: context.graphView, inXPosition: position)
         let defaultLineSpacing = context.datasource.lineSpacing(forGraphView: context.graphView)
         let positionIsGreatherThenZero = position > 0
-        let connectorMargins = context.graphView.connectionMargin(forLineSpacing: defaultLineSpacing)
+        let connectorMargins = context.graphView.connector.connectionMargin(forLineSpacing: defaultLineSpacing)
 
         context.graphView.lineViews.forEach { (_, currentLine, currentLinePosition) in
             let parentItemFromPosition = positionIsGreatherThenZero ? currentLine.itemViews[position - 1] : nil
