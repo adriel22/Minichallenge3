@@ -40,8 +40,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let graph = HistoryGraph(withName: "Juremoids", sinopse: "blablabla", width: 3, andHeight: 3)
         try? graph.addNode(story)
         
-        let controller = DetailsViewController()
-        controller.viewModel = DetailsViewModel(story: story, graph: graph)
+//        let controller = DetailsViewController()
+//        controller.viewModel = DetailsViewModel(story: story, graph: graph)
+
+        let controller = HistoryGraphViewController()
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = UINavigationController(rootViewController: controller)

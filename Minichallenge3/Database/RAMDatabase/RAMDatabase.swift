@@ -18,7 +18,13 @@ class RAMDatabase {
         
         let rootNode = HistoryNode(withResume: "Chapeuzinho escolhe o caminho", text: "Você se depara com dois caminhos. Você escolhe o caminho curto ou o longo?", positionX: 2, andPositionY: 0)
         
+        let node2 = HistoryNode(withResume: "Ela escolheu o caminho curto e um lobo apareceu", text: "Um Lobo apareceu no caminho, o que você faz? ", positionX: 2, andPositionY: 1)
+        
         try? history.addNode(rootNode)
+        try? history.addNode(node2)
+        
+        
+        try? history.addConnection(fromNode: rootNode, toNode: node2, withTitle: "caminho curto")
         
         return history
     }()

@@ -32,5 +32,4 @@ class DetailsViewModel: NSObject {
         view.downnodeView.reload(withText: downnodeText)
         view.upnodeView.reload(withText: story.text)
     }
-
 }

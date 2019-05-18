@@ -15,16 +15,17 @@ enum States {
     case erase
     case empty
 }
-class CardView: GraphItemView {
+class CardView: GraphItemView, CardViewProtocol {
     private var state: States {
         didSet {
             resetCard()
         }
     }
-    private let textView: UITextView
+    private let textView: UILabel
 
     init() {
-        textView = UITextView()
+        textView = UILabel()
+        textView.numberOfLines = 0
         state = .normal
         super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         changeState(to: .normal)
@@ -84,7 +85,6 @@ class CardView: GraphItemView {
 
     private func setTextView() {
         textView.backgroundColor = UIColor.clear
-        textView.isEditable = false
         textView.textAlignment = .center
         textView.font = UIFont(name: "Baskerville", size: CGFloat(17))
 
@@ -93,7 +93,8 @@ class CardView: GraphItemView {
         textView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         textView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         textView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-
+        textView.heightAnchor.constraint(greaterThanOrEqualToConstant: 100).isActive = true
+        
         textView.tag = 1
 
     }
@@ -154,6 +155,7 @@ class CardView: GraphItemView {
             borderView.name = "borderView"
         }
     }
+
     private func resetCard() {
         self.subviews.forEach({if $0.tag == 1 {
             $0.removeFromSuperview()
@@ -165,5 +167,19 @@ class CardView: GraphItemView {
             $0.removeFromSuperlayer()
             }})
         self.layer.shadowOpacity = 0
+    }
+
+    func setup(withViewModel viewModel: HistoryNodeViewModel) {
+        switch viewModel.currentState {
+        case .normal:
+            changeState(to: .normal)
+        case .adding:
+            changeState(to: .create)
+        case .connecting:
+            changeState(to: .empty)
+        case .removing:
+            changeState(to: .erase)
+        }
+        self.textView.text = viewModel.nodeResume
     }
 }
