@@ -46,15 +46,17 @@ class GraphViewOperator {
         return positionIsValid
     }
 
-    func animateViewInsertion(newLineView: UIView) {
+    func animateViewInsertion(newLineView: UIView, completion: @escaping () -> Void) {
         newLineView.layer.opacity = 0
 
         UIView.animate(withDuration: 0.2, animations: {
             newLineView.superview?.layoutIfNeeded()
         }, completion: { (_) in
-            UIView.animate(withDuration: 0.2) {
+            UIView.animate(withDuration: 0.2, animations: {
                 newLineView.layer.opacity = 1
-            }
+            }, completion: { (_) in
+                completion()
+            })
         })
     }
 
@@ -69,7 +71,8 @@ class GraphViewOperator {
         item1: GraphItemView, andItem2 item2: GraphItemView,
         atPosition position: GridPosition,
         withDatasource datasoure: GraphViewDatasource,
-        andGraphView graphView: GraphView) {
+        andGraphView graphView: GraphView,
+        completion: @escaping () -> Void) {
 
         let columnWidth  = datasoure.columnWidth(forGraphView: graphView, inXPosition: position.xPosition)
         let columnSpacing = datasoure.columnSpacing(forGraphView: graphView)
@@ -104,14 +107,15 @@ class GraphViewOperator {
             )
         }
 
-        animateViewInsertion(newLineView: item2)
+        animateViewInsertion(newLineView: item2, completion: completion)
     }
 
     public func removeItem(
         inPosition position: GridPosition,
         inContainerView containerView: UIView,
         withDatasource datasoure: GraphViewDatasource,
-        andGraphView graphView: GraphView) {
+        andGraphView graphView: GraphView,
+        completion: @escaping () -> Void) {
 
         guard isValidColumn(position: position.xPosition, inGraphView: graphView),
             isValidLine(position: position.yPosition, inGraphView: graphView) else {
@@ -126,7 +130,8 @@ class GraphViewOperator {
             andItem2: newItem,
             atPosition: position,
             withDatasource: datasoure,
-            andGraphView: graphView
+            andGraphView: graphView,
+            completion: completion
         )
     }
 
@@ -135,7 +140,8 @@ class GraphViewOperator {
         inContainerView containerView: UIView,
         withDatasource datasoure: GraphViewDatasource,
         andGraphView graphView: GraphView,
-        removingCurrent: Bool) {
+        removingCurrent: Bool,
+        completion: @escaping () -> Void) {
 
         guard isValidColumn(position: position.xPosition, inGraphView: graphView),
               isValidLine(position: position.yPosition, inGraphView: graphView),
@@ -154,7 +160,8 @@ class GraphViewOperator {
             andItem2: newItem,
             atPosition: position,
             withDatasource: datasoure,
-            andGraphView: graphView
+            andGraphView: graphView,
+            completion: completion
         )
     }
 
@@ -252,7 +259,8 @@ class GraphViewOperator {
     public func appendLine(
         inContainerView containerView: UIView,
         withDataSource datasource: GraphViewDatasource,
-        andGraphView graphView: GraphView) {
+        andGraphView graphView: GraphView,
+        completion: @escaping () -> Void) {
 
         let lastLine = graphView.lineViews.last
         let newLineView = GraphLineView()
@@ -286,7 +294,7 @@ class GraphViewOperator {
             usingDatasource: datasource
         )
 
-        animateViewInsertion(newLineView: newLineView)
+        animateViewInsertion(newLineView: newLineView, completion: completion)
     }
 
     func appendColumn(
@@ -300,7 +308,7 @@ class GraphViewOperator {
             let defaultWidth = datasource.columnWidth(forGraphView: graphView, inXPosition: currentLine.itemViews.count)
             let columnMargin = datasource.columnSpacing(forGraphView: graphView)
             let defaultLineSpacing = datasource.lineSpacing(forGraphView: graphView)
-            let connectorMargins = graphView.connector.connectionMargin(forLineSpacing: defaultLineSpacing)
+            let connectorMargins = graphView.connector?.connectionMargin(forLineSpacing: defaultLineSpacing) ?? 0
             let newItemView = loadItemView(
                 fromDatasource: datasource, inGraphView: graphView,
                 atPosition: currentGridPosition
@@ -334,7 +342,8 @@ class GraphViewOperator {
         inPosition position: Int,
         inContainerView containerView: UIView,
         withDataSource datasource: GraphViewDatasource,
-        andGraphView graphView: GraphView) {
+        andGraphView graphView: GraphView,
+        completion: @escaping () -> Void) {
 
         guard isValidLine(position: position, inGraphView: graphView) else {
             return
@@ -389,7 +398,7 @@ class GraphViewOperator {
             usingDatasource: datasource
         )
 
-        animateViewInsertion(newLineView: newLineView)
+        animateViewInsertion(newLineView: newLineView, completion: completion)
     }
 
     func loadItemView(
@@ -412,7 +421,8 @@ class GraphViewOperator {
         inPosition position: Int,
         inContainerView containerView: UIView,
         withDataSource datasource: GraphViewDatasource,
-        andGraphView graphView: GraphView) {
+        andGraphView graphView: GraphView,
+        completion: @escaping () -> Void) {
 
         guard isValidLine(position: position, inGraphView: graphView) else {
             return
@@ -422,7 +432,7 @@ class GraphViewOperator {
         let defaultWidthAnchor = datasource.columnWidth(forGraphView: graphView, inXPosition: position)
         let defaultLineSpacing = datasource.lineSpacing(forGraphView: graphView)
         let positionIsGreatherThenZero = position > 0
-        let connectorMargins = graphView.connector.connectionMargin(forLineSpacing: defaultLineSpacing)
+        let connectorMargins = graphView.connector?.connectionMargin(forLineSpacing: defaultLineSpacing) ?? 0
 
         graphView.lineViews.forEach { (_, currentLine, currentLinePosition) in
             let parentItemFromPosition = positionIsGreatherThenZero ? currentLine.itemViews[position - 1] : nil
@@ -458,7 +468,7 @@ class GraphViewOperator {
                 andContainerView: containerView
             )
 
-            animateViewInsertion(newLineView: newItemView)
+            animateViewInsertion(newLineView: newItemView, completion: completion)
         }
     }
 
@@ -494,18 +504,18 @@ class GraphViewOperator {
 
         let numberOfColumns = datasource.gridSize(forGraphView: graphView).width
 
-        graphView.connector.addConnectionViews(
-            fromConnections: graphView.connector.findConnection(
+        graphView.connector?.addConnectionViews(
+            fromConnections: graphView.connector?.findConnection(
                 atPosition: position,
                 withDatasource: datasource,
-                andGraphView: graphView),
+                andGraphView: graphView) ?? [],
             withConnectorMargins: connectorMargin,
-            connectorsOffset: graphView.connector.itemConnectorsOffset(
+            connectorsOffset: graphView.connector?.itemConnectorsOffset(
                 withNumberOfColumns: numberOfColumns,
                 connectorMargins: connectorMargin,
                 datasource: datasource,
                 andGraphView: graphView
-            ),
+            ) ?? 0,
             containerView: containerView,
             andGraphView: graphView
         )
