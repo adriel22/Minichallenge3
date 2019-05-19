@@ -9,7 +9,7 @@
 import UIKit
 import HistoryGraph
 
-class DetailsViewModel: NSObject {
+class DetailsViewModel: NSObject, ViewModelProtocol {
     var story: HistoryNode
     var graph: HistoryGraph
     
@@ -25,7 +25,8 @@ class DetailsViewModel: NSObject {
         node.text = text
     }
     
-    func update(_ view: DetailsViewController) {
+    func update(_ view: UIViewController) {
+        guard let view = view as? DetailsViewController else { return }
         var branches = story.connections
         let destinyNode = !branches.isEmpty ? branches[view.selected].destinyNode : nil
         let downnodeText = destinyNode?.text

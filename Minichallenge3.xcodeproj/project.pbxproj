@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C200C2D228D9BA4002F7FAF /* PresentationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C200C2C228D9BA4002F7FAF /* PresentationViewModel.swift */; };
+		3C200C2F228D9BFE002F7FAF /* PresentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C200C2E228D9BFE002F7FAF /* PresentationViewController.swift */; };
+		3C200C31228D9CE8002F7FAF /* ViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C200C30228D9CE8002F7FAF /* ViewModelProtocol.swift */; };
+		3C200C33228D9E92002F7FAF /* NodePresentationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C200C32228D9E92002F7FAF /* NodePresentationTableViewCell.swift */; };
 		92E92CEC228C59A9000494BA /* HistoryGraphDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E92CEB228C59A9000494BA /* HistoryGraphDelegate.swift */; };
 		92E92CEE228CFE75000494BA /* HistoryGridDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E92CED228CFE75000494BA /* HistoryGridDelegate.swift */; };
 		C77E46C789F9B2BADE16D712 /* Pods_Minichallenge3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CF4D23D356FA463D37FC974 /* Pods_Minichallenge3.framework */; };
@@ -101,6 +105,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3C200C2C228D9BA4002F7FAF /* PresentationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationViewModel.swift; sourceTree = "<group>"; };
+		3C200C2E228D9BFE002F7FAF /* PresentationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationViewController.swift; sourceTree = "<group>"; };
+		3C200C30228D9CE8002F7FAF /* ViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelProtocol.swift; sourceTree = "<group>"; };
+		3C200C32228D9E92002F7FAF /* NodePresentationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodePresentationTableViewCell.swift; sourceTree = "<group>"; };
 		3CF4D23D356FA463D37FC974 /* Pods_Minichallenge3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Minichallenge3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4405664E379635FBB9519A12 /* Pods-Minichallenge3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Minichallenge3.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Minichallenge3/Pods-Minichallenge3.debug.xcconfig"; sourceTree = "<group>"; };
 		92E92CEB228C59A9000494BA /* HistoryGraphDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryGraphDelegate.swift; sourceTree = "<group>"; };
@@ -199,6 +207,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3C200C2A228D9B39002F7FAF /* PresentationView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = PresentationView;
+			sourceTree = "<group>";
+		};
+		3C200C2B228D9B82002F7FAF /* PresentationNodeCell */ = {
+			isa = PBXGroup;
+			children = (
+				3C200C32228D9E92002F7FAF /* NodePresentationTableViewCell.swift */,
+			);
+			path = PresentationNodeCell;
+			sourceTree = "<group>";
+		};
 		DABAE8F7599EAF4B2D921E49 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -215,8 +238,10 @@
 				E32A379D228B011300E2F8B1 /* CustomNavigation.swift */,
 				E32A379C228B011300E2F8B1 /* MyNarrativesView.swift */,
 				FC02E92B228AFEBF00537429 /* ExpandableCell */,
+				3C200C2B228D9B82002F7FAF /* PresentationNodeCell */,
 				E331CCC7228846720041379B /* GraphView */,
 				FC060914228C69FC008C98AE /* CardView */,
+				3C200C2A228D9B39002F7FAF /* PresentationView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -310,6 +335,7 @@
 			children = (
 				FC02F5E5228D8E32008F0777 /* DetailsViewController.swift */,
 				E32A37A0228B013600E2F8B1 /* MyNarrativesViewController.swift */,
+				3C200C2E228D9BFE002F7FAF /* PresentationViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -342,7 +368,9 @@
 		FC02F5EB228D8EDE008F0777 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				3C200C30228D9CE8002F7FAF /* ViewModelProtocol.swift */,
 				FC02F5EC228D8F08008F0777 /* DetailsViewModel.swift */,
+				3C200C2C228D9BA4002F7FAF /* PresentationViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -658,6 +686,7 @@
 				FC02E93D228AFFC100537429 /* ExpandableTableViewCell.swift in Sources */,
 				E381E2C72288DCC500E25B78 /* ItemViewConnector.swift in Sources */,
 				FC02F5DE228D8B31008F0777 /* UIView+round.swift in Sources */,
+				3C200C33228D9E92002F7FAF /* NodePresentationTableViewCell.swift in Sources */,
 				FC02F5E7228D8E32008F0777 /* DetailsViewController.swift in Sources */,
 				FC02F5DA228D8B31008F0777 /* UITextView+addDoneButtonOnKeyboard.swift in Sources */,
 				FCB35490228065AF00AB7ED2 /* ViewController.swift in Sources */,
@@ -671,6 +700,7 @@
 				E331CCD12288971D0041379B /* GraphLineView.swift in Sources */,
 				E331CCC62287B3070041379B /* GraphView.swift in Sources */,
 				E381E2C92288DE8300E25B78 /* CGPoint+add.swift in Sources */,
+				3C200C2F228D9BFE002F7FAF /* PresentationViewController.swift in Sources */,
 				E381E2C52288DC1D00E25B78 /* GraphViewConnector.swift in Sources */,
 				FC02F5EA228D8EA2008F0777 /* BranchCollectionViewCell.swift in Sources */,
 				E381E2CF2289BA9A00E25B78 /* GraphConnectionView.swift in Sources */,
@@ -682,6 +712,8 @@
 				FC02F5DB228D8B31008F0777 /* AppColors.swift in Sources */,
 				FC02F5ED228D8F08008F0777 /* DetailsViewModel.swift in Sources */,
 				E381E2C32288D7B700E25B78 /* GraphItemView.swift in Sources */,
+				3C200C2D228D9BA4002F7FAF /* PresentationViewModel.swift in Sources */,
+				3C200C31228D9CE8002F7FAF /* ViewModelProtocol.swift in Sources */,
 				FCB3548E228065AF00AB7ED2 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

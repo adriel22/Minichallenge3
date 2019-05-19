@@ -12,8 +12,8 @@ import HistoryGraph
 class DetailsViewController: UIViewController {
 
     lazy var scrollView: UIScrollView! = UIScrollView(frame: .zero)
-    lazy var upnodeView: NodeDetailsView! = NodeDetailsView(position: .up)
-    lazy var downnodeView: NodeDetailsView! = NodeDetailsView(position: .down)
+    lazy var upnodeView: NodeDetailsView! = NodeDetailsView(type: .up)
+    lazy var downnodeView: NodeDetailsView! = NodeDetailsView(type: .down)
     
     var viewModel: DetailsViewModel? {
         didSet {
@@ -67,8 +67,10 @@ class DetailsViewController: UIViewController {
     }
     
     func setDelegatesAndDataSources() {
-        upnodeView.delegate = self
-        downnodeView.delegate = self
+        upnodeView.collectionDelegate = self
+        upnodeView.textViewDelegate = self
+        downnodeView.collectionDelegate = self
+        downnodeView.textViewDelegate = self
         upnodeView.dataSource = self
         downnodeView.dataSource = self
     }

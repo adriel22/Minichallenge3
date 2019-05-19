@@ -32,6 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().barTintColor = UIColor(color: .darkBlue)
         UINavigationBar.appearance().tintColor = UIColor(color: .yellowWhite)
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(color: .yellowWhite)]
+        UINavigationBar.appearance().largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(color: .yellowWhite)]
         UINavigationBar.appearance().isTranslucent = false
         
         //        let controller = MyNarrativesViewController()
@@ -39,12 +40,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //        window?.rootViewController = controller
         //        window?.makeKeyAndVisible()
         
-        let story = HistoryNode(withResume: "RESUME", text: "TEXT", positionX: 2, andPositionY: 0)
-        let graph = HistoryGraph(withName: "Juremoids", sinopse: "blablabla", width: 3, andHeight: 3)
+        
+        let graph = HistoryGraph(withName: "Juremoids", sinopse: "Sinopse da história", width: 3, andHeight: 3)
+        
+        let story = HistoryNode(withResume: "RESUME", text: "Story comeco ta sabendo ne", positionX: 2, andPositionY: 0)
         try? graph.addNode(story)
         
-        let controller = DetailsViewController()
-        controller.viewModel = DetailsViewModel(story: story, graph: graph)
+        let story2 = HistoryNode(withResume: "RESUME", text: "Story 2 manim", positionX: 2, andPositionY: 1)
+        try? graph.addNode(story2)
+        try? graph.addConnection(fromNode: story, toNode: story2, withTitle: "Connection name")
+        
+        let story3 = HistoryNode(withResume: "RESUME", text: "Story 2.1 chapaaaa", positionX: 3, andPositionY: 1)
+        try? graph.addNode(story3)
+        try? graph.addConnection(fromNode: story, toNode: story3, withTitle: "The big thing")
+        
+        let controller = PresentationViewController()
+        controller.viewModel = PresentationViewModel(graph: graph, rootNode: story)
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = UINavigationController(rootViewController: controller)

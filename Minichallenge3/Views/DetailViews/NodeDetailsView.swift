@@ -10,9 +10,11 @@ import UIKit
 
 class NodeDetailsView: UIView {
     
-    enum Position {
+    enum NodeType {
         case up
         case down
+        case cell
+        case rootCell
     }
     
     lazy var textView = UITextView(frame: .zero)
@@ -22,7 +24,8 @@ class NodeDetailsView: UIView {
     private lazy var goOnButton = UIButton(frame: .zero)
     
     private let collectionHeight: CGFloat = 48
-    private var position: Position!
+    private var collectionTrailingContraint: NSLayoutConstraint!
+    private var position: NodeType!
     
     var text: String? = "" {
         didSet {
@@ -30,11 +33,15 @@ class NodeDetailsView: UIView {
         }
     }
     
-    typealias NodeDetailsViewDelegate = UICollectionViewDelegateFlowLayout & UITextViewDelegate
-    weak var delegate: NodeDetailsViewDelegate? {
+    weak var textViewDelegate: UITextViewDelegate? {
         didSet {
-            branches.delegate = delegate
-            textView.delegate = delegate
+            textView.delegate = textViewDelegate
+        }
+    }
+    
+    weak var collectionDelegate: UICollectionViewDelegateFlowLayout? {
+        didSet {
+            branches.delegate = collectionDelegate
         }
     }
     
@@ -44,9 +51,9 @@ class NodeDetailsView: UIView {
         }
     }
     
-    convenience init(position: Position) {
+    convenience init(type: NodeType) {
         self.init(frame: .zero)
-        self.position = position
+        self.position = type
         positionSet()
     }
 
@@ -73,7 +80,6 @@ class NodeDetailsView: UIView {
         textView.backgroundColor = .clear
         textView.textColor = UIColor(color: .darkerBlue)
         textView.font = UIFont(name: "Baskerville", size: 17)
-        textView.addDoneButtonOnKeyboard()
     }
     
     private func configureAddBranchButton() {
@@ -121,10 +127,11 @@ class NodeDetailsView: UIView {
         
         branches.translatesAutoresizingMaskIntoConstraints = false
         branches.leadingAnchor.constraint(equalTo: textView.leadingAnchor).isActive = true
-        branches.trailingAnchor.constraint(equalTo: addBranchButton.leadingAnchor, constant: -16).isActive = true
+        collectionTrailingContraint = branches.trailingAnchor.constraint(equalTo: addBranchButton.leadingAnchor, constant: -16)
+        collectionTrailingContraint.isActive = true
         branches.topAnchor.constraint(equalTo: textView.bottomAnchor, constant: 8).isActive = true
         branches.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16).isActive = true
-        branches.heightAnchor.constraint(equalTo: addBranchButton.heightAnchor).isActive = true
+        branches.heightAnchor.constraint(equalToConstant: collectionHeight).isActive = true
         
         goOnButton.translatesAutoresizingMaskIntoConstraints = false
         goOnButton.leadingAnchor.constraint(equalTo: branches.leadingAnchor).isActive = true
@@ -143,11 +150,27 @@ class NodeDetailsView: UIView {
             branches.isHidden = false
             addBranchButton.isHidden = false
             goOnButton.isHidden = true
-        } else {
+            textView.addDoneButtonOnKeyboard()
+        } else if position == .down {
             backgroundColor = UIColor(color: .yellowWhite)
             branches.isHidden = true
             addBranchButton.isHidden = true
             goOnButton.isHidden = false
+            textView.addDoneButtonOnKeyboard()
+        } else if position == .cell {
+            backgroundColor = UIColor(color: .purpleWhite)
+            branches.isHidden = false
+            addBranchButton.isHidden = true
+            goOnButton.isHidden = true
+            collectionTrailingContraint.isActive = false
+            textView.isEditable = false
+            branches.trailingAnchor.constraint(equalTo: textView.trailingAnchor).isActive = true
+        } else {
+            backgroundColor = UIColor(color: .purpleWhite)
+            branches.isHidden = true
+            addBranchButton.isHidden = true
+            goOnButton.isHidden = true
+            textView.isEditable = false
         }
     }
     
