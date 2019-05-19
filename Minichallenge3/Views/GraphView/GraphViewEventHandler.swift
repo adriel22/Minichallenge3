@@ -1,5 +1,5 @@
 //
-//  GraphViewEventHandler.swift
+//  GraphViewItemEventHandler.swift
 //  Minichallenge3
 //
 //  Created by Elias Paulino on 18/05/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GraphViewEventHandler {
+class GraphViewItemEventHandler {
     weak var itemView: GraphItemView?
     weak var delegate: GraphViewDelegate?
     var itemPosition: GridPosition

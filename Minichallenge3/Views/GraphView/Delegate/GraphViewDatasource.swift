@@ -20,6 +20,8 @@ protocol GraphViewDatasource: AnyObject {
     func lineSpacing(forGraphView graphView: GraphView) -> CGFloat
     func columnSpacing(forGraphView graphView: GraphView) -> CGFloat
     func leftSpacing(forGraphView graphView: GraphView) -> CGFloat
-
+    func connectionWidth(forGraphView graphView: GraphView) -> CGFloat
+    func connectionsImage(forGraphView graphView: GraphView) -> UIImage?
+    func connectionButtonColor(forGraphView graphView: GraphView) -> UIColor?
     func connections(forGraphView graphView: GraphView, fromItemAtPosition itemPosition: GridPosition) -> [GridPosition]
 }

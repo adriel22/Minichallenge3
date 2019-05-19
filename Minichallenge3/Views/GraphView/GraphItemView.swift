@@ -18,7 +18,7 @@ class GraphItemView: NotifierView {
     var oldLeftAnchor: NSLayoutConstraint?
     var oldRightAnchor: NSLayoutConstraint?
     
-    var eventHandler: GraphViewEventHandler?
+    var eventHandler: GraphViewItemEventHandler?
 
     /// It sets the constraints for a item view
     ///

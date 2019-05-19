@@ -10,4 +10,5 @@ import Foundation
 
 protocol GraphViewDelegate: AnyObject {
     func itemWasSelectedAt(postion: GridPosition)
+    func connectionButtonWasSelected(connection: Connection)
 }

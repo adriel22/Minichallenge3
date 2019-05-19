@@ -183,7 +183,7 @@ public class HistoryNodesGrid: CustomStringConvertible {
     ///   - yIndex: position y
     ///   - xIndex: position x
     /// - Returns: true if the grid has the position, false if not
-    func hasPosition(yIndex: Int, xIndex: Int) -> Bool {
+    public func hasPosition(yIndex: Int, xIndex: Int) -> Bool {
         let existPosition: Bool = xIndex < graphWidth && yIndex < graphHeight
 
         return existPosition
@@ -195,7 +195,7 @@ public class HistoryNodesGrid: CustomStringConvertible {
     ///   - yIndex: position y
     ///   - xIndex: position x
     /// - Returns: true if the position is free, false if not
-    func positionIsFree(yIndex: Int, xIndex: Int) -> Bool {
+    public func positionIsFree(yIndex: Int, xIndex: Int) -> Bool {
         let positionIsFree: Bool = self[yIndex, xIndex] == nil
 
         return positionIsFree

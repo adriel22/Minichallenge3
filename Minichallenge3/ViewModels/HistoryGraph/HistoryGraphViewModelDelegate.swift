@@ -13,5 +13,6 @@ protocol HistoryGraphViewModelDelegate: AnyObject {
     func needShowViewController(_ viewController: UIViewController)
     func needFocusNode(atPosition position: GridPosition)
     func needShowError(message: String)
-    func nodeDeletionFinished(atPositon position: GridPosition)
+    func needDeleteNode(atPositon position: GridPosition)
+    func needDeleteConnection()
 }

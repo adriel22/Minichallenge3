@@ -43,8 +43,11 @@ class GraphViewConnector {
             ),
             withConnectorMargins: connectorMargin,
             connectorsOffset: connectorOffset,
-            containerView: containerView,
-            andGraphView: graphView
+            withContext: (
+                graphView: graphView,
+                containerView: containerView,
+                datasource: datasource
+            )
         )
     }
 
@@ -132,12 +135,11 @@ class GraphViewConnector {
         fromConnections connections: [Connection],
         withConnectorMargins connectorMargins: CGFloat,
         connectorsOffset: CGFloat,
-        containerView: UIView,
-        andGraphView graphView: GraphView) {
+        withContext context: Context) {
 
         connections.forEach { (connection) in
-            guard let destinyItemView = graphView.itemView(forPosition: connection.destinyPosition),
-                  let originItemView = graphView.itemView(forPosition: connection.originPosition),
+            guard let destinyItemView = context.graphView.itemView(forPosition: connection.destinyPosition),
+                  let originItemView = context.graphView.itemView(forPosition: connection.originPosition),
                   let originLineView = originItemView.parentLine,
                   let destinyLineView = destinyItemView.parentLine else {
 
@@ -145,22 +147,37 @@ class GraphViewConnector {
             }
 
             let itemConnector = ItemViewConnector(
-                withContainerView: containerView,
-                lineWidth: 3, originLineView: originLineView,
-                andDestinyLineView: destinyLineView
+                withContainerView: context.containerView,
+                lineWidth: context.datasource.connectionWidth(forGraphView: context.graphView),
+                originLineView: originLineView, andDestinyLineView: destinyLineView
             )
 
             self.currentItemConnectors.append(itemConnector)
 
-            let layoutChangeCompletion = { [weak self] in
-                guard self != nil else {
+            let layoutChangeCompletion = { [weak self, weak itemConnector] in
+                guard self != nil, let itemConnector = itemConnector else {
                     return
                 }
 
                 let bendDistance = connectorMargins +
                     (connectorsOffset * CGFloat(connection.originPosition.xPosition))
 
-                itemConnector.createLine(fromItemView1: originItemView, toItemView2: destinyItemView, withBendDistance: bendDistance, inContainerView: containerView)
+                itemConnector.createLine(
+                    fromItemView1: originItemView,
+                    toItemView2: destinyItemView,
+                    withBendDistance: bendDistance,
+                    andButtonInfo: (
+                        context.datasource.connectionsImage(forGraphView: context.graphView),
+                        context.datasource.connectionButtonColor(forGraphView: context.graphView)
+                    ),
+                    inContainerView: context.containerView
+                )
+
+                guard let delegate = context.graphView.graphDelegate else {
+                    return
+                }
+
+                itemConnector.setEventHandler(forDelegate: delegate, andConnection: connection)
             }
 
             layoutChangeCompletion()
@@ -169,14 +186,15 @@ class GraphViewConnector {
             originItemView.didLayoutSubViewsCompletions.append(layoutChangeCompletion)
             originLineView.didLayoutSubViewsCompletions.append(layoutChangeCompletion)
             destinyLineView.didLayoutSubViewsCompletions.append(layoutChangeCompletion)
-            (containerView as? NotifierView)?.didLayoutSubViewsCompletions.append(layoutChangeCompletion)
+            (context.containerView as? NotifierView)?.didLayoutSubViewsCompletions.append(layoutChangeCompletion)
         }
     }
 
     func removeConnectors(fromContainerView containerView: UIView) {
         for connector in currentItemConnectors {
-            connector.lineLayer?.removeFromSuperlayer()
+            connector.erase()
         }
+        
         currentItemConnectors = []
     }
 }

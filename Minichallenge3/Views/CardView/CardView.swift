@@ -90,10 +90,14 @@ class CardView: GraphItemView, CardViewProtocol {
 
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.topAnchor.constraint(equalTo: self.topAnchor, constant: 15).isActive = true
-        textView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        textView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -15).isActive = true
         textView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         textView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        textView.heightAnchor.constraint(greaterThanOrEqualToConstant: 100).isActive = true
+        
+        let heightConstraint = textView.heightAnchor.constraint(greaterThanOrEqualToConstant: 100)
+        heightConstraint.priority = .defaultHigh
+        
+        heightConstraint.isActive = true
         
         textView.tag = 1
     }

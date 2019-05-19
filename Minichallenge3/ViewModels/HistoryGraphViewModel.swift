@@ -15,6 +15,13 @@ class HistoryGraphViewModel {
         return historyGraph.sinopse
     }
     
+    var connectionButtonImage: UIImage? {
+        if currentState == .removing {
+            return UIImage(named: "garbage")
+        }
+        return nil
+    }
+    
     private var historyGraph: HistoryGraph
     private var historyGraphID: Int
     private var historyDAO = RAMHistoryDAO()
@@ -80,10 +87,34 @@ class HistoryGraphViewModel {
         historyDAO.update(element: historyGraph, withID: historyGraphID)
     }
     
+    func connectionButtonWasSelected(connection: Connection) {
+        let originPosition = connection.originPosition
+        let destinyPosition = connection.destinyPosition
+
+        guard currentState == .removing,
+            historyGraph.grid.hasPosition(yIndex: originPosition.yPosition, xIndex: originPosition.xPosition),
+            let originNode = historyGraph.grid[originPosition.yPosition, originPosition.xPosition] as? HistoryNode,
+            let connectionToRemove = originNode.connection(
+                toPositionX: destinyPosition.xPosition,
+                positionY: destinyPosition.yPosition
+            ) else {
+            return
+        }
+
+        do {
+            try historyGraph.removeConnection(connectionToRemove, fromNode: originNode)
+            delegate?.needDeleteConnection()
+        } catch let error as HistoryError {
+            delegate?.needShowError(message: error.rawValue)
+        } catch {
+            delegate?.needShowError(message: "A Error Happend")
+        }
+    }
+    
     private func nodeWasSelectedInRemovingState(atPossition position: GridPosition, inNode node: HistoryNodeProtocol) {
         do {
             try historyGraph.removeNode(node)
-            delegate?.nodeDeletionFinished(atPositon: position)
+            delegate?.needDeleteNode(atPositon: position)
         } catch let error as HistoryError {
             delegate?.needShowError(message: error.rawValue)
         } catch {

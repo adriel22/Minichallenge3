@@ -8,6 +8,8 @@
 
 import UIKit
 
+typealias Context = (graphView: GraphView, containerView: UIView, datasource: GraphViewDatasource)
+
 class GraphView: UIScrollView {
     var containerView = NotifierView()
     var connector = GraphViewConnector()
@@ -38,12 +40,11 @@ class GraphView: UIScrollView {
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-
         addSubview(containerView)
     }
 
     private func prepareOperationContext(
-        contextCompletion: (_ context: GraphViewOperator.Context, _ finishedCompletion: @escaping () -> Void) -> Void) {
+        contextCompletion: (_ context: Context, _ finishedCompletion: @escaping () -> Void) -> Void) {
         guard let datasource = self.datasource else {
             return
         }
@@ -129,6 +130,7 @@ class GraphView: UIScrollView {
         }
 
         connector.removeConnectors(fromContainerView: containerView)
+        
         connector.build(withDatasource: datasource, graphView: self, andContainerView: containerView)
     }
     
@@ -140,7 +142,7 @@ class GraphView: UIScrollView {
                     return
                 }
                 
-                currentItemView.eventHandler = GraphViewEventHandler(
+                currentItemView.eventHandler = GraphViewItemEventHandler(
                     withItemView: currentItemView,
                     inPosition: itemPosition,
                     andGraphDelegate: delegate
@@ -234,12 +236,9 @@ class GraphView: UIScrollView {
         let numberOfLines = lineViews.count
 
         (0..<numberOfLines).forEach { [weak self] (currentLineViewIndex) in
-            guard let self = self else {
-                return
-            }
+            guard let self = self else { return }
 
             let currentLineView = lineViews[currentLineViewIndex]
-
             let nodeViews = self.getNodeViews(fromDatasource: datasource, forLineWithIndex: currentLineViewIndex)
             self.insert(nodeViews: nodeViews, inLineView: currentLineView)
         }
@@ -316,10 +315,7 @@ class GraphView: UIScrollView {
     /// - Parameters:
     ///   - lineViews: the line views that contains the item views.
     ///   - datasource: the datasource of the graph
-    private func setConstraintsForItemViewsIn(
-        lineViews: [GraphLineView],
-        usingDatasource datasource: GraphViewDatasource) {
-
+    private func setConstraintsForItemViewsIn(lineViews: [GraphLineView], usingDatasource datasource: GraphViewDatasource) {
         lineViews.forEach { (_, currentLineView, currentLineViewIndex) in
             setConstraintsFor(
                 itemViews: currentLineView.itemViews,
@@ -369,7 +365,7 @@ class GraphView: UIScrollView {
             containerView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             containerView.leftAnchor.constraint(equalTo: self.leftAnchor),
             containerView.rightAnchor.constraint(equalTo: self.rightAnchor)
-            ])
+        ])
     }
 
     override func didMoveToSuperview() {

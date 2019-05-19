@@ -9,9 +9,6 @@
 import UIKit
 
 class GraphViewOperator {
-
-    typealias Context = (graphView: GraphView, containerView: UIView, datasource: GraphViewDatasource)
-
     var animator = GraphViewAnimator()
 
     func resetLinesLeftSpacing(beginAtPosition position: Int, graphView: GraphView, leftSpacing: CGFloat) {
@@ -130,7 +127,7 @@ class GraphViewOperator {
             return
         }
         
-        newItem.eventHandler = GraphViewEventHandler(
+        newItem.eventHandler = GraphViewItemEventHandler(
             withItemView: newItem,
             inPosition: position,
             andGraphDelegate: delegate
@@ -462,8 +459,7 @@ class GraphViewOperator {
                 datasource: context.datasource,
                 andGraphView: context.graphView
             ),
-            containerView: context.containerView,
-            andGraphView: context.graphView
+            withContext: context
         )
     }
 }

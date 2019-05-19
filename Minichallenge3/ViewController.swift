@@ -93,6 +93,10 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: GraphViewDatasource {
+    func connectionButtonColor(forGraphView graphView: GraphView) -> UIColor? {
+        return nil
+    }
+    
     func connections(forGraphView graphView: GraphView, fromItemAtPosition itemPosition: GridPosition) -> [GridPosition] {
         guard let node = graph.grid[itemPosition.yPosition, itemPosition.xPosition] as? HistoryNode else {
             return []
@@ -152,5 +156,13 @@ extension ViewController: GraphViewDatasource {
 
     func leftSpacing(forGraphView graphView: GraphView) -> CGFloat {
         return 100
+    }
+    
+    func connectionsImage(forGraphView graphView: GraphView) -> UIImage? {
+        return nil
+    }
+    
+    func connectionWidth(forGraphView graphView: GraphView) -> CGFloat {
+        return 4
     }
 }

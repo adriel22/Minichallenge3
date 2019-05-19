@@ -72,7 +72,7 @@ class HistoryGraphViewController: UIViewController {
     
     func setConstraints() {
         let constraints = [
-            graphView.topAnchor.constraint(equalTo: view.topAnchor),
+            graphView.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
             graphView.leftAnchor.constraint(equalTo: view.leftAnchor),
             graphView.rightAnchor.constraint(equalTo: view.rightAnchor),
             graphView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
@@ -97,6 +97,14 @@ class HistoryGraphViewController: UIViewController {
 }
 
 extension HistoryGraphViewController: GraphViewDatasource, GraphViewDelegate {
+    func connectionButtonWasSelected(connection: Connection) {
+        viewModel.connectionButtonWasSelected(connection: connection)
+    }
+    
+    func connectionButtonColor(forGraphView graphView: GraphView) -> UIColor? {
+        return UIColor(color: .yellowWhite)
+    }
+    
     func itemWasSelectedAt(postion: GridPosition) {
         viewModel.nodeWasSelected(atPossition: postion)
     }
@@ -138,9 +146,21 @@ extension HistoryGraphViewController: GraphViewDatasource, GraphViewDelegate {
     func leftSpacing(forGraphView graphView: GraphView) -> CGFloat {
         return 100
     }
+    
+    func connectionsImage(forGraphView graphView: GraphView) -> UIImage? {
+        return viewModel.connectionButtonImage
+    }
+    
+    func connectionWidth(forGraphView graphView: GraphView) -> CGFloat {
+        return 4
+    }
 }
 
 extension HistoryGraphViewController: HistoryGraphViewModelDelegate {
+    func needDeleteConnection() {
+        self.graphView.reloadConnections()
+    }
+    
     func needShowViewController(_ viewController: UIViewController) {
         present(viewController, animated: true, completion: nil)
     }
@@ -157,7 +177,7 @@ extension HistoryGraphViewController: HistoryGraphViewModelDelegate {
         print(message)
     }
     
-    func nodeDeletionFinished(atPositon position: GridPosition) {
+    func needDeleteNode(atPositon position: GridPosition) {
         self.graphView.removeItem(atPositon: position)
     }
 }
