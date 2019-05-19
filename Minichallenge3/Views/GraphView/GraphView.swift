@@ -9,13 +9,9 @@
 import UIKit
 
 class GraphView: UIScrollView {
-
     var containerView = NotifierView()
-
     var connector = GraphViewConnector()
-
     var graphOperator = GraphViewOperator()
-
     weak var datasource: GraphViewDatasource? {
         didSet {
             if let datasource = datasource {
@@ -26,7 +22,6 @@ class GraphView: UIScrollView {
             }
         }
     }
-    
     weak var graphDelegate: GraphViewDelegate? {
         didSet {
             if let delegate = graphDelegate {
@@ -34,7 +29,6 @@ class GraphView: UIScrollView {
             }
         }
     }
-
     var lineViews: [GraphLineView] = []
 
     init() {
@@ -59,9 +53,7 @@ class GraphView: UIScrollView {
 
         let context = (graphView: self, containerView: containerView as UIView, datasource: datasource)
         contextCompletion(context) { [weak self] in
-            guard let self = self else {
-                return
-            }
+            guard let self = self else { return }
             self.connector.build(withDatasource: datasource, graphView: self, andContainerView: self.containerView)
         }
     }
@@ -396,5 +388,35 @@ class GraphView: UIScrollView {
         }
 
         return lineView.itemViews[position.xPosition]
+    }
+    
+    func isValidLine(position: Int, inGraphView graphView: GraphView, extraSize: Int = 0) -> Bool {
+        let positionIsValid = position >= 0 && position < (graphView.lineViews.count + extraSize)
+        return positionIsValid
+    }
+    
+    func isValidColumn(position: Int, inGraphView graphView: GraphView, extraSize: Int = 0) -> Bool {
+        guard let columnCount = graphView.lineViews.first?.itemViews.count else {
+            return false
+        }
+        
+        let positionIsValid = position >= 0 && position < (columnCount + extraSize)
+        return positionIsValid
+    }
+    
+    func scrollToItem(atPosition position: GridPosition) {
+        guard isValidLine(position: position.yPosition, inGraphView: self),
+              isValidColumn(position: position.xPosition, inGraphView: self) else {
+            return
+        }
+
+        let itemLineViewForPosition = lineViews[position.yPosition]
+        let itemViewAtPosition = itemLineViewForPosition.itemViews[position.xPosition]
+        let rectInGraphViewForItem = itemLineViewForPosition.convert(
+            itemViewAtPosition.frame,
+            to: self
+        )
+    
+        scrollRectToVisible(rectInGraphViewForItem, animated: true)
     }
 }

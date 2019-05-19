@@ -38,13 +38,6 @@ class HistoryGraphViewController: UIViewController {
     override func viewDidLoad() {
         setupView()
         setConstraints()
-        
-//        Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { (_) in
-//            self.viewModel.optionWasSelected(atPositon: 1)
-//            Timer.scheduledTimer(withTimeInterval: 3, repeats: false, block: { (_) in
-//                self.viewModel.optionWasFinished()
-//            })
-//        }
     }
     
     func setupView() {
@@ -52,6 +45,21 @@ class HistoryGraphViewController: UIViewController {
         view.addSubview(sinopseView)
         
         view.backgroundColor = UIColor.white
+    }
+    
+    func configureNavigationBar() {
+        let image = UIImage(named: "Play")
+        title = viewModel.sinopse
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: image,
+            style: .done,
+            target: self,
+            action: #selector(playWasTapped(recognizer:))
+        )
+    }
+    
+    @objc func playWasTapped(recognizer: UITapGestureRecognizer) {
+        viewModel.playWasTapped()
     }
     
     func setConstraints() {
@@ -82,7 +90,7 @@ class HistoryGraphViewController: UIViewController {
 
 extension HistoryGraphViewController: GraphViewDatasource, GraphViewDelegate {
     func itemWasSelectedAt(postion: GridPosition) {
-        
+        viewModel.nodeWasSelected(atPossition: postion)
     }
     
     func connections(forGraphView graphView: GraphView, fromItemAtPosition itemPosition: GridPosition) -> [GridPosition] {
@@ -125,7 +133,15 @@ extension HistoryGraphViewController: GraphViewDatasource, GraphViewDelegate {
 }
 
 extension HistoryGraphViewController: HistoryGraphViewModelDelegate {
+    func needShowViewController(_ viewController: UIViewController) {
+        present(viewController, animated: true, completion: nil)
+    }
+    
     func needReloadGraph() {
         self.graphView.reloadData()
+    }
+    
+    func needFocusNode(atPosition position: GridPosition) {
+        self.graphView.scrollToItem(atPosition: position)
     }
 }

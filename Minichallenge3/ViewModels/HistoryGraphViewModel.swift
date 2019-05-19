@@ -51,8 +51,31 @@ class HistoryGraphViewModel {
         })
     }
     
-    func nodeWasSelected() {
+    func playWasTapped() {
+        //show play screen
+    }
+    
+    func nodeWasSelected(atPossition position: GridPosition) {
+        guard let node = historyGraph.grid[position.yPosition, position.xPosition] else {
+            return
+        }
         
+        guard let historyNode = node as? HistoryNode else {
+            guard let shortcutNode = node as? HistoryShortcut,
+                  let shortcutOwner = shortcutNode.node else {
+                return
+            }
+
+            let ownerNodePosition = (yPosition: shortcutOwner.positionY, xPosition: shortcutOwner.positionX)
+            delegate?.needFocusNode(atPosition: ownerNodePosition)
+            
+            return
+        }
+        let controller = DetailsViewController()
+        let navigation = UINavigationController(rootViewController: controller)
+        controller.viewModel = DetailsViewModel(story: historyNode, graph: historyGraph)
+        
+        delegate?.needShowViewController(navigation)
     }
     
     func optionWasSelected(atPositon positon: Int) {

@@ -36,20 +36,6 @@ class GraphViewOperator {
         return canOperateLine
     }
 
-    func isValidLine(position: Int, inGraphView graphView: GraphView, extraSize: Int = 0) -> Bool {
-        let positionIsValid = position >= 0 && position < (graphView.lineViews.count + extraSize)
-        return positionIsValid
-    }
-
-    func isValidColumn(position: Int, inGraphView graphView: GraphView, extraSize: Int = 0) -> Bool {
-        guard let columnCount = graphView.lineViews.first?.itemViews.count else {
-            return false
-        }
-
-        let positionIsValid = position >= 0 && position < (columnCount + extraSize)
-        return positionIsValid
-    }
-
     public func replace(
         items: (currentItem: GraphItemView, newItem: GraphItemView),
         atPosition position: GridPosition,
@@ -95,8 +81,8 @@ class GraphViewOperator {
 
     public func removeItem(inPosition position: GridPosition, withContext context: Context, completion: @escaping () -> Void) {
 
-        guard isValidColumn(position: position.xPosition, inGraphView: context.graphView),
-            isValidLine(position: position.yPosition, inGraphView: context.graphView) else {
+        guard context.graphView.isValidColumn(position: position.xPosition, inGraphView: context.graphView),
+            context.graphView.isValidLine(position: position.yPosition, inGraphView: context.graphView) else {
                 return
         }
 
@@ -117,8 +103,8 @@ class GraphViewOperator {
 
     public func addItem(inPosition position: GridPosition, withContext context: Context, removingCurrent: Bool, completion: @escaping () -> Void) {
 
-        guard isValidColumn(position: position.xPosition, inGraphView: context.graphView),
-              isValidLine(position: position.yPosition, inGraphView: context.graphView),
+        guard context.graphView.isValidColumn(position: position.xPosition, inGraphView: context.graphView),
+              context.graphView.isValidLine(position: position.yPosition, inGraphView: context.graphView),
               let newItem = context.datasource.gridNodeView(forGraphView: context.graphView, inPosition: position) else {
             return
         }
@@ -153,7 +139,7 @@ class GraphViewOperator {
 
     public func removeColumn(inPosition position: Int, withContext context: Context, completion: @escaping () -> Void) {
 
-        guard isValidColumn(position: position, inGraphView: context.graphView) else {
+        guard context.graphView.isValidColumn(position: position, inGraphView: context.graphView) else {
             return
         }
 
@@ -191,7 +177,7 @@ class GraphViewOperator {
 
     public func removeLine(inPosition position: Int, withContext context: Context, completion: @escaping () -> Void) {
 
-        guard isValidLine(position: position, inGraphView: context.graphView) else {
+        guard context.graphView.isValidLine(position: position, inGraphView: context.graphView) else {
             return
         }
 
@@ -309,7 +295,7 @@ class GraphViewOperator {
 
     public func insertLine(inPosition position: Int, withContext context: Context, completion: @escaping () -> Void) {
 
-        guard isValidLine(position: position, inGraphView: context.graphView) else {
+        guard context.graphView.isValidLine(position: position, inGraphView: context.graphView) else {
             return
         }
 
@@ -382,7 +368,7 @@ class GraphViewOperator {
     }
 
     func insertColumn(inPosition position: Int, withContext context: Context, completion: @escaping () -> Void) {
-        guard isValidLine(position: position, inGraphView: context.graphView) else {
+        guard context.graphView.isValidLine(position: position, inGraphView: context.graphView) else {
             return
         }
 

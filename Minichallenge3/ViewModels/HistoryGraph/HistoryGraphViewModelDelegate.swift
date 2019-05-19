@@ -6,8 +6,10 @@
 //  Copyright © 2019 Adriel Freire. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol HistoryGraphViewModelDelegate: AnyObject {
     func needReloadGraph()
+    func needShowViewController(_ viewController: UIViewController)
+    func needFocusNode(atPosition position: GridPosition)
 }

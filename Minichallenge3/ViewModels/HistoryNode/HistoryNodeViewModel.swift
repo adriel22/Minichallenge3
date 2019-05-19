@@ -33,6 +33,4 @@ class HistoryNodeViewModel {
         self.historyNode = historyNode
         self.currentState = state
     }
-    
-    
 }

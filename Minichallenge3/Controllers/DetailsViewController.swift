@@ -98,8 +98,7 @@ class DetailsViewController: UIViewController {
             downnodeView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5)
         ])
     }
-    
-    
+
     @objc func addBranch(_ sender: UIButton) {
         viewModel?.addBranch()
     }
