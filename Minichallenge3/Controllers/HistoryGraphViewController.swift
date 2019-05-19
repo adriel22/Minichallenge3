@@ -28,7 +28,7 @@ class HistoryGraphViewController: UIViewController {
     }()
     
     lazy var viewModel: HistoryGraphViewModel = {
-        let viewModel = HistoryGraphViewModel(withHistoryGraph: getFirstHistory())
+        let viewModel = HistoryGraphViewModel(withHistoryGraph: getFirstHistory(), withIdentifier: 0)
         
         viewModel.delegate = self
         
@@ -38,6 +38,14 @@ class HistoryGraphViewController: UIViewController {
     override func viewDidLoad() {
         setupView()
         setConstraints()
+        
+        Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { (_) in
+            self.viewModel.optionWasSelected(atPositon: 1)
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        viewModel.viewWillDisappear()
     }
     
     func setupView() {
@@ -143,5 +151,13 @@ extension HistoryGraphViewController: HistoryGraphViewModelDelegate {
     
     func needFocusNode(atPosition position: GridPosition) {
         self.graphView.scrollToItem(atPosition: position)
+    }
+    
+    func needShowError(message: String) {
+        print(message)
+    }
+    
+    func nodeDeletionFinished(atPositon position: GridPosition) {
+        self.graphView.removeItem(atPositon: position)
     }
 }

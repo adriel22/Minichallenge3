@@ -16,14 +16,18 @@ class HistoryGraphViewModel {
     }
     
     private var historyGraph: HistoryGraph
+    private var historyGraphID: Int
+    private var historyDAO = RAMHistoryDAO()
+    
     var currentState: HistoryGraphState = .normal {
         didSet {
             delegate?.needReloadGraph()
         }
     }
     
-    init(withHistoryGraph historyGraph: HistoryGraph) {
+    init(withHistoryGraph historyGraph: HistoryGraph, withIdentifier identifier: Int) {
         self.historyGraph = historyGraph
+        self.historyGraphID = identifier
     }
     
     func gridSize() -> GridSize {
@@ -60,6 +64,34 @@ class HistoryGraphViewModel {
             return
         }
         
+        switch currentState {
+        case .normal:
+            nodeWasSelectedInNormalState(atPossition: position, inNode: node)
+        case .removing:
+            nodeWasSelectedInRemovingState(atPossition: position, inNode: node)
+        case .adding:
+            break
+        case .connecting:
+            break
+        }
+    }
+    
+    func viewWillDisappear() {
+        historyDAO.update(element: historyGraph, withID: historyGraphID)
+    }
+    
+    private func nodeWasSelectedInRemovingState(atPossition position: GridPosition, inNode node: HistoryNodeProtocol) {
+        do {
+            try historyGraph.removeNode(node)
+            delegate?.nodeDeletionFinished(atPositon: position)
+        } catch let error as HistoryError {
+            delegate?.needShowError(message: error.rawValue)
+        } catch {
+            delegate?.needShowError(message: "A Error Happend")
+        }
+    }
+    
+    private func nodeWasSelectedInNormalState(atPossition position: GridPosition, inNode node: HistoryNodeProtocol) {
         guard let historyNode = node as? HistoryNode else {
             guard let shortcutNode = node as? HistoryShortcut,
                   let shortcutOwner = shortcutNode.node else {

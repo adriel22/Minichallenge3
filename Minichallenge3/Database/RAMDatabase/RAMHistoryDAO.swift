@@ -30,5 +30,12 @@ class RAMHistoryDAO: DAO {
         return RAMDatabase.shared.histories[daoID]
     }
     
-    func update(element: HistoryGraph, withID: Int) {}
+    func update(element: HistoryGraph, withID identifier: Int) {
+        guard identifier < RAMDatabase.shared.histories.count && identifier > 0 else {
+            return
+        }
+        
+        RAMDatabase.shared.histories.remove(at: identifier)
+        RAMDatabase.shared.histories.insert(element, at: identifier)
+    }
 }

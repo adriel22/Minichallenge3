@@ -15,5 +15,5 @@ protocol DAO {
     func save(element: Element)
     func delete(element: Element)
     func get(elementWithID daoID: Int) -> Element
-    func update(element: Element, withID: Int)
+    func update(element: Element, withID identifier: Int)
 }
