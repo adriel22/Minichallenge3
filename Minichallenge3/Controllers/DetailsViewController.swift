@@ -187,11 +187,11 @@ extension DetailsViewController: UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? BranchCollectionViewCell
+        let displayedCell = cell as? BranchCollectionViewCell
         if indexPath.item == selected {
-            cell?.select()
+            displayedCell?.select()
         } else {
-            cell?.deselect()
+            displayedCell?.deselect()
         }
     }
     
