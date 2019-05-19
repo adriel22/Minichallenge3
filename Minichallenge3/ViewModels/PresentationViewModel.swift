@@ -22,7 +22,7 @@ class PresentationViewModel: NSObject, PresentationViewModelProtocol {
     }
     
     func update(_ view: UIViewController) {
-        guard let view = view as? PresentationViewController else { return }
+        guard let _ = view as? PresentationViewController else { return }
     }
     
     func setNavigationBarTitle(inNavigationItem item: UINavigationItem) {
@@ -51,8 +51,11 @@ class PresentationViewModel: NSObject, PresentationViewModelProtocol {
         
         let toNode = fromNode.connections[collectionViewIndexPath.item].destinyNode
         guard let destination = toNode as? HistoryNode else { return }
+        
         guard let view = view as? PresentationViewController else { return }
-        changeBranchSelection(tableViewIndexPath: tableViewIndexPath, collectionViewIndexPath: collectionViewIndexPath, inView: view)
+        changeBranchSelection(tableViewIndexPath: tableViewIndexPath,
+                              collectionViewIndexPath: collectionViewIndexPath,
+                              inView: view)
         
         if !replace {
             nodes.append(destination)

@@ -14,6 +14,16 @@ import HistoryGraph
     @objc optional func setNavigationBarTitle(inNavigationItem item: UINavigationItem)
 }
 
+protocol DetailsViewModelProtocol: ViewModelProtocol {
+    var graph: HistoryGraph { get }
+    var story: HistoryNode { get }
+    
+    func titleForCollectionViewCell(atIndexPath indexPath: IndexPath) -> String?
+    func textUpdated(with text: String, inNode node: HistoryNode)
+    func addBranch()
+    func goOn(branchIndex: Int)
+}
+
 protocol PresentationViewModelProtocol: ViewModelProtocol {
     var graph: HistoryGraph { get }
     var rootNode: HistoryNode { get }

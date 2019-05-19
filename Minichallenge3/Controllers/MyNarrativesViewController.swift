@@ -38,7 +38,7 @@ extension MyNarrativesViewController: UITableViewDelegate, UITableViewDataSource
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        if  indexPath == clickedRow {
+        if indexPath == clickedRow {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? ExpandableTableViewCell
 
             return cell!

@@ -139,7 +139,6 @@ extension PresentationViewController: UICollectionViewDataSource, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let tableViewIndexPath = getTableViewIndexPath(for: collectionView, insideCellOf: storyTableView) {
             viewModel?.goToBranch(tableViewIndexPath: tableViewIndexPath, collectionViewIndexPath: indexPath, updateView: self)
-            collectionView.reloadData()
         }
         
         viewModel?.update(self)

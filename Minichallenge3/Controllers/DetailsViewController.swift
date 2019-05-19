@@ -15,7 +15,7 @@ class DetailsViewController: UIViewController {
     lazy var upnodeView: NodeDetailsView! = NodeDetailsView(type: .up)
     lazy var downnodeView: NodeDetailsView! = NodeDetailsView(type: .down)
     
-    var viewModel: DetailsViewModel? {
+    var viewModel: DetailsViewModelProtocol? {
         didSet {
             viewModel?.update(self)
         }
@@ -107,13 +107,9 @@ class DetailsViewController: UIViewController {
     }
 
     @objc func goOn(_ sender: UIButton) {
-        if let branches = viewModel?.story.connections {
-            if branches.isEmpty { return }
-            guard let destiny = branches[selected].destinyNode as? HistoryNode else { return }
-            downnodeView.textView.resignFirstResponder()
-            viewModel?.story = destiny
-            viewModel?.update(self)
-        }
+        downnodeView.textView.resignFirstResponder()
+        viewModel?.goOn(branchIndex: selected)
+        viewModel?.update(self)
     }
     
     @objc func dismiss(_ sender: UIBarButtonItem) {
@@ -181,19 +177,22 @@ extension DetailsViewController: UITextViewDelegate {
 
 extension DetailsViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let viewModel = self.viewModel else { return 0 }
-        return viewModel.story.connections.count
+        return viewModel?.story.connections.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? BranchCollectionViewCell
-        cell?.title = viewModel?.story.connections[indexPath.item].title
+        cell?.title = viewModel?.titleForCollectionViewCell(atIndexPath: indexPath)
+        return cell!
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? BranchCollectionViewCell
         if indexPath.item == selected {
             cell?.select()
         } else {
             cell?.deselect()
         }
-        return cell!
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -203,7 +202,7 @@ extension DetailsViewController: UICollectionViewDataSource, UICollectionViewDel
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let font = UIFont.systemFont(ofSize: 13)
-        let string = viewModel?.story.connections[indexPath.item].title ?? ""
+        let string = viewModel?.titleForCollectionViewCell(atIndexPath: indexPath) ?? ""
         let width = string.width(usingFont: font) + 32
         return CGSize(width: width, height: 48)
     }

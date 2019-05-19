@@ -247,7 +247,7 @@ public class HistoryGraph: CustomStringConvertible {
         guard containsNode(shortcut) else {
             throw HistoryError.dontContainsNode
         }
-        
+
         if let parent = shortcut.parent as? HistoryNode {
             parent.shortcuts.removeAll(where: { $0 === shortcut})
         }

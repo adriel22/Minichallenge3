@@ -10,10 +10,10 @@ import UIKit
 
 class GraphView: UIScrollView {
 
-    var containerView = UIView()
+    var containerView = NotifierView()
 
     var connector = GraphViewConnector()
-    
+
     var graphOperator = GraphViewOperator()
 
     var datasource: GraphViewDatasource? {
@@ -37,17 +37,92 @@ class GraphView: UIScrollView {
         addSubview(containerView)
     }
 
+    private func prepareOperationContext(
+        contextCompletion: (_ context: GraphViewOperator.Context, _ finishedCompletion: @escaping () -> Void) -> Void) {
+        guard let datasource = self.datasource else {
+            return
+        }
+        connector.removeConnectors(fromContainerView: containerView)
+
+        self.connector = GraphViewConnector()
+
+        let context = (graphView: self, containerView: containerView as UIView, datasource: datasource)
+        contextCompletion(context) { [weak self] in
+            guard let self = self else {
+                return
+            }
+            self.connector.build(withDatasource: datasource, graphView: self, andContainerView: self.containerView)
+        }
+    }
+
     public func addLine(inPosition position: Int) {
+        prepareOperationContext { (context, finishedOperationCompletion) in
+            graphOperator.insertLine(inPosition: position, withContext: context, completion: finishedOperationCompletion)
+        }
+    }
+
+    public func addColumn(inPosition position: Int) {
+        prepareOperationContext { (context, finishedOperationCompletion) in
+            graphOperator.insertColumn(inPosition: position, withContext: context, completion: finishedOperationCompletion)
+        }
+    }
+
+    public func appendLine() {
+        prepareOperationContext { (context, finishedOperationCompletion) in
+            graphOperator.appendLine(withContext: context, completion: finishedOperationCompletion)
+        }
+    }
+
+    public func appendColumn() {
+        prepareOperationContext { (context, finishedOperationCompletion) in
+            graphOperator.appendColumn(withContext: context, completion: finishedOperationCompletion)
+        }
+    }
+
+    public func removeLine(atPosition position: Int) {
+        prepareOperationContext { (context, finishedOperationCompletion) in
+            graphOperator.removeLine(inPosition: position, withContext: context, completion: finishedOperationCompletion)
+        }
+    }
+
+    public func removeColumn(atPosition position: Int) {
+        prepareOperationContext { (context, finishedOperationCompletion) in
+            graphOperator.removeColumn(inPosition: position, withContext: context, completion: finishedOperationCompletion)
+        }
+    }
+
+    public func addItem(atPositon positon: GridPosition, removingCurrent: Bool = false) {
+        prepareOperationContext { (context, finishedOperationCompletion) in
+            graphOperator.addItem(inPosition: positon, withContext: context, removingCurrent: removingCurrent, completion: finishedOperationCompletion)
+        }
+    }
+
+    public func removeItem(atPositon positon: GridPosition) {
+        prepareOperationContext { (context, finishedOperationCompletion) in
+            graphOperator.removeItem(inPosition: positon, withContext: context, completion: finishedOperationCompletion)
+        }
+    }
+
+    func reloadData() {
         guard let datasource = self.datasource else {
             return
         }
 
-        graphOperator.addLine(
-            inPosition: position,
-            inContainerView: containerView,
-            withDataSource: datasource,
-            andGraphView: self
-        )
+        containerView.removeFromSuperview()
+        self.containerView = NotifierView()
+        addSubview(containerView)
+        setConstraints()
+
+        build(datasource: datasource, inContainerView: containerView)
+    }
+
+    func reloadConnections() {
+        guard let datasource = self.datasource else {
+            return
+        }
+
+        connector.removeConnectors(fromContainerView: containerView)
+        connector.build(withDatasource: datasource, graphView: self, andContainerView: containerView)
     }
 
     /// It builds the graphView and set it constraints.
@@ -66,6 +141,7 @@ class GraphView: UIScrollView {
 
         self.lineViews = lineViews
 
+        connector.removeConnectors(fromContainerView: containerView)
         connector.build(withDatasource: datasource, graphView: self, andContainerView: containerView)
     }
 
@@ -119,7 +195,7 @@ class GraphView: UIScrollView {
     internal func insert(nodeViews: [UIView?], inLineView lineView: UIView) {
         nodeViews.forEach { (nodeView) in
             guard let nodeView = nodeView else {
-                lineView.addSubview(GraphItemView())
+                lineView.addSubview(GraphItemEmptyView())
                 return
             }
 
@@ -210,7 +286,7 @@ class GraphView: UIScrollView {
         }
 
         if let lastItemView = itemViews.last {
-            lineView.rightAnchor.constraint(equalTo: lastItemView.rightAnchor).isActive = true
+            lastItemView.setClosingConstraints()
         }
     }
 
@@ -254,7 +330,7 @@ class GraphView: UIScrollView {
     ///   - lastItemView: the item that appear before the given item view
     ///   - lineView: the item superview
     /// - Returns: the left anchor of the given item view
-    private func itemViewLeftAnchor(
+    internal func itemViewLeftAnchor(
         forLastItemView lastItemView: UIView?,
         inLineView lineView: UIView) -> NSLayoutXAxisAnchor {
 
@@ -263,16 +339,20 @@ class GraphView: UIScrollView {
         }
         return lastItemView.rightAnchor
     }
-
-    override func didMoveToSuperview() {
+    
+    private func setConstraints() {
         containerView.translatesAutoresizingMaskIntoConstraints = false
-
+        
         NSLayoutConstraint.activate([
             containerView.topAnchor.constraint(equalTo: self.topAnchor),
             containerView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             containerView.leftAnchor.constraint(equalTo: self.leftAnchor),
             containerView.rightAnchor.constraint(equalTo: self.rightAnchor)
-        ])
+            ])
+    }
+
+    override func didMoveToSuperview() {
+        setConstraints()
     }
 
     func itemView(forPosition position: GridPosition) -> GraphItemView? {
