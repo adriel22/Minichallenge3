@@ -9,6 +9,7 @@
 import Foundation
 
 protocol GraphViewDelegate: AnyObject {
-    func itemWasSelectedAt(postion: GridPosition)
-    func connectionButtonWasSelected(connection: Connection)
+    func itemWasSelectedAt(forGraphView graphView: GraphView, postion: GridPosition)
+    func connectionButtonWasSelected(forGraphView graphView: GraphView, connection: Connection)
+    func didLayoutNodes(forGraphView graphView: GraphView, withLoadType loadType: GraphViewDidLayoutType)
 }

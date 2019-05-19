@@ -130,7 +130,8 @@ class GraphViewOperator {
         newItem.eventHandler = GraphViewItemEventHandler(
             withItemView: newItem,
             inPosition: position,
-            andGraphDelegate: delegate
+            andGraphDelegate: delegate,
+            atGraphView: context.graphView
         )
     }
 

@@ -22,6 +22,13 @@ class HistoryGraphViewModel {
         return nil
     }
     
+    lazy var centerItemPosition: GridPosition? = {
+        if let firstNode = historyGraph.nodes.first {
+            return (yPosition: firstNode.positionY, xPosition: firstNode.positionX)
+        }
+        return nil
+    }()
+    
     private var historyGraph: HistoryGraph
     private var historyGraphID: Int
     private var historyDAO = RAMHistoryDAO()

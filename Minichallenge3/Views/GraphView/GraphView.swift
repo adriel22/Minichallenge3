@@ -19,6 +19,7 @@ class GraphView: UIScrollView {
             if let datasource = datasource {
                 build(datasource: datasource, inContainerView: containerView)
                 if let delegate = graphDelegate {
+                    delegate.didLayoutNodes(forGraphView: self, withLoadType: .firstLoad)
                     self.setEventHandlers(delegate: delegate)
                 }
             }
@@ -118,6 +119,7 @@ class GraphView: UIScrollView {
         setConstraints()
 
         build(datasource: datasource, inContainerView: containerView)
+        graphDelegate?.didLayoutNodes(forGraphView: self, withLoadType: .reloadData)
         guard let delegate = self.graphDelegate else {
             return
         }
@@ -145,7 +147,8 @@ class GraphView: UIScrollView {
                 currentItemView.eventHandler = GraphViewItemEventHandler(
                     withItemView: currentItemView,
                     inPosition: itemPosition,
-                    andGraphDelegate: delegate
+                    andGraphDelegate: delegate,
+                    atGraphView: self
                 )
             })
         }

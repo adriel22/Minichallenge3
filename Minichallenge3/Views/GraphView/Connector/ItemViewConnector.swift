@@ -135,12 +135,21 @@ class ItemViewConnector {
         self.lineLayer = connectorLayer
     }
     
-    func setEventHandler(forDelegate delegate: GraphViewDelegate, andConnection connection: Connection) {
+    func setEventHandler(
+        forDelegate delegate: GraphViewDelegate,
+        andConnection connection: Connection,
+        atGraphView graphView: GraphView) {
+
         guard buttonViewContainer.superview != nil else {
             return
         }
         
-        eventHandler = GraphViewConnectionEventHandler(withConnectionView: buttonViewContainer, andDelegate: delegate, inConnectionPostion: connection)
+        eventHandler = GraphViewConnectionEventHandler(
+            withConnectionView: buttonViewContainer,
+            andDelegate: delegate,
+            inConnectionPostion: connection,
+            andGraphView: graphView
+        )
     }
     
     func erase() {

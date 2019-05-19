@@ -177,7 +177,7 @@ class GraphViewConnector {
                     return
                 }
 
-                itemConnector.setEventHandler(forDelegate: delegate, andConnection: connection)
+                itemConnector.setEventHandler(forDelegate: delegate, andConnection: connection, atGraphView: context.graphView)
             }
 
             layoutChangeCompletion()

@@ -21,8 +21,8 @@ class HistoryGraphViewController: UIViewController {
         let graphView = GraphView()
 
         graphView.translatesAutoresizingMaskIntoConstraints = false
-        graphView.datasource = self
         graphView.graphDelegate = self
+        graphView.datasource = self
 
         return graphView
     }()
@@ -38,10 +38,6 @@ class HistoryGraphViewController: UIViewController {
     override func viewDidLoad() {
         setupView()
         setConstraints()
-        
-        Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { (_) in
-            self.viewModel.optionWasSelected(atPositon: 1)
-        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -53,6 +49,7 @@ class HistoryGraphViewController: UIViewController {
         view.addSubview(sinopseView)
         
         view.backgroundColor = UIColor.white
+        configureNavigationBar()
     }
     
     func configureNavigationBar() {
@@ -97,7 +94,13 @@ class HistoryGraphViewController: UIViewController {
 }
 
 extension HistoryGraphViewController: GraphViewDatasource, GraphViewDelegate {
-    func connectionButtonWasSelected(connection: Connection) {
+    func didLayoutNodes(forGraphView graphView: GraphView, withLoadType loadType: GraphViewDidLayoutType) {
+//        if let centerItemPosition = viewModel.centerItemPosition {
+//            self.graphView.scrollToItem(atPosition: centerItemPosition)
+//        }
+    }
+    
+    func connectionButtonWasSelected(forGraphView graphView: GraphView, connection: Connection) {
         viewModel.connectionButtonWasSelected(connection: connection)
     }
     
@@ -105,7 +108,7 @@ extension HistoryGraphViewController: GraphViewDatasource, GraphViewDelegate {
         return UIColor(color: .yellowWhite)
     }
     
-    func itemWasSelectedAt(postion: GridPosition) {
+    func itemWasSelectedAt(forGraphView graphView: GraphView, postion: GridPosition) {
         viewModel.nodeWasSelected(atPossition: postion)
     }
     

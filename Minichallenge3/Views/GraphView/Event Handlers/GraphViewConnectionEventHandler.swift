@@ -9,6 +9,7 @@
 import UIKit
 
 class GraphViewConnectionEventHandler {
+    weak var graphView: GraphView?
     weak var connectionView: UIView?
     weak var delegate: GraphViewDelegate?
     var connectionPosition: Connection
@@ -16,11 +17,13 @@ class GraphViewConnectionEventHandler {
     init(
         withConnectionView connectionView: UIView,
         andDelegate delegate: GraphViewDelegate,
-        inConnectionPostion connectionPosition: Connection) {
+        inConnectionPostion connectionPosition: Connection,
+        andGraphView graphView: GraphView) {
 
         self.connectionView = connectionView
         self.delegate = delegate
         self.connectionPosition = connectionPosition
+        self.graphView = graphView
         
         setupGestures(toView: connectionView)
     }
@@ -31,6 +34,10 @@ class GraphViewConnectionEventHandler {
     }
     
     @objc func itemWasTapped(recognizer: UITapGestureRecognizer) {
-        delegate?.connectionButtonWasSelected(connection: connectionPosition)
+        guard let graphView = self.graphView else {
+            return
+        }
+        
+        delegate?.connectionButtonWasSelected(forGraphView: graphView, connection: connectionPosition)
     }
 }
