@@ -138,7 +138,15 @@ extension PresentationViewController: UICollectionViewDataSource, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let tableViewIndexPath = getTableViewIndexPath(for: collectionView, insideCellOf: storyTableView) {
+            let oldSelectedBranch = selectedBranchesIndexes[tableViewIndexPath.section]
             viewModel?.goToBranch(tableViewIndexPath: tableViewIndexPath, collectionViewIndexPath: indexPath, updateView: self)
+            if let oldSelectedBranch = oldSelectedBranch {
+                let oldIndexPath = IndexPath(item: oldSelectedBranch, section: 0)
+                let oldSelectedCell = collectionView.cellForItem(at: oldIndexPath) as? BranchCollectionViewCell
+                let currentSelected = collectionView.cellForItem(at: indexPath) as? BranchCollectionViewCell
+                oldSelectedCell?.deselect()
+                currentSelected?.select()
+            }
         }
         
         viewModel?.update(self)
