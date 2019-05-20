@@ -56,7 +56,7 @@ class GraphView: UIScrollView {
         let context = (graphView: self, containerView: containerView as UIView, datasource: datasource)
         contextCompletion(context) { [weak self] in
             guard let self = self else { return }
-            self.connector.build(withDatasource: datasource, graphView: self, andContainerView: self.containerView)
+            self.reloadConnections()
         }
     }
 
@@ -146,7 +146,6 @@ class GraphView: UIScrollView {
                 
                 currentItemView.eventHandler = GraphViewItemEventHandler(
                     withItemView: currentItemView,
-                    inPosition: itemPosition,
                     andGraphDelegate: delegate,
                     atGraphView: self
                 )
@@ -387,6 +386,16 @@ class GraphView: UIScrollView {
         }
 
         return lineView.itemViews[position.xPosition]
+    }
+    
+    func position(forItemView itemView: GraphItemView) -> GridPosition? {
+        return lineViews.enumerated().flatMap { currentLineIndex, currentLine -> [GridPosition] in
+            currentLine.itemViews.enumerated().compactMap({ currentItemIndex, currentItem -> Int? in
+                return itemView === currentItem ? currentItemIndex : nil
+            }).map({ (currentItemIndex) -> GridPosition in
+                (yPosition: currentLineIndex, xPosition: currentItemIndex)
+            })
+        }.first
     }
     
     func isValidLine(position: Int, inGraphView graphView: GraphView, extraSize: Int = 0) -> Bool {

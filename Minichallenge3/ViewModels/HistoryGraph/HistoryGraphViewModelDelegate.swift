@@ -15,4 +15,10 @@ protocol HistoryGraphViewModelDelegate: AnyObject {
     func needShowError(message: String)
     func needDeleteNode(atPositon position: GridPosition)
     func needDeleteConnection()
+    func needAppendColumn()
+    func needAppendLine()
+    func needInsertLine(atPosition position: Int)
+    func needInsertColumn(atPosition position: Int)
+    func needAddNode(atPosition position: GridPosition)
+    func needMoveNode(fromPosition originPosition: GridPosition, toPosition destinyPosition: GridPosition)
 }

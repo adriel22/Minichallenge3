@@ -12,17 +12,14 @@ class GraphViewItemEventHandler {
     weak var graphView: GraphView?
     weak var itemView: GraphItemView?
     weak var delegate: GraphViewDelegate?
-    var itemPosition: GridPosition
 
     init(
         withItemView itemView: GraphItemView,
-        inPosition position: GridPosition,
         andGraphDelegate delegate: GraphViewDelegate?,
         atGraphView graphView: GraphView) {
 
         self.delegate = delegate
         self.itemView = itemView
-        self.itemPosition = position
         self.graphView = graphView
         
         setupGestures(toItem: itemView)
@@ -34,10 +31,12 @@ class GraphViewItemEventHandler {
     }
     
     @objc func itemWasTapped(recognizer: UITapGestureRecognizer) {
-        guard let graphView = self.graphView else {
+        guard let graphView = self.graphView,
+              let itemView = self.itemView,
+              let positionForItem = graphView.position(forItemView: itemView) else {
             return
         }
 
-        delegate?.itemWasSelectedAt(forGraphView: graphView, postion: itemPosition)
+        delegate?.itemWasSelectedAt(forGraphView: graphView, postion: positionForItem)
     }
 }

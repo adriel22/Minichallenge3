@@ -38,6 +38,9 @@ class HistoryGraphViewController: UIViewController {
     override func viewDidLoad() {
         setupView()
         setConstraints()
+        Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { (_) in
+            self.viewModel.optionWasSelected(atPositon: 0)
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -139,7 +142,7 @@ extension HistoryGraphViewController: GraphViewDatasource, GraphViewDelegate {
     }
     
     func lineSpacing(forGraphView graphView: GraphView) -> CGFloat {
-        return 50.0
+        return 100.0
     }
     
     func columnSpacing(forGraphView graphView: GraphView) -> CGFloat {
@@ -155,11 +158,36 @@ extension HistoryGraphViewController: GraphViewDatasource, GraphViewDelegate {
     }
     
     func connectionWidth(forGraphView graphView: GraphView) -> CGFloat {
-        return 4
+        return 3
     }
 }
 
 extension HistoryGraphViewController: HistoryGraphViewModelDelegate {
+    func needAppendColumn() {
+        self.graphView.appendColumn()
+    }
+    
+    func needAppendLine() {
+        self.graphView.appendLine()
+    }
+    
+    func needInsertLine(atPosition position: Int) {
+        self.graphView.addLine(inPosition: position)
+    }
+    
+    func needInsertColumn(atPosition position: Int) {
+        self.graphView.addColumn(inPosition: position)
+    }
+    
+    func needAddNode(atPosition position: GridPosition) {
+        self.graphView.addItem(atPositon: position)
+    }
+    
+    func needMoveNode(fromPosition originPosition: GridPosition, toPosition destinyPosition: GridPosition) {
+        self.graphView.removeItem(atPositon: originPosition)
+        self.graphView.addItem(atPositon: destinyPosition)
+    }
+    
     func needDeleteConnection() {
         self.graphView.reloadConnections()
     }

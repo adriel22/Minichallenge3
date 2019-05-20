@@ -166,10 +166,10 @@ open class HistoryGraph: CustomStringConvertible {
         grid[node.positionY, node.positionX] = node
 
         nodes.append(node)
+        
+        grid.delegate?.addNode(inPosition: (node.positionX, node.positionY))
 
         addBordersToNode(node)
-
-        grid.delegate?.addNode(inPosition: (node.positionX, node.positionY))
     }
 
     /// Add lines and columns in the node sides if it is in the grid border

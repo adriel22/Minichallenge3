@@ -73,7 +73,7 @@ public class HistoryNodesGrid: CustomStringConvertible {
         }
 
         graphWidth += 1
-        delegate?.addedColumToGrid(inPosition: graphWidth)
+        delegate?.addedColumToGrid(inPosition: graphWidth - 1)
     }
 
     /// add a line in the vertical end of the grid
@@ -82,7 +82,7 @@ public class HistoryNodesGrid: CustomStringConvertible {
         grid.append([HistoryNodeProtocol?].init(repeating: nil, count: graphWidth))
         graphHeight += 1
 
-        delegate?.addedLineToGrid(inPosition: graphHeight)
+        delegate?.addedLineToGrid(inPosition: graphHeight - 1)
     }
 
     /// Move a node to the given position. Only works if it parent is nill, and it has no connections.
@@ -138,8 +138,6 @@ public class HistoryNodesGrid: CustomStringConvertible {
         node.positionY = positionY
 
         grid[positionY][positionX] = node
-
-
     }
 
     /// Move a node to bellow of other.
@@ -155,7 +153,7 @@ public class HistoryNodesGrid: CustomStringConvertible {
         removeFromOrigin: Bool = true) throws {
         let destinyNodeNewLinePosition = node.positionY + 1
 
-        if let newColPosition = findPositionInLine(atIndex: destinyNodeNewLinePosition) {
+        if let newColPosition = findPositionInLine(atIndex: destinyNodeNewLinePosition, nearIndex: node.positionX) {
             try moveNodeToPosition(
                 node: bellowNode,
                 toPositionX: newColPosition,
@@ -169,12 +167,12 @@ public class HistoryNodesGrid: CustomStringConvertible {
     ///
     /// - Parameter lineIndex: the index of the target line
     /// - Returns: the column of the found position
-    func findPositionInLine(atIndex lineIndex: Int) -> Int? {
-        for colIndex in 0..<graphWidth where grid[lineIndex][colIndex] == nil {
-            return colIndex
-        }
-
-        return nil
+    public func findPositionInLine(atIndex lineIndex: Int, nearIndex: Int) -> Int? {
+        return (0..<graphWidth).compactMap { (currentXIndex) -> Int? in
+            grid[lineIndex][currentXIndex] == nil ? currentXIndex : nil
+        }.sorted { (firstIndex, secondIndex) -> Bool in
+            abs(nearIndex - firstIndex) < abs(nearIndex - secondIndex)
+        }.first
     }
 
     /// Checks if the grid has the given position
