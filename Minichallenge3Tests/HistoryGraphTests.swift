@@ -347,13 +347,13 @@ class HistoryGraphTests: XCTestCase {
     }
 
     func test_addPathAndAddConnection_needMoveChild() {
-        // [ ][r][ ]    |   [ ][n2][r][ ]   |   [ ][ ][ ][r][ ]
-        // [ ][ ][ ]    |   [ ][ ][ ][ ]    |   [ ][n2][ ][ ][ ]
+        // [ ][r][ ]    |   [ ][n2][r][ ]   |   [ ][ ][r][ ]
+        // [ ][ ][ ]    |   [ ][ ][ ][ ]    |   [ ][ ][n2][ ]
 
         let rootNode = HistoryNode.init(
             withResume: "Root Node Resume",
             text: "Root Node Text",
-            positionX: 0, andPositionY: 0
+            positionX: 1, andPositionY: 0
         )
 
         let node2 = HistoryNode.init(
@@ -366,8 +366,9 @@ class HistoryGraphTests: XCTestCase {
         try? graph.addNode(node2)
 
         XCTAssertNoThrow(try graph.addPath(fromNode: rootNode, toNode: node2, withTitle: "action"))
-        XCTAssert(rootNode.positionX == 3 && rootNode.positionY == 0)
-        XCTAssert(node2.positionX == 1 && node2.positionY == 1)
+        
+        XCTAssert(rootNode.positionX == 2 && rootNode.positionY == 0)
+        XCTAssert(node2.positionX == 2 && node2.positionY == 1)
     }
 
     func test_addPathAndAddConnection_duplicatedConnection() {
