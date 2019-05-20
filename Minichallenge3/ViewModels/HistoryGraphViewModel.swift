@@ -218,10 +218,14 @@ extension HistoryGraphViewModel: HistoryGridDelegate {
     }
     
     func addNode(inPosition position: Position) {
-        delegate?.needAddNode(atPosition: (xPosition: position.x, yPosition: position.y))
+        let gridPosition = (xPosition: position.x, yPosition: position.y)
+        delegate?.needAddNode(atPosition: gridPosition)
+        delegate?.needFocusNode(atPosition: gridPosition)
     }
     
     func addShortcut(inPosition position: Position) {
-        delegate?.needAddNode(atPosition: (xPosition: position.x, yPosition: position.y))
+        let gridPosition = (xPosition: position.x, yPosition: position.y)
+        delegate?.needAddNode(atPosition: gridPosition)
+        delegate?.needFocusNode(atPosition: gridPosition)
     }
 }

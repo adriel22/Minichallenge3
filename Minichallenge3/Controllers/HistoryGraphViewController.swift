@@ -40,6 +40,14 @@ class HistoryGraphViewController: UIViewController {
         setConstraints()
         Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { (_) in
             self.viewModel.optionWasSelected(atPositon: 0)
+//            Timer.scheduledTimer(withTimeInterval: 2, repeats: false, block: { (_) in
+//                self.viewModel.optionWasFinished()
+//                self.viewModel.optionWasSelected(atPositon: 1)
+//
+//                Timer.scheduledTimer(withTimeInterval: 2, repeats: false, block: { (_) in
+//                    self.viewModel.optionWasFinished()
+//                })
+//            })
         }
     }
     

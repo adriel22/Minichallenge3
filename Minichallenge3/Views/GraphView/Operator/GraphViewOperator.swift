@@ -245,6 +245,8 @@ class GraphViewOperator {
             andLineMargin: lineMargin,
             andLeftMargin: leftMargin
         )
+        
+        newLineView.hasLeftSpace = (leftMargin != 0)
 
         newLineView.setClosingConstraints()
 
