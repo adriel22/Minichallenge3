@@ -68,18 +68,29 @@ class PresentationViewController: UIViewController {
 }
 
 extension PresentationViewController: UITableViewDataSource, UITableViewDelegate {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return viewModel?.nodes.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = ExpandableTableViewHeaderView()
+        let sectionText = tableView.dataSource?.tableView?(storyTableView, titleForHeaderInSection: section)
+        headerView.text = sectionText?.uppercased()
+        return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 48
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 { return 2 }
         return 1
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return viewModel?.nodes.count ?? 0
-    }
-    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let index = section - 1
-        if section == 0 { return nil }
+        if section == 0 { return "Sinopse" }
         let upperNode = viewModel?.nodes[index]
         if let selectedBranchIndex = selectedBranchesIndexes[index] {
             return upperNode?.connections[selectedBranchIndex].title
@@ -91,7 +102,7 @@ extension PresentationViewController: UITableViewDataSource, UITableViewDelegate
         let reuseIdentifier = (indexPath.section == 0 && indexPath.row == 0) ? "rootCell" : "cell"
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? NodePresentationTableViewCell
         let text = viewModel?.textForTableViewCell(atIndexPath: indexPath, reuseIdentifier: reuseIdentifier)
-        cell?.nodeView.reload(withText: text)
+        cell?.nodeView.text = text
         cell?.nodeView.dataSource = self
         cell?.nodeView.collectionDelegate = self
         cell?.selectionStyle = .none

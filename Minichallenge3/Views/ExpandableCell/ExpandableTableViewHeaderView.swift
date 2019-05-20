@@ -10,20 +10,29 @@ import UIKit
 
 class ExpandableTableViewHeaderView: UIView {
 
-    lazy var label: UILabel! = UILabel(frame: .zero)
-    lazy var button: UIButton! = UIButton(frame: .zero)
+    private lazy var label: UILabel! = UILabel(frame: .zero)
+    private lazy var button: UIButton! = UIButton(frame: .zero)
     
     lazy var isCollapsed = true
     var didTap: ((UIButton) -> Void)?
-
+    
+    var text: String? {
+        didSet {
+            label.text = text
+        }
+    }
+    
     override init(frame: CGRect = .zero) {
         super.init(frame: frame)
-
+        
         configureLabel()
         addSubview(label)
-
+        
         configureButton()
         addSubview(button)
+        
+        backgroundColor = UIColor(rgb: 0xEFEFF4)
+        setConstraints()
         
     }
     
@@ -38,8 +47,6 @@ class ExpandableTableViewHeaderView: UIView {
     }
     
     private func setConstraints() {
-        widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width).isActive = true
-        
         label.translatesAutoresizingMaskIntoConstraints = false
         label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16).isActive = true
         label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16).isActive = true

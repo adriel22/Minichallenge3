@@ -65,6 +65,7 @@ class PresentationViewModel: NSObject, PresentationViewModelProtocol {
             let toReplaceIndexPath = IndexPath(row: 0, section: tableViewIndexPath.section + 1)
             replaceNode(atIndexPath: toReplaceIndexPath, inView: view)
         }
+        
     }
     
     private func changeBranchSelection(tableViewIndexPath: IndexPath, collectionViewIndexPath: IndexPath, inView view: PresentationViewController) {
