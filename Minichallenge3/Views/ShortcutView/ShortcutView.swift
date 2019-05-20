@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ShortcutView: GraphItemView {
+class ShortcutView: GraphItemView, CardViewProtocol {
     
     private var heightCircleView: CGFloat = 64
     
@@ -39,15 +39,17 @@ class ShortcutView: GraphItemView {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-//    private lazy var backgroundView: UIView = {
-//        let view = UIView()
-//        view.backgroundColor = .black
-//        view.translatesAutoresizingMaskIntoConstraints = false
-//        return view
-//    }()
-    
+
     public weak var delegate: ShortcutViewDelegate?
-    public weak var datasource: ShortcutViewDataSource?
+    public weak var datasource: ShortcutViewDataSource? {
+        didSet {
+            guard let datasource = self.datasource else {
+                return
+            }
+            
+            self.lineView.backgroundColor = datasource.lineColor(forShortcutView: self)
+        }
+    }
     public var hasParent: Bool = true {
         didSet {
             hasLineToParent(hasParent: hasParent)
@@ -57,11 +59,9 @@ class ShortcutView: GraphItemView {
     init() {
         super.init(frame: .zero)
         
-//        addSubview(backgroundView)
         addSubview(lineView)
         addSubview(circleView)
         circleView.addSubview(imageView)
-//        backgroundView.addSubview(circleView)
         
         setContraints()
         
@@ -85,7 +85,8 @@ class ShortcutView: GraphItemView {
             circleView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             circleView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             circleView.widthAnchor.constraint(equalToConstant: self.heightCircleView),
-            circleView.heightAnchor.constraint(equalToConstant: self.heightCircleView)
+            circleView.heightAnchor.constraint(equalToConstant: self.heightCircleView),
+            self.heightAnchor.constraint(equalToConstant: 150)
             ])
         //constraints to cicleView from imageView
         NSLayoutConstraint.activate([
@@ -113,7 +114,7 @@ class ShortcutView: GraphItemView {
     }
     
     @objc func tapInShortcut() {
-        delegate?.tapInShortcut()
+        delegate?.tapInShortcut(self)
     }
     
     /*
@@ -124,4 +125,7 @@ class ShortcutView: GraphItemView {
     }
     */
 
+    func setup(withViewModel viewModel: HistoryNodeViewModel) {
+        
+    }
 }

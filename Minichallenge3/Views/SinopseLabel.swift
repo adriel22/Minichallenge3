@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SinopseLabel: UILabel {
+class SinopseLabel: UITextView {
     override var text: String? {
         set {
             super.text = "\"\(newValue ?? " ")\""
@@ -19,7 +19,7 @@ class SinopseLabel: UILabel {
     }
     
     init() {
-        super.init(frame: CGRect.zero)
+        super.init(frame: CGRect.zero, textContainer: nil)
         setup()
     }
     
@@ -29,7 +29,6 @@ class SinopseLabel: UILabel {
     }
     
     func setup() {
-        numberOfLines = 2
         font = UIFont(name: "Baskerville", size: CGFloat(17))
         textAlignment = .center
         textColor = UIColor(color: .darkBlue)

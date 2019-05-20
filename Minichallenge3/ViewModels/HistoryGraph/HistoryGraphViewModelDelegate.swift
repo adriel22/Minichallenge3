@@ -13,6 +13,8 @@ protocol HistoryGraphViewModelDelegate: AnyObject {
     func needShowViewController(_ viewController: UIViewController)
     func needFocusNode(atPosition position: GridPosition)
     func needShowError(message: String)
+    func needShowAlert(title: String, message: String, action: String, cancelAction: String, completion: @escaping () -> Void)
+    func needShowInputAlert(title: String, message: String, action: String, cancelAction: String, completion: @escaping (String) -> Void)
     func needDeleteNode(atPositon position: GridPosition)
     func needDeleteConnection()
     func needAppendColumn()

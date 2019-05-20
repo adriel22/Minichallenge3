@@ -38,6 +38,10 @@ class HistoryGraphViewController: UIViewController {
     override func viewDidLoad() {
         setupView()
         setConstraints()
+        
+        Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { (_) in
+            self.viewModel.optionWasSelected(atPositon: 1)
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -88,16 +92,21 @@ class HistoryGraphViewController: UIViewController {
         case .normal:
             return CardView()
         case .shortcut:
-            return CardView()
+            let shortcut = ShortcutView()
+            shortcut.datasource = self
+            shortcut.delegate = self
+            return shortcut
         }
     }
 }
 
 extension HistoryGraphViewController: GraphViewDatasource, GraphViewDelegate {
     func didLayoutNodes(forGraphView graphView: GraphView, withLoadType loadType: GraphViewDidLayoutType) {
-//        if let centerItemPosition = viewModel.centerItemPosition {
-//            self.graphView.scrollToItem(atPosition: centerItemPosition)
-//        }
+        if let centerItemPosition = viewModel.centerItemPosition {
+            DispatchQueue.main.async {
+                self.graphView.scrollToItem(atPosition: centerItemPosition)
+            }
+        }
     }
     
     func connectionButtonWasSelected(forGraphView graphView: GraphView, connection: Connection) {
@@ -113,6 +122,7 @@ extension HistoryGraphViewController: GraphViewDatasource, GraphViewDelegate {
     }
     
     func connections(forGraphView graphView: GraphView, fromItemAtPosition itemPosition: GridPosition) -> [GridPosition] {
+        
         return viewModel.gridConnections(fromPositionGridPosition: itemPosition)
     }
     
@@ -160,6 +170,30 @@ extension HistoryGraphViewController: GraphViewDatasource, GraphViewDelegate {
 }
 
 extension HistoryGraphViewController: HistoryGraphViewModelDelegate {
+    func needShowInputAlert(title: String, message: String, action: String, cancelAction: String, completion: @escaping (String) -> Void) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertController.addTextField { (textField) in
+            textField.placeholder = "Tap the Ramification Name..."
+        }
+        alertController.addAction(UIAlertAction(title: action, style: .default, handler: { (_) in
+            guard let inputText = alertController.textFields?.first?.text else {
+                return
+            }
+            completion(inputText)
+        }))
+        alertController.addAction(UIAlertAction(title: cancelAction, style: .destructive, handler: nil))
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    func needShowAlert(title: String, message: String, action: String, cancelAction: String, completion: @escaping () -> Void) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: action, style: .default, handler: { (_) in
+            completion()
+        }))
+        alertController.addAction(UIAlertAction(title: cancelAction, style: .destructive, handler: nil))
+        present(alertController, animated: true, completion: nil)
+    }
+
     func needAppendColumn() {
         self.graphView.appendColumn()
     }
@@ -207,5 +241,26 @@ extension HistoryGraphViewController: HistoryGraphViewModelDelegate {
     
     func needDeleteNode(atPositon position: GridPosition) {
         self.graphView.removeItem(atPositon: position)
+    }
+}
+
+extension HistoryGraphViewController: ShortcutViewDelegate, ShortcutViewDataSource {
+    func tapInShortcut(_ shortcut: ShortcutView) {
+        guard let position = self.graphView.position(forItemView: shortcut) else {
+            return
+        }
+        viewModel.nodeWasSelected(atPossition: position)
+    }
+    
+    func widthLine(forShortcutView: ShortcutView) -> CGFloat {
+        return 3
+    }
+    
+    func hasParent(forShortcutView: ShortcutView) -> Bool {
+        return true
+    }
+    
+    func lineColor(forShortcutView: ShortcutView) -> UIColor {
+        return UIColor(color: .gray)
     }
 }

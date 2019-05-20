@@ -49,19 +49,19 @@ class HistoryGraphViewModel {
     func gridSize() -> GridSize {
         return (width: historyGraph.grid.graphWidth, height: historyGraph.grid.graphHeight)
     }
-    
+
     func viewModelForNode(atPosition position: GridPosition) -> HistoryNodeViewModel? {
         guard let nodeAtPosition = historyGraph.grid[position.yPosition, position.xPosition] else {
             return nil
         }
         return HistoryNodeViewModel(withHistoryGraph: historyGraph, andHistoryNode: nodeAtPosition, withState: currentState)
     }
-    
+
     func gridConnections(fromPositionGridPosition gridPosition: GridPosition) -> [GridPosition] {
         guard let node = historyGraph.grid[gridPosition.yPosition, gridPosition.xPosition] as? HistoryNode else {
             return []
         }
-        
+
         return node.connections.compactMap({ (historyConnection) -> GridPosition? in
             guard let destinyNode = historyConnection.destinyNode else {
                 return nil
@@ -124,26 +124,29 @@ class HistoryGraphViewModel {
         guard let originNode = node as? HistoryNode else {
             return
         }
-        do {
-            let newNodeLine = originNode.positionY + 1
-            guard let newNodeColumn = historyGraph.grid.findPositionInLine(atIndex: newNodeLine, nearIndex: originNode.positionX) else {
-                return
-            }
-
-            let newNode = HistoryNode(
-                withResume: " ",
-                text: "Tap to edit",
-                positionX: newNodeColumn,
-                andPositionY: newNodeLine
-            )
         
-            try historyGraph.addNode(newNode)
-            try historyGraph.addConnection(fromNode: originNode, toNode: newNode, withTitle: "bla")
-        } catch let error as HistoryError {
-            delegate?.needShowError(message: error.rawValue)
-        } catch {
-            delegate?.needShowError(message: "A Error Happend")
-        }
+        delegate?.needShowInputAlert(title: "Node Creation", message: "Dê um nome a ramificação", action: "OK", cancelAction: "Cancel", completion: { (inputText) in
+            do {
+                let newNodeLine = originNode.positionY + 1
+                guard let newNodeColumn = self.historyGraph.grid.findPositionInLine(atIndex: newNodeLine, nearIndex: originNode.positionX) else {
+                    return
+                }
+                
+                let newNode = HistoryNode(
+                    withResume: "Tap to edit",
+                    text: "Tap to edit",
+                    positionX: newNodeColumn,
+                    andPositionY: newNodeLine
+                )
+                
+                try self.historyGraph.addNode(newNode)
+                try self.historyGraph.addPath(fromNode: originNode, toNode: newNode, withTitle: inputText)
+            } catch let error as HistoryError {
+                self.delegate?.needShowError(message: error.rawValue)
+            } catch {
+                self.delegate?.needShowError(message: "A Error Happend")
+            }
+        })
     }
     
     private func nodeWasSelectedInRemovingState(atPossition position: GridPosition, inNode node: HistoryNodeProtocol) {
@@ -165,7 +168,15 @@ class HistoryGraphViewModel {
             }
 
             let ownerNodePosition = (yPosition: shortcutOwner.positionY, xPosition: shortcutOwner.positionX)
-            delegate?.needFocusNode(atPosition: ownerNodePosition)
+            delegate?.needShowAlert(
+                title: "Shortcut",
+                message: shortcutNode.resume ?? shortcutNode.text ?? "Empty.",
+                action: "Ir para card",
+                cancelAction: "Fechar",
+                completion: {
+                    self.delegate?.needFocusNode(atPosition: ownerNodePosition)
+                }
+            )
             
             return
         }
@@ -195,6 +206,10 @@ class HistoryGraphViewModel {
 }
 
 extension HistoryGraphViewModel: HistoryGridDelegate {
+    func removedShortcut(atPosition position: Position) {
+        delegate?.needDeleteNode(atPositon: (yPosition: position.y, xPosition: position.x))
+    }
+    
     func addedColumToGrid(inPosition position: Int) {
         if position == self.historyGraph.grid.graphWidth - 1 {
             delegate?.needAppendColumn()

@@ -96,6 +96,10 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: HistoryGridDelegate {
+    func removedShortcut(atPosition position: Position) {
+        
+    }
+    
     func addedColumToGrid(inPosition position: Int) {
         if position == self.graph.grid.graphWidth - 1 {
             self.graphView.appendColumn()
