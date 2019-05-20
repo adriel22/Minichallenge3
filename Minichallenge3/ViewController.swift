@@ -86,9 +86,12 @@ extension ViewController: GraphViewDatasource {
 
 //        let view = GraphItemView.init()
 //        view.backgroundColor = UIColor.red
-        let view = CardView.init()
+//        let view = CardView.init()
+//        view.translatesAutoresizingMaskIntoConstraints = false
+//        view.setCardText("Certo dia, Jurema descobriu uma fofoca super intrigante. Porém, contudo, todavia, entretanto, ela está receosa em contá-la para sua mais que amiga, sua friend, Marivalda. E aí você contaria?")
+        
+        let view = ShortcutView.init()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.setCardText("Certo dia, Jurema descobriu uma fofoca super intrigante. Porém, contudo, todavia, entretanto, ela está receosa em contá-la para sua mais que amiga, sua friend, Marivalda. E aí você contaria?")
 
         view.heightAnchor.constraint(equalToConstant: CGFloat.random(in: 100..<200)).isActive = true
 
@@ -110,4 +113,5 @@ extension ViewController: GraphViewDatasource {
     func leftSpacing(forGraphView graphView: GraphView) -> CGFloat {
         return 100
     }
+    
 }
