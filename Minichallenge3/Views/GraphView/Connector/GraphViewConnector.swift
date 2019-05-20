@@ -12,6 +12,8 @@ typealias Connection = (originPosition: GridPosition, destinyPosition: GridPosit
 
 /// A class responsible for connect the itemViews of a graphView
 class GraphViewConnector {
+    
+    var currentItemConnectors: [ItemViewConnector] = []
 
     /// Place the connector views in the graph containerView
     ///
@@ -24,7 +26,7 @@ class GraphViewConnector {
                andContainerView containerView: UIView) {
 
         let numberOfColumns = datasource.gridSize(forGraphView: graphView).width
-        let connectorMargin = datasource.lineSpacing(forGraphView: graphView) / 10
+        let connectorMargin = connectionMargin(forLineSpacing: datasource.lineSpacing(forGraphView: graphView))
 
         let connectorOffset = itemConnectorsOffset(
             withNumberOfColumns: numberOfColumns,
@@ -65,17 +67,35 @@ class GraphViewConnector {
             (0..<gridSize.width).forEach({ (currentColumnIndex) in
                 let currentItemPosition = (xPosition: currentColumnIndex, yPosition: currentLineIndex)
 
-                let connectionsFromCurrentPosition = datasource
-                    .connections(forGraphView: graphView, fromItemAtPosition: currentItemPosition)
-                    .map({ (currentDestinyPosition) -> Connection in
-
-                        return (originPosition: currentItemPosition, destinyPosition: currentDestinyPosition)
-                    })
-                connections.append(contentsOf: connectionsFromCurrentPosition)
+                connections.append(contentsOf:
+                    findConnection(
+                        atPosition: currentItemPosition,
+                        withDatasource: datasource,
+                        andGraphView: graphView
+                    )
+                )
             })
         }
 
         return connections
+    }
+
+    func findConnection(
+        atPosition position: GridPosition,
+        withDatasource datasource: GraphViewDatasource,
+        andGraphView graphView: GraphView) -> [Connection] {
+
+        return datasource.connections(forGraphView: graphView, fromItemAtPosition: position)
+                         .map({ (currentDestinyPosition) -> Connection in
+
+                            return (originPosition: position, destinyPosition: currentDestinyPosition)
+                        })
+    }
+
+    func connectionMargin(forLineSpacing lineSpacing: CGFloat) -> CGFloat {
+        let connectorMargin = lineSpacing / 10
+
+        return connectorMargin
     }
 
     /// Calculate the offset for the connector horizontal line height.
@@ -124,43 +144,39 @@ class GraphViewConnector {
                 return
             }
 
-            GraphItemView.waitForSubviewLayout(item1: originItemView, item2: destinyItemView) {
-                let positionInContainerForOrigin = originLineView.convert(originItemView.center, to: containerView)
-                let positionInContainerForDestiny = destinyLineView.convert(destinyItemView.center, to: containerView)
+            let itemConnector = ItemViewConnector(
+                withContainerView: containerView,
+                lineWidth: 3, originLineView: originLineView,
+                andDestinyLineView: destinyLineView
+            )
 
-                let itemConnector = ItemViewConnector(
-                    withContainerView: containerView,
-                    lineWidth: 3, originLineView: originLineView,
-                    andDestinyLineView: destinyLineView
-                )
+            self.currentItemConnectors.append(itemConnector)
 
-                originItemView.connectors.append(itemConnector)
+            let layoutChangeCompletion = { [weak self] in
+                guard self != nil else {
+                    return
+                }
 
-                let direction = positionInContainerForOrigin.x > positionInContainerForDestiny.x ?
-                    ItemViewConnectorDirection.left :
-                    ItemViewConnectorDirection.right
-
-                /// The bendDistance is the distance from the originLineView to the begin of the connector view
                 let bendDistance = connectorMargins +
                     (connectorsOffset * CGFloat(connection.originPosition.xPosition))
 
-                itemConnector.setConstraints(
-                    fromOriginItem: originItemView, toDestinyItem: destinyItemView,
-                    withBendDistance: bendDistance,
-                    andDirection: direction
-                )
+                itemConnector.createLine(fromItemView1: originItemView, toItemView2: destinyItemView, withBendDistance: bendDistance, inContainerView: containerView)
             }
+
+            layoutChangeCompletion()
+
+            destinyItemView.didLayoutSubViewsCompletions.append(layoutChangeCompletion)
+            originItemView.didLayoutSubViewsCompletions.append(layoutChangeCompletion)
+            originLineView.didLayoutSubViewsCompletions.append(layoutChangeCompletion)
+            destinyLineView.didLayoutSubViewsCompletions.append(layoutChangeCompletion)
+            (containerView as? NotifierView)?.didLayoutSubViewsCompletions.append(layoutChangeCompletion)
         }
     }
 
-    /// Remove all the connector views from the containerView
-    ///
-    /// - Parameter containerView: the containerView
-    func removeAllConnectors(fromContainerView containerView: UIView) {
-        containerView.subviews.compactMap { (subview) -> GraphConnectionView? in
-            return subview as? GraphConnectionView
-        }.forEach { (connectorView) in
-            connectorView.removeFromSuperview()
+    func removeConnectors(fromContainerView containerView: UIView) {
+        for connector in currentItemConnectors {
+            connector.lineLayer?.removeFromSuperlayer()
         }
+        currentItemConnectors = []
     }
 }

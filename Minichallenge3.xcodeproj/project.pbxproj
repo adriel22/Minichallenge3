@@ -19,6 +19,12 @@
 		E32A379E228B011300E2F8B1 /* MyNarrativesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32A379C228B011300E2F8B1 /* MyNarrativesView.swift */; };
 		E32A379F228B011300E2F8B1 /* CustomNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32A379D228B011300E2F8B1 /* CustomNavigation.swift */; };
 		E32A37A1228B013600E2F8B1 /* MyNarrativesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32A37A0228B013600E2F8B1 /* MyNarrativesViewController.swift */; };
+		E32A37A5228ED44300E2F8B1 /* GraphItemEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32A37A4228ED44300E2F8B1 /* GraphItemEmptyView.swift */; };
+		E32A37A7228EE69E00E2F8B1 /* CGRect+init.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32A37A6228EE69E00E2F8B1 /* CGRect+init.swift */; };
+		E32A37AA229040B300E2F8B1 /* OperationAnimationStage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32A37A9229040B300E2F8B1 /* OperationAnimationStage.swift */; };
+		E32A37AC2290496000E2F8B1 /* GraphViewAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32A37AB2290496000E2F8B1 /* GraphViewAnimator.swift */; };
+		E32A37AE2290580500E2F8B1 /* Array+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32A37AD2290580500E2F8B1 /* Array+UIView.swift */; };
+		E32A37B022905F7000E2F8B1 /* NotifierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32A37AF22905F7000E2F8B1 /* NotifierView.swift */; };
 		E331CCC62287B3070041379B /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E331CCC52287B3070041379B /* GraphView.swift */; };
 		E331CCCA228846B20041379B /* GraphViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E331CCC9228846B20041379B /* GraphViewDelegate.swift */; };
 		E331CCCC228846C20041379B /* GraphViewDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E331CCCB228846C20041379B /* GraphViewDatasource.swift */; };
@@ -29,7 +35,6 @@
 		E381E2C72288DCC500E25B78 /* ItemViewConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381E2C62288DCC500E25B78 /* ItemViewConnector.swift */; };
 		E381E2C92288DE8300E25B78 /* CGPoint+add.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381E2C82288DE8300E25B78 /* CGPoint+add.swift */; };
 		E381E2CB2288E0AF00E25B78 /* UIBezierPath+addPolygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381E2CA2288E0AF00E25B78 /* UIBezierPath+addPolygon.swift */; };
-		E381E2CF2289BA9A00E25B78 /* GraphConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381E2CE2289BA9A00E25B78 /* GraphConnectionView.swift */; };
 		E381E2D12289C41800E25B78 /* NSLayoutConstraint+activate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381E2D02289C41800E25B78 /* NSLayoutConstraint+activate.swift */; };
 		E381E2D32289C58F00E25B78 /* ItemViewConnectorDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381E2D22289C58F00E25B78 /* ItemViewConnectorDirection.swift */; };
 		E3C030B822844F0800AD53E0 /* HistoryGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B722844F0800AD53E0 /* HistoryGraphTests.swift */; };
@@ -118,6 +123,12 @@
 		E32A379C228B011300E2F8B1 /* MyNarrativesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyNarrativesView.swift; sourceTree = "<group>"; };
 		E32A379D228B011300E2F8B1 /* CustomNavigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNavigation.swift; sourceTree = "<group>"; };
 		E32A37A0228B013600E2F8B1 /* MyNarrativesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyNarrativesViewController.swift; sourceTree = "<group>"; };
+		E32A37A4228ED44300E2F8B1 /* GraphItemEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphItemEmptyView.swift; sourceTree = "<group>"; };
+		E32A37A6228EE69E00E2F8B1 /* CGRect+init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+init.swift"; sourceTree = "<group>"; };
+		E32A37A9229040B300E2F8B1 /* OperationAnimationStage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationAnimationStage.swift; sourceTree = "<group>"; };
+		E32A37AB2290496000E2F8B1 /* GraphViewAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewAnimator.swift; sourceTree = "<group>"; };
+		E32A37AD2290580500E2F8B1 /* Array+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+UIView.swift"; sourceTree = "<group>"; };
+		E32A37AF22905F7000E2F8B1 /* NotifierView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifierView.swift; sourceTree = "<group>"; };
 		E331CCC52287B3070041379B /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
 		E331CCC9228846B20041379B /* GraphViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewDelegate.swift; sourceTree = "<group>"; };
 		E331CCCB228846C20041379B /* GraphViewDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewDatasource.swift; sourceTree = "<group>"; };
@@ -128,7 +139,6 @@
 		E381E2C62288DCC500E25B78 /* ItemViewConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewConnector.swift; sourceTree = "<group>"; };
 		E381E2C82288DE8300E25B78 /* CGPoint+add.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+add.swift"; sourceTree = "<group>"; };
 		E381E2CA2288E0AF00E25B78 /* UIBezierPath+addPolygon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBezierPath+addPolygon.swift"; sourceTree = "<group>"; };
-		E381E2CE2289BA9A00E25B78 /* GraphConnectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphConnectionView.swift; sourceTree = "<group>"; };
 		E381E2D02289C41800E25B78 /* NSLayoutConstraint+activate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+activate.swift"; sourceTree = "<group>"; };
 		E381E2D22289C58F00E25B78 /* ItemViewConnectorDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewConnectorDirection.swift; sourceTree = "<group>"; };
 		E3C030AB2282F19500AD53E0 /* HistoryGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryGraph.swift; sourceTree = "<group>"; };
@@ -223,6 +233,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E32A37A82290406D00E2F8B1 /* Operator */ = {
+			isa = PBXGroup;
+			children = (
+				E32A379A228A4FD700E2F8B1 /* GraphViewOperator.swift */,
+				E32A37A9229040B300E2F8B1 /* OperationAnimationStage.swift */,
+				E32A37AB2290496000E2F8B1 /* GraphViewAnimator.swift */,
+			);
+			path = Operator;
+			sourceTree = "<group>";
+		};
 		E331CCC42287B2F30041379B /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -241,23 +261,25 @@
 		E331CCC7228846720041379B /* GraphView */ = {
 			isa = PBXGroup;
 			children = (
-				E381E2D4228A27EF00E25B78 /* connections */,
-				E331CCC8228846A40041379B /* delegate */,
+				E32A37A82290406D00E2F8B1 /* Operator */,
+				E381E2D4228A27EF00E25B78 /* Connector */,
+				E331CCC8228846A40041379B /* Delegate */,
 				E331CCC52287B3070041379B /* GraphView.swift */,
 				E331CCD02288971D0041379B /* GraphLineView.swift */,
 				E381E2C22288D7B700E25B78 /* GraphItemView.swift */,
-				E32A379A228A4FD700E2F8B1 /* GraphViewOperator.swift */,
+				E32A37A4228ED44300E2F8B1 /* GraphItemEmptyView.swift */,
+				E32A37AF22905F7000E2F8B1 /* NotifierView.swift */,
 			);
 			path = GraphView;
 			sourceTree = "<group>";
 		};
-		E331CCC8228846A40041379B /* delegate */ = {
+		E331CCC8228846A40041379B /* Delegate */ = {
 			isa = PBXGroup;
 			children = (
 				E331CCC9228846B20041379B /* GraphViewDelegate.swift */,
 				E331CCCB228846C20041379B /* GraphViewDatasource.swift */,
 			);
-			path = delegate;
+			path = Delegate;
 			sourceTree = "<group>";
 		};
 		E331CCCD228880100041379B /* Extensions */ = {
@@ -272,19 +294,20 @@
 				E381E2C82288DE8300E25B78 /* CGPoint+add.swift */,
 				E381E2CA2288E0AF00E25B78 /* UIBezierPath+addPolygon.swift */,
 				E381E2D02289C41800E25B78 /* NSLayoutConstraint+activate.swift */,
+				E32A37A6228EE69E00E2F8B1 /* CGRect+init.swift */,
+				E32A37AD2290580500E2F8B1 /* Array+UIView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		E381E2D4228A27EF00E25B78 /* connections */ = {
+		E381E2D4228A27EF00E25B78 /* Connector */ = {
 			isa = PBXGroup;
 			children = (
 				E381E2C42288DC1D00E25B78 /* GraphViewConnector.swift */,
 				E381E2C62288DCC500E25B78 /* ItemViewConnector.swift */,
-				E381E2CE2289BA9A00E25B78 /* GraphConnectionView.swift */,
 				E381E2D22289C58F00E25B78 /* ItemViewConnectorDirection.swift */,
 			);
-			path = connections;
+			path = Connector;
 			sourceTree = "<group>";
 		};
 		E3C030AA2282F14700AD53E0 /* Models */ = {
@@ -674,13 +697,17 @@
 				E32A37A1228B013600E2F8B1 /* MyNarrativesViewController.swift in Sources */,
 				FC02E93D228AFFC100537429 /* ExpandableTableViewCell.swift in Sources */,
 				927CFA5B228DAB8800CAC09E /* ShortcutView.swift in Sources */,
+				E32A37A5228ED44300E2F8B1 /* GraphItemEmptyView.swift in Sources */,
 				E381E2C72288DCC500E25B78 /* ItemViewConnector.swift in Sources */,
 				927CFA5D228ED0A500CAC09E /* ShortcutViewDelegate.swift in Sources */,
 				FC02F5DE228D8B31008F0777 /* UIView+round.swift in Sources */,
 				FC02F5E7228D8E32008F0777 /* DetailsViewController.swift in Sources */,
 				FC02F5DA228D8B31008F0777 /* UITextView+addDoneButtonOnKeyboard.swift in Sources */,
 				FCB35490228065AF00AB7ED2 /* ViewController.swift in Sources */,
+				E32A37AA229040B300E2F8B1 /* OperationAnimationStage.swift in Sources */,
 				E331CCCF2288802B0041379B /* Array+forearch.swift in Sources */,
+				E32A37AE2290580500E2F8B1 /* Array+UIView.swift in Sources */,
+				E32A37A7228EE69E00E2F8B1 /* CGRect+init.swift in Sources */,
 				FC02F5DD228D8B31008F0777 /* String+calculateSize.swift in Sources */,
 				E381E2D32289C58F00E25B78 /* ItemViewConnectorDirection.swift in Sources */,
 				E381E2D12289C41800E25B78 /* NSLayoutConstraint+activate.swift in Sources */,
@@ -690,6 +717,8 @@
 				E331CCD12288971D0041379B /* GraphLineView.swift in Sources */,
 				E331CCC62287B3070041379B /* GraphView.swift in Sources */,
 				E381E2C92288DE8300E25B78 /* CGPoint+add.swift in Sources */,
+				E32A37AC2290496000E2F8B1 /* GraphViewAnimator.swift in Sources */,
+				E32A37B022905F7000E2F8B1 /* NotifierView.swift in Sources */,
 				E381E2C52288DC1D00E25B78 /* GraphViewConnector.swift in Sources */,
 				FC02F5EA228D8EA2008F0777 /* BranchCollectionViewCell.swift in Sources */,
 				E381E2CF2289BA9A00E25B78 /* GraphConnectionView.swift in Sources */,
@@ -946,7 +975,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JGG8YW8SJU;
+				DEVELOPMENT_TEAM = Z8P97P3QB4;
 				INFOPLIST_FILE = Minichallenge3/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -968,7 +997,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JGG8YW8SJU;
+				DEVELOPMENT_TEAM = Z8P97P3QB4;
 				INFOPLIST_FILE = Minichallenge3/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
