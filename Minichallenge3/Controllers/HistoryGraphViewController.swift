@@ -38,17 +38,6 @@ class HistoryGraphViewController: UIViewController {
     override func viewDidLoad() {
         setupView()
         setConstraints()
-        Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { (_) in
-            self.viewModel.optionWasSelected(atPositon: 0)
-//            Timer.scheduledTimer(withTimeInterval: 2, repeats: false, block: { (_) in
-//                self.viewModel.optionWasFinished()
-//                self.viewModel.optionWasSelected(atPositon: 1)
-//
-//                Timer.scheduledTimer(withTimeInterval: 2, repeats: false, block: { (_) in
-//                    self.viewModel.optionWasFinished()
-//                })
-//            })
-        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
