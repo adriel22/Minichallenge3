@@ -174,6 +174,10 @@ class NodeDetailsView: UIView {
         }
     }
     
+    func enableBranches(_ enabled: Bool) {
+        branches.isUserInteractionEnabled = enabled
+    }
+    
     func reload(withText text: String?) {
         self.text = text
         if branches.isHidden == false { self.branches.reloadData() }

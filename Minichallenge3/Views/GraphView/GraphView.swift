@@ -8,99 +8,43 @@
 
 import UIKit
 
+typealias Context = (graphView: GraphView, containerView: UIView, datasource: GraphViewDatasource)
+
 class GraphView: UIScrollView {
-
     var containerView = NotifierView()
-
     var connector = GraphViewConnector()
-
     var graphOperator = GraphViewOperator()
-
-    var datasource: GraphViewDatasource? {
+    var eventHandler: GraphViewEventHandler?
+    weak var datasource: GraphViewDatasource? {
         didSet {
             if let datasource = datasource {
                 build(datasource: datasource, inContainerView: containerView)
+                if let delegate = graphDelegate {
+                    delegate.didLayoutNodes(forGraphView: self, withLoadType: .firstLoad)
+                    self.setEventHandlers(delegate: delegate)
+                }
             }
         }
     }
-
+    weak var graphDelegate: GraphViewDelegate? {
+        didSet {
+            if let delegate = graphDelegate {
+                setEventHandlers(delegate: delegate)
+            }
+        }
+    }
     var lineViews: [GraphLineView] = []
 
     init() {
         super.init(frame: CGRect.zero)
         addSubview(containerView)
+        eventHandler = GraphViewEventHandler(withGraphView: self)
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-
         addSubview(containerView)
-    }
-
-    private func prepareOperationContext(
-        contextCompletion: (_ context: GraphViewOperator.Context, _ finishedCompletion: @escaping () -> Void) -> Void) {
-        guard let datasource = self.datasource else {
-            return
-        }
-        connector.removeConnectors(fromContainerView: containerView)
-
-        self.connector = GraphViewConnector()
-
-        let context = (graphView: self, containerView: containerView as UIView, datasource: datasource)
-        contextCompletion(context) { [weak self] in
-            guard let self = self else {
-                return
-            }
-            self.connector.build(withDatasource: datasource, graphView: self, andContainerView: self.containerView)
-        }
-    }
-
-    public func addLine(inPosition position: Int) {
-        prepareOperationContext { (context, finishedOperationCompletion) in
-            graphOperator.insertLine(inPosition: position, withContext: context, completion: finishedOperationCompletion)
-        }
-    }
-
-    public func addColumn(inPosition position: Int) {
-        prepareOperationContext { (context, finishedOperationCompletion) in
-            graphOperator.insertColumn(inPosition: position, withContext: context, completion: finishedOperationCompletion)
-        }
-    }
-
-    public func appendLine() {
-        prepareOperationContext { (context, finishedOperationCompletion) in
-            graphOperator.appendLine(withContext: context, completion: finishedOperationCompletion)
-        }
-    }
-
-    public func appendColumn() {
-        prepareOperationContext { (context, finishedOperationCompletion) in
-            graphOperator.appendColumn(withContext: context, completion: finishedOperationCompletion)
-        }
-    }
-
-    public func removeLine(atPosition position: Int) {
-        prepareOperationContext { (context, finishedOperationCompletion) in
-            graphOperator.removeLine(inPosition: position, withContext: context, completion: finishedOperationCompletion)
-        }
-    }
-
-    public func removeColumn(atPosition position: Int) {
-        prepareOperationContext { (context, finishedOperationCompletion) in
-            graphOperator.removeColumn(inPosition: position, withContext: context, completion: finishedOperationCompletion)
-        }
-    }
-
-    public func addItem(atPositon positon: GridPosition, removingCurrent: Bool = false) {
-        prepareOperationContext { (context, finishedOperationCompletion) in
-            graphOperator.addItem(inPosition: positon, withContext: context, removingCurrent: removingCurrent, completion: finishedOperationCompletion)
-        }
-    }
-
-    public func removeItem(atPositon positon: GridPosition) {
-        prepareOperationContext { (context, finishedOperationCompletion) in
-            graphOperator.removeItem(inPosition: positon, withContext: context, completion: finishedOperationCompletion)
-        }
+        eventHandler = GraphViewEventHandler(withGraphView: self)
     }
 
     func reloadData() {
@@ -114,6 +58,11 @@ class GraphView: UIScrollView {
         setConstraints()
 
         build(datasource: datasource, inContainerView: containerView)
+        graphDelegate?.didLayoutNodes(forGraphView: self, withLoadType: .reloadData)
+        guard let delegate = self.graphDelegate else {
+            return
+        }
+        setEventHandlers(delegate: delegate)
     }
 
     func reloadConnections() {
@@ -122,7 +71,24 @@ class GraphView: UIScrollView {
         }
 
         connector.removeConnectors(fromContainerView: containerView)
+        
         connector.build(withDatasource: datasource, graphView: self, andContainerView: containerView)
+    }
+    
+    func setEventHandlers(delegate: GraphViewDelegate) {
+        lineViews.forEach { (_, currentLineView, _) in
+            currentLineView.itemViews.forEach(completion: { (_, currentItemView, _) in
+                guard currentItemView.eventHandler == nil, !(currentItemView is GraphItemEmptyView) else {
+                    return
+                }
+                
+                currentItemView.eventHandler = GraphViewItemEventHandler(
+                    withItemView: currentItemView,
+                    andGraphDelegate: delegate,
+                    atGraphView: self
+                )
+            })
+        }
     }
 
     /// It builds the graphView and set it constraints.
@@ -192,12 +158,9 @@ class GraphView: UIScrollView {
     /// - Parameters:
     ///   - nodeViews: the node views to insert
     ///   - lineView: the nodes parent line
-    internal func insert(nodeViews: [UIView?], inLineView lineView: UIView) {
+    internal func insert(nodeViews: [GraphItemView?], inLineView lineView: UIView) {
         nodeViews.forEach { (nodeView) in
-            guard let nodeView = nodeView else {
-                lineView.addSubview(GraphItemEmptyView())
-                return
-            }
+            let nodeView = nodeView ?? GraphItemEmptyView()
 
             lineView.addSubview(nodeView)
         }
@@ -213,12 +176,9 @@ class GraphView: UIScrollView {
         let numberOfLines = lineViews.count
 
         (0..<numberOfLines).forEach { [weak self] (currentLineViewIndex) in
-            guard let self = self else {
-                return
-            }
+            guard let self = self else { return }
 
             let currentLineView = lineViews[currentLineViewIndex]
-
             let nodeViews = self.getNodeViews(fromDatasource: datasource, forLineWithIndex: currentLineViewIndex)
             self.insert(nodeViews: nodeViews, inLineView: currentLineView)
         }
@@ -277,7 +237,7 @@ class GraphView: UIScrollView {
 
             let itemLeftAnchor = itemViewLeftAnchor(forLastItemView: lastItemView, inLineView: lineView)
             let itemWidthAnchor = datasource.columnWidth(forGraphView: self, inXPosition: currentColumnIndex)
-
+            
             currentItemView.setConstraintsFor(
                 leftAnchor: itemLeftAnchor,
                 widthAnchor: itemWidthAnchor,
@@ -295,10 +255,7 @@ class GraphView: UIScrollView {
     /// - Parameters:
     ///   - lineViews: the line views that contains the item views.
     ///   - datasource: the datasource of the graph
-    private func setConstraintsForItemViewsIn(
-        lineViews: [GraphLineView],
-        usingDatasource datasource: GraphViewDatasource) {
-
+    private func setConstraintsForItemViewsIn(lineViews: [GraphLineView], usingDatasource datasource: GraphViewDatasource) {
         lineViews.forEach { (_, currentLineView, currentLineViewIndex) in
             setConstraintsFor(
                 itemViews: currentLineView.itemViews,
@@ -348,7 +305,7 @@ class GraphView: UIScrollView {
             containerView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             containerView.leftAnchor.constraint(equalTo: self.leftAnchor),
             containerView.rightAnchor.constraint(equalTo: self.rightAnchor)
-            ])
+        ])
     }
 
     override func didMoveToSuperview() {
@@ -367,5 +324,45 @@ class GraphView: UIScrollView {
         }
 
         return lineView.itemViews[position.xPosition]
+    }
+    
+    func position(forItemView itemView: GraphItemView) -> GridPosition? {
+        return lineViews.enumerated().flatMap { currentLineIndex, currentLine -> [GridPosition] in
+            currentLine.itemViews.enumerated().compactMap({ currentItemIndex, currentItem -> Int? in
+                return itemView === currentItem ? currentItemIndex : nil
+            }).map({ (currentItemIndex) -> GridPosition in
+                (yPosition: currentLineIndex, xPosition: currentItemIndex)
+            })
+        }.first
+    }
+    
+    func isValidLine(position: Int, inGraphView graphView: GraphView, extraSize: Int = 0) -> Bool {
+        let positionIsValid = position >= 0 && position < (graphView.lineViews.count + extraSize)
+        return positionIsValid
+    }
+    
+    func isValidColumn(position: Int, inGraphView graphView: GraphView, extraSize: Int = 0) -> Bool {
+        guard let columnCount = graphView.lineViews.first?.itemViews.count else {
+            return false
+        }
+        
+        let positionIsValid = position >= 0 && position < (columnCount + extraSize)
+        return positionIsValid
+    }
+    
+    func scrollToItem(atPosition position: GridPosition) {
+        guard isValidLine(position: position.yPosition, inGraphView: self),
+              isValidColumn(position: position.xPosition, inGraphView: self) else {
+            return
+        }
+
+        let itemLineViewForPosition = lineViews[position.yPosition]
+        let itemViewAtPosition = itemLineViewForPosition.itemViews[position.xPosition]
+        let rectInGraphViewForItem = itemLineViewForPosition.convert(
+            itemViewAtPosition.frame,
+            to: self
+        )
+    
+        scrollRectToVisible(rectInGraphViewForItem, animated: true)
     }
 }

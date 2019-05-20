@@ -11,9 +11,9 @@ import Foundation
 public typealias Position = (x: Int, y: Int)
 public protocol HistoryGridDelegate: class {
 
-    func addedColumToGrid(inPosition: Int)
-    func addedLineToGrid(inPosition: Int)
-    func movedNodeToPosition(fromPosition position: Position, toPosition position: Position)
+    func addedColumToGrid(inPosition position: Int)
+    func addedLineToGrid(inPosition position: Int)
+    func movedNodeToPosition(fromPosition originPosition: Position, toPosition destinyPosition: Position)
     func addNode(inPosition position: Position)
     func addShortcut(inPosition position: Position)
 }

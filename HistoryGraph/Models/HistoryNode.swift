@@ -39,4 +39,13 @@ public class HistoryNode: HistoryNodeProtocol {
             currentConnection.destinyNode === node
         }
     }
+
+    public func connection(toPositionX positionX: Int, positionY: Int) -> HistoryConnection? {
+        return connections.first { (currentConnection) -> Bool in
+            guard let destinyNode = currentConnection.destinyNode else {
+                return false
+            }
+            return destinyNode.positionX == positionX && destinyNode.positionY == positionY
+        }
+    }
 }

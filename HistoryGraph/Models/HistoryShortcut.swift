@@ -9,7 +9,7 @@
 import Foundation
 
 public class HistoryShortcut: HistoryNodeProtocol {
-    weak var node: HistoryNode?
+    public weak var node: HistoryNode?
     public weak var parent: HistoryNodeProtocol?
 
     public var resume: String? {

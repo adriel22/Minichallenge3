@@ -15,16 +15,17 @@ enum States {
     case erase
     case empty
 }
-class CardView: GraphItemView {
+class CardView: GraphItemView, CardViewProtocol {
     private var state: States {
         didSet {
             resetCard()
         }
     }
-    private let textView: UITextView
+    private let textView: UILabel
 
     init() {
-        textView = UITextView()
+        textView = UILabel()
+        textView.numberOfLines = 0
         state = .normal
         super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         changeState(to: .normal)
@@ -84,18 +85,21 @@ class CardView: GraphItemView {
 
     private func setTextView() {
         textView.backgroundColor = UIColor.clear
-        textView.isEditable = false
         textView.textAlignment = .center
         textView.font = UIFont(name: "Baskerville", size: CGFloat(17))
 
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.topAnchor.constraint(equalTo: self.topAnchor, constant: 15).isActive = true
-        textView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        textView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -15).isActive = true
         textView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         textView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-
+        
+        let heightConstraint = textView.heightAnchor.constraint(greaterThanOrEqualToConstant: 100)
+        heightConstraint.priority = .defaultHigh
+        
+        heightConstraint.isActive = true
+        
         textView.tag = 1
-
     }
 
     private func setOpacityLayer() {
@@ -112,6 +116,7 @@ class CardView: GraphItemView {
         opacityView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         opacityView.tag = 1
     }
+
     private func setIcon(withImage image: UIImage, andColor color: UIColor) {
         let icon = UIImageView(image: image)
         icon.contentMode = .scaleAspectFit
@@ -127,6 +132,7 @@ class CardView: GraphItemView {
         icon.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         icon.tag = 1
     }
+
     private func addShadow() {
         self.layer.masksToBounds = false
         self.layer.shadowOffset = CGSize(width: 0, height: 0)
@@ -154,6 +160,7 @@ class CardView: GraphItemView {
             borderView.name = "borderView"
         }
     }
+
     private func resetCard() {
         self.subviews.forEach({if $0.tag == 1 {
             $0.removeFromSuperview()
@@ -165,5 +172,19 @@ class CardView: GraphItemView {
             $0.removeFromSuperlayer()
             }})
         self.layer.shadowOpacity = 0
+    }
+
+    func setup(withViewModel viewModel: HistoryNodeViewModel) {
+        switch viewModel.currentState {
+        case .normal:
+            changeState(to: .normal)
+        case .adding:
+            changeState(to: .create)
+        case .connecting:
+            changeState(to: .empty)
+        case .removing:
+            changeState(to: .erase)
+        }
+        self.textView.text = viewModel.nodeResume
     }
 }

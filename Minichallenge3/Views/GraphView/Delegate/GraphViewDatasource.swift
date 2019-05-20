@@ -12,7 +12,7 @@ import UIKit
 typealias GridSize = (width: Int, height: Int)
 public typealias GridPosition = (yPosition: Int, xPosition: Int)
 
-protocol GraphViewDatasource {
+protocol GraphViewDatasource: AnyObject {
 
     func gridSize(forGraphView graphView: GraphView) -> GridSize
     func gridNodeView(forGraphView graphView: GraphView, inPosition position: GridPosition) -> GraphItemView?
@@ -20,6 +20,8 @@ protocol GraphViewDatasource {
     func lineSpacing(forGraphView graphView: GraphView) -> CGFloat
     func columnSpacing(forGraphView graphView: GraphView) -> CGFloat
     func leftSpacing(forGraphView graphView: GraphView) -> CGFloat
-
+    func connectionWidth(forGraphView graphView: GraphView) -> CGFloat
+    func connectionsImage(forGraphView graphView: GraphView) -> UIImage?
+    func connectionButtonColor(forGraphView graphView: GraphView) -> UIColor?
     func connections(forGraphView graphView: GraphView, fromItemAtPosition itemPosition: GridPosition) -> [GridPosition]
 }

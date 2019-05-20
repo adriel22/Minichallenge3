@@ -16,40 +16,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
 //        let controller = MyNarrativesViewController()
 //        window = UIWindow(frame: UIScreen.main.bounds)
 //        window?.rootViewController = controller
 //        window?.makeKeyAndVisible()
-
+//
 //        let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
 //        if statusBar.responds(to:#selector(setter: UIView.backgroundColor)) {
 //            statusBar.backgroundColor = UIColor(color: .darkBlue)
 //        }
-        
-        UINavigationBar.appearance().barTintColor = UIColor(color: .darkBlue)
-        UINavigationBar.appearance().tintColor = UIColor(color: .yellowWhite)
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(color: .yellowWhite)]
-        UINavigationBar.appearance().largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(color: .yellowWhite)]
-        UINavigationBar.appearance().isTranslucent = false
-        
-        //        let controller = MyNarrativesViewController()
-        //        window = UIWindow(frame: UIScreen.main.bounds)
-        //        window?.rootViewController = controller
-        //        window?.makeKeyAndVisible()
+//
+//        UINavigationBar.appearance().barTintColor = UIColor(color: .darkBlue)
+//        UINavigationBar.appearance().tintColor = UIColor(color: .yellowWhite)
+//        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(color: .yellowWhite)]
+//        UINavigationBar.appearance().isTranslucent = false
+//
+//        window = UIWindow(frame: UIScreen.main.bounds)
+//        window?.rootViewController = UINavigationController(rootViewController: controller)
+//        window?.makeKeyAndVisible()
         
         
-        let graph = HistoryGraph(withName: "Juremoids", sinopse: "Sinopse da história", width: 3, andHeight: 3)
+        let graph = HistoryGraph(withName: "História", sinopse: "Sinopse da história", width: 3, andHeight: 3)
         
-        let story = HistoryNode(withResume: "RESUME", text: "Story comeco ta sabendo ne", positionX: 2, andPositionY: 0)
+        let story = HistoryNode(withResume: "RESUME", text: "Story root", positionX: 2, andPositionY: 0)
         try? graph.addNode(story)
         
-        let story2 = HistoryNode(withResume: "RESUME", text: "Story 2 manim", positionX: 2, andPositionY: 1)
+        let story2 = HistoryNode(withResume: "RESUME", text: "Story 2", positionX: 2, andPositionY: 1)
         try? graph.addNode(story2)
         try? graph.addConnection(fromNode: story, toNode: story2, withTitle: "Connection name")
         
-        let story3 = HistoryNode(withResume: "RESUME", text: "Story 2.1 chapaaaa", positionX: 3, andPositionY: 1)
+        let story3 = HistoryNode(withResume: "RESUME", text: "Story 3", positionX: 3, andPositionY: 1)
         try? graph.addNode(story3)
-        try? graph.addConnection(fromNode: story, toNode: story3, withTitle: "The big thing")
+        try? graph.addConnection(fromNode: story2, toNode: story3, withTitle: "Other branch")
         
         let controller = PresentationViewController()
         controller.viewModel = PresentationViewModel(graph: graph, rootNode: story)
@@ -57,15 +56,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = UINavigationController(rootViewController: controller)
         window?.makeKeyAndVisible()
-        
-        let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
-        if statusBar.responds(to:#selector(setter: UIView.backgroundColor)) {
-            statusBar.backgroundColor = UIColor(color: .darkBlue)
-        }
 
-        
-        
         return true
+    }
+
+    func applicationWillResignActive(_ application: UIApplication) {
+        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
+        // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
+    }
+
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
+        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }
 
     func applicationWillTerminate(_ application: UIApplication) {

@@ -45,5 +45,9 @@ class DetailsViewModel: NSObject, DetailsViewModelProtocol {
         view.downnodeView.reload(withText: downnodeText)
         view.upnodeView.reload(withText: story.text)
     }
-
+    
+    func setNavigationBarTitle(inNavigationItem item: UINavigationItem) {
+        item.title = story.resume
+    }
+    
 }

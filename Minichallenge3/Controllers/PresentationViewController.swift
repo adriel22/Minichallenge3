@@ -12,7 +12,7 @@ class PresentationViewController: UIViewController {
     
     lazy var storyTableView: UITableView! = UITableView(frame: .zero)
     lazy var selectedBranchesIndexes: [Int: Int] = [:]
-    lazy var rowHeight = UIScreen.main.bounds.height/3.5
+    lazy var rowHeight: CGFloat = UIScreen.main.bounds.height/3.5
     
     var viewModel: PresentationViewModelProtocol? {
         didSet {
@@ -73,9 +73,12 @@ extension PresentationViewController: UITableViewDataSource, UITableViewDelegate
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let lastSectionIndex = (viewModel?.nodes.count ?? 0) - 1
         let headerView = ExpandableTableViewHeaderView()
         let sectionText = tableView.dataSource?.tableView?(storyTableView, titleForHeaderInSection: section)
         headerView.text = sectionText?.uppercased()
+//        headerView.isTheLastSection = (lastSectionIndex > 0 && section == lastSectionIndex)
+//        headerView.didTap = { _ in self.viewModel?.undo(atSection: section, inView: self) }
         return headerView
     }
     
@@ -124,7 +127,6 @@ extension PresentationViewController: UICollectionViewDataSource, UICollectionVi
         if let tableViewIndexPath = getTableViewIndexPath(for: collectionView, insideCellOf: storyTableView) {
             return viewModel?.nodes[tableViewIndexPath.section].connections.count ?? 0
         }
-        
         return 0
     }
     
@@ -138,12 +140,10 @@ extension PresentationViewController: UICollectionViewDataSource, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         let displayedCell = cell as? BranchCollectionViewCell
         guard let tableViewIndexPath = getTableViewIndexPath(for: collectionView, insideCellOf: storyTableView) else { return }
-        if !isRootNodeRow(atIndexPath: tableViewIndexPath) {
-            if indexPath.item == selectedBranchesIndexes[tableViewIndexPath.section] {
-                displayedCell?.select()
-            } else {
-                displayedCell?.deselect()
-            }
+        if indexPath.item == selectedBranchesIndexes[tableViewIndexPath.section] {
+            displayedCell?.select()
+        } else {
+            displayedCell?.deselect()
         }
     }
     

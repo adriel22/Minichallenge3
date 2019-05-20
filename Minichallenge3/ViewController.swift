@@ -33,6 +33,8 @@ class ViewController: UIViewController {
         try? graph.addConnection(fromNode: rootNode, toNode: node3, withTitle: "action1")
         try? graph.addConnection(fromNode: node2, toNode: node4, withTitle: "action1")
         try? graph.addConnection(fromNode: node3, toNode: node5, withTitle: "action2")
+        
+        graph.grid.delegate = self
 
         return graph
     }()
@@ -46,32 +48,33 @@ class ViewController: UIViewController {
             let node6 = HistoryNode.init(withResume: "Node 2", text: "Node2 Text", positionX: 0, andPositionY: 1)
             try? self.graph.addNode(node6)
             print(self.graph.grid)
-            self.graphView.addColumn(inPosition: 0)
-            self.graphView.addItem(atPositon: (xPosition: 1, yPosition: 1))
+//            self.graphView.addItem(atPositon: (xPosition: 0, yPosition: 1))
+//            self.graphView.addColumn(inPosition: 0)
+//            self.graphView.addItem(atPositon: (xPosition: 1, yPosition: 1))
 //            self.graphView.appendLine()
 //            self.graphView.addItem(atPositon: (xPosition: 1, yPosition: 3))
 //            print(self.graph.grid)
             Timer.scheduledTimer(withTimeInterval: 2, repeats: false, block: { (_) in
-                let node7 = HistoryNode.init(withResume: "Node 2", text: "Node2 Text", positionX: 1, andPositionY: 3)
-                try? self.graph.addNode(node7)
-                
-                let node8 = HistoryNode.init(withResume: "Node 2", text: "Node2 Text", positionX: 1, andPositionY: 2)
-                try? self.graph.addNode(node8)
-                
-                print(self.graph.grid)
-                self.graphView.appendLine()
-                self.graphView.addItem(atPositon: (xPosition: node7.positionX, yPosition: node7.positionY))
-                self.graphView.addItem(atPositon: (xPosition: node8.positionX, yPosition: node8.positionY))
-                
+//                let node7 = HistoryNode.init(withResume: "Node 2", text: "Node2 Text", positionX: 1, andPositionY: 3)
+//                try? self.graph.addNode(node7)
+//
+//                let node8 = HistoryNode.init(withResume: "Node 2", text: "Node2 Text", positionX: 1, andPositionY: 2)
+//                try? self.graph.addNode(node8)
+//
+//                print(self.graph.grid)
+//                self.graphView.appendLine()
+//                self.graphView.addItem(atPositon: (xPosition: node7.positionX, yPosition: node7.positionY))
+//                self.graphView.addItem(atPositon: (xPosition: node8.positionX, yPosition: node8.positionY))
+//
 //                self.graphView.reloadConnections()
                 
 //                self.graphView.removeItem(atPositon: (xPosition: 1, yPosition: 3))
 //                self.graphView.addColumn(inPosition: 0)
                 Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (_) in
-                    try? self.graph.addConnection(fromNode: node8, toNode: node7, withTitle: "bla")
-                    try? self.graph.addConnection(fromNode: node6, toNode: node8, withTitle: "bla")
-                    
-                    try? self.graph.addConnection(fromNode: self.rootNode, toNode: node6, withTitle: "bla")
+//                    try? self.graph.addConnection(fromNode: node8, toNode: node7, withTitle: "bla")
+//                    try? self.graph.addConnection(fromNode: node6, toNode: node8, withTitle: "bla")
+//
+//                    try? self.graph.addConnection(fromNode: self.rootNode, toNode: node6, withTitle: "bla")
 
 //                    self.graphView.reloadData()
 
@@ -92,7 +95,42 @@ class ViewController: UIViewController {
     }
 }
 
+extension ViewController: HistoryGridDelegate {
+    func addedColumToGrid(inPosition position: Int) {
+        if position == self.graph.grid.graphWidth - 1 {
+            self.graphView.appendColumn()
+        } else {
+            self.graphView.addColumn(inPosition: position)
+        }
+    }
+    
+    func addedLineToGrid(inPosition position: Int) {
+        if position == self.graph.grid.graphHeight - 1 {
+            self.graphView.appendLine()
+        } else {
+            self.graphView.addLine(inPosition: position)
+        }
+    }
+    
+    func movedNodeToPosition(fromPosition originPosition: Position, toPosition destinyPosition: Position) {
+        self.graphView.removeItem(atPositon: (xPosition: originPosition.x, yPosition: originPosition.y))
+        self.graphView.addItem(atPositon: (xPosition: destinyPosition.x, yPosition: destinyPosition.y))
+    }
+    
+    func addNode(inPosition position: Position) {
+        self.graphView.addItem(atPositon: (xPosition: position.x, yPosition: position.y))
+    }
+    
+    func addShortcut(inPosition position: Position) {
+        self.graphView.addItem(atPositon: (xPosition: position.x, yPosition: position.y))
+    }
+}
+
 extension ViewController: GraphViewDatasource {
+    func connectionButtonColor(forGraphView graphView: GraphView) -> UIColor? {
+        return nil
+    }
+    
     func connections(forGraphView graphView: GraphView, fromItemAtPosition itemPosition: GridPosition) -> [GridPosition] {
         guard let node = graph.grid[itemPosition.yPosition, itemPosition.xPosition] as? HistoryNode else {
             return []
@@ -125,9 +163,12 @@ extension ViewController: GraphViewDatasource {
 
 //        let view = GraphItemView.init()
 //        view.backgroundColor = UIColor.red
-        let view = CardView.init()
+//        let view = CardView.init()
+//        view.translatesAutoresizingMaskIntoConstraints = false
+//        view.setCardText("Certo dia, Jurema descobriu uma fofoca super intrigante. Porém, contudo, todavia, entretanto, ela está receosa em contá-la para sua mais que amiga, sua friend, Marivalda. E aí você contaria?")
+        
+        let view = ShortcutView.init()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.setCardText("Certo dia, Jurema descobriu uma fofoca super intrigante. Porém, contudo, todavia, entretanto, ela está receosa em contá-la para sua mais que amiga, sua friend, Marivalda. E aí você contaria?")
 
 //        if position.xPosition == 1 && position.yPosition == 3 {
 //            view.backgroundColor = UIColor.green
@@ -152,5 +193,13 @@ extension ViewController: GraphViewDatasource {
 
     func leftSpacing(forGraphView graphView: GraphView) -> CGFloat {
         return 100
+    }
+    
+    func connectionsImage(forGraphView graphView: GraphView) -> UIImage? {
+        return nil
+    }
+    
+    func connectionWidth(forGraphView graphView: GraphView) -> CGFloat {
+        return 4
     }
 }

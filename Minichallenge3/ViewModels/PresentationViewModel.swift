@@ -53,9 +53,10 @@ class PresentationViewModel: NSObject, PresentationViewModelProtocol {
         guard let destination = toNode as? HistoryNode else { return }
         
         guard let view = view as? PresentationViewController else { return }
-        changeBranchSelection(tableViewIndexPath: tableViewIndexPath,
-                              collectionViewIndexPath: collectionViewIndexPath,
+        changeBranchSelection(section: tableViewIndexPath.section,
+                              item: collectionViewIndexPath.item,
                               inView: view)
+        blockPreviousCollectionViews(currentTableViewIndexPath: tableViewIndexPath, inView: view)
         
         if !replace {
             nodes.append(destination)
@@ -68,8 +69,51 @@ class PresentationViewModel: NSObject, PresentationViewModelProtocol {
         
     }
     
-    private func changeBranchSelection(tableViewIndexPath: IndexPath, collectionViewIndexPath: IndexPath, inView view: PresentationViewController) {
-        view.selectedBranchesIndexes[tableViewIndexPath.section] = collectionViewIndexPath.item
+    func undo(atSection section: Int, inView view: UIViewController) {
+        guard let view = view as? PresentationViewController else { return }
+        deleteNode(atSection: section, inView: view)
+        changeBranchSelection(section: section - 1, item: -1, inView: view)
+        unblockPreviousCollectionViews(currentSection: section - 1, inView: view)
+        
+        let tableDelegate = view.storyTableView.delegate
+        let sectionHeaderView = tableDelegate?.tableView?(view.storyTableView, viewForHeaderInSection: section - 1) as? ExpandableTableViewHeaderView
+        sectionHeaderView?.isTheLastSection = true
+        
+        let indexSet = IndexSet(integer: section - 1)
+        view.storyTableView.reloadSections(indexSet, with: .fade)
+        
+    }
+    
+    private func blockPreviousCollectionViews(currentTableViewIndexPath indexPath: IndexPath, inView view: PresentationViewController) {
+        var previousIndexPath: IndexPath
+        
+        if indexPath.section - 1 == 0 {
+            previousIndexPath = IndexPath(row: 1, section: 0)
+        } else {
+            previousIndexPath = IndexPath(row: 0, section: indexPath.section - 1)
+        }
+        
+        let cell = view.storyTableView.cellForRow(at: previousIndexPath) as? NodePresentationTableViewCell
+        let nodeView = cell?.nodeView
+        nodeView?.enableBranches(false)
+    }
+    
+    private func unblockPreviousCollectionViews(currentSection section: Int, inView view: PresentationViewController) {
+        var previousIndexPath: IndexPath
+        
+        if section - 1 == 0 {
+            previousIndexPath = IndexPath(row: 1, section: 0)
+        } else {
+            previousIndexPath = IndexPath(row: 0, section: section)
+        }
+        
+        let cell = view.storyTableView.cellForRow(at: previousIndexPath) as? NodePresentationTableViewCell
+        let nodeView = cell?.nodeView
+        nodeView?.enableBranches(true)
+    }
+    
+    private func changeBranchSelection(section: Int, item: Int, inView view: PresentationViewController) {
+        view.selectedBranchesIndexes[section] = item
     }
     
     private func insertNode(belowIndexPath indexPath: IndexPath, inView view: PresentationViewController) {
@@ -77,11 +121,17 @@ class PresentationViewModel: NSObject, PresentationViewModelProtocol {
         cell?.nodeView.reload(withText: cell?.nodeView.text)
         
         view.storyTableView.performBatchUpdates({
+            let tableDelegate = view.storyTableView.delegate
+            let sectionHeaderView = tableDelegate?.tableView?(view.storyTableView, viewForHeaderInSection: indexPath.section) as? ExpandableTableViewHeaderView
+            sectionHeaderView?.isTheLastSection = false
+            
             let indexSet = IndexSet(integer: indexPath.section + 1)
             view.storyTableView.insertSections(indexSet, with: .fade)
+            
         }) { _ in
+            view.storyTableView.reloadData()
             let newIndexPath = IndexPath(row: 0, section: indexPath.section + 1)
-            view.storyTableView.scrollToRow(at: newIndexPath, at: .bottom, animated: true)
+            view.storyTableView.scrollToRow(at: newIndexPath, at: .middle, animated: true)
         }
     }
     
@@ -90,9 +140,9 @@ class PresentationViewModel: NSObject, PresentationViewModelProtocol {
         view.storyTableView.reloadSections(indexSet, with: .fade)
     }
     
-    private func deleteNode(atIndexPath indexPath: IndexPath, inView view: PresentationViewController) {
-        nodes.remove(at: indexPath.row)
-        let indexSet = IndexSet(integer: indexPath.section)
+    private func deleteNode(atSection section: Int, inView view: PresentationViewController) {
+        nodes.remove(at: section)
+        let indexSet = IndexSet(integer: section)
         view.storyTableView.deleteSections(indexSet, with: .fade)
     }
     

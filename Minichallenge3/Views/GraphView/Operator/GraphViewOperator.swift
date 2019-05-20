@@ -9,9 +9,6 @@
 import UIKit
 
 class GraphViewOperator {
-
-    typealias Context = (graphView: GraphView, containerView: UIView, datasource: GraphViewDatasource)
-
     var animator = GraphViewAnimator()
 
     func resetLinesLeftSpacing(beginAtPosition position: Int, graphView: GraphView, leftSpacing: CGFloat) {
@@ -36,20 +33,6 @@ class GraphViewOperator {
         return canOperateLine
     }
 
-    func isValidLine(position: Int, inGraphView graphView: GraphView, extraSize: Int = 0) -> Bool {
-        let positionIsValid = position >= 0 && position < (graphView.lineViews.count + extraSize)
-        return positionIsValid
-    }
-
-    func isValidColumn(position: Int, inGraphView graphView: GraphView, extraSize: Int = 0) -> Bool {
-        guard let columnCount = graphView.lineViews.first?.itemViews.count else {
-            return false
-        }
-
-        let positionIsValid = position >= 0 && position < (columnCount + extraSize)
-        return positionIsValid
-    }
-
     public func replace(
         items: (currentItem: GraphItemView, newItem: GraphItemView),
         atPosition position: GridPosition,
@@ -59,7 +42,7 @@ class GraphViewOperator {
 
         let columnWidth  = datasoure.columnWidth(forGraphView: graphView, inXPosition: position.xPosition)
         let columnSpacing = datasoure.columnSpacing(forGraphView: graphView)
-        let isTheLastInTheItem = position.xPosition == graphView.lineViews[position.yPosition].itemViews.count
+        let isTheLastInTheItem = position.xPosition == graphView.lineViews[position.yPosition].itemViews.count - 1
         let positionXIsGreatherThenZero = position.xPosition > 0
         let parentLine = graphView.lineViews[position.yPosition]
         let parentItem = positionXIsGreatherThenZero ?
@@ -95,8 +78,8 @@ class GraphViewOperator {
 
     public func removeItem(inPosition position: GridPosition, withContext context: Context, completion: @escaping () -> Void) {
 
-        guard isValidColumn(position: position.xPosition, inGraphView: context.graphView),
-            isValidLine(position: position.yPosition, inGraphView: context.graphView) else {
+        guard context.graphView.isValidColumn(position: position.xPosition, inGraphView: context.graphView),
+            context.graphView.isValidLine(position: position.yPosition, inGraphView: context.graphView) else {
                 return
         }
 
@@ -113,16 +96,18 @@ class GraphViewOperator {
             andGraphView: context.graphView,
             completion: completion
         )
+        
+        completion()
     }
 
     public func addItem(inPosition position: GridPosition, withContext context: Context, removingCurrent: Bool, completion: @escaping () -> Void) {
 
-        guard isValidColumn(position: position.xPosition, inGraphView: context.graphView),
-              isValidLine(position: position.yPosition, inGraphView: context.graphView),
+        guard context.graphView.isValidColumn(position: position.xPosition, inGraphView: context.graphView),
+              context.graphView.isValidLine(position: position.yPosition, inGraphView: context.graphView),
               let newItem = context.datasource.gridNodeView(forGraphView: context.graphView, inPosition: position) else {
             return
         }
-
+        
         let currentItem = context.graphView.lineViews[position.yPosition].itemViews[position.xPosition]
 
         guard currentItem is GraphItemEmptyView || removingCurrent else {
@@ -139,11 +124,23 @@ class GraphViewOperator {
             andGraphView: context.graphView,
             completion: completion
         )
+        
+        animator.animateViewInsertion(newLineView: newItem, completion: completion)
+        
+        guard let delegate = context.graphView.graphDelegate else {
+            return
+        }
+        
+        newItem.eventHandler = GraphViewItemEventHandler(
+            withItemView: newItem,
+            andGraphDelegate: delegate,
+            atGraphView: context.graphView
+        )
     }
 
     public func removeColumn(inPosition position: Int, withContext context: Context, completion: @escaping () -> Void) {
 
-        guard isValidColumn(position: position, inGraphView: context.graphView) else {
+        guard context.graphView.isValidColumn(position: position, inGraphView: context.graphView) else {
             return
         }
 
@@ -174,14 +171,14 @@ class GraphViewOperator {
             } else if let parentColumnFromPosition = parentColumnFromPosition {
                 parentColumnFromPosition.setClosingConstraints()
             }
-
-            animator.animateViewRemotion(containerView: context.containerView, completion: completion)
         }
+        
+        animator.animateViewRemotion(containerView: context.containerView, completion: completion)
     }
 
     public func removeLine(inPosition position: Int, withContext context: Context, completion: @escaping () -> Void) {
 
-        guard isValidLine(position: position, inGraphView: context.graphView) else {
+        guard context.graphView.isValidLine(position: position, inGraphView: context.graphView) else {
             return
         }
 
@@ -248,6 +245,8 @@ class GraphViewOperator {
             andLineMargin: lineMargin,
             andLeftMargin: leftMargin
         )
+        
+        newLineView.hasLeftSpace = (leftMargin != 0)
 
         newLineView.setClosingConstraints()
 
@@ -263,43 +262,46 @@ class GraphViewOperator {
 
     func appendColumn(withContext context: Context, completion: @escaping () -> Void) {
 
-        context.graphView.lineViews.forEach { (_, currentLine, currentLineIndex) in
-            let lastItem = currentLine.itemViews.last
-            let currentGridPosition = (xPosition: currentLine.itemViews.count, yPosition: currentLineIndex)
-            let defaultWidth = context.datasource.columnWidth(forGraphView: context.graphView, inXPosition: currentLine.itemViews.count)
-            let columnMargin = context.datasource.columnSpacing(forGraphView: context.graphView)
-            let defaultLineSpacing = context.datasource.lineSpacing(forGraphView: context.graphView)
-            let connectorMargins = context.graphView.connector.connectionMargin(forLineSpacing: defaultLineSpacing)
-            let newItemView = loadItemView(
-                fromDatasource: context.datasource, inGraphView: context.graphView,
-                atPosition: currentGridPosition
-            )
-            currentLine.addSubview(newItemView)
-            lastItem?.removeClosingConstraints()
-            newItemView.setConstraintsFor(
-                leftAnchor: context.graphView.itemViewLeftAnchor(
-                    forLastItemView: lastItem,
-                    inLineView: currentLine
-                ),
-                widthAnchor: defaultWidth,
-                columnMargin: columnMargin
-            )
-
-            newItemView.setClosingConstraints()
-
-            setConnections(
-                withContext: context,
-                position: currentGridPosition,
-                andConnectorMargins: connectorMargins
-            )
-
-            animator.animateViewRemotion(containerView: context.containerView, completion: completion)
-        }
+        animator.animateViewsInsertion(views:
+            context.graphView.lineViews.enumerated().map { currentLineIndex, currentLine -> GraphItemView in
+                let lastItem = currentLine.itemViews.last
+                let currentGridPosition = (xPosition: currentLine.itemViews.count, yPosition: currentLineIndex)
+                let defaultWidth = context.datasource.columnWidth(forGraphView: context.graphView, inXPosition: currentLine.itemViews.count)
+                let columnMargin = context.datasource.columnSpacing(forGraphView: context.graphView)
+                let defaultLineSpacing = context.datasource.lineSpacing(forGraphView: context.graphView)
+                let connectorMargins = context.graphView.connector.connectionMargin(forLineSpacing: defaultLineSpacing)
+                let newItemView = loadItemView(
+                    fromDatasource: context.datasource, inGraphView: context.graphView,
+                    atPosition: currentGridPosition
+                )
+                currentLine.addSubview(newItemView)
+                lastItem?.removeClosingConstraints()
+                newItemView.setConstraintsFor(
+                    leftAnchor: context.graphView.itemViewLeftAnchor(
+                        forLastItemView: lastItem,
+                        inLineView: currentLine
+                    ),
+                    widthAnchor: defaultWidth,
+                    columnMargin: columnMargin
+                )
+                
+                newItemView.setClosingConstraints()
+                
+                setConnections(
+                    withContext: context,
+                    position: currentGridPosition,
+                    andConnectorMargins: connectorMargins
+                )
+                
+                return newItemView
+            },
+            completion: completion
+        )
     }
 
     public func insertLine(inPosition position: Int, withContext context: Context, completion: @escaping () -> Void) {
 
-        guard isValidLine(position: position, inGraphView: context.graphView) else {
+        guard context.graphView.isValidLine(position: position, inGraphView: context.graphView) else {
             return
         }
 
@@ -372,7 +374,7 @@ class GraphViewOperator {
     }
 
     func insertColumn(inPosition position: Int, withContext context: Context, completion: @escaping () -> Void) {
-        guard isValidLine(position: position, inGraphView: context.graphView) else {
+        guard context.graphView.isValidLine(position: position, inGraphView: context.graphView) else {
             return
         }
 
@@ -442,6 +444,12 @@ class GraphViewOperator {
             atLineWithIndex: position,
             usingDatasource: datasource
         )
+        
+        guard let delegate = graphView.graphDelegate else {
+            return
+        }
+
+        graphView.setEventHandlers(delegate: delegate)
     }
 
     private func setConnections(withContext context: Context, position: GridPosition, andConnectorMargins connectorMargin: CGFloat) {
@@ -460,8 +468,7 @@ class GraphViewOperator {
                 datasource: context.datasource,
                 andGraphView: context.graphView
             ),
-            containerView: context.containerView,
-            andGraphView: context.graphView
+            withContext: context
         )
     }
 }
