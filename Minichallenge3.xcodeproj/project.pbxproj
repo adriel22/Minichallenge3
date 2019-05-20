@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		927CFA5B228DAB8800CAC09E /* ShortcutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927CFA5A228DAB8800CAC09E /* ShortcutView.swift */; };
+		927CFA5D228ED0A500CAC09E /* ShortcutViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927CFA5C228ED0A500CAC09E /* ShortcutViewDelegate.swift */; };
+		927CFA5F2291CA1400CAC09E /* ShortcutViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927CFA5E2291CA1400CAC09E /* ShortcutViewDataSource.swift */; };
 		92E92CEC228C59A9000494BA /* HistoryGraphDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E92CEB228C59A9000494BA /* HistoryGraphDelegate.swift */; };
 		92E92CEE228CFE75000494BA /* HistoryGridDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E92CED228CFE75000494BA /* HistoryGridDelegate.swift */; };
 		C77E46C789F9B2BADE16D712 /* Pods_Minichallenge3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CF4D23D356FA463D37FC974 /* Pods_Minichallenge3.framework */; };
@@ -125,6 +128,9 @@
 /* Begin PBXFileReference section */
 		3CF4D23D356FA463D37FC974 /* Pods_Minichallenge3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Minichallenge3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4405664E379635FBB9519A12 /* Pods-Minichallenge3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Minichallenge3.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Minichallenge3/Pods-Minichallenge3.debug.xcconfig"; sourceTree = "<group>"; };
+		927CFA5A228DAB8800CAC09E /* ShortcutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutView.swift; sourceTree = "<group>"; };
+		927CFA5C228ED0A500CAC09E /* ShortcutViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutViewDelegate.swift; sourceTree = "<group>"; };
+		927CFA5E2291CA1400CAC09E /* ShortcutViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutViewDataSource.swift; sourceTree = "<group>"; };
 		92E92CEB228C59A9000494BA /* HistoryGraphDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryGraphDelegate.swift; sourceTree = "<group>"; };
 		92E92CED228CFE75000494BA /* HistoryGridDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryGridDelegate.swift; sourceTree = "<group>"; };
 		B20FF8B7118109CF1BB19056 /* Pods-Minichallenge3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Minichallenge3.release.xcconfig"; path = "Pods/Target Support Files/Pods-Minichallenge3/Pods-Minichallenge3.release.xcconfig"; sourceTree = "<group>"; };
@@ -243,6 +249,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		927CFA59228DAB5800CAC09E /* ShortcutView */ = {
+			isa = PBXGroup;
+			children = (
+				927CFA5A228DAB8800CAC09E /* ShortcutView.swift */,
+				927CFA5C228ED0A500CAC09E /* ShortcutViewDelegate.swift */,
+				927CFA5E2291CA1400CAC09E /* ShortcutViewDataSource.swift */,
+			);
+			path = ShortcutView;
+			sourceTree = "<group>";
+		};
 		DABAE8F7599EAF4B2D921E49 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -335,6 +351,7 @@
 				E32A379C228B011300E2F8B1 /* MyNarrativesView.swift */,
 				FC02E92B228AFEBF00537429 /* ExpandableCell */,
 				E331CCC7228846720041379B /* GraphView */,
+				927CFA59228DAB5800CAC09E /* ShortcutView */,
 				FC060914228C69FC008C98AE /* CardView */,
 			);
 			path = Views;
@@ -790,8 +807,10 @@
 				FC02E93D228AFFC100537429 /* ExpandableTableViewCell.swift in Sources */,
 				E32A37D32290B87800E2F8B1 /* SinopseLabel.swift in Sources */,
 				E32A37B32290949E00E2F8B1 /* RAMDatabase.swift in Sources */,
+				927CFA5B228DAB8800CAC09E /* ShortcutView.swift in Sources */,
 				E32A37A5228ED44300E2F8B1 /* GraphItemEmptyView.swift in Sources */,
 				E381E2C72288DCC500E25B78 /* ItemViewConnector.swift in Sources */,
+				927CFA5D228ED0A500CAC09E /* ShortcutViewDelegate.swift in Sources */,
 				FC02F5DE228D8B31008F0777 /* UIView+round.swift in Sources */,
 				FC02F5E7228D8E32008F0777 /* DetailsViewController.swift in Sources */,
 				FC02F5DA228D8B31008F0777 /* UITextView+addDoneButtonOnKeyboard.swift in Sources */,
@@ -829,6 +848,7 @@
 				FC060916228C6A1B008C98AE /* CardView.swift in Sources */,
 				FC02F5E6228D8E32008F0777 /* NodeDetailsView.swift in Sources */,
 				E32A379F228B011300E2F8B1 /* CustomNavigation.swift in Sources */,
+				927CFA5F2291CA1400CAC09E /* ShortcutViewDataSource.swift in Sources */,
 				FC02F5DB228D8B31008F0777 /* AppColors.swift in Sources */,
 				E32A37E5229236FF00E2F8B1 /* GraphViewEventHandler.swift in Sources */,
 				E32A37C322909A8200E2F8B1 /* RAMHistoryDAO.swift in Sources */,
