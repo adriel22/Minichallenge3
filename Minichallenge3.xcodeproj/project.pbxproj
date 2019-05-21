@@ -67,6 +67,7 @@
 		E3C030D2228479DC00AD53E0 /* HistoryShortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B12282F1E300AD53E0 /* HistoryShortcut.swift */; };
 		E3C030D3228479DC00AD53E0 /* HistoryConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B32282F1F300AD53E0 /* HistoryConnection.swift */; };
 		E3C030D4228479DC00AD53E0 /* HistoryNodesGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B5228322FC00AD53E0 /* HistoryNodesGrid.swift */; };
+		FC017E40228E577E008979E7 /* AddRamificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC017E3F228E577E008979E7 /* AddRamificationViewModel.swift */; };
 		FC02E93D228AFFC100537429 /* ExpandableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02E939228AFFC100537429 /* ExpandableTableViewCell.swift */; };
 		FC02E93E228AFFC100537429 /* ExpandableTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02E93A228AFFC100537429 /* ExpandableTableViewHeaderView.swift */; };
 		FC02F5DA228D8B31008F0777 /* UITextView+addDoneButtonOnKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02F5D5228D8B31008F0777 /* UITextView+addDoneButtonOnKeyboard.swift */; };
@@ -78,6 +79,8 @@
 		FC02F5E7228D8E32008F0777 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02F5E5228D8E32008F0777 /* DetailsViewController.swift */; };
 		FC02F5EA228D8EA2008F0777 /* BranchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02F5E9228D8EA2008F0777 /* BranchCollectionViewCell.swift */; };
 		FC02F5ED228D8F08008F0777 /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02F5EC228D8F08008F0777 /* DetailsViewModel.swift */; };
+		FC02F5F1228D9AC9008F0777 /* AddRamificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02F5F0228D9AC9008F0777 /* AddRamificationViewController.swift */; };
+		FC02F5F3228DA510008F0777 /* AddRamificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02F5F2228DA510008F0777 /* AddRamificationsView.swift */; };
 		FC060916228C6A1B008C98AE /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC060915228C6A1B008C98AE /* CardView.swift */; };
 		FCB3548E228065AF00AB7ED2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB3548D228065AF00AB7ED2 /* AppDelegate.swift */; };
 		FCB35490228065AF00AB7ED2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB3548F228065AF00AB7ED2 /* ViewController.swift */; };
@@ -190,6 +193,7 @@
 		E3C030C1228478EB00AD53E0 /* HistoryGraph.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HistoryGraph.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3C030C3228478EB00AD53E0 /* HistoryGraph.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HistoryGraph.h; sourceTree = "<group>"; };
 		E3C030C4228478EB00AD53E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FC017E3F228E577E008979E7 /* AddRamificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRamificationViewModel.swift; sourceTree = "<group>"; };
 		FC02E939228AFFC100537429 /* ExpandableTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandableTableViewCell.swift; sourceTree = "<group>"; };
 		FC02E93A228AFFC100537429 /* ExpandableTableViewHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandableTableViewHeaderView.swift; sourceTree = "<group>"; };
 		FC02F5D5228D8B31008F0777 /* UITextView+addDoneButtonOnKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+addDoneButtonOnKeyboard.swift"; sourceTree = "<group>"; };
@@ -201,6 +205,8 @@
 		FC02F5E5228D8E32008F0777 /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		FC02F5E9228D8EA2008F0777 /* BranchCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BranchCollectionViewCell.swift; sourceTree = "<group>"; };
 		FC02F5EC228D8F08008F0777 /* DetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
+		FC02F5F0228D9AC9008F0777 /* AddRamificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRamificationViewController.swift; sourceTree = "<group>"; };
+		FC02F5F2228DA510008F0777 /* AddRamificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRamificationsView.swift; sourceTree = "<group>"; };
 		FC060915228C6A1B008C98AE /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		FCB3548A228065AF00AB7ED2 /* Minichallenge3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Minichallenge3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCB3548D228065AF00AB7ED2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -367,6 +373,7 @@
 				E331CCC7228846720041379B /* GraphView */,
 				927CFA59228DAB5800CAC09E /* ShortcutView */,
 				FC060914228C69FC008C98AE /* CardView */,
+				FC02F5F2228DA510008F0777 /* AddRamificationsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -467,6 +474,7 @@
 				FC02F5E5228D8E32008F0777 /* DetailsViewController.swift */,
 				E32A37A0228B013600E2F8B1 /* MyNarrativesViewController.swift */,
 				E32A37C422909D7400E2F8B1 /* HistoryGraphViewController.swift */,
+				FC02F5F0228D9AC9008F0777 /* AddRamificationViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -502,6 +510,7 @@
 				E32A37DA2290C35800E2F8B1 /* HistoryNode */,
 				E32A37C92290A05E00E2F8B1 /* HistoryGraph */,
 				FC02F5EC228D8F08008F0777 /* DetailsViewModel.swift */,
+				FC017E3F228E577E008979E7 /* AddRamificationViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -813,6 +822,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC017E40228E577E008979E7 /* AddRamificationViewModel.swift in Sources */,
 				E32A379E228B011300E2F8B1 /* MyNarrativesView.swift in Sources */,
 				E32A37E722923ADD00E2F8B1 /* GraphView+operations.swift in Sources */,
 				E331CCCC228846C20041379B /* GraphViewDatasource.swift in Sources */,
@@ -827,6 +837,7 @@
 				927CFA5D228ED0A500CAC09E /* ShortcutViewDelegate.swift in Sources */,
 				FC02F5DE228D8B31008F0777 /* UIView+round.swift in Sources */,
 				FC02F5E7228D8E32008F0777 /* DetailsViewController.swift in Sources */,
+				FC02F5F3228DA510008F0777 /* AddRamificationsView.swift in Sources */,
 				FC02F5DA228D8B31008F0777 /* UITextView+addDoneButtonOnKeyboard.swift in Sources */,
 				FCB35490228065AF00AB7ED2 /* ViewController.swift in Sources */,
 				E32A37D12290B4F000E2F8B1 /* HistoryGraphViewModelDelegate.swift in Sources */,
@@ -867,6 +878,7 @@
 				FC02F5DB228D8B31008F0777 /* AppColors.swift in Sources */,
 				E32A37E5229236FF00E2F8B1 /* GraphViewEventHandler.swift in Sources */,
 				E32A37C322909A8200E2F8B1 /* RAMHistoryDAO.swift in Sources */,
+				FC02F5F1228D9AC9008F0777 /* AddRamificationViewController.swift in Sources */,
 				FC02F5ED228D8F08008F0777 /* DetailsViewModel.swift in Sources */,
 				921BB6E72292D301001DA358 /* ToolboxViewDelegate.swift in Sources */,
 				E381E2C32288D7B700E25B78 /* GraphItemView.swift in Sources */,
