@@ -42,7 +42,7 @@ class ToolboxView: UIView {
         addConstraintToImageView(referenceTopView: line2, constraintView: connectionView, lastView: true)
         createTapGesture(inView: addView, withFunctionObserver: #selector(tappedInAddNode(_:)))
         createTapGesture(inView: connectionView, withFunctionObserver: #selector(tappedInConnection(_:)))
-        createTapGesture(inView: trashView, withFunctionObserver: #selector(tappedInTrash(_:)p))
+        createTapGesture(inView: trashView, withFunctionObserver: #selector(tappedInTrash(_:)))
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -64,7 +64,7 @@ class ToolboxView: UIView {
     }
     
     private func addConstraintToImageView(referenceTopView: UIView, constraintView: UIView, lastView: Bool = false) {
-        let topAnchorEqualTo:NSLayoutYAxisAnchor = referenceTopView == self ? referenceTopView.topAnchor : referenceTopView.bottomAnchor
+        let topAnchorEqualTo: NSLayoutYAxisAnchor = referenceTopView == self ? referenceTopView.topAnchor : referenceTopView.bottomAnchor
         
         NSLayoutConstraint.activate([
             constraintView.topAnchor.constraint(equalTo: topAnchorEqualTo, constant: 16),
@@ -78,27 +78,24 @@ class ToolboxView: UIView {
         }
     }
     
-    func createTapGesture(inView view:UIView, withFunctionObserver action: Selector?){
+    func createTapGesture(inView view: UIView, withFunctionObserver action: Selector?) {
         let tapGesture = UITapGestureRecognizer(target: self, action: action)
         view.addGestureRecognizer(tapGesture)
     }
     
     @objc func tappedInAddNode(_ tapGesture: UIGestureRecognizer) {
-        print("entrou addnode")
         reloadImages()
         setImageCheckout(imageView: tapGesture.view)
         delegate?.tappedButtonAddNode()
     }
     
     @objc func tappedInTrash(_ tapGesture: UIGestureRecognizer) {
-        print("entrou trash")
         reloadImages()
         setImageCheckout(imageView: tapGesture.view)
         delegate?.tappedButtonTrash()
     }
     
     @objc func tappedInConnection(_ tapGesture: UIGestureRecognizer) {
-        print("entrou connection")
         reloadImages()
         setImageCheckout(imageView: tapGesture.view)
         delegate?.tappedButtonConnection()
@@ -115,7 +112,7 @@ class ToolboxView: UIView {
     func reloadImages() {
         addView.image = UIImage(named: "addTool")
         connectionView.image = UIImage(named: "connectionTool")
-        trashView.image = UIImage(named: "connectionTool")
+        trashView.image = UIImage(named: "trashTool")
     }
 }
 
@@ -125,5 +122,6 @@ extension UIImageView {
         self.image = UIImage(named: imageNamed)
         self.translatesAutoresizingMaskIntoConstraints = false
         self.contentMode = .scaleAspectFit
+        self.isUserInteractionEnabled = true
     }
 }
