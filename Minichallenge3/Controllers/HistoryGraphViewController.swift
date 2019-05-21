@@ -27,6 +27,12 @@ class HistoryGraphViewController: UIViewController {
         return graphView
     }()
     
+    lazy var toolBox: ToolboxView = {
+        let toolBox = ToolboxView(frame: .zero)
+        toolBox.translatesAutoresizingMaskIntoConstraints = false
+        return toolBox
+    }()
+    
     lazy var viewModel: HistoryGraphViewModel = {
         let viewModel = HistoryGraphViewModel(withHistoryGraph: getFirstHistory(), withIdentifier: 0)
         
@@ -47,6 +53,7 @@ class HistoryGraphViewController: UIViewController {
     func setupView() {
         view.addSubview(graphView)
         view.addSubview(sinopseView)
+        view.addSubview(toolBox)
         
         view.backgroundColor = UIColor.white
         configureNavigationBar()
@@ -72,7 +79,10 @@ class HistoryGraphViewController: UIViewController {
             graphView.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
             graphView.leftAnchor.constraint(equalTo: view.leftAnchor),
             graphView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            graphView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            graphView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            toolBox.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
+            toolBox.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -16),
+            toolBox.widthAnchor.constraint(equalToConstant: 64)
         ]
 
         NSLayoutConstraint.activate(constraints)
