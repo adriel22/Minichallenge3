@@ -11,7 +11,19 @@ import HistoryGraph
 class HistoryNodeViewModel {
     private var historyGraph: HistoryGraph
     private var historyNode: HistoryNodeProtocol
-    var currentState: HistoryGraphState
+    let currentState: HistoryGraphState
+    lazy var optionName: String? = {
+        guard let parentNode = historyNode.parent as? HistoryNode,
+              let connectionToSelf = parentNode.connection(
+                    toPositionX: historyNode.positionX,
+                    positionY: historyNode.positionY
+              ) else {
+
+            return nil
+        }
+        
+        return connectionToSelf.title
+    }()
 
     var nodeResume: String? {
         return historyNode.resume ?? historyNode.text

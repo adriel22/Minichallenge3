@@ -77,4 +77,25 @@ class GraphItemView: NotifierView {
         currentRightAnchor.isActive = true
         self.oldRightAnchor = currentRightAnchor
     }
+    
+    func shake(repeatCount: Float) {
+        let shakeAnimation = CABasicAnimation(keyPath: "transform.rotation")
+        let scaleAnimation = CABasicAnimation(keyPath: "transform.scale")
+        shakeAnimation.duration = 0.07
+        shakeAnimation.repeatCount = repeatCount
+        shakeAnimation.autoreverses = true
+        shakeAnimation.fromValue = 0.02
+        shakeAnimation.toValue = -0.02
+        
+        scaleAnimation.duration = 0.07
+        scaleAnimation.repeatCount = repeatCount
+        scaleAnimation.autoreverses = true
+        scaleAnimation.fromValue = 1
+        scaleAnimation.toValue = 1.01
+        
+        self.layer.removeAnimation(forKey: "item_shaking")
+        self.layer.removeAnimation(forKey: "item_scaling")
+        self.layer.add(shakeAnimation, forKey: "item_shaking")
+        self.layer.add(scaleAnimation, forKey: "item_scaling")
+    }
 }

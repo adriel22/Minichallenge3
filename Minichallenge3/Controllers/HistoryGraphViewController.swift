@@ -13,6 +13,7 @@ class HistoryGraphViewController: UIViewController {
     lazy var sinopseView: SinopseView = {
         let sinopseView = SinopseView()
         sinopseView.text = self.viewModel.sinopse
+        sinopseView.sinopseTextView.sinopseDelegate = self
        
         return sinopseView
     }()
@@ -39,9 +40,6 @@ class HistoryGraphViewController: UIViewController {
         setupView()
         setConstraints()
         
-        Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { (_) in
-            self.viewModel.optionWasSelected(atPositon: 1)
-        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -58,7 +56,7 @@ class HistoryGraphViewController: UIViewController {
     
     func configureNavigationBar() {
         let image = UIImage(named: "Play")
-        title = viewModel.sinopse
+        title = viewModel.title
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: image,
             style: .done,
@@ -104,7 +102,7 @@ extension HistoryGraphViewController: GraphViewDatasource, GraphViewDelegate {
     func didLayoutNodes(forGraphView graphView: GraphView, withLoadType loadType: GraphViewDidLayoutType) {
         if let centerItemPosition = viewModel.centerItemPosition {
             DispatchQueue.main.async {
-                self.graphView.scrollToItem(atPosition: centerItemPosition)
+                self.graphView.scrollToItem(atPosition: centerItemPosition, shakeItem: false)
             }
         }
     }
@@ -262,5 +260,11 @@ extension HistoryGraphViewController: ShortcutViewDelegate, ShortcutViewDataSour
     
     func lineColor(forShortcutView: ShortcutView) -> UIColor {
         return UIColor(color: .gray)
+    }
+}
+
+extension HistoryGraphViewController: SinopseDelegate {
+    func textWasEdited(text: String) {
+        
     }
 }

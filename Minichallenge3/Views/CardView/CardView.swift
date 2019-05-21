@@ -22,6 +22,28 @@ class CardView: GraphItemView, CardViewProtocol {
         }
     }
     private let textView: UILabel
+    
+    lazy var containerView: UIView = {
+        let containerView = UIView()
+        
+        containerView.backgroundColor = UIColor(color: .yellowWhite)
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return containerView
+    }()
+    
+    lazy var actionLabel: UILabel = {
+        let actionLabel = UILabel()
+
+        actionLabel.numberOfLines = 1
+        actionLabel.text = "loading ..."
+        actionLabel.translatesAutoresizingMaskIntoConstraints = false
+        actionLabel.textAlignment = .center
+        actionLabel.font = UIFont(name: "Baskerville", size: CGFloat(15))
+        actionLabel.isHidden = true
+
+        return actionLabel
+    }()
 
     init() {
         textView = UILabel()
@@ -29,7 +51,6 @@ class CardView: GraphItemView, CardViewProtocol {
         state = .normal
         super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         changeState(to: .normal)
-
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -41,9 +62,11 @@ class CardView: GraphItemView, CardViewProtocol {
         case .normal:
             self.state = .normal
 
-            self.backgroundColor = UIColor(color: .yellowWhite)
+            containerView.backgroundColor = UIColor(color: .yellowWhite)
 
-            self.addSubview(textView)
+            self.addSubview(containerView)
+            self.addSubview(actionLabel)
+            containerView.addSubview(textView)
             setTextView()
 
             addShadow()
@@ -51,14 +74,16 @@ class CardView: GraphItemView, CardViewProtocol {
         case .empty:
             self.state = .empty
 
-            self.backgroundColor = UIColor.clear
+            self.containerView.backgroundColor = UIColor.clear
             self.layoutSubviews()
 
         case .erase:
             self.state = .erase
-            self.backgroundColor = UIColor(color: .yellowWhite)
+            self.containerView.backgroundColor = UIColor(color: .yellowWhite)
 
-            self.addSubview(textView)
+            self.addSubview(containerView)
+            self.addSubview(actionLabel)
+            containerView.addSubview(textView)
             setTextView()
 
             setOpacityLayer()
@@ -69,9 +94,11 @@ class CardView: GraphItemView, CardViewProtocol {
 
         case .create:
             self.state = .create
-            self.backgroundColor = UIColor(color: .yellowWhite)
+            self.containerView.backgroundColor = UIColor(color: .yellowWhite)
 
-            self.addSubview(textView)
+            self.addSubview(containerView)
+            self.addSubview(actionLabel)
+            containerView.addSubview(textView)
             setTextView()
 
             setOpacityLayer()
@@ -79,7 +106,6 @@ class CardView: GraphItemView, CardViewProtocol {
             setIcon(withImage: UIImage(named: "add")!, andColor: UIColor(color: .darkBlue))
 
             addShadow()
-
         }
     }
 
@@ -89,10 +115,22 @@ class CardView: GraphItemView, CardViewProtocol {
         textView.font = UIFont(name: "Baskerville", size: CGFloat(17))
 
         textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.topAnchor.constraint(equalTo: self.topAnchor, constant: 15).isActive = true
-        textView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -15).isActive = true
-        textView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        textView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        
+        NSLayoutConstraint.activate([
+            textView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 15),
+            textView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -15),
+            textView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            textView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            
+            actionLabel.topAnchor.constraint(equalTo: self.topAnchor),
+            actionLabel.leftAnchor.constraint(equalTo: self.leftAnchor),
+            actionLabel.rightAnchor.constraint(equalTo: self.rightAnchor),
+            
+            containerView.topAnchor.constraint(equalTo: actionLabel.bottomAnchor),
+            containerView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            containerView.leftAnchor.constraint(equalTo: self.leftAnchor),
+            containerView.rightAnchor.constraint(equalTo: self.rightAnchor)
+        ])
         
         let heightConstraint = textView.heightAnchor.constraint(greaterThanOrEqualToConstant: 100)
         heightConstraint.priority = .defaultHigh
@@ -167,7 +205,7 @@ class CardView: GraphItemView, CardViewProtocol {
         }
 
         })
-        self.backgroundColor = UIColor.clear
+        self.containerView.backgroundColor = UIColor.clear
         self.layer.sublayers?.forEach({if $0.name == "borderView"{
             $0.removeFromSuperlayer()
             }})
@@ -186,5 +224,9 @@ class CardView: GraphItemView, CardViewProtocol {
             changeState(to: .erase)
         }
         self.textView.text = viewModel.nodeResume
+        if let optionName = viewModel.optionName {
+            self.actionLabel.text = optionName
+            self.actionLabel.isHidden = false
+        }
     }
 }

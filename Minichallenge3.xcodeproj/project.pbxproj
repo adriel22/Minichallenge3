@@ -47,6 +47,9 @@
 		E331CCCC228846C20041379B /* GraphViewDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E331CCCB228846C20041379B /* GraphViewDatasource.swift */; };
 		E331CCCF2288802B0041379B /* Array+forearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E331CCCE2288802B0041379B /* Array+forearch.swift */; };
 		E331CCD12288971D0041379B /* GraphLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E331CCD02288971D0041379B /* GraphLineView.swift */; };
+		E347A87C22934DC2001423B5 /* DetailsViewModelTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E347A87B22934DC2001423B5 /* DetailsViewModelTransitioningDelegate.swift */; };
+		E347A87F22937CCB001423B5 /* SinopseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E347A87E22937CCB001423B5 /* SinopseViewModel.swift */; };
+		E347A88122937CFF001423B5 /* SinopseViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E347A88022937CFF001423B5 /* SinopseViewModelDelegate.swift */; };
 		E381E2C32288D7B700E25B78 /* GraphItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381E2C22288D7B700E25B78 /* GraphItemView.swift */; };
 		E381E2C52288DC1D00E25B78 /* GraphViewConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381E2C42288DC1D00E25B78 /* GraphViewConnector.swift */; };
 		E381E2C72288DCC500E25B78 /* ItemViewConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381E2C62288DCC500E25B78 /* ItemViewConnector.swift */; };
@@ -65,6 +68,7 @@
 		E3C030D2228479DC00AD53E0 /* HistoryShortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B12282F1E300AD53E0 /* HistoryShortcut.swift */; };
 		E3C030D3228479DC00AD53E0 /* HistoryConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B32282F1F300AD53E0 /* HistoryConnection.swift */; };
 		E3C030D4228479DC00AD53E0 /* HistoryNodesGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B5228322FC00AD53E0 /* HistoryNodesGrid.swift */; };
+		E3C462DE2293914300699960 /* SinopseDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C462DD2293914300699960 /* SinopseDelegate.swift */; };
 		FC02E93D228AFFC100537429 /* ExpandableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02E939228AFFC100537429 /* ExpandableTableViewCell.swift */; };
 		FC02E93E228AFFC100537429 /* ExpandableTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02E93A228AFFC100537429 /* ExpandableTableViewHeaderView.swift */; };
 		FC02F5DA228D8B31008F0777 /* UITextView+addDoneButtonOnKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02F5D5228D8B31008F0777 /* UITextView+addDoneButtonOnKeyboard.swift */; };
@@ -168,6 +172,9 @@
 		E331CCCB228846C20041379B /* GraphViewDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewDatasource.swift; sourceTree = "<group>"; };
 		E331CCCE2288802B0041379B /* Array+forearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+forearch.swift"; sourceTree = "<group>"; };
 		E331CCD02288971D0041379B /* GraphLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphLineView.swift; sourceTree = "<group>"; };
+		E347A87B22934DC2001423B5 /* DetailsViewModelTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModelTransitioningDelegate.swift; sourceTree = "<group>"; };
+		E347A87E22937CCB001423B5 /* SinopseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SinopseViewModel.swift; path = Minichallenge3/ViewModels/SinopseViewModel.swift; sourceTree = SOURCE_ROOT; };
+		E347A88022937CFF001423B5 /* SinopseViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SinopseViewModelDelegate.swift; path = Minichallenge3/ViewModels/SinopseViewModelDelegate.swift; sourceTree = SOURCE_ROOT; };
 		E381E2C22288D7B700E25B78 /* GraphItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphItemView.swift; sourceTree = "<group>"; };
 		E381E2C42288DC1D00E25B78 /* GraphViewConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewConnector.swift; sourceTree = "<group>"; };
 		E381E2C62288DCC500E25B78 /* ItemViewConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewConnector.swift; sourceTree = "<group>"; };
@@ -186,6 +193,7 @@
 		E3C030C1228478EB00AD53E0 /* HistoryGraph.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HistoryGraph.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3C030C3228478EB00AD53E0 /* HistoryGraph.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HistoryGraph.h; sourceTree = "<group>"; };
 		E3C030C4228478EB00AD53E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E3C462DD2293914300699960 /* SinopseDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinopseDelegate.swift; sourceTree = "<group>"; };
 		FC02E939228AFFC100537429 /* ExpandableTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandableTableViewCell.swift; sourceTree = "<group>"; };
 		FC02E93A228AFFC100537429 /* ExpandableTableViewHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandableTableViewHeaderView.swift; sourceTree = "<group>"; };
 		FC02F5D5228D8B31008F0777 /* UITextView+addDoneButtonOnKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+addDoneButtonOnKeyboard.swift"; sourceTree = "<group>"; };
@@ -318,6 +326,7 @@
 			children = (
 				E32A37D22290B87800E2F8B1 /* SinopseLabel.swift */,
 				E32A37D62290BC3B00E2F8B1 /* SinopseView.swift */,
+				E3C462DD2293914300699960 /* SinopseDelegate.swift */,
 			);
 			path = SinopseView;
 			sourceTree = "<group>";
@@ -400,6 +409,24 @@
 				E32A37AD2290580500E2F8B1 /* Array+set+call.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		E347A87D22934E34001423B5 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				E347A87B22934DC2001423B5 /* DetailsViewModelTransitioningDelegate.swift */,
+				FC02F5EC228D8F08008F0777 /* DetailsViewModel.swift */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
+		E347A88322937D1E001423B5 /* Sinopse */ = {
+			isa = PBXGroup;
+			children = (
+				E347A87E22937CCB001423B5 /* SinopseViewModel.swift */,
+				E347A88022937CFF001423B5 /* SinopseViewModelDelegate.swift */,
+			);
+			path = Sinopse;
 			sourceTree = "<group>";
 		};
 		E381E2D4228A27EF00E25B78 /* Connector */ = {
@@ -485,9 +512,10 @@
 		FC02F5EB228D8EDE008F0777 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				E347A88322937D1E001423B5 /* Sinopse */,
+				E347A87D22934E34001423B5 /* Details */,
 				E32A37DA2290C35800E2F8B1 /* HistoryNode */,
 				E32A37C92290A05E00E2F8B1 /* HistoryGraph */,
-				FC02F5EC228D8F08008F0777 /* DetailsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -820,6 +848,8 @@
 				E32A37C722909E8500E2F8B1 /* HistoryGraphViewModel.swift in Sources */,
 				E331CCCF2288802B0041379B /* Array+forearch.swift in Sources */,
 				E32A37CB2290A06E00E2F8B1 /* HistoryGraphState.swift in Sources */,
+				E347A87C22934DC2001423B5 /* DetailsViewModelTransitioningDelegate.swift in Sources */,
+				E347A87F22937CCB001423B5 /* SinopseViewModel.swift in Sources */,
 				E32A37AE2290580500E2F8B1 /* Array+set+call.swift in Sources */,
 				E32A37A7228EE69E00E2F8B1 /* CGRect+init.swift in Sources */,
 				FC02F5DD228D8B31008F0777 /* String+calculateSize.swift in Sources */,
@@ -830,6 +860,7 @@
 				E32A37C522909D7400E2F8B1 /* HistoryGraphViewController.swift in Sources */,
 				E32A379B228A4FD700E2F8B1 /* GraphViewOperator.swift in Sources */,
 				E381E2CB2288E0AF00E25B78 /* UIBezierPath+addPolygon.swift in Sources */,
+				E3C462DE2293914300699960 /* SinopseDelegate.swift in Sources */,
 				FC02F5DC228D8B31008F0777 /* UIColor+hexInit.swift in Sources */,
 				E331CCD12288971D0041379B /* GraphLineView.swift in Sources */,
 				E32A37DC2290C65200E2F8B1 /* GraphViewItemEventHandler.swift in Sources */,
@@ -854,6 +885,7 @@
 				E32A37C322909A8200E2F8B1 /* RAMHistoryDAO.swift in Sources */,
 				FC02F5ED228D8F08008F0777 /* DetailsViewModel.swift in Sources */,
 				E381E2C32288D7B700E25B78 /* GraphItemView.swift in Sources */,
+				E347A88122937CFF001423B5 /* SinopseViewModelDelegate.swift in Sources */,
 				FCB3548E228065AF00AB7ED2 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

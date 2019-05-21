@@ -49,12 +49,16 @@ class DetailsViewController: UIViewController {
     }
     
     func configureUpnodeView() {
+//        upnodeView.frame.origin = scrollView.frame.origin
+//        upnodeView.frame.size = CGSize(width: UIScreen.main.bounds.width, height: (UIScreen.main.bounds.height-UIApplication.shared.statusBarFrame.height-navigationController!.navigationBar.frame.height)/2)
         upnodeView.addTargetForAddBranchButton(target: self,
                                                selector: #selector(addBranch(_:)),
                                                forEvent: .touchUpInside)
     }
     
     func configureDownnodeVode() {
+//        downnodeView.frame.origin = CGPoint(x: 0, y: upnodeView.frame.origin.y + (UIScreen.main.bounds.height-UIApplication.shared.statusBarFrame.height-navigationController!.navigationBar.frame.height)/2)
+//        downnodeView.frame.size = CGSize(width: UIScreen.main.bounds.width, height: (UIScreen.main.bounds.height-UIApplication.shared.statusBarFrame.height-navigationController!.navigationBar.frame.height)/2)
         downnodeView.addTargetForGoOnButton(target: self,
                                             selector: #selector(goOn(_:)),
                                             forEvent: .touchUpInside)
@@ -73,6 +77,10 @@ class DetailsViewController: UIViewController {
         downnodeView.dataSource = self
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        
+    }
+
     func setConstraints() {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -82,14 +90,18 @@ class DetailsViewController: UIViewController {
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         
+        let statusBarHeight = UIApplication.shared.statusBarFrame.height
+        let navigationBarHeight = self.navigationController!.navigationBar.frame.height
+        let halfScreenHeight = (UIScreen.main.bounds.height - statusBarHeight - navigationBarHeight)/2
+        
         upnodeView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            upnodeView.topAnchor.constraint(equalTo: view.topAnchor),
             upnodeView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             upnodeView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            upnodeView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5)
+            upnodeView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5),
+            upnodeView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor, constant: -halfScreenHeight/2)
         ])
-        
+
         downnodeView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             downnodeView.topAnchor.constraint(equalTo: upnodeView.bottomAnchor),
@@ -121,6 +133,10 @@ class DetailsViewController: UIViewController {
 
 extension DetailsViewController: UITextViewDelegate {
     func moveView(up: Bool) {
+        let statusBarHeight = UIApplication.shared.statusBarFrame.height
+        let navigationBarHeight = self.navigationController!.navigationBar.frame.height
+        let halfScreenHeight = (UIScreen.main.bounds.height - statusBarHeight - navigationBarHeight)/2
+        
         UIView.animate(withDuration: 0.7,
                        delay: 0,
                        usingSpringWithDamping: 0.7,
@@ -128,10 +144,7 @@ extension DetailsViewController: UITextViewDelegate {
                        options: [.curveEaseInOut, .allowUserInteraction, .transitionCurlUp],
                        animations: {
                         
-            let statusBarHeight = UIApplication.shared.statusBarFrame.height
-            let navigationBarHeight = self.navigationController!.navigationBar.frame.height
-            let halfScreenHeight = (UIScreen.main.bounds.height - statusBarHeight - navigationBarHeight)/2
-            
+            print(halfScreenHeight)
             self.scrollView.contentOffset.y = up ? halfScreenHeight : 0
             self.downnodeView.adjustTextViewAndGoOnButton(offset: up ? -50 : 50)
                         

@@ -11,6 +11,10 @@ import HistoryGraph
 class HistoryGraphViewModel {
     public weak var delegate: HistoryGraphViewModelDelegate?
     
+    var title: String? {
+        return historyGraph.historyName
+    }
+    
     var sinopse: String? {
         return historyGraph.sinopse
     }
@@ -180,9 +184,11 @@ class HistoryGraphViewModel {
             
             return
         }
+
         let controller = DetailsViewController()
         let navigation = UINavigationController(rootViewController: controller)
         controller.viewModel = DetailsViewModel(story: historyNode, graph: historyGraph)
+        controller.viewModel?.transitionDelegate = self
         
         delegate?.needShowViewController(navigation)
     }
@@ -242,5 +248,15 @@ extension HistoryGraphViewModel: HistoryGridDelegate {
         let gridPosition = (xPosition: position.x, yPosition: position.y)
         delegate?.needAddNode(atPosition: gridPosition)
         delegate?.needFocusNode(atPosition: gridPosition)
+    }
+    
+    func sinpseWasEdited(to text: String) {
+        historyGraph.sinopse = text
+    }
+}
+
+extension HistoryGraphViewModel: DetailsViewModelTransitioningDelegate {
+    func willCloseController() {
+        delegate?.needReloadGraph()
     }
 }

@@ -12,17 +12,17 @@ class SinopseView: UIView {
     
     var text: String? {
         set {
-            label.text = newValue
+            sinopseTextView.text = newValue
         }
         get {
-            return label.text
+            return sinopseTextView.text
         }
     }
     
-    lazy var label: SinopseLabel = {
-        let label = SinopseLabel()
+    lazy var sinopseTextView: SinopseTextView = {
+        let sinopseTextView = SinopseTextView()
         
-        return label
+        return sinopseTextView
     }()
     
     lazy var blurEffectView: UIVisualEffectView = {
@@ -49,19 +49,20 @@ class SinopseView: UIView {
     
     func setup() {
         translatesAutoresizingMaskIntoConstraints = false
-        label.translatesAutoresizingMaskIntoConstraints = false
+        sinopseTextView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(blurEffectView)
-        addSubview(label)
+        addSubview(sinopseTextView)
         
         backgroundColor = UIColor.clear
     }
     
     func setConstraints(superView: UIView) {
         let constraints = [
-            label.leftAnchor.constraint(equalTo: leftAnchor, constant: 10),
-            label.rightAnchor.constraint(equalTo: rightAnchor, constant: -10),
-            label.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-            label.bottomAnchor.constraint(equalTo: bottomAnchor),
+            sinopseTextView.leftAnchor.constraint(equalTo: leftAnchor, constant: 10),
+            sinopseTextView.rightAnchor.constraint(equalTo: rightAnchor, constant: -10),
+            sinopseTextView.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+            sinopseTextView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            sinopseTextView.heightAnchor.constraint(equalToConstant: 60),
             
             leftAnchor.constraint(equalTo: superView.leftAnchor),
             rightAnchor.constraint(equalTo: superView.rightAnchor),
