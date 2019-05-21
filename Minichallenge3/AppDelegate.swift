@@ -18,10 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         let controller = MyNarrativesViewController()
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = controller
-        window?.makeKeyAndVisible()
-
+//        window = UIWindow(frame: UIScreen.main.bounds)
+//        window?.rootViewController = controller
+//        window?.makeKeyAndVisible()
+//
         let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
         if statusBar.responds(to:#selector(setter: UIView.backgroundColor)) {
             statusBar.backgroundColor = UIColor(color: .darkBlue)
@@ -31,7 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().tintColor = UIColor(color: .yellowWhite)
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(color: .yellowWhite)]
         UINavigationBar.appearance().isTranslucent = false
-
+        
+        
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = UINavigationController(rootViewController: controller)
         window?.makeKeyAndVisible()

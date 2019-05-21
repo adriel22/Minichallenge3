@@ -67,8 +67,8 @@
 		E3C030D2228479DC00AD53E0 /* HistoryShortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B12282F1E300AD53E0 /* HistoryShortcut.swift */; };
 		E3C030D3228479DC00AD53E0 /* HistoryConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B32282F1F300AD53E0 /* HistoryConnection.swift */; };
 		E3C030D4228479DC00AD53E0 /* HistoryNodesGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B5228322FC00AD53E0 /* HistoryNodesGrid.swift */; };
-		FC022736229329250059FBA5 /* MyNarrativesViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC022735229329250059FBA5 /* MyNarrativesViewModelDelegate.swift */; };
 		FC017E40228E577E008979E7 /* AddRamificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC017E3F228E577E008979E7 /* AddRamificationViewModel.swift */; };
+		FC022736229329250059FBA5 /* MyNarrativesViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC022735229329250059FBA5 /* MyNarrativesViewModelDelegate.swift */; };
 		FC02E93D228AFFC100537429 /* ExpandableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02E939228AFFC100537429 /* ExpandableTableViewCell.swift */; };
 		FC02E93E228AFFC100537429 /* ExpandableTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02E93A228AFFC100537429 /* ExpandableTableViewHeaderView.swift */; };
 		FC02F5DA228D8B31008F0777 /* UITextView+addDoneButtonOnKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02F5D5228D8B31008F0777 /* UITextView+addDoneButtonOnKeyboard.swift */; };
@@ -195,8 +195,8 @@
 		E3C030C1228478EB00AD53E0 /* HistoryGraph.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HistoryGraph.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3C030C3228478EB00AD53E0 /* HistoryGraph.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HistoryGraph.h; sourceTree = "<group>"; };
 		E3C030C4228478EB00AD53E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FC022735229329250059FBA5 /* MyNarrativesViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNarrativesViewModelDelegate.swift; sourceTree = "<group>"; };
 		FC017E3F228E577E008979E7 /* AddRamificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRamificationViewModel.swift; sourceTree = "<group>"; };
+		FC022735229329250059FBA5 /* MyNarrativesViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNarrativesViewModelDelegate.swift; sourceTree = "<group>"; };
 		FC02E939228AFFC100537429 /* ExpandableTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandableTableViewCell.swift; sourceTree = "<group>"; };
 		FC02E93A228AFFC100537429 /* ExpandableTableViewHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandableTableViewHeaderView.swift; sourceTree = "<group>"; };
 		FC02F5D5228D8B31008F0777 /* UITextView+addDoneButtonOnKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+addDoneButtonOnKeyboard.swift"; sourceTree = "<group>"; };
@@ -463,6 +463,15 @@
 			path = HistoryGraph;
 			sourceTree = "<group>";
 		};
+		E3C462DF2294344B00699960 /* MyNarratives */ = {
+			isa = PBXGroup;
+			children = (
+				FC0BA47B2292CCBF00E10AF2 /* MyNarrativesViewModel.swift */,
+				FC022735229329250059FBA5 /* MyNarrativesViewModelDelegate.swift */,
+			);
+			path = MyNarratives;
+			sourceTree = "<group>";
+		};
 		E63AF8B70B6E719FFBCF5BDE /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -511,11 +520,10 @@
 		FC02F5EB228D8EDE008F0777 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				E3C462DF2294344B00699960 /* MyNarratives */,
 				E32A37DA2290C35800E2F8B1 /* HistoryNode */,
 				E32A37C92290A05E00E2F8B1 /* HistoryGraph */,
 				FC02F5EC228D8F08008F0777 /* DetailsViewModel.swift */,
-				FC0BA47B2292CCBF00E10AF2 /* MyNarrativesViewModel.swift */,
-				FC022735229329250059FBA5 /* MyNarrativesViewModelDelegate.swift */,
 				FC017E3F228E577E008979E7 /* AddRamificationViewModel.swift */,
 			);
 			path = ViewModels;

@@ -11,8 +11,9 @@ import HistoryGraph
 class MyNarrativesViewModel {
     public weak var delegate: MyNarrativesViewModelDelegate?
     var clickedCellIndex: IndexPath?
+    var historiesDAO = RAMHistoryDAO()
     
-    private var narratives: [HistoryGraph] = []
+    private lazy var narratives: [HistoryGraph] = historiesDAO.getAll()
     
     func addNarrative(withName name: String, toTable tableView: UITableView) {
         let graph = HistoryGraph(withName: name, sinopse: "", width: 0, andHeight: 0)
@@ -37,7 +38,7 @@ class MyNarrativesViewModel {
         if indexPath == clickedCellIndex {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? ExpandableTableViewCell
             cell?.label.text = narratives[indexPath.row].sinopse
-            cell?.buttonAction = presentNextView(_:)
+            cell?.buttonAction = presentNextView(cell:)
             return cell!
         }
         
@@ -46,8 +47,16 @@ class MyNarrativesViewModel {
         return cell
     }
     
-    func presentNextView(_ : UIButton) {
-        self.delegate?.presentGraphView()
+    func presentNextView(cell: ExpandableTableViewCell) {
+        guard let tableView = delegate?.tableView(),
+              let tapPositon = tableView.indexPath(for: cell)?.row else {
+            return
+        }
+        
+        let history = narratives[tapPositon]
+        let graphHistoryViewModel = HistoryGraphViewModel(withHistoryGraph: history, withIdentifier: tapPositon)
+    
+        self.delegate?.presentGraphView(withViewMode: graphHistoryViewModel)
         
     }
     

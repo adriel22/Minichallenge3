@@ -6,7 +6,8 @@
 //  Copyright © 2019 Adriel Freire. All rights reserved.
 //
 
-import Foundation
+import UIKit
 protocol MyNarrativesViewModelDelegate: AnyObject {
-    func presentGraphView()
+    func presentGraphView(withViewMode: HistoryGraphViewModel)
+    func tableView() -> UITableView
 }

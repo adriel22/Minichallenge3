@@ -57,6 +57,7 @@ class HistoryGraphViewController: UIViewController {
         
         view.backgroundColor = UIColor.white
         configureNavigationBar()
+        navigationController?.navigationBar.prefersLargeTitles = false
     }
     
     func configureNavigationBar() {

@@ -11,6 +11,20 @@ import UIKit
 class MyNarrativesViewController: UIViewController {
     let viewModel = MyNarrativesViewModel()
     let customView = MyNarrativeViews()
+    
+    lazy var addButtonItem: UIBarButtonItem = {
+        let addButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNarrative(_:)))
+        
+        return addButtonItem
+    }()
+    
+    lazy var narrativesTableView: UITableView = {
+        let tableView = customView.tableView
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        return tableView
+    }()
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -20,16 +34,20 @@ class MyNarrativesViewController: UIViewController {
 
         viewModel.delegate = self
         
-        let tableView = customView.tableView
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.bounces = false
-
-        tableView.register(ExpandableTableViewCell.self, forCellReuseIdentifier: "cell")
+//        tableView.bounces = false
         
-        let navigation = customView.navigationBar as CustomNavigation
-        navigation.addButton.action = #selector(addNarrative(_:))
-        navigation.addButton.target = self
+        navigationController?.navigationBar.prefersLargeTitles = true
+        title = "My Narratives"
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        
+        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        navigationItem.rightBarButtonItem = addButtonItem
+
+        narrativesTableView.register(ExpandableTableViewCell.self, forCellReuseIdentifier: "cell")
+        
+//        let navigation = customView.navigationBar as CustomNavigation
+//        navigation.addButton.action = #selector(addNarrative(_:))
+//        navigation.addButton.target = self
     }
     
     override func loadView() {
@@ -73,17 +91,26 @@ extension MyNarrativesViewController: UITableViewDelegate, UITableViewDataSource
             viewModel.expandCell(forTable: tableView, atIndexPath: indexPath)
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let scroll = scrollView.contentOffset.y
-        customView.navigationBar.updateHeight(customView.navigationBar.maximunHeight - scroll)
-        customView.updateTableConstraint(scroll)
-    }
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        let scroll = scrollView.contentOffset.y
+////        customView.navigationBar.updateHeight(customView.navigationBar.maximunHeight - scroll)
+//        customView.updateTableConstraint(scroll)
+//    }
 
 }
 extension MyNarrativesViewController: MyNarrativesViewModelDelegate {
     func presentGraphView() {
+        
+    }
+
+    func presentGraphView(withViewMode viewModel: HistoryGraphViewModel) {
         let graphView = HistoryGraphViewController()
-        self.present(graphView, animated: true, completion: nil)
+        graphView.viewModel = viewModel
+        navigationController?.pushViewController(graphView, animated: true)
+    }
+    
+    func tableView() -> UITableView {
+        return self.narrativesTableView
     }
 
 }
