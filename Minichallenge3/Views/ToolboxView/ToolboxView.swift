@@ -16,6 +16,8 @@ class ToolboxView: UIView {
     
     lazy var trashView = UIImageView(imageNamed: "trashTool")
     
+    var currentOption: Int = -1
+    
     var lineView: UIView {
         let view = UIView()
         view.backgroundColor = .white
@@ -67,11 +69,12 @@ class ToolboxView: UIView {
         let topAnchorEqualTo: NSLayoutYAxisAnchor = referenceTopView == self ? referenceTopView.topAnchor : referenceTopView.bottomAnchor
         
         NSLayoutConstraint.activate([
+            
             constraintView.topAnchor.constraint(equalTo: topAnchorEqualTo, constant: 16),
-            constraintView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
-            constraintView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16),
-            constraintView.heightAnchor.constraint(equalTo: constraintView.widthAnchor)
-            ])
+            constraintView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.6),
+            constraintView.heightAnchor.constraint(equalTo: constraintView.widthAnchor),
+            constraintView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+        ])
         
         if lastView {
             NSLayoutConstraint.activate([constraintView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16)])
@@ -84,21 +87,42 @@ class ToolboxView: UIView {
     }
     
     @objc func tappedInAddNode(_ tapGesture: UIGestureRecognizer) {
-        reloadImages()
-        setImageCheckout(imageView: tapGesture.view)
-        delegate?.tappedButtonAddNode()
+        if currentOption != 0 {
+            reloadImages()
+            setImageCheckout(imageView: tapGesture.view)
+            delegate?.tappedButtonAddNode()
+            currentOption = 0
+        } else {
+            currentOption = -1
+            delegate?.tappedButtonCheck()
+            reloadImages()
+        }
     }
     
     @objc func tappedInTrash(_ tapGesture: UIGestureRecognizer) {
-        reloadImages()
-        setImageCheckout(imageView: tapGesture.view)
-        delegate?.tappedButtonTrash()
+        if currentOption != 1 {
+            reloadImages()
+            setImageCheckout(imageView: tapGesture.view)
+            delegate?.tappedButtonTrash()
+            currentOption = 1
+        } else {
+            currentOption = -1
+            delegate?.tappedButtonCheck()
+            reloadImages()
+        }
     }
     
     @objc func tappedInConnection(_ tapGesture: UIGestureRecognizer) {
-        reloadImages()
-        setImageCheckout(imageView: tapGesture.view)
-        delegate?.tappedButtonConnection()
+        if currentOption != 2 {
+            reloadImages()
+            setImageCheckout(imageView: tapGesture.view)
+            delegate?.tappedButtonConnection()
+            currentOption = 2
+        } else {
+            currentOption = -1
+            delegate?.tappedButtonCheck()
+            reloadImages()
+        }
     }
     
     func setImageCheckout(imageView: UIView?) {

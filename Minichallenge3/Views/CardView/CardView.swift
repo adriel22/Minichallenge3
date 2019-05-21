@@ -132,17 +132,21 @@ class CardView: GraphItemView, CardViewProtocol {
             containerView.rightAnchor.constraint(equalTo: self.rightAnchor)
         ])
         
-        let heightConstraint = textView.heightAnchor.constraint(greaterThanOrEqualToConstant: 100)
-        heightConstraint.priority = .defaultHigh
+        let heightFloorConstraint = textView.heightAnchor.constraint(greaterThanOrEqualToConstant: 100)
+        heightFloorConstraint.priority = .defaultHigh
         
-        heightConstraint.isActive = true
+        let heightCeilConstraint = textView.heightAnchor.constraint(lessThanOrEqualToConstant: 300)
+        heightCeilConstraint.priority = .defaultHigh
+        
+        heightFloorConstraint.isActive = true
+        heightCeilConstraint.isActive = true
         
         textView.tag = 1
     }
 
     private func setOpacityLayer() {
         let opacityView = UIView()
-        opacityView.backgroundColor = UIColor.white
+        opacityView.backgroundColor = UIColor(color: .yellowWhite)
         opacityView.alpha = 0.9
 
         self.containerView.addSubview(opacityView)

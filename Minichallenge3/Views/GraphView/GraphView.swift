@@ -57,12 +57,18 @@ class GraphView: UIScrollView {
         addSubview(containerView)
         setConstraints()
 
+        let currentOffset = self.contentOffset
+        let currentZoom = self.eventHandler?.currentZoomScale
+        
         build(datasource: datasource, inContainerView: containerView)
         graphDelegate?.didLayoutNodes(forGraphView: self, withLoadType: .reloadData)
         guard let delegate = self.graphDelegate else {
             return
         }
         setEventHandlers(delegate: delegate)
+        self.eventHandler?.changeZoomScale(to: currentZoom)
+        
+        self.contentOffset = currentOffset
     }
 
     func reloadConnections() {

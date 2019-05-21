@@ -168,6 +168,8 @@ class HistoryGraphViewModel {
                     andPositionY: newNodeLine
                 )
                 
+                newNode.resume = nil
+                
                 try self?.historyGraph.addNode(newNode)
                 try self?.historyGraph.addPath(fromNode: originNode, toNode: newNode, withTitle: inputText)
                 self?.delegate?.needReloadNode(atPosition: (yPosition: newNode.positionY, xPosition: newNode.positionX))
