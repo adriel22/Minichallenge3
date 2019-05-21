@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		921BB6E52292CD60001DA358 /* ToolboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921BB6E42292CD60001DA358 /* ToolboxView.swift */; };
+		921BB6E72292D301001DA358 /* ToolboxViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921BB6E62292D301001DA358 /* ToolboxViewDelegate.swift */; };
 		927CFA5B228DAB8800CAC09E /* ShortcutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927CFA5A228DAB8800CAC09E /* ShortcutView.swift */; };
 		927CFA5D228ED0A500CAC09E /* ShortcutViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927CFA5C228ED0A500CAC09E /* ShortcutViewDelegate.swift */; };
 		927CFA5F2291CA1400CAC09E /* ShortcutViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927CFA5E2291CA1400CAC09E /* ShortcutViewDataSource.swift */; };
@@ -128,6 +130,8 @@
 /* Begin PBXFileReference section */
 		3CF4D23D356FA463D37FC974 /* Pods_Minichallenge3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Minichallenge3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4405664E379635FBB9519A12 /* Pods-Minichallenge3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Minichallenge3.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Minichallenge3/Pods-Minichallenge3.debug.xcconfig"; sourceTree = "<group>"; };
+		921BB6E42292CD60001DA358 /* ToolboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolboxView.swift; sourceTree = "<group>"; };
+		921BB6E62292D301001DA358 /* ToolboxViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolboxViewDelegate.swift; sourceTree = "<group>"; };
 		927CFA5A228DAB8800CAC09E /* ShortcutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutView.swift; sourceTree = "<group>"; };
 		927CFA5C228ED0A500CAC09E /* ShortcutViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutViewDelegate.swift; sourceTree = "<group>"; };
 		927CFA5E2291CA1400CAC09E /* ShortcutViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutViewDataSource.swift; sourceTree = "<group>"; };
@@ -259,6 +263,15 @@
 			path = ShortcutView;
 			sourceTree = "<group>";
 		};
+		92BB84A42292CD2100FB4BC3 /* ToolboxView */ = {
+			isa = PBXGroup;
+			children = (
+				921BB6E42292CD60001DA358 /* ToolboxView.swift */,
+				921BB6E62292D301001DA358 /* ToolboxViewDelegate.swift */,
+			);
+			path = ToolboxView;
+			sourceTree = "<group>";
+		};
 		DABAE8F7599EAF4B2D921E49 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -344,6 +357,7 @@
 		E331CCC42287B2F30041379B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				92BB84A42292CD2100FB4BC3 /* ToolboxView */,
 				E32A37D52290BC2F00E2F8B1 /* SinopseView */,
 				FC02F5E8228D8E70008F0777 /* BranchCell */,
 				FC02F5DF228D8DCF008F0777 /* DetailViews */,
@@ -840,6 +854,7 @@
 				E381E2C92288DE8300E25B78 /* CGPoint+add.swift in Sources */,
 				E32A37AC2290496000E2F8B1 /* GraphViewAnimator.swift in Sources */,
 				E32A37B022905F7000E2F8B1 /* NotifierView.swift in Sources */,
+				921BB6E52292CD60001DA358 /* ToolboxView.swift in Sources */,
 				E381E2C52288DC1D00E25B78 /* GraphViewConnector.swift in Sources */,
 				FC02F5EA228D8EA2008F0777 /* BranchCollectionViewCell.swift in Sources */,
 				E32A37CF2290A14A00E2F8B1 /* HistoryNodeViewModel.swift in Sources */,
@@ -853,6 +868,7 @@
 				E32A37E5229236FF00E2F8B1 /* GraphViewEventHandler.swift in Sources */,
 				E32A37C322909A8200E2F8B1 /* RAMHistoryDAO.swift in Sources */,
 				FC02F5ED228D8F08008F0777 /* DetailsViewModel.swift in Sources */,
+				921BB6E72292D301001DA358 /* ToolboxViewDelegate.swift in Sources */,
 				E381E2C32288D7B700E25B78 /* GraphItemView.swift in Sources */,
 				FCB3548E228065AF00AB7ED2 /* AppDelegate.swift in Sources */,
 			);
@@ -925,7 +941,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = Z8P97P3QB4;
+				DEVELOPMENT_TEAM = NM36QJ4P82;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -953,7 +969,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = Z8P97P3QB4;
+				DEVELOPMENT_TEAM = NM36QJ4P82;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1098,7 +1114,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z8P97P3QB4;
+				DEVELOPMENT_TEAM = NM36QJ4P82;
 				INFOPLIST_FILE = Minichallenge3/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1120,7 +1136,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z8P97P3QB4;
+				DEVELOPMENT_TEAM = NM36QJ4P82;
 				INFOPLIST_FILE = Minichallenge3/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1140,7 +1156,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JGG8YW8SJU;
+				DEVELOPMENT_TEAM = NM36QJ4P82;
 				INFOPLIST_FILE = Minichallenge3Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1161,7 +1177,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JGG8YW8SJU;
+				DEVELOPMENT_TEAM = NM36QJ4P82;
 				INFOPLIST_FILE = Minichallenge3Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1181,7 +1197,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JGG8YW8SJU;
+				DEVELOPMENT_TEAM = NM36QJ4P82;
 				INFOPLIST_FILE = Minichallenge3UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1201,7 +1217,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JGG8YW8SJU;
+				DEVELOPMENT_TEAM = NM36QJ4P82;
 				INFOPLIST_FILE = Minichallenge3UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
