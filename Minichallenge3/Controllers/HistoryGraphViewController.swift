@@ -12,7 +12,7 @@ import HistoryGraph
 class HistoryGraphViewController: UIViewController {
     lazy var sinopseView: SinopseView = {
         let sinopseView = SinopseView()
-        sinopseView.text = self.viewModel.sinopse
+        sinopseView.text = self.viewModel?.sinopse
         sinopseView.sinopseTextView.sinopseDelegate = self
        
         return sinopseView
@@ -28,38 +28,45 @@ class HistoryGraphViewController: UIViewController {
         return graphView
     }()
     
-    lazy var viewModel: HistoryGraphViewModel = {
-        let viewModel = HistoryGraphViewModel(withHistoryGraph: getFirstHistory(), withIdentifier: 0)
-        
-        viewModel.delegate = self
-        
-        return viewModel
+    lazy var toolBox: ToolboxView = {
+        let toolBox = ToolboxView(frame: .zero)
+        toolBox.translatesAutoresizingMaskIntoConstraints = false
+        return toolBox
     }()
+    
+    var viewModel: HistoryGraphViewModel? {
+        didSet {
+            self.viewModel?.delegate = self
+        }
+    }
     
     override func viewDidLoad() {
         setupView()
         setConstraints()
         
-        Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { (_) in
-            self.viewModel.optionWasSelected(atPositon: 0)
-        }
+        
+//        Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { (_) in
+//            self.viewModel.optionWasSelected(atPositon: 0)
+//        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        viewModel.viewWillDisappear()
+        viewModel?.viewWillDisappear()
     }
     
     func setupView() {
         view.addSubview(graphView)
         view.addSubview(sinopseView)
+        view.addSubview(toolBox)
         
         view.backgroundColor = UIColor.white
         configureNavigationBar()
+        navigationController?.navigationBar.prefersLargeTitles = false
     }
     
     func configureNavigationBar() {
         let image = UIImage(named: "Play")
-        title = viewModel.title
+        title = viewModel?.title
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: image,
             style: .done,
@@ -69,7 +76,7 @@ class HistoryGraphViewController: UIViewController {
     }
     
     @objc func playWasTapped(recognizer: UITapGestureRecognizer) {
-        viewModel.playWasTapped()
+        viewModel?.playWasTapped()
     }
     
     func setConstraints() {
@@ -77,7 +84,10 @@ class HistoryGraphViewController: UIViewController {
             graphView.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
             graphView.leftAnchor.constraint(equalTo: view.leftAnchor),
             graphView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            graphView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            graphView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            toolBox.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
+            toolBox.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -16),
+            toolBox.widthAnchor.constraint(equalToConstant: 64)
         ]
 
         NSLayoutConstraint.activate(constraints)
@@ -103,7 +113,7 @@ class HistoryGraphViewController: UIViewController {
 
 extension HistoryGraphViewController: GraphViewDatasource, GraphViewDelegate {
     func didLayoutNodes(forGraphView graphView: GraphView, withLoadType loadType: GraphViewDidLayoutType) {
-        if let centerItemPosition = viewModel.centerItemPosition {
+        if let centerItemPosition = viewModel?.centerItemPosition {
             DispatchQueue.main.async {
                 self.graphView.scrollToItem(atPosition: centerItemPosition, shakeItem: false)
             }
@@ -111,7 +121,7 @@ extension HistoryGraphViewController: GraphViewDatasource, GraphViewDelegate {
     }
     
     func connectionButtonWasSelected(forGraphView graphView: GraphView, connection: Connection) {
-        viewModel.connectionButtonWasSelected(connection: connection)
+        viewModel?.connectionButtonWasSelected(connection: connection)
     }
     
     func connectionButtonColor(forGraphView graphView: GraphView) -> UIColor? {
@@ -119,20 +129,20 @@ extension HistoryGraphViewController: GraphViewDatasource, GraphViewDelegate {
     }
     
     func itemWasSelectedAt(forGraphView graphView: GraphView, postion: GridPosition) {
-        viewModel.nodeWasSelected(atPossition: postion)
+        viewModel?.nodeWasSelected(atPossition: postion)
     }
     
     func connections(forGraphView graphView: GraphView, fromItemAtPosition itemPosition: GridPosition) -> [GridPosition] {
         
-        return viewModel.gridConnections(fromPositionGridPosition: itemPosition)
+        return viewModel?.gridConnections(fromPositionGridPosition: itemPosition) ?? []
     }
     
     func gridSize(forGraphView graphView: GraphView) -> GridSize {
-        return viewModel.gridSize()
+        return viewModel?.gridSize() ?? (width: 0, height: 0)
     }
     
     func gridNodeView(forGraphView graphView: GraphView, inPosition position: GridPosition) -> GraphItemView? {
-        guard let cellViewModel = viewModel.viewModelForNode(atPosition: position),
+        guard let cellViewModel = viewModel?.viewModelForNode(atPosition: position),
               let nodeType = cellViewModel.nodeType else {
        
             return nil
@@ -162,7 +172,7 @@ extension HistoryGraphViewController: GraphViewDatasource, GraphViewDelegate {
     }
     
     func connectionsImage(forGraphView graphView: GraphView) -> UIImage? {
-        return viewModel.connectionButtonImage
+        return viewModel?.connectionButtonImage
     }
     
     func connectionWidth(forGraphView graphView: GraphView) -> CGFloat {
@@ -173,7 +183,7 @@ extension HistoryGraphViewController: GraphViewDatasource, GraphViewDelegate {
 extension HistoryGraphViewController: HistoryGraphViewModelDelegate {
     func needReloadNode(atPosition position: GridPosition) {
         if let cardView = self.graphView.itemView(forPosition: position) as? CardViewProtocol,
-           let viewModelForCard = viewModel.viewModelForNode(atPosition: position) {
+           let viewModelForCard = viewModel?.viewModelForNode(atPosition: position) {
             
             cardView.setup(withViewModel: viewModelForCard)
         }
@@ -234,6 +244,7 @@ extension HistoryGraphViewController: HistoryGraphViewModelDelegate {
     
     func needShowViewController(_ viewController: UIViewController) {
         present(viewController, animated: true, completion: nil)
+        
     }
     
     func needReloadGraph() {
@@ -258,7 +269,7 @@ extension HistoryGraphViewController: ShortcutViewDelegate, ShortcutViewDataSour
         guard let position = self.graphView.position(forItemView: shortcut) else {
             return
         }
-        viewModel.nodeWasSelected(atPossition: position)
+        viewModel?.nodeWasSelected(atPossition: position)
     }
     
     func widthLine(forShortcutView: ShortcutView) -> CGFloat {
