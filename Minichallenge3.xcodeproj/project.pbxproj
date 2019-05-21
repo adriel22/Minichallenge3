@@ -67,6 +67,7 @@
 		E3C030D2228479DC00AD53E0 /* HistoryShortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B12282F1E300AD53E0 /* HistoryShortcut.swift */; };
 		E3C030D3228479DC00AD53E0 /* HistoryConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B32282F1F300AD53E0 /* HistoryConnection.swift */; };
 		E3C030D4228479DC00AD53E0 /* HistoryNodesGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B5228322FC00AD53E0 /* HistoryNodesGrid.swift */; };
+		FC022736229329250059FBA5 /* MyNarrativesViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC022735229329250059FBA5 /* MyNarrativesViewModelDelegate.swift */; };
 		FC017E40228E577E008979E7 /* AddRamificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC017E3F228E577E008979E7 /* AddRamificationViewModel.swift */; };
 		FC02E93D228AFFC100537429 /* ExpandableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02E939228AFFC100537429 /* ExpandableTableViewCell.swift */; };
 		FC02E93E228AFFC100537429 /* ExpandableTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02E93A228AFFC100537429 /* ExpandableTableViewHeaderView.swift */; };
@@ -82,6 +83,7 @@
 		FC02F5F1228D9AC9008F0777 /* AddRamificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02F5F0228D9AC9008F0777 /* AddRamificationViewController.swift */; };
 		FC02F5F3228DA510008F0777 /* AddRamificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02F5F2228DA510008F0777 /* AddRamificationsView.swift */; };
 		FC060916228C6A1B008C98AE /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC060915228C6A1B008C98AE /* CardView.swift */; };
+		FC0BA47C2292CCBF00E10AF2 /* MyNarrativesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0BA47B2292CCBF00E10AF2 /* MyNarrativesViewModel.swift */; };
 		FCB3548E228065AF00AB7ED2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB3548D228065AF00AB7ED2 /* AppDelegate.swift */; };
 		FCB35490228065AF00AB7ED2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB3548F228065AF00AB7ED2 /* ViewController.swift */; };
 		FCB35493228065AF00AB7ED2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCB35491228065AF00AB7ED2 /* Main.storyboard */; };
@@ -193,6 +195,7 @@
 		E3C030C1228478EB00AD53E0 /* HistoryGraph.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HistoryGraph.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3C030C3228478EB00AD53E0 /* HistoryGraph.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HistoryGraph.h; sourceTree = "<group>"; };
 		E3C030C4228478EB00AD53E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FC022735229329250059FBA5 /* MyNarrativesViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNarrativesViewModelDelegate.swift; sourceTree = "<group>"; };
 		FC017E3F228E577E008979E7 /* AddRamificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRamificationViewModel.swift; sourceTree = "<group>"; };
 		FC02E939228AFFC100537429 /* ExpandableTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandableTableViewCell.swift; sourceTree = "<group>"; };
 		FC02E93A228AFFC100537429 /* ExpandableTableViewHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandableTableViewHeaderView.swift; sourceTree = "<group>"; };
@@ -208,6 +211,7 @@
 		FC02F5F0228D9AC9008F0777 /* AddRamificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRamificationViewController.swift; sourceTree = "<group>"; };
 		FC02F5F2228DA510008F0777 /* AddRamificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRamificationsView.swift; sourceTree = "<group>"; };
 		FC060915228C6A1B008C98AE /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		FC0BA47B2292CCBF00E10AF2 /* MyNarrativesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNarrativesViewModel.swift; sourceTree = "<group>"; };
 		FCB3548A228065AF00AB7ED2 /* Minichallenge3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Minichallenge3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCB3548D228065AF00AB7ED2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FCB3548F228065AF00AB7ED2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -510,6 +514,8 @@
 				E32A37DA2290C35800E2F8B1 /* HistoryNode */,
 				E32A37C92290A05E00E2F8B1 /* HistoryGraph */,
 				FC02F5EC228D8F08008F0777 /* DetailsViewModel.swift */,
+				FC0BA47B2292CCBF00E10AF2 /* MyNarrativesViewModel.swift */,
+				FC022735229329250059FBA5 /* MyNarrativesViewModelDelegate.swift */,
 				FC017E3F228E577E008979E7 /* AddRamificationViewModel.swift */,
 			);
 			path = ViewModels;
@@ -844,6 +850,7 @@
 				E32A37AA229040B300E2F8B1 /* OperationAnimationStage.swift in Sources */,
 				E32A37C722909E8500E2F8B1 /* HistoryGraphViewModel.swift in Sources */,
 				E331CCCF2288802B0041379B /* Array+forearch.swift in Sources */,
+				FC0BA47C2292CCBF00E10AF2 /* MyNarrativesViewModel.swift in Sources */,
 				E32A37CB2290A06E00E2F8B1 /* HistoryGraphState.swift in Sources */,
 				E32A37AE2290580500E2F8B1 /* Array+set+call.swift in Sources */,
 				E32A37A7228EE69E00E2F8B1 /* CGRect+init.swift in Sources */,
@@ -851,6 +858,7 @@
 				E381E2D32289C58F00E25B78 /* ItemViewConnectorDirection.swift in Sources */,
 				E32A37CD2290A12100E2F8B1 /* CardViewProtocol.swift in Sources */,
 				E381E2D12289C41800E25B78 /* NSLayoutConstraint+activate.swift in Sources */,
+				FC022736229329250059FBA5 /* MyNarrativesViewModelDelegate.swift in Sources */,
 				E32A37D72290BC3B00E2F8B1 /* SinopseView.swift in Sources */,
 				E32A37C522909D7400E2F8B1 /* HistoryGraphViewController.swift in Sources */,
 				E32A379B228A4FD700E2F8B1 /* GraphViewOperator.swift in Sources */,
@@ -1126,7 +1134,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = NM36QJ4P82;
+				DEVELOPMENT_TEAM = JGG8YW8SJU;
 				INFOPLIST_FILE = Minichallenge3/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1148,7 +1156,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = NM36QJ4P82;
+				DEVELOPMENT_TEAM = JGG8YW8SJU;
 				INFOPLIST_FILE = Minichallenge3/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

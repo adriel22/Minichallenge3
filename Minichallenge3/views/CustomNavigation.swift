@@ -19,8 +19,9 @@ class CustomNavigation: UINavigationBar {
     */
     let maximunHeight = UIScreen.main.bounds.height * 0.2
     let minimunHeight = UIScreen.main.bounds.height * 0.05
-
     var height = UIScreen.main.bounds.height * 0.2
+    let addButton: UIBarButtonItem
+    
     private var navBarHeightConstraint: NSLayoutConstraint!
 
     override func didMoveToSuperview() {
@@ -49,6 +50,8 @@ class CustomNavigation: UINavigationBar {
     }
 
     init(_ title: String) {
+        addButton = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: nil)
+        
         super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         self.barTintColor = UIColor(color: .darkBlue)
         self.isTranslucent = false
@@ -61,7 +64,8 @@ class CustomNavigation: UINavigationBar {
         self.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         self.items = [navigationItens]
 
-        navigationItens.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: nil)
+        addButton.target = self
+        navigationItens.rightBarButtonItem = addButton
         navigationItens.rightBarButtonItem?.tintColor = UIColor.white
 
     }

@@ -24,7 +24,8 @@ class MyNarrativeViews: UIView {
         self.addSubview(navigationBar)
         setTable()
         self.backgroundColor = UIColor.red
-
+//        navigationBar.addb
+        
     }
 
     required init?(coder aDecoder: NSCoder) {
