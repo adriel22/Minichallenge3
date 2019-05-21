@@ -40,6 +40,9 @@ class HistoryGraphViewController: UIViewController {
         setupView()
         setConstraints()
         
+        Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { (_) in
+            self.viewModel.optionWasSelected(atPositon: 0)
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -168,6 +171,14 @@ extension HistoryGraphViewController: GraphViewDatasource, GraphViewDelegate {
 }
 
 extension HistoryGraphViewController: HistoryGraphViewModelDelegate {
+    func needReloadNode(atPosition position: GridPosition) {
+        if let cardView = self.graphView.itemView(forPosition: position) as? CardViewProtocol,
+           let viewModelForCard = viewModel.viewModelForNode(atPosition: position) {
+            
+            cardView.setup(withViewModel: viewModelForCard)
+        }
+    }
+    
     func needShowInputAlert(title: String, message: String, action: String, cancelAction: String, completion: @escaping (String) -> Void) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alertController.addTextField { (textField) in

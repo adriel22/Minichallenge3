@@ -23,4 +23,5 @@ protocol HistoryGraphViewModelDelegate: AnyObject {
     func needInsertColumn(atPosition position: Int)
     func needAddNode(atPosition position: GridPosition)
     func needMoveNode(fromPosition originPosition: GridPosition, toPosition destinyPosition: GridPosition)
+    func needReloadNode(atPosition position: GridPosition)
 }

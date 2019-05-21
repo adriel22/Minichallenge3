@@ -81,12 +81,14 @@ class ShortcutView: GraphItemView, CardViewProtocol {
     
     private func setContraints() {
         //constraints to backgroundView from cicleView
+        let heightConstraint = self.heightAnchor.constraint(equalToConstant: 150)
+        heightConstraint.priority = .defaultHigh
         NSLayoutConstraint.activate([
             circleView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             circleView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             circleView.widthAnchor.constraint(equalToConstant: self.heightCircleView),
             circleView.heightAnchor.constraint(equalToConstant: self.heightCircleView),
-            self.heightAnchor.constraint(equalToConstant: 150)
+            heightConstraint
             ])
         //constraints to cicleView from imageView
         NSLayoutConstraint.activate([

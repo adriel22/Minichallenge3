@@ -145,13 +145,13 @@ class CardView: GraphItemView, CardViewProtocol {
         opacityView.backgroundColor = UIColor.white
         opacityView.alpha = 0.9
 
-        self.addSubview(opacityView)
+        self.containerView.addSubview(opacityView)
 
         opacityView.translatesAutoresizingMaskIntoConstraints = false
-        opacityView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        opacityView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        opacityView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = translatesAutoresizingMaskIntoConstraints
-        opacityView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        opacityView.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
+        opacityView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
+        opacityView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor).isActive = true
+        opacityView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor).isActive = true
         opacityView.tag = 1
     }
 
@@ -193,17 +193,17 @@ class CardView: GraphItemView, CardViewProtocol {
             borderView.frame = self.bounds
             borderView.fillColor = nil
             borderView.path = UIBezierPath(rect: self.bounds).cgPath
-            self.layer.addSublayer(borderView)
+            self.containerView.layer.addSublayer(borderView)
 
             borderView.name = "borderView"
         }
     }
 
     private func resetCard() {
-        self.subviews.forEach({if $0.tag == 1 {
-            $0.removeFromSuperview()
-        }
-
+        self.subviews.forEach({
+            if $0.tag == 1 {
+                $0.removeFromSuperview()
+            }
         })
         self.containerView.backgroundColor = UIColor.clear
         self.layer.sublayers?.forEach({if $0.name == "borderView"{
@@ -222,6 +222,8 @@ class CardView: GraphItemView, CardViewProtocol {
             changeState(to: .empty)
         case .removing:
             changeState(to: .erase)
+        case .empty:
+            changeState(to: .empty)
         }
         self.textView.text = viewModel.nodeResume
         if let optionName = viewModel.optionName {

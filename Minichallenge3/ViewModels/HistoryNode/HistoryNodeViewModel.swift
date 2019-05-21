@@ -10,15 +10,18 @@ import HistoryGraph
 
 class HistoryNodeViewModel {
     private var historyGraph: HistoryGraph
-    private var historyNode: HistoryNodeProtocol
+    private var historyNode: HistoryNodeProtocol?
     let currentState: HistoryGraphState
     lazy var optionName: String? = {
-        guard let parentNode = historyNode.parent as? HistoryNode,
+        guard let historyNode = historyNode,
+              let parentNode = historyNode.parent as? HistoryNode,
               let connectionToSelf = parentNode.connection(
                     toPositionX: historyNode.positionX,
                     positionY: historyNode.positionY
               ) else {
-
+            if self.currentState == .empty {
+                return " "
+            }
             return nil
         }
         
@@ -26,7 +29,7 @@ class HistoryNodeViewModel {
     }()
 
     var nodeResume: String? {
-        return historyNode.resume ?? historyNode.text
+        return historyNode?.resume ?? historyNode?.text
     }
 
     var nodeType: HistoryGraphViewModelNodeType? {
@@ -35,12 +38,14 @@ class HistoryNodeViewModel {
             return .normal
         case is HistoryShortcut:
             return .shortcut
+        case nil:
+            return .normal
         default:
-            return nil
+            return .normal
         }
     }
 
-    init(withHistoryGraph historyGraph: HistoryGraph, andHistoryNode historyNode: HistoryNodeProtocol, withState state: HistoryGraphState) {
+    init(withHistoryGraph historyGraph: HistoryGraph, andHistoryNode historyNode: HistoryNodeProtocol? = nil, withState state: HistoryGraphState) {
         self.historyGraph = historyGraph
         self.historyNode = historyNode
         self.currentState = state
