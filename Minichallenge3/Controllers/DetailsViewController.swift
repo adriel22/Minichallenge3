@@ -26,6 +26,8 @@ class DetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        viewModel?.delegate = self
+        
         configureScrollView()
         view.addSubview(scrollView)
 
@@ -207,4 +209,14 @@ extension DetailsViewController: UICollectionViewDataSource, UICollectionViewDel
         return CGSize(width: width, height: 48)
     }
 
+}
+extension DetailsViewController: DetailsViewModelDelegate {
+    func showAddView(_ controller: AddRamificationViewController) {
+        controller.viewModel.delegate = self.viewModel
+        self.present(controller, animated: true, completion: nil)
+    }
+    func updateView() {
+        self.viewModel?.update(self)
+    }
+    
 }

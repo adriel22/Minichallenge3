@@ -10,6 +10,8 @@ import Foundation
 import HistoryGraph
 
 class AddRamificationViewModel {
+    public weak var delegate: AddRamificationViewModelDelegate?
+    
     let graph: HistoryGraph
     let parentNode: HistoryNode
 
@@ -23,10 +25,12 @@ class AddRamificationViewModel {
 
         let nodePositionX = graph.grid.findPositionInLine(atIndex: nodePositionY, nearIndex: parentNode.positionX) ?? 0
 
-        let newNode = HistoryNode(withResume: nodeTitle, text: "", positionX: nodePositionX, andPositionY: parentNode.positionY + 1)
+        let newNode = HistoryNode(withResume: "", text: "", positionX: nodePositionX, andPositionY: parentNode.positionY + 1)
 
         try? graph.addNode(newNode)
 
-        try? graph.addConnection(fromNode: parentNode, toNode: newNode, withTitle: "")
+        try? graph.addPath(fromNode: parentNode, toNode: newNode, withTitle: nodeTitle)
+//        try? graph.addConnection(fromNode: parentNode, toNode: newNode, withTitle: "")
+        delegate?.finishedAddingRamification()
     }
 }
