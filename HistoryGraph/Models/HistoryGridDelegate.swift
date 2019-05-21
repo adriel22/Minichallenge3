@@ -16,4 +16,5 @@ public protocol HistoryGridDelegate: class {
     func movedNodeToPosition(fromPosition originPosition: Position, toPosition destinyPosition: Position)
     func addNode(inPosition position: Position)
     func addShortcut(inPosition position: Position)
+    func removedShortcut(atPosition position: Position)
 }

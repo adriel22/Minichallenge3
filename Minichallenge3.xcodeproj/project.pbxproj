@@ -49,6 +49,11 @@
 		E331CCCC228846C20041379B /* GraphViewDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E331CCCB228846C20041379B /* GraphViewDatasource.swift */; };
 		E331CCCF2288802B0041379B /* Array+forearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E331CCCE2288802B0041379B /* Array+forearch.swift */; };
 		E331CCD12288971D0041379B /* GraphLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E331CCD02288971D0041379B /* GraphLineView.swift */; };
+		E347A87C22934DC2001423B5 /* DetailsViewModelTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E347A87B22934DC2001423B5 /* DetailsViewModelTransitioningDelegate.swift */; };
+		E347A87F22937CCB001423B5 /* SinopseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E347A87E22937CCB001423B5 /* SinopseViewModel.swift */; };
+		E347A88122937CFF001423B5 /* SinopseViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E347A88022937CFF001423B5 /* SinopseViewModelDelegate.swift */; };
+		E3593096229438FA00F502BA /* DetailsViewModelTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3593094229438FA00F502BA /* DetailsViewModelTransitioningDelegate.swift */; };
+		E3593097229438FA00F502BA /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3593095229438FA00F502BA /* DetailsViewModel.swift */; };
 		E381E2C32288D7B700E25B78 /* GraphItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381E2C22288D7B700E25B78 /* GraphItemView.swift */; };
 		E381E2C52288DC1D00E25B78 /* GraphViewConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381E2C42288DC1D00E25B78 /* GraphViewConnector.swift */; };
 		E381E2C72288DCC500E25B78 /* ItemViewConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381E2C62288DCC500E25B78 /* ItemViewConnector.swift */; };
@@ -67,6 +72,7 @@
 		E3C030D2228479DC00AD53E0 /* HistoryShortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B12282F1E300AD53E0 /* HistoryShortcut.swift */; };
 		E3C030D3228479DC00AD53E0 /* HistoryConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B32282F1F300AD53E0 /* HistoryConnection.swift */; };
 		E3C030D4228479DC00AD53E0 /* HistoryNodesGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B5228322FC00AD53E0 /* HistoryNodesGrid.swift */; };
+		E3C462DE2293914300699960 /* SinopseDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C462DD2293914300699960 /* SinopseDelegate.swift */; };
 		FC017E40228E577E008979E7 /* AddRamificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC017E3F228E577E008979E7 /* AddRamificationViewModel.swift */; };
 		FC022736229329250059FBA5 /* MyNarrativesViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC022735229329250059FBA5 /* MyNarrativesViewModelDelegate.swift */; };
 		FC02E93D228AFFC100537429 /* ExpandableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02E939228AFFC100537429 /* ExpandableTableViewCell.swift */; };
@@ -79,7 +85,6 @@
 		FC02F5E6228D8E32008F0777 /* NodeDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02F5E4228D8E32008F0777 /* NodeDetailsView.swift */; };
 		FC02F5E7228D8E32008F0777 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02F5E5228D8E32008F0777 /* DetailsViewController.swift */; };
 		FC02F5EA228D8EA2008F0777 /* BranchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02F5E9228D8EA2008F0777 /* BranchCollectionViewCell.swift */; };
-		FC02F5ED228D8F08008F0777 /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02F5EC228D8F08008F0777 /* DetailsViewModel.swift */; };
 		FC02F5F1228D9AC9008F0777 /* AddRamificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02F5F0228D9AC9008F0777 /* AddRamificationViewController.swift */; };
 		FC02F5F3228DA510008F0777 /* AddRamificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02F5F2228DA510008F0777 /* AddRamificationsView.swift */; };
 		FC060916228C6A1B008C98AE /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC060915228C6A1B008C98AE /* CardView.swift */; };
@@ -177,6 +182,11 @@
 		E331CCCB228846C20041379B /* GraphViewDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewDatasource.swift; sourceTree = "<group>"; };
 		E331CCCE2288802B0041379B /* Array+forearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+forearch.swift"; sourceTree = "<group>"; };
 		E331CCD02288971D0041379B /* GraphLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphLineView.swift; sourceTree = "<group>"; };
+		E347A87B22934DC2001423B5 /* DetailsViewModelTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModelTransitioningDelegate.swift; sourceTree = "<group>"; };
+		E347A87E22937CCB001423B5 /* SinopseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SinopseViewModel.swift; path = Minichallenge3/ViewModels/SinopseViewModel.swift; sourceTree = SOURCE_ROOT; };
+		E347A88022937CFF001423B5 /* SinopseViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SinopseViewModelDelegate.swift; path = Minichallenge3/ViewModels/SinopseViewModelDelegate.swift; sourceTree = SOURCE_ROOT; };
+		E3593094229438FA00F502BA /* DetailsViewModelTransitioningDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewModelTransitioningDelegate.swift; sourceTree = "<group>"; };
+		E3593095229438FA00F502BA /* DetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
 		E381E2C22288D7B700E25B78 /* GraphItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphItemView.swift; sourceTree = "<group>"; };
 		E381E2C42288DC1D00E25B78 /* GraphViewConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewConnector.swift; sourceTree = "<group>"; };
 		E381E2C62288DCC500E25B78 /* ItemViewConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewConnector.swift; sourceTree = "<group>"; };
@@ -195,6 +205,7 @@
 		E3C030C1228478EB00AD53E0 /* HistoryGraph.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HistoryGraph.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3C030C3228478EB00AD53E0 /* HistoryGraph.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HistoryGraph.h; sourceTree = "<group>"; };
 		E3C030C4228478EB00AD53E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E3C462DD2293914300699960 /* SinopseDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinopseDelegate.swift; sourceTree = "<group>"; };
 		FC017E3F228E577E008979E7 /* AddRamificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRamificationViewModel.swift; sourceTree = "<group>"; };
 		FC022735229329250059FBA5 /* MyNarrativesViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNarrativesViewModelDelegate.swift; sourceTree = "<group>"; };
 		FC02E939228AFFC100537429 /* ExpandableTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandableTableViewCell.swift; sourceTree = "<group>"; };
@@ -207,7 +218,6 @@
 		FC02F5E4228D8E32008F0777 /* NodeDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeDetailsView.swift; sourceTree = "<group>"; };
 		FC02F5E5228D8E32008F0777 /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		FC02F5E9228D8EA2008F0777 /* BranchCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BranchCollectionViewCell.swift; sourceTree = "<group>"; };
-		FC02F5EC228D8F08008F0777 /* DetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
 		FC02F5F0228D9AC9008F0777 /* AddRamificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRamificationViewController.swift; sourceTree = "<group>"; };
 		FC02F5F2228DA510008F0777 /* AddRamificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRamificationsView.swift; sourceTree = "<group>"; };
 		FC060915228C6A1B008C98AE /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
@@ -341,6 +351,7 @@
 			children = (
 				E32A37D22290B87800E2F8B1 /* SinopseLabel.swift */,
 				E32A37D62290BC3B00E2F8B1 /* SinopseView.swift */,
+				E3C462DD2293914300699960 /* SinopseDelegate.swift */,
 			);
 			path = SinopseView;
 			sourceTree = "<group>";
@@ -425,6 +436,32 @@
 				E32A37AD2290580500E2F8B1 /* Array+set+call.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		E347A87D22934E34001423B5 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				E347A87B22934DC2001423B5 /* DetailsViewModelTransitioningDelegate.swift */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
+		E347A88322937D1E001423B5 /* Sinopse */ = {
+			isa = PBXGroup;
+			children = (
+				E347A87E22937CCB001423B5 /* SinopseViewModel.swift */,
+				E347A88022937CFF001423B5 /* SinopseViewModelDelegate.swift */,
+			);
+			path = Sinopse;
+			sourceTree = "<group>";
+		};
+		E3593093229438FA00F502BA /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				E3593094229438FA00F502BA /* DetailsViewModelTransitioningDelegate.swift */,
+				E3593095229438FA00F502BA /* DetailsViewModel.swift */,
+			);
+			path = Details;
 			sourceTree = "<group>";
 		};
 		E381E2D4228A27EF00E25B78 /* Connector */ = {
@@ -520,10 +557,12 @@
 		FC02F5EB228D8EDE008F0777 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				E3593093229438FA00F502BA /* Details */,
 				E3C462DF2294344B00699960 /* MyNarratives */,
+				E347A88322937D1E001423B5 /* Sinopse */,
+				E347A87D22934E34001423B5 /* Details */,
 				E32A37DA2290C35800E2F8B1 /* HistoryNode */,
 				E32A37C92290A05E00E2F8B1 /* HistoryGraph */,
-				FC02F5EC228D8F08008F0777 /* DetailsViewModel.swift */,
 				FC017E3F228E577E008979E7 /* AddRamificationViewModel.swift */,
 			);
 			path = ViewModels;
@@ -860,6 +899,8 @@
 				E331CCCF2288802B0041379B /* Array+forearch.swift in Sources */,
 				FC0BA47C2292CCBF00E10AF2 /* MyNarrativesViewModel.swift in Sources */,
 				E32A37CB2290A06E00E2F8B1 /* HistoryGraphState.swift in Sources */,
+				E347A87C22934DC2001423B5 /* DetailsViewModelTransitioningDelegate.swift in Sources */,
+				E347A87F22937CCB001423B5 /* SinopseViewModel.swift in Sources */,
 				E32A37AE2290580500E2F8B1 /* Array+set+call.swift in Sources */,
 				E32A37A7228EE69E00E2F8B1 /* CGRect+init.swift in Sources */,
 				FC02F5DD228D8B31008F0777 /* String+calculateSize.swift in Sources */,
@@ -871,6 +912,7 @@
 				E32A37C522909D7400E2F8B1 /* HistoryGraphViewController.swift in Sources */,
 				E32A379B228A4FD700E2F8B1 /* GraphViewOperator.swift in Sources */,
 				E381E2CB2288E0AF00E25B78 /* UIBezierPath+addPolygon.swift in Sources */,
+				E3C462DE2293914300699960 /* SinopseDelegate.swift in Sources */,
 				FC02F5DC228D8B31008F0777 /* UIColor+hexInit.swift in Sources */,
 				E331CCD12288971D0041379B /* GraphLineView.swift in Sources */,
 				E32A37DC2290C65200E2F8B1 /* GraphViewItemEventHandler.swift in Sources */,
@@ -885,9 +927,11 @@
 				E381E2C52288DC1D00E25B78 /* GraphViewConnector.swift in Sources */,
 				FC02F5EA228D8EA2008F0777 /* BranchCollectionViewCell.swift in Sources */,
 				E32A37CF2290A14A00E2F8B1 /* HistoryNodeViewModel.swift in Sources */,
+				E3593096229438FA00F502BA /* DetailsViewModelTransitioningDelegate.swift in Sources */,
 				FC02E93E228AFFC100537429 /* ExpandableTableViewHeaderView.swift in Sources */,
 				E331CCCA228846B20041379B /* GraphViewDelegate.swift in Sources */,
 				FC060916228C6A1B008C98AE /* CardView.swift in Sources */,
+				E3593097229438FA00F502BA /* DetailsViewModel.swift in Sources */,
 				FC02F5E6228D8E32008F0777 /* NodeDetailsView.swift in Sources */,
 				E32A379F228B011300E2F8B1 /* CustomNavigation.swift in Sources */,
 				927CFA5F2291CA1400CAC09E /* ShortcutViewDataSource.swift in Sources */,
@@ -895,9 +939,9 @@
 				E32A37E5229236FF00E2F8B1 /* GraphViewEventHandler.swift in Sources */,
 				E32A37C322909A8200E2F8B1 /* RAMHistoryDAO.swift in Sources */,
 				FC02F5F1228D9AC9008F0777 /* AddRamificationViewController.swift in Sources */,
-				FC02F5ED228D8F08008F0777 /* DetailsViewModel.swift in Sources */,
 				921BB6E72292D301001DA358 /* ToolboxViewDelegate.swift in Sources */,
 				E381E2C32288D7B700E25B78 /* GraphItemView.swift in Sources */,
+				E347A88122937CFF001423B5 /* SinopseViewModelDelegate.swift in Sources */,
 				FCB3548E228065AF00AB7ED2 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

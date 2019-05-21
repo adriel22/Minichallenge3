@@ -438,7 +438,7 @@ class HistoryGraphTests: XCTestCase {
         try? graph.addNode(node3)
         try? graph.addPath(fromNode: node1, toNode: node2, withTitle: "The first connection")
         try? graph.addPath(fromNode: node3, toNode: node2, withTitle: "the connection")
-        XCTAssertTrue(node3.shortcuts.count > 0)
+        XCTAssertTrue(node2.shortcuts.count > 0)
     }
 
     func test_addPath_wrongNodePositionAndImpossibleCreatPathToShortcut() {
@@ -454,7 +454,7 @@ class HistoryGraphTests: XCTestCase {
         try? graph.addNode(node3)
         try? graph.addPath(fromNode: node1, toNode: node2, withTitle: "The first connection")
         try? graph.addPath(fromNode: node3, toNode: node2, withTitle: "connection")
-        let shortcut = node3.shortcuts.first!
+        let shortcut = node2.shortcuts.first!
         XCTAssertThrowsError(try graph.addPath(fromNode: node1, toNode: shortcut, withTitle: "the connection"))
     }
 }
