@@ -19,6 +19,8 @@ class HistoryGraphViewModel {
         return historyGraph.sinopse
     }
     
+    private var lastTappedNodePosition: GridPosition?
+    
     var connectionButtonImage: UIImage? {
         if currentState == .removing {
             return UIImage(named: "garbage")
@@ -96,7 +98,7 @@ class HistoryGraphViewModel {
         case .adding:
             nodeWasSelectedInAddingState(atPossition: position, inNode: node)
         case .connecting:
-            break
+            nodeWasSelectedInConnectingState(atPossition: position, inNode: node)
         case .empty:
             break
         }
@@ -122,7 +124,7 @@ class HistoryGraphViewModel {
 
         do {
             try historyGraph.removeConnection(connectionToRemove, fromNode: originNode)
-            delegate?.needDeleteConnection()
+            delegate?.needReloadConnection()
         } catch let error as HistoryError {
             delegate?.needShowError(message: error.rawValue)
         } catch {
@@ -147,6 +149,40 @@ class HistoryGraphViewModel {
         } catch {
             self.delegate?.needShowError(message: "A Error Happend")
         }
+    }
+    
+    func nodeWasSelectedInConnectingState(atPossition position: GridPosition, inNode node: HistoryNodeProtocol) {
+        guard let lastTappedNodePosition = self.lastTappedNodePosition,
+              let originNode = self.historyGraph.grid[
+                    lastTappedNodePosition.yPosition,
+                    lastTappedNodePosition.xPosition
+                  ] as? HistoryNode,
+              let destinyNode = self.historyGraph.grid[
+                    position.yPosition,
+                    position.xPosition
+                  ] as? HistoryNode else {
+            
+            self.lastTappedNodePosition = position
+            return
+        }
+        
+        delegate?.needShowInputAlert(
+            title: "Add Path",
+            message: "Tap the path name",
+            action: "OK", cancelAction: "Cancel",
+            completion: { [weak self] (pathName) in
+            do {
+                try self?.historyGraph.addPath(fromNode: originNode, toNode: destinyNode, withTitle: pathName)
+                self?.delegate?.needReloadConnection()
+                self?.delegate?.needReloadNode(atPosition: (yPosition: destinyNode.positionY, xPosition: destinyNode.positionX))
+            } catch let error as HistoryError {
+                self?.delegate?.needShowError(message: error.rawValue)
+            } catch {
+                self?.delegate?.needShowError(message: "A Error Happend")
+            }
+        })
+        
+        self.lastTappedNodePosition = nil
     }
     
     private func nodeWasSelectedInAddingState(atPossition position: GridPosition, inNode node: HistoryNodeProtocol) {
@@ -263,7 +299,8 @@ extension HistoryGraphViewModel: HistoryGridDelegate {
     func movedNodeToPosition(fromPosition originPosition: Position, toPosition destinyPosition: Position) {
         delegate?.needMoveNode(
             fromPosition: (yPosition: originPosition.y, xPosition: originPosition.x),
-            toPosition: (yPosition: destinyPosition.y, xPosition: destinyPosition.x))
+            toPosition: (yPosition: destinyPosition.y, xPosition: destinyPosition.x)
+        )
     }
     
     func addNode(inPosition position: Position) {

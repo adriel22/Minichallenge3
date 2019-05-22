@@ -234,13 +234,12 @@ extension HistoryGraphViewController: HistoryGraphViewModelDelegate {
         self.graphView.addItem(atPositon: destinyPosition)
     }
     
-    func needDeleteConnection() {
+    func needReloadConnection() {
         self.graphView.reloadConnections()
     }
     
     func needShowViewController(_ viewController: UIViewController) {
         present(viewController, animated: true, completion: nil)
-        
     }
     
     func needReloadGraph() {

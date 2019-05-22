@@ -16,7 +16,7 @@ class MyNarrativesViewModel {
     private lazy var narratives: [HistoryGraph] = historiesDAO.getAll()
     
     func addNarrative(withName name: String, toTable tableView: UITableView) {
-        let graph = HistoryGraph(withName: name, sinopse: "", width: 0, andHeight: 0)
+        let graph = HistoryGraph(withName: name, sinopse: "", width: 3, andHeight: 3)
         narratives.append(graph)
         tableView.reloadData()
         
