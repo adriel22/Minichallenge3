@@ -229,7 +229,7 @@ extension DetailsViewController: UICollectionViewDataSource, UICollectionViewDel
 }
 extension DetailsViewController: DetailsViewModelDelegate {
     func showAddView(_ controller: AddRamificationViewController) {
-        controller.viewModel.trasitioningDelegate = self.viewModel
+        controller.viewModel.trasitioningDelegate = self.viewModel as? AddRamificationTrasitioningDelegate
         self.present(controller, animated: true, completion: nil)
     }
     func updateView() {

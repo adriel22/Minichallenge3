@@ -15,6 +15,9 @@ import HistoryGraph
 }
 
 protocol DetailsViewModelProtocol: ViewModelProtocol {
+    var delegate: DetailsViewModelDelegate? { get set }
+    var transitionDelegate: DetailsViewModelTransitioningDelegate? { get set }
+    
     var graph: HistoryGraph { get }
     var story: HistoryNode { get }
     
@@ -22,6 +25,7 @@ protocol DetailsViewModelProtocol: ViewModelProtocol {
     func textUpdated(with text: String, inNode node: HistoryNode)
     func addBranch()
     func goOn(branchIndex: Int)
+    func willCloseController()
 }
 
 protocol PresentationViewModelProtocol: ViewModelProtocol {

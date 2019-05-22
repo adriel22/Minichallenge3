@@ -78,8 +78,11 @@ class HistoryGraphViewModel {
         })
     }
     
-    func playWasTapped() {
-        //show play screen
+    func playWasTapped(_ view: UIViewController) {
+        guard let rootNode = historyGraph.nodes.first as? HistoryNode else { return }
+        let playController = PresentationViewController()
+        playController.viewModel = PresentationViewModel(graph: historyGraph, rootNode: rootNode)
+        view.present(playController, animated: true, completion: nil)
     }
     
     func nodeWasSelected(atPossition position: GridPosition) {

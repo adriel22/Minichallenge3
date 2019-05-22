@@ -9,41 +9,31 @@
 import UIKit
 import HistoryGraph
 
-<<<<<<< HEAD:Minichallenge3/ViewModels/DetailsViewModel.swift
-class DetailsViewModel: NSObject, DetailsViewModelProtocol {
-=======
-class DetailsViewModel: NSObject {
-    public weak var delegate: DetailsViewModelDelegate?
->>>>>>> f9f7d0631cf2d8a0b6f399d989b322249d4ebcaa:Minichallenge3/ViewModels/Details/DetailsViewModel.swift
+class DetailsViewModel: DetailsViewModelProtocol {
     
     var story: HistoryNode
     var graph: HistoryGraph
     var storyDAO = RAMHistoryDAO()
     
+    public weak var delegate: DetailsViewModelDelegate?
     weak var transitionDelegate: DetailsViewModelTransitioningDelegate?
-
+    
     init(story: HistoryNode, graph: HistoryGraph) {
         self.story = story
         self.graph = graph
     }
-<<<<<<< HEAD:Minichallenge3/ViewModels/DetailsViewModel.swift
     
     func titleForCollectionViewCell(atIndexPath indexPath: IndexPath) -> String? {
         return story.connections[indexPath.item].title
-=======
-
+    }
+    
     func addBranch() {
         let addView = AddRamificationViewController(inGraph: self.graph, withParentNode: self.story)
         delegate?.showAddView(addView)
->>>>>>> f9f7d0631cf2d8a0b6f399d989b322249d4ebcaa:Minichallenge3/ViewModels/Details/DetailsViewModel.swift
-    }
-
-    func textUpdated(with text: String, inNode node: HistoryNode) {
-        node.text = text
     }
     
-<<<<<<< HEAD:Minichallenge3/ViewModels/DetailsViewModel.swift
-    func addBranch() {
+    func textUpdated(with text: String, inNode node: HistoryNode) {
+        node.text = text
     }
     
     func goOn(branchIndex: Int) {
@@ -52,17 +42,13 @@ class DetailsViewModel: NSObject {
         guard let destiny = branches[branchIndex].destinyNode as? HistoryNode else { return }
         story = destiny
     }
-    
-    func update(_ view: UIViewController) {
-        guard let view = view as? DetailsViewController else { return }
-=======
     func willCloseController() {
         storyDAO.save(element: graph)
         transitionDelegate?.willCloseController()
     }
-
-    func update(_ view: DetailsViewController) {
->>>>>>> f9f7d0631cf2d8a0b6f399d989b322249d4ebcaa:Minichallenge3/ViewModels/Details/DetailsViewModel.swift
+    
+    func update(_ view: UIViewController) {
+        guard let view = view as? DetailsViewController else { return }
         var branches = story.connections
         let destinyNode = !branches.isEmpty ? branches[view.selected].destinyNode : nil
         let downnodeText = destinyNode?.text
@@ -79,5 +65,4 @@ extension DetailsViewModel: AddRamificationTrasitioningDelegate {
     func finishedAddingRamification() {
         delegate?.updateView()
     }
-    
 }
