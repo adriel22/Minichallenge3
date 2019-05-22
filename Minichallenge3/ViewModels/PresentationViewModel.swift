@@ -102,11 +102,8 @@ class PresentationViewModel: NSObject, PresentationViewModelProtocol {
     }
     
     private func insertNode(belowIndexPath indexPath: IndexPath, inView view: PresentationViewController) {
-        view.storyTableView.performBatchUpdates({
-            view.storyTableView.insertSections([indexPath.section + 1], with: .fade)
-        }, completion: { _ in
-            view.storyTableView.scrollToRow(at: [indexPath.section + 1, 0], at: .bottom, animated: true)
-        })
+        view.storyTableView.insertSections([indexPath.section + 1], with: .fade)
+        view.storyTableView.scrollToRow(at: [indexPath.section + 1, 0], at: .bottom, animated: true)
     }
     
     private func reloadNode(atIndexPath indexPath: IndexPath, inView view: PresentationViewController) {

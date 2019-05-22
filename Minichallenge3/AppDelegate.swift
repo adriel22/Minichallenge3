@@ -27,11 +27,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            statusBar.backgroundColor = UIColor(color: .darkBlue)
 //        }
 //
-//        UINavigationBar.appearance().barTintColor = UIColor(color: .darkBlue)
-//        UINavigationBar.appearance().tintColor = UIColor(color: .yellowWhite)
-//        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(color: .yellowWhite)]
-//        UINavigationBar.appearance().isTranslucent = false
-//
+        UINavigationBar.appearance().barTintColor = UIColor(color: .darkBlue)
+        UINavigationBar.appearance().tintColor = UIColor(color: .yellowWhite)
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(color: .yellowWhite)]
+        UINavigationBar.appearance().largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(color: .yellowWhite)]
+        UINavigationBar.appearance().isTranslucent = false
+
 //        window = UIWindow(frame: UIScreen.main.bounds)
 //        window?.rootViewController = UINavigationController(rootViewController: controller)
 //        window?.makeKeyAndVisible()
@@ -48,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let story3 = HistoryNode(withResume: "RESUME", text: "Story 3", positionX: 3, andPositionY: 1)
         try? graph.addNode(story3)
-        try? graph.addConnection(fromNode: story2, toNode: story3, withTitle: "Other branch")
+        try? graph.addConnection(fromNode: story, toNode: story3, withTitle: "Other branch")
         
         let controller = PresentationViewController()
         controller.viewModel = PresentationViewModel(graph: graph, rootNode: story)
