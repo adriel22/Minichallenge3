@@ -28,12 +28,20 @@ class AddRamificationViewController: UIViewController {
         self.view.isOpaque = false
 
         self.view.addSubview(addRamificationView)
+        
+        viewModel.delegate = self
 
         addRamificationView.createButton.addTarget(self, action: #selector(buttonsAction(sender:)), for: .touchUpInside)
         addRamificationView.cancelButton.addTarget(self, action: #selector(buttonsAction(sender:)), for: .touchUpInside)
 
         addRamificationView.cardName.delegate = self
+        
+        NotificationCenter.default.addObserver(self.viewModel, selector: #selector(viewModel.keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self.viewModel, selector: #selector(viewModel.keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
 
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        self.view.endEditing(true)
     }
 
     @objc func buttonsAction(sender: UIButton!) {
@@ -50,5 +58,24 @@ class AddRamificationViewController: UIViewController {
 
 }
 extension AddRamificationViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        addRamificationView.cardName.resignFirstResponder()
+        return true
+    }
+
+//    endEd
+}
+extension AddRamificationViewController: AddRamificationViewModelDelegate {
+    func hideKeyboard(_ notification: NSNotification) {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
+    }
+    
+    func showKeyboard(_ notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            self.view.frame.origin.y -= keyboardSize.height
+        } 
+    }
 
 }
