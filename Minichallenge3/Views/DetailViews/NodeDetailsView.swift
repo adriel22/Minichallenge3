@@ -19,7 +19,7 @@ class NodeDetailsView: UIView {
     
     lazy var textView = UITextView(frame: .zero)
     
-    private lazy var branches = UICollectionView(frame: .zero, collectionViewLayout: .flow)
+    private lazy var branches = BranchCollectionView(frame: .zero, collectionViewLayout: .flow)
     private lazy var addBranchButton = UIButton(frame: .zero)
     private lazy var goOnButton = UIButton(frame: .zero)
     
@@ -30,6 +30,12 @@ class NodeDetailsView: UIView {
     var text: String? = "" {
         didSet {
             textView.text = text
+        }
+    }
+    
+    var tableViewSection: Int? {
+        didSet {
+            branches.tableViewSection = tableViewSection
         }
     }
     
@@ -102,7 +108,7 @@ class NodeDetailsView: UIView {
         branches.backgroundColor = .clear
         branches.showsHorizontalScrollIndicator = false
         branches.showsVerticalScrollIndicator = false
-        branches.register(BranchCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        branches.register(BranchCollectionViewCell.self, forCellWithReuseIdentifier: "branchCell")
     }
     
     private func configureGoOnButton() {
@@ -181,6 +187,10 @@ class NodeDetailsView: UIView {
     func reload(withText text: String?) {
         self.text = text
         if branches.isHidden == false { self.branches.reloadData() }
+    }
+    
+    func reload() {
+        branches.reloadData()
     }
     
     func adjustTextViewAndGoOnButton(offset: CGFloat) {

@@ -13,6 +13,7 @@ class PresentationViewController: UIViewController {
     lazy var storyTableView: UITableView! = UITableView(frame: .zero)
     lazy var selectedBranchesIndexes: [Int: Int] = [:]
     lazy var rowHeight: CGFloat = UIScreen.main.bounds.height/3.5
+    lazy var sectionHeight: CGFloat = 48
     
     var viewModel: PresentationViewModelProtocol? {
         didSet {
@@ -60,7 +61,6 @@ class PresentationViewController: UIViewController {
         ])
     }
     
-    
     @objc func dismiss(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
@@ -68,8 +68,32 @@ class PresentationViewController: UIViewController {
 }
 
 extension PresentationViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let reuseIdentifier = indexPath.section == 0 ? "rootCell" : "cell"
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? NodePresentationTableViewCell
+        cell?.section = indexPath.section
+        cell?.nodeView.text = viewModel?.textForTableViewCell(atIndexPath: indexPath, reuseIdentifier: reuseIdentifier)
+        cell?.nodeView.collectionDelegate = self
+        cell?.nodeView.dataSource = self
+        cell?.selectionStyle = .none
+        return cell!
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
-        return viewModel?.nodes.count ?? 0
+        guard let count = viewModel?.nodes.count else { return 0 }
+        return count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return rowHeight
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return sectionHeight
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -77,109 +101,57 @@ extension PresentationViewController: UITableViewDataSource, UITableViewDelegate
         let headerView = ExpandableTableViewHeaderView()
         let sectionText = tableView.dataSource?.tableView?(storyTableView, titleForHeaderInSection: section)
         headerView.text = sectionText?.uppercased()
-//        headerView.isTheLastSection = (lastSectionIndex > 0 && section == lastSectionIndex)
-//        headerView.didTap = { _ in self.viewModel?.undo(atSection: section, inView: self) }
+        headerView.isTheLastSection = (lastSectionIndex > 1 && section == lastSectionIndex)
+        headerView.didTap = { _ in
+            self.viewModel?.undo(atSection: section, inView: self)
+            self.storyTableView.reloadData()
+        }
         return headerView
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 48
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 { return 2 }
-        return 1
-    }
-    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let index = section - 1
-        if section == 0 { return "Sinopse" }
-        let upperNode = viewModel?.nodes[index]
-        if let selectedBranchIndex = selectedBranchesIndexes[index] {
-            return upperNode?.connections[selectedBranchIndex].title
-        }
-        return nil
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let reuseIdentifier = (indexPath.section == 0 && indexPath.row == 0) ? "rootCell" : "cell"
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? NodePresentationTableViewCell
-        let text = viewModel?.textForTableViewCell(atIndexPath: indexPath, reuseIdentifier: reuseIdentifier)
-        cell?.nodeView.text = text
-        cell?.nodeView.dataSource = self
-        cell?.nodeView.collectionDelegate = self
-        cell?.selectionStyle = .none
-        return cell!
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return rowHeight
-    }
-    
-    func isRootNodeRow(atIndexPath indexPath: IndexPath) -> Bool {
-        return indexPath.row == 0 && indexPath.section == 0
+        return viewModel?.titleForHeader(atSection: section, selectedBranch: selectedBranchesIndexes[section-1])
     }
     
 }
 
-extension PresentationViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension PresentationViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if let tableViewIndexPath = getTableViewIndexPath(for: collectionView, insideCellOf: storyTableView) {
-            return viewModel?.nodes[tableViewIndexPath.section].connections.count ?? 0
-        }
-        return 0
+        guard let section = tableViewSection(collectionView) else { return 0 }
+        guard let viewModel = viewModel else { return 0 }
+        return viewModel.nodes[section].connections.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? BranchCollectionViewCell
-        guard let tableViewIndexPath = getTableViewIndexPath(for: collectionView, insideCellOf: storyTableView) else { return cell! }
-        cell?.title = viewModel?.titleForCollectionViewCell(atTableViewIndexPath: tableViewIndexPath, atCollectionViewIndexPath: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "branchCell", for: indexPath) as? BranchCollectionViewCell
+        guard let section = tableViewSection(collectionView) else { return cell! }
+        cell?.title = viewModel?.titleForCollectionViewCell(atTableViewIndexPath: [section, 0], atCollectionViewIndexPath: indexPath)
+        cell?.select()
         return cell!
     }
     
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        let displayedCell = cell as? BranchCollectionViewCell
-        guard let tableViewIndexPath = getTableViewIndexPath(for: collectionView, insideCellOf: storyTableView) else { return }
-        if indexPath.item == selectedBranchesIndexes[tableViewIndexPath.section] {
-            displayedCell?.select()
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let section = tableViewSection(collectionView) else { return }
+        if indexPath.item == selectedBranchesIndexes[section] { return }
+        if selectedBranchesIndexes[section] != nil {
+            viewModel?.switchBranch(tableViewIndexPath: [section, 0], collectionViewIndexPath: indexPath, updateView: self)
         } else {
-            displayedCell?.deselect()
+            viewModel?.forwardBranch(tableViewIndexPath: [section, 0], collectionViewIndexPath: indexPath, updateView: self)
         }
+        storyTableView.reloadData()
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let tableViewIndexPath = getTableViewIndexPath(for: collectionView, insideCellOf: storyTableView) {
-            let oldSelectedBranch = selectedBranchesIndexes[tableViewIndexPath.section]
-            viewModel?.goToBranch(tableViewIndexPath: tableViewIndexPath, collectionViewIndexPath: indexPath, updateView: self)
-            if let oldSelectedBranch = oldSelectedBranch {
-                let oldIndexPath = IndexPath(item: oldSelectedBranch, section: 0)
-                let oldSelectedCell = collectionView.cellForItem(at: oldIndexPath) as? BranchCollectionViewCell
-                let currentSelected = collectionView.cellForItem(at: indexPath) as? BranchCollectionViewCell
-                oldSelectedCell?.deselect()
-                currentSelected?.select()
-            }
-        }
-        
-        viewModel?.update(self)
+    func tableViewSection(_ collectionView: UICollectionView) -> Int? {
+        let tableCell = collectionView.superview?.superview?.superview as? NodePresentationTableViewCell
+        return tableCell?.section
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if let tableViewIndexPath = getTableViewIndexPath(for: collectionView, insideCellOf: storyTableView) {
-            let font = UIFont.systemFont(ofSize: 13)
-            let string = viewModel?.titleForCollectionViewCell(atTableViewIndexPath: tableViewIndexPath, atCollectionViewIndexPath: indexPath) ?? ""
-            let width = string.width(usingFont: font) + 32
-            return CGSize(width: width, height: 48)
-        }
-        
-        return .zero
-        
-    }
-    
-    func getTableViewIndexPath(for collectionView: UICollectionView, insideCellOf tableView: UITableView) -> IndexPath? {
-        let origin = collectionView.frame.origin
-        var pointInsideTableViewCell = collectionView.convert(origin, to: tableView)
-        pointInsideTableViewCell.y -= rowHeight
-        return tableView.indexPathForRow(at: pointInsideTableViewCell)
+        guard let section = tableViewSection(collectionView) else { return .zero }
+        let font = UIFont.systemFont(ofSize: 13)
+        let string = viewModel?.titleForCollectionViewCell(atTableViewIndexPath: [section, 0], atCollectionViewIndexPath: indexPath) ?? ""
+        let width = string.width(usingFont: font) + 32
+        return CGSize(width: width, height: 48)
     }
     
 }

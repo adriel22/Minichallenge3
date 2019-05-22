@@ -31,6 +31,9 @@ protocol PresentationViewModelProtocol: ViewModelProtocol {
     
     func textForTableViewCell(atIndexPath indexPath: IndexPath, reuseIdentifier: String) -> String?
     func titleForCollectionViewCell(atTableViewIndexPath tableViewIndexPath: IndexPath, atCollectionViewIndexPath collectionViewIndexPath: IndexPath) -> String?
-    func goToBranch(tableViewIndexPath: IndexPath, collectionViewIndexPath: IndexPath, updateView view: UIViewController)
+    func titleForHeader(atSection section: Int, selectedBranch: Int?) -> String?
+    
+    func forwardBranch(tableViewIndexPath: IndexPath, collectionViewIndexPath: IndexPath, updateView view: UIViewController)
+    func switchBranch(tableViewIndexPath: IndexPath, collectionViewIndexPath: IndexPath, updateView view: UIViewController)
     func undo(atSection section: Int, inView view: UIViewController)
 }

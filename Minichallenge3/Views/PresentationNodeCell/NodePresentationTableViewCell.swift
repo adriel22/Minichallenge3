@@ -11,6 +11,11 @@ import UIKit
 class NodePresentationTableViewCell: UITableViewCell {
 
     var nodeView: NodeDetailsView!
+    var section: Int? {
+        didSet {
+            nodeView.tableViewSection = section
+        }
+    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
