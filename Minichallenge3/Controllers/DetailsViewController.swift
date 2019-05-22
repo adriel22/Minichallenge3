@@ -26,6 +26,8 @@ class DetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        viewModel?.delegate = self
+        
         configureScrollView()
         view.addSubview(scrollView)
 
@@ -50,12 +52,16 @@ class DetailsViewController: UIViewController {
     }
 
     func configureUpnodeView() {
+//        upnodeView.frame.origin = scrollView.frame.origin
+//        upnodeView.frame.size = CGSize(width: UIScreen.main.bounds.width, height: (UIScreen.main.bounds.height-UIApplication.shared.statusBarFrame.height-navigationController!.navigationBar.frame.height)/2)
         upnodeView.addTargetForAddBranchButton(target: self,
                                                selector: #selector(addBranch(_:)),
                                                forEvent: .touchUpInside)
     }
 
     func configureDownnodeVode() {
+//        downnodeView.frame.origin = CGPoint(x: 0, y: upnodeView.frame.origin.y + (UIScreen.main.bounds.height-UIApplication.shared.statusBarFrame.height-navigationController!.navigationBar.frame.height)/2)
+//        downnodeView.frame.size = CGSize(width: UIScreen.main.bounds.width, height: (UIScreen.main.bounds.height-UIApplication.shared.statusBarFrame.height-navigationController!.navigationBar.frame.height)/2)
         downnodeView.addTargetForGoOnButton(target: self,
                                             selector: #selector(goOn(_:)),
                                             forEvent: .touchUpInside)
@@ -75,6 +81,10 @@ class DetailsViewController: UIViewController {
         upnodeView.dataSource = self
         downnodeView.dataSource = self
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        viewModel?.willCloseController()
+    }
 
     func setConstraints() {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -84,13 +94,17 @@ class DetailsViewController: UIViewController {
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-
+        
+        let statusBarHeight = UIApplication.shared.statusBarFrame.height
+        let navigationBarHeight = self.navigationController!.navigationBar.frame.height
+        let halfScreenHeight = (UIScreen.main.bounds.height - statusBarHeight - navigationBarHeight)/2
+    
         upnodeView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            upnodeView.topAnchor.constraint(equalTo: view.topAnchor),
             upnodeView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             upnodeView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            upnodeView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5)
+            upnodeView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5),
+            upnodeView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor, constant: -halfScreenHeight/2)
         ])
 
         downnodeView.translatesAutoresizingMaskIntoConstraints = false
@@ -121,6 +135,10 @@ class DetailsViewController: UIViewController {
 
 extension DetailsViewController: UITextViewDelegate {
     func moveView(up: Bool) {
+        let statusBarHeight = UIApplication.shared.statusBarFrame.height
+        let navigationBarHeight = self.navigationController!.navigationBar.frame.height
+        let halfScreenHeight = (UIScreen.main.bounds.height - statusBarHeight - navigationBarHeight)/2
+        
         UIView.animate(withDuration: 0.7,
                        delay: 0,
                        usingSpringWithDamping: 0.7,
@@ -208,4 +226,14 @@ extension DetailsViewController: UICollectionViewDataSource, UICollectionViewDel
         return CGSize(width: width, height: 48)
     }
 
+}
+extension DetailsViewController: DetailsViewModelDelegate {
+    func showAddView(_ controller: AddRamificationViewController) {
+        controller.viewModel.trasitioningDelegate = self.viewModel
+        self.present(controller, animated: true, completion: nil)
+    }
+    func updateView() {
+        self.viewModel?.update(self)
+    }
+    
 }

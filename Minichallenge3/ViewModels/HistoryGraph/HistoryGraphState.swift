@@ -9,5 +9,5 @@
 import Foundation
 
 enum HistoryGraphState {
-    case normal, adding, removing, connecting
+    case normal, adding, removing, connecting, empty
 }

@@ -9,5 +9,5 @@
 import Foundation
 
 protocol ShortcutViewDelegate: class {
-    func tapInShortcut()
+    func tapInShortcut(_ shortcut: ShortcutView)
 }

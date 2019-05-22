@@ -17,46 +17,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-//        let controller = MyNarrativesViewController()
-//        window = UIWindow(frame: UIScreen.main.bounds)
-//        window?.rootViewController = controller
-//        window?.makeKeyAndVisible()
-//
-//        let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
-//        if statusBar.responds(to:#selector(setter: UIView.backgroundColor)) {
-//            statusBar.backgroundColor = UIColor(color: .darkBlue)
-//        }
-//
+        let controller = MyNarrativesViewController()
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = controller
+        window?.makeKeyAndVisible()
+        
+        let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
+        if statusBar.responds(to:#selector(setter: UIView.backgroundColor)) {
+            statusBar.backgroundColor = UIColor(color: .darkBlue)
+        }
+        
         UINavigationBar.appearance().barTintColor = UIColor(color: .darkBlue)
         UINavigationBar.appearance().tintColor = UIColor(color: .yellowWhite)
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(color: .yellowWhite)]
         UINavigationBar.appearance().largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(color: .yellowWhite)]
         UINavigationBar.appearance().isTranslucent = false
-
-//        window = UIWindow(frame: UIScreen.main.bounds)
-//        window?.rootViewController = UINavigationController(rootViewController: controller)
-//        window?.makeKeyAndVisible()
-        
-        
-        let graph = HistoryGraph(withName: "História", sinopse: "Sinopse da história", width: 3, andHeight: 3)
-        
-        let story = HistoryNode(withResume: "RESUME", text: "Story root", positionX: 2, andPositionY: 0)
-        try? graph.addNode(story)
-        
-        let story2 = HistoryNode(withResume: "RESUME", text: "Story 2", positionX: 2, andPositionY: 1)
-        try? graph.addNode(story2)
-        try? graph.addConnection(fromNode: story, toNode: story2, withTitle: "Connection name")
-        
-        let story3 = HistoryNode(withResume: "RESUME", text: "Story 3", positionX: 3, andPositionY: 1)
-        try? graph.addNode(story3)
-        try? graph.addConnection(fromNode: story, toNode: story3, withTitle: "Other branch")
-        
-        let controller = PresentationViewController()
-        controller.viewModel = PresentationViewModel(graph: graph, rootNode: story)
-        
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = UINavigationController(rootViewController: controller)
-        window?.makeKeyAndVisible()
 
         return true
     }

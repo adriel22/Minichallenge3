@@ -14,7 +14,7 @@ class ExpandableTableViewCell: UITableViewCell {
     private lazy var separator: UIView! = UIView(frame: .zero)
     lazy var button: UIButton! = UIButton(frame: .zero)
 
-    var buttonAction: ((UIButton) -> Void)?
+    var buttonAction: ((ExpandableTableViewCell) -> Void)?
     var title: String? = "" {
         didSet {
             if let label = label {
@@ -82,7 +82,7 @@ class ExpandableTableViewCell: UITableViewCell {
     }
 
     @objc private func buttonTapped(_ sender: UIButton) {
-        buttonAction?(sender)
+        buttonAction?(self)
     }
     
     required init?(coder aDecoder: NSCoder) {

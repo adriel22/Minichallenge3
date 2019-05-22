@@ -35,7 +35,7 @@ public class HistoryShortcut: HistoryNodeProtocol {
     public var positionY: Int
 
     public var description: String {
-        return "Shortcut for Node: \(self.node?.description ?? "None")"
+        return "Shortcut at position (y: \(self.positionY), x: \(self.positionX)) for Node: \(self.node?.description ?? "None")"
     }
 
     /// Initialize a shortcut for a node

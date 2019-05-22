@@ -22,12 +22,19 @@ class RAMDatabase {
         
         let node3 = HistoryNode(withResume: "Ela escolheu o caminho longo e se divertiu bastante com seus amigos comendo frutos do mar. Fim da história. (Precisa continuar depois aqui)", text: "Você chegou a praia em segurança na praia, encontrou sua vovó e se divertiu bastante enquanto comia uns frutos do mar.", positionX: 1, andPositionY: 1)
         
+        let node4 = HistoryNode(withResume: "Nunca é demais lembrar o peso e o significado destes problemas, uma vez que o surgimento do comércio virtual cumpre", text: "um papel essencial na formulação das condições inegavelmente apropriadas?", positionX: 1, andPositionY: 0)
+        
         try? history.addNode(rootNode)
         try? history.addNode(node2)
         try? history.addNode(node3)
+        try? history.addNode(node4)
         
-        try? history.addConnection(fromNode: rootNode, toNode: node2, withTitle: "caminho curto")
-        try? history.addConnection(fromNode: rootNode, toNode: node3, withTitle: "caminho longo")
+        try? history.addPath(fromNode: rootNode, toNode: node2, withTitle: "caminho curto")
+        try? history.addPath(fromNode: rootNode, toNode: node3, withTitle: "caminho longo")
+        try? history.addPath(fromNode: rootNode, toNode: node4, withTitle: "opt 2")
+        try? history.addPath(fromNode: node3, toNode: node4, withTitle: "opt 1")
+        
+        print(history.grid)
         
         return history
     }()

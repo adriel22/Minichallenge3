@@ -6,10 +6,10 @@
 //  Copyright © 2019 Adriel Freire. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 protocol ShortcutViewDataSource: class {
     func widthLine(forShortcutView: ShortcutView) -> CGFloat
     func hasParent(forShortcutView: ShortcutView) -> Bool
+    func lineColor(forShortcutView: ShortcutView) -> UIColor
 }
