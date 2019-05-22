@@ -350,7 +350,7 @@ class GraphView: UIScrollView {
         return positionIsValid
     }
     
-    func scrollToItem(atPosition position: GridPosition) {
+    func scrollToItem(atPosition position: GridPosition, shakeItem: Bool = true) {
         guard isValidLine(position: position.yPosition, inGraphView: self),
               isValidColumn(position: position.xPosition, inGraphView: self) else {
             return
@@ -364,5 +364,8 @@ class GraphView: UIScrollView {
         )
     
         scrollRectToVisible(rectInGraphViewForItem, animated: true)
+        if shakeItem {
+            itemViewAtPosition.shake(repeatCount: 10)
+        }
     }
 }

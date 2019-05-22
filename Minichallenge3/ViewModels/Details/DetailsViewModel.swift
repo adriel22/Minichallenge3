@@ -14,6 +14,9 @@ class DetailsViewModel: NSObject {
     
     var story: HistoryNode
     var graph: HistoryGraph
+    var storyDAO = RAMHistoryDAO()
+    
+    weak var transitionDelegate: DetailsViewModelTransitioningDelegate?
 
     init(story: HistoryNode, graph: HistoryGraph) {
         self.story = story
@@ -28,6 +31,11 @@ class DetailsViewModel: NSObject {
     func textUpdated(with text: String, inNode node: HistoryNode) {
         node.text = text
     }
+    
+    func willCloseController() {
+        storyDAO.save(element: graph)
+        transitionDelegate?.willCloseController()
+    }
 
     func update(_ view: DetailsViewController) {
         var branches = story.connections
@@ -38,7 +46,7 @@ class DetailsViewModel: NSObject {
     }
     
 }
-extension DetailsViewModel: AddRamificationViewModelDelegate {
+extension DetailsViewModel: AddRamificationTrasitioningDelegate {
     func finishedAddingRamification() {
         delegate?.updateView()
     }

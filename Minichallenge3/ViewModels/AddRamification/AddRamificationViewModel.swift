@@ -10,6 +10,7 @@ import Foundation
 import HistoryGraph
 
 class AddRamificationViewModel {
+    public weak var trasitioningDelegate: AddRamificationTrasitioningDelegate?
     public weak var delegate: AddRamificationViewModelDelegate?
     
     let graph: HistoryGraph
@@ -31,6 +32,18 @@ class AddRamificationViewModel {
 
         try? graph.addPath(fromNode: parentNode, toNode: newNode, withTitle: nodeTitle)
 //        try? graph.addConnection(fromNode: parentNode, toNode: newNode, withTitle: "")
-        delegate?.finishedAddingRamification()
+        trasitioningDelegate?.finishedAddingRamification()
     }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        delegate?.showKeyboard(notification)
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        delegate?.hideKeyboard(notification)
+//        if self.view.frame.origin.y != 0 {
+//            self.view.frame.origin.y = 0
+//        }
+    }
+
 }

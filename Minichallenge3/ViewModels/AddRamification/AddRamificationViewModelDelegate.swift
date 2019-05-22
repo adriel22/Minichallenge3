@@ -8,5 +8,6 @@
 
 import Foundation
 protocol AddRamificationViewModelDelegate: AnyObject {
-    func finishedAddingRamification()
+    func showKeyboard(_ notification: NSNotification)
+    func hideKeyboard(_ notification: NSNotification)
 }

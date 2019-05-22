@@ -124,14 +124,16 @@ open class HistoryGraph: CustomStringConvertible {
         )
 
         try grid.moveNode(shortcut, toBellowOfNode: originNode, removeFromOrigin: false)
-        addBordersToNode(destinyNode)
         let connection = HistoryConnection(destinyNode: shortcut, title: title)
         originNode.connections.append(connection)
 
+        nodes.append(shortcut)
         shortcut.parent = originNode
-        originNode.shortcuts.append(shortcut)
+        destinyNode.shortcuts.append(shortcut)
 
         grid.delegate?.addShortcut(inPosition: (shortcut.positionX, shortcut.positionY))
+        
+        addBordersToNode(destinyNode)
     }
 
     /// checks if a node is the graph
@@ -248,9 +250,18 @@ open class HistoryGraph: CustomStringConvertible {
             throw HistoryError.dontContainsNode
         }
 
-        if let parent = shortcut.parent as? HistoryNode {
-            parent.shortcuts.removeAll(where: { $0 === shortcut})
+        if let parent = shortcut.parent as? HistoryNode,
+           let targetNode = shortcut.node {
+            targetNode.shortcuts.removeAll(where: { $0 === shortcut})
+            parent.connections.removeAll { (connection) -> Bool in
+                guard let destinyNode = connection.destinyNode else {
+                    return false
+                }
+            
+                return destinyNode === shortcut
+            }
         }
+        grid.delegate?.removedShortcut(atPosition: (x: shortcut.positionX, y: shortcut.positionY))
     }
 
     /// It checks the connection between two nodes

@@ -27,6 +27,7 @@ class GraphViewItemEventHandler {
     
     func setupGestures(toItem itemView: GraphItemView) {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(itemWasTapped(recognizer:)))
+      
         itemView.addGestureRecognizer(tapGestureRecognizer)
     }
     
