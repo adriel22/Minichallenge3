@@ -16,7 +16,7 @@ protocol HistoryGraphViewModelDelegate: AnyObject {
     func needShowAlert(title: String, message: String, action: String, cancelAction: String, completion: @escaping () -> Void)
     func needShowInputAlert(title: String, message: String, action: String, cancelAction: String, completion: @escaping (String) -> Void)
     func needDeleteNode(atPositon position: GridPosition)
-    func needDeleteConnection()
+    func needReloadConnection()
     func needAppendColumn()
     func needAppendLine()
     func needInsertLine(atPosition position: Int)

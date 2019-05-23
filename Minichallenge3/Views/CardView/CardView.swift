@@ -14,6 +14,7 @@ enum States {
     case create
     case erase
     case empty
+    case connect
 }
 class CardView: GraphItemView, CardViewProtocol {
     private var state: States {
@@ -30,6 +31,27 @@ class CardView: GraphItemView, CardViewProtocol {
         containerView.translatesAutoresizingMaskIntoConstraints = false
         
         return containerView
+    }()
+    
+    lazy var addButtonView: UIView = {
+        let addButtonView = UIView()
+        
+        addButtonView.layer.cornerRadius = 15
+        addButtonView.clipsToBounds = true
+        addButtonView.backgroundColor = UIColor(color: .yellowWhite)
+        addButtonView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return addButtonView
+    }()
+    
+    lazy var addButtonImageView: UIImageView = {
+        let addButtonImageView = UIImageView()
+        
+        addButtonImageView.image = UIImage(named: "add")
+        addButtonImageView.translatesAutoresizingMaskIntoConstraints = false
+        addButtonImageView.clipsToBounds = true
+        
+        return addButtonImageView
     }()
     
     lazy var actionLabel: UILabel = {
@@ -106,6 +128,18 @@ class CardView: GraphItemView, CardViewProtocol {
             setIcon(withImage: UIImage(named: "add")!, andColor: UIColor(color: .darkBlue))
 
             addShadow()
+        case .connect:
+            self.state = .normal
+            
+            containerView.backgroundColor = UIColor(color: .yellowWhite)
+            
+            self.addSubview(containerView)
+            self.addSubview(actionLabel)
+            containerView.addSubview(textView)
+            setTextView()
+            setAddButton()
+            
+            addShadow()
         }
     }
 
@@ -132,17 +166,38 @@ class CardView: GraphItemView, CardViewProtocol {
             containerView.rightAnchor.constraint(equalTo: self.rightAnchor)
         ])
         
-        let heightConstraint = textView.heightAnchor.constraint(greaterThanOrEqualToConstant: 100)
-        heightConstraint.priority = .defaultHigh
+        let heightFloorConstraint = textView.heightAnchor.constraint(greaterThanOrEqualToConstant: 100)
+        heightFloorConstraint.priority = .defaultHigh
         
-        heightConstraint.isActive = true
+        let heightCeilConstraint = textView.heightAnchor.constraint(lessThanOrEqualToConstant: 300)
+        heightCeilConstraint.priority = .defaultHigh
+        
+        heightFloorConstraint.isActive = true
+        heightCeilConstraint.isActive = true
         
         textView.tag = 1
+    }
+    
+    private func setAddButton() {
+        self.addSubview(addButtonView)
+        addButtonView.addSubview(addButtonImageView)
+        
+        NSLayoutConstraint.activate([
+            addButtonView.widthAnchor.constraint(equalToConstant: 30),
+            addButtonView.heightAnchor.constraint(equalToConstant: 30),
+            addButtonView.centerYAnchor.constraint(equalTo: self.bottomAnchor),
+            addButtonView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            
+            addButtonImageView.widthAnchor.constraint(equalTo: addButtonView.widthAnchor, multiplier: 0.5),
+            addButtonImageView.heightAnchor.constraint(equalTo: addButtonImageView.widthAnchor),
+            addButtonImageView.centerXAnchor.constraint(equalTo: addButtonView.centerXAnchor),
+            addButtonImageView.centerYAnchor.constraint(equalTo: addButtonView.centerYAnchor)
+        ])
     }
 
     private func setOpacityLayer() {
         let opacityView = UIView()
-        opacityView.backgroundColor = UIColor.white
+        opacityView.backgroundColor = UIColor(color: .yellowWhite)
         opacityView.alpha = 0.9
 
         self.containerView.addSubview(opacityView)
@@ -219,7 +274,7 @@ class CardView: GraphItemView, CardViewProtocol {
         case .adding:
             changeState(to: .create)
         case .connecting:
-            changeState(to: .empty)
+            changeState(to: .connect)
         case .removing:
             changeState(to: .erase)
         case .empty:
