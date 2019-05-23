@@ -10,6 +10,8 @@ import UIKit
 import HistoryGraph
 
 class DetailsViewModel: NSObject {
+    public weak var delegate: DetailsViewModelDelegate?
+    
     var story: HistoryNode
     var graph: HistoryGraph
     var storyDAO = RAMHistoryDAO()
@@ -22,6 +24,8 @@ class DetailsViewModel: NSObject {
     }
 
     func addBranch() {
+        let addView = AddRamificationViewController(inGraph: self.graph, withParentNode: self.story)
+        delegate?.showAddView(addView)
     }
 
     func textUpdated(with text: String, inNode node: HistoryNode) {
@@ -39,6 +43,12 @@ class DetailsViewModel: NSObject {
         let downnodeText = destinyNode?.text
         view.downnodeView.reload(withText: downnodeText)
         view.upnodeView.reload(withText: story.text)
+    }
+    
+}
+extension DetailsViewModel: AddRamificationTrasitioningDelegate {
+    func finishedAddingRamification() {
+        delegate?.updateView()
     }
     
 }
