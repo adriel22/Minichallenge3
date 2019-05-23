@@ -77,7 +77,7 @@ class HistoryGraphViewController: UIViewController {
     
     func setConstraints() {
         let constraints = [
-            graphView.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
+            graphView.topAnchor.constraint(equalTo: sinopseView.bottomAnchor, constant: 10),
             graphView.leftAnchor.constraint(equalTo: view.leftAnchor),
             graphView.rightAnchor.constraint(equalTo: view.rightAnchor),
             graphView.bottomAnchor.constraint(equalTo: view.bottomAnchor),

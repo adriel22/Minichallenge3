@@ -140,6 +140,7 @@ class HistoryGraphViewModel {
                 positionX: position.xPosition,
                 andPositionY: position.yPosition
             )
+            emptyNode.resume = nil
             try self.historyGraph.addNode(emptyNode)
             self.delegate?.needReloadNode(
                 atPosition: (yPosition: emptyNode.positionY, xPosition: emptyNode.positionX)

@@ -66,9 +66,10 @@ class GraphView: UIScrollView {
             return
         }
         setEventHandlers(delegate: delegate)
-        self.eventHandler?.changeZoomScale(to: currentZoom)
         
         self.contentOffset = currentOffset
+        self.eventHandler?.changeZoomScale(to: currentZoom)
+        
     }
 
     func reloadConnections() {
