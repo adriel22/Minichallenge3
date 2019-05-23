@@ -19,10 +19,13 @@ class AddRamificationView: UIView {
         return label
     }()
 
-    var segmentedControl = UISegmentedControl()
-    var cardName = UITextField()
-    var createButton = UIButton()
-    var cancelButton = UIButton()
+    lazy var segmentedControl = UISegmentedControl()
+    lazy var cardName = UITextField()
+    lazy var createButton = UIButton()
+    lazy var cancelButton = UIButton()
+    lazy var searchBar = UISearchBar()
+    
+    var state: RamificationViewStates = .create
 
     override init(frame: CGRect) {
 
@@ -49,8 +52,11 @@ class AddRamificationView: UIView {
         self.heightAnchor.constraint(equalToConstant: 250).isActive = true
 
         configureButtons()
-        configureCardName()
         configureSegmentedControl()
+        configureCardName()
+        configureSearchBar()
+        
+        self.changeState(toState: .create)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -120,4 +126,47 @@ class AddRamificationView: UIView {
         segmentedControl.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
         segmentedControl.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5).isActive = true
     }
+    
+    func configureSearchBar() {
+        self.addSubview(searchBar)
+        
+        searchBar.placeholder = "Nome do card"
+        
+        searchBar.backgroundColor = UIColor.clear
+        searchBar.barTintColor = UIColor.white
+        searchBar.keyboardType = .default
+        searchBar.autocorrectionType = .yes
+        
+        searchBar.translatesAutoresizingMaskIntoConstraints = false
+        searchBar.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        self.widthAnchor.constraint(equalTo: searchBar.widthAnchor, multiplier: 1, constant: 20).isActive = true
+        searchBar.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        searchBar.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 50).isActive = true
+        let line = UIView()
+        self.addSubview(line)
+        line.layer.borderWidth = 0.3
+        
+        line.translatesAutoresizingMaskIntoConstraints = false
+        line.heightAnchor.constraint(equalToConstant: 1).isActive = true
+        line.widthAnchor.constraint(equalTo: searchBar.widthAnchor, multiplier: 1).isActive = true
+        line.topAnchor.constraint(equalTo: searchBar.bottomAnchor).isActive = true
+        line.centerXAnchor.constraint(equalTo: searchBar.centerXAnchor).isActive = true
+    }
+    
+    func changeState(toState state: RamificationViewStates) {
+
+        if state == .create {
+            cardName.isHidden = false
+            searchBar.isHidden = true
+        } else {
+            searchBar.isHidden = false
+            cardName.isHidden = true
+        }
+    }
+    
+}
+
+enum RamificationViewStates {
+    case create
+    case reuse
 }

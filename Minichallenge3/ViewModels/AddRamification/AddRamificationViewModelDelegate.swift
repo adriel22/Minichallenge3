@@ -10,4 +10,5 @@ import Foundation
 protocol AddRamificationViewModelDelegate: AnyObject {
     func showKeyboard(_ notification: NSNotification)
     func hideKeyboard(_ notification: NSNotification)
+    func updateViewTostate(_ state: RamificationViewStates)
 }

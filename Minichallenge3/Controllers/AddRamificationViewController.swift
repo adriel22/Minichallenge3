@@ -38,6 +38,8 @@ class AddRamificationViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self.viewModel, selector: #selector(viewModel.keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self.viewModel, selector: #selector(viewModel.keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        addRamificationView.segmentedControl.addTarget(self.viewModel, action: #selector(viewModel.changedStateof(_:)), for: .allEvents)
 
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -55,6 +57,9 @@ class AddRamificationViewController: UIViewController {
         }
         self.dismiss(animated: true, completion: nil)
     }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
 
 }
 extension AddRamificationViewController: UITextFieldDelegate {
@@ -66,6 +71,10 @@ extension AddRamificationViewController: UITextFieldDelegate {
 //    endEd
 }
 extension AddRamificationViewController: AddRamificationViewModelDelegate {
+    func updateViewTostate(_ state: RamificationViewStates) {
+        self.addRamificationView.changeState(toState: state)
+    }
+    
     func hideKeyboard(_ notification: NSNotification) {
         if self.view.frame.origin.y != 0 {
             self.view.frame.origin.y = 0
@@ -74,8 +83,16 @@ extension AddRamificationViewController: AddRamificationViewModelDelegate {
     
     func showKeyboard(_ notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            self.view.frame.origin.y -= keyboardSize.height
+            self.view.frame.origin.y = -keyboardSize.height
         } 
     }
 
+}
+
+extension AddRamificationViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        <#code#>
+    }
+    
+    
 }

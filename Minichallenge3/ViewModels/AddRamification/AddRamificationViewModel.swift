@@ -45,5 +45,15 @@ class AddRamificationViewModel {
 //            self.view.frame.origin.y = 0
 //        }
     }
+    
+    @objc func changedStateof(_ sender: UISegmentedControl) {
+
+        if sender.selectedSegmentIndex == 0 {
+            delegate?.updateViewTostate(.create)
+        }
+        if sender.selectedSegmentIndex == 1 {
+            delegate?.updateViewTostate(.reuse)
+        }
+    }
 
 }
