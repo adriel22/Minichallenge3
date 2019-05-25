@@ -64,12 +64,12 @@ class MyNarrativesViewModel {
         if let lastCliked = clickedCellIndex {
             clickedCellIndex = nil
             tableView.reloadRows(at: [lastCliked], with: .automatic)
-            
+        } else {
+            clickedCellIndex = indexPath
+            let cell = tableView.cellForRow(at: indexPath)
+            cell?.translatesAutoresizingMaskIntoConstraints = false
+            tableView.reloadRows(at: [clickedCellIndex!], with: .automatic)
         }
-        clickedCellIndex = indexPath
-        let cell = tableView.cellForRow(at: indexPath)
-        cell?.translatesAutoresizingMaskIntoConstraints = false
-        tableView.reloadRows(at: [clickedCellIndex!], with: .automatic)
     }
     
     func cellHeight(forTable tableView: UITableView, atIndexPath indexPath: IndexPath) -> CGFloat {
