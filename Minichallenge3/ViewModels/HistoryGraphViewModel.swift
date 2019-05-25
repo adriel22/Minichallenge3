@@ -105,7 +105,7 @@ class HistoryGraphViewModel {
     }
     
     func viewWillDisappear() {
-        historyDAO.update(element: historyGraph, withID: historyGraphID)
+        historyDAO.update(element: historyGraph)
     }
     
     func connectionButtonWasSelected(connection: Connection) {
