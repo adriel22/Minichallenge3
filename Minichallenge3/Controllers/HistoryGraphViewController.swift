@@ -89,11 +89,6 @@ class HistoryGraphViewController: UIViewController {
         NSLayoutConstraint.activate(constraints)
     }
     
-    func getFirstHistory() -> HistoryGraph {
-        let history = RAMHistoryDAO()
-        return history.get(elementWithID: 0)
-    }
-    
     func cardForNodeType(_ nodeType: HistoryGraphViewModelNodeType) -> CardViewProtocol {
         switch nodeType {
         case .normal:
