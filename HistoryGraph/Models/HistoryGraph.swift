@@ -17,7 +17,7 @@ open class HistoryGraph: CustomStringConvertible {
     public var grid: HistoryNodesGrid
 
     public var description: String {
-        var description = ""
+        var description = "Graph with Size: width = \(grid.graphWidth), height = \(grid.graphHeight)\n"
 
         for node in nodes {
             description += node.description + "\n"

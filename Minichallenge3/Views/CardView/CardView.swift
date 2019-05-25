@@ -153,8 +153,8 @@ class CardView: GraphItemView, CardViewProtocol {
         NSLayoutConstraint.activate([
             textView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 15),
             textView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -15),
-            textView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-            textView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            textView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 15),
+            textView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -15),
             
             actionLabel.topAnchor.constraint(equalTo: self.topAnchor),
             actionLabel.leftAnchor.constraint(equalTo: self.leftAnchor),
