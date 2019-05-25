@@ -180,7 +180,7 @@ extension HistoryGraphViewController: HistoryGraphViewModelDelegate {
         }
     }
     
-    func needShowInputAlert(title: String, message: String, action: String, cancelAction: String, completion: @escaping (String) -> Void) {
+    func needShowInputAlert(title: String, message: String, action: String, cancelAction: String, completion: @escaping (String) -> Void, cancelCompletion: (() -> Void)?) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alertController.addTextField { (textField) in
             textField.placeholder = "Tap the Ramification Name..."
@@ -191,7 +191,9 @@ extension HistoryGraphViewController: HistoryGraphViewModelDelegate {
             }
             completion(inputText)
         }))
-        alertController.addAction(UIAlertAction(title: cancelAction, style: .destructive, handler: nil))
+        alertController.addAction(UIAlertAction(title: cancelAction, style: .destructive, handler: { (_) in
+            cancelCompletion?()
+        }))
         present(alertController, animated: true, completion: nil)
     }
     
@@ -277,7 +279,7 @@ extension HistoryGraphViewController: ShortcutViewDelegate, ShortcutViewDataSour
 
 extension HistoryGraphViewController: SinopseDelegate {
     func textWasEdited(text: String) {
-        
+        viewModel?.sinpseWasEdited(to: text)
     }
 }
 

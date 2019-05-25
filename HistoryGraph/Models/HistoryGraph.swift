@@ -248,10 +248,14 @@ open class HistoryGraph: CustomStringConvertible {
         guard containsNode(shortcut) else {
             throw HistoryError.dontContainsNode
         }
+        
+        grid[shortcut.positionY, shortcut.positionX] = nil
 
         if let parent = shortcut.parent as? HistoryNode,
            let targetNode = shortcut.node {
             targetNode.shortcuts.removeAll(where: { $0 === shortcut})
+            nodes.removeAll(where: { $0 === shortcut})
+            
             parent.connections.removeAll { (connection) -> Bool in
                 guard let destinyNode = connection.destinyNode else {
                     return false

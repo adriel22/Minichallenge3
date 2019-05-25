@@ -66,6 +66,18 @@ class CardView: GraphItemView, CardViewProtocol {
 
         return actionLabel
     }()
+    
+    var isSelected: Bool = false {
+        didSet {
+            if isSelected {
+                self.layer.shadowRadius = 7
+                self.layer.shadowOpacity = 0.5
+            } else {
+                self.layer.shadowRadius = 3
+                self.layer.shadowOpacity = 0.5
+            }
+        }
+    }
 
     init() {
         textView = UILabel()
@@ -285,5 +297,7 @@ class CardView: GraphItemView, CardViewProtocol {
             self.actionLabel.text = optionName
             self.actionLabel.isHidden = false
         }
+        
+        self.isSelected = viewModel.isSelected
     }
 }
