@@ -136,12 +136,12 @@ public class HistoryNodesGrid: CustomStringConvertible {
         let oldPosition = (node.positionX, node.positionY)
         let newPosition = (positionX, positionY)
 
-        delegate?.movedNodeToPosition(fromPosition: oldPosition, toPosition: newPosition)
-
         node.positionX = positionX
         node.positionY = positionY
 
         grid[positionY][positionX] = node
+        
+        delegate?.movedNodeToPosition(fromPosition: oldPosition, toPosition: newPosition)
     }
 
     /// Move a node to bellow of other.

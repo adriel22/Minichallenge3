@@ -10,7 +10,14 @@ import Foundation
 import HistoryGraph
 
 struct DISKHistoryFormatter {
-    static func setDISKNodeAtributtes(
+    
+    /// Sets the disk node especific atributtes from a history node. It must be called before of the disk nodes insertion in the disk graph, because it used it position in the graph array to set atributtes.
+    ///
+    /// - Parameters:
+    ///   - diskNode: the disk node
+    ///   - normalNode: the normal node
+    ///   - historyGraph: the history graph where the history node is inside.
+    private static func setDISKNodeAtributtes(
         forDISKNode diskNode: inout DISKHistoryNode,
         withHistoryNode normalNode: HistoryNode,
         in historyGraph: HistoryGraph) {
@@ -32,7 +39,13 @@ struct DISKHistoryFormatter {
         }
     }
     
-    static func setDISKShortcutNodeAtributtes(
+    /// Sets the disk node especific atributtes from a history shortcut. It must be called after of the disk nodes insertion in the disk graph, because it used it position in the graph array to set atributtes.
+    ///
+    /// - Parameters:
+    ///   - diskNode: the disk node
+    ///   - shortcut: the shortcut node
+    ///   - historyGraph: the graph where the shortcut is inside
+    private static func setDISKShortcutNodeAtributtes(
         forDISKNode diskNode: inout DISKHistoryNode,
         withHistoryNode shortcut: HistoryShortcut,
         in historyGraph: HistoryGraph) {
@@ -45,7 +58,13 @@ struct DISKHistoryFormatter {
         }
     }
     
-    static func setAtributtes(
+    /// Sets the especific atributtes to a shortcut node from a disk node. Must be called after the nodes insertion on the history graph, because them position is used to set some atributtes.
+    ///
+    /// - Parameters:
+    ///   - node: the shortcut
+    ///   - diskNode: the disk node
+    ///   - historyGraph: the graph.
+    private static func setAtributtes(
         forHistoryNode node: HistoryShortcut,
         withDISKNode diskNode: DISKHistoryNode,
         in historyGraph: HistoryGraph) {
@@ -62,7 +81,13 @@ struct DISKHistoryFormatter {
         node.parent = shortcutParentNode
     }
     
-    static func setAtributtes(
+    /// Sets the normal node atributtes from the disknode. Must be called after the nodes insertion on the history graph, because them position is used to set some atributtes.
+    ///
+    /// - Parameters:
+    ///   - node: the normal node
+    ///   - diskNode: the disk node
+    ///   - historyGraph: the graph
+    private static func setAtributtes(
         forHistoryNode node: HistoryNode,
         withDISKNode diskNode: DISKHistoryNode,
         in historyGraph: HistoryGraph) {
@@ -85,7 +110,7 @@ struct DISKHistoryFormatter {
         node.parent = historyGraph.nodes[parentIndex]
     }
     
-    static func setAtributtes(
+    private static func setAtributtes(
         forHistoryNode node: HistoryNodeProtocol,
         withDISKNode diskNode: DISKHistoryNode,
         in historyGraph: HistoryGraph) {
@@ -97,6 +122,10 @@ struct DISKHistoryFormatter {
         }
     }
     
+    /// Converts a history graph to a disk graph, to be saved in the disk.
+    ///
+    /// - Parameter historyGraph: the history graph
+    /// - Returns: the disk graph
     static func historyGraphToDISKModel(historyGraph: HistoryGraph) -> DISKHistoryGraph {
         var diskGraph = DISKHistoryGraph(
             historyName: historyGraph.historyName,
@@ -129,6 +158,10 @@ struct DISKHistoryFormatter {
         return diskGraph
     }
     
+    /// Converts a disk graph to a history graph, to be used on the app.
+    ///
+    /// - Parameter diskHistory: the disk graph
+    /// - Returns: the history graph
     static func DISKHistoryToHistoryGraph(diskHistory: DISKHistoryGraph) -> HistoryGraph {
         let historyGraph = HistoryGraph(
             withName: diskHistory.historyName,
@@ -171,7 +204,13 @@ struct DISKHistoryFormatter {
         return historyGraph
     }
     
-    static func createGridForHistory(
+    /// Creates the grid of the history graph.
+    ///
+    /// - Parameters:
+    ///   - historyGraph: the history graph
+    ///   - size: the size of the grid
+    /// - Returns: the grid
+    private static func createGridForHistory(
         _ historyGraph: HistoryGraph,
         withSize size: (width: Int, height: Int)) -> HistoryNodesGrid {
         let grid = HistoryNodesGrid(width: size.width, andHeight: size.height)

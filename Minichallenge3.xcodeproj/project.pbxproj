@@ -62,6 +62,7 @@
 		E3617DB22299789500D1DD73 /* Data+decoded.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3617DB12299789500D1DD73 /* Data+decoded.swift */; };
 		E3617DB4229978AF00D1DD73 /* Encodable+encoded.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3617DB3229978AF00D1DD73 /* Encodable+encoded.swift */; };
 		E3617DB62299AD4A00D1DD73 /* DISKHistoryFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3617DB52299AD4A00D1DD73 /* DISKHistoryFormatter.swift */; };
+		E3617DB82299BD1B00D1DD73 /* CGPoint+mult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3617DB72299BD1B00D1DD73 /* CGPoint+mult.swift */; };
 		E381E2C32288D7B700E25B78 /* GraphItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381E2C22288D7B700E25B78 /* GraphItemView.swift */; };
 		E381E2C52288DC1D00E25B78 /* GraphViewConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381E2C42288DC1D00E25B78 /* GraphViewConnector.swift */; };
 		E381E2C72288DCC500E25B78 /* ItemViewConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381E2C62288DCC500E25B78 /* ItemViewConnector.swift */; };
@@ -206,6 +207,7 @@
 		E3617DB12299789500D1DD73 /* Data+decoded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+decoded.swift"; sourceTree = "<group>"; };
 		E3617DB3229978AF00D1DD73 /* Encodable+encoded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+encoded.swift"; sourceTree = "<group>"; };
 		E3617DB52299AD4A00D1DD73 /* DISKHistoryFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DISKHistoryFormatter.swift; sourceTree = "<group>"; };
+		E3617DB72299BD1B00D1DD73 /* CGPoint+mult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+mult.swift"; sourceTree = "<group>"; };
 		E381E2C22288D7B700E25B78 /* GraphItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphItemView.swift; sourceTree = "<group>"; };
 		E381E2C42288DC1D00E25B78 /* GraphViewConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewConnector.swift; sourceTree = "<group>"; };
 		E381E2C62288DCC500E25B78 /* ItemViewConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewConnector.swift; sourceTree = "<group>"; };
@@ -460,6 +462,7 @@
 				E32A37AD2290580500E2F8B1 /* Array+set+call.swift */,
 				E3617DB12299789500D1DD73 /* Data+decoded.swift */,
 				E3617DB3229978AF00D1DD73 /* Encodable+encoded.swift */,
+				E3617DB72299BD1B00D1DD73 /* CGPoint+mult.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -937,6 +940,7 @@
 				E32A379E228B011300E2F8B1 /* MyNarrativesView.swift in Sources */,
 				E32A37E722923ADD00E2F8B1 /* GraphView+operations.swift in Sources */,
 				E331CCCC228846C20041379B /* GraphViewDatasource.swift in Sources */,
+				E3617DB82299BD1B00D1DD73 /* CGPoint+mult.swift in Sources */,
 				E32A37A1228B013600E2F8B1 /* MyNarrativesViewController.swift in Sources */,
 				E3617DA8229965DC00D1DD73 /* DISConnection.swift in Sources */,
 				E32A37D92290C2D700E2F8B1 /* HistoryGraphViewModelNodeType.swift in Sources */,

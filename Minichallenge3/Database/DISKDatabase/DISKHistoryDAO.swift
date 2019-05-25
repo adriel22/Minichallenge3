@@ -72,10 +72,11 @@ class DISKHistoryDAO: DAO {
     }
     
     func delete(element: HistoryGraph) {
-        
+        fatalError("must be implemented")
     }
     
     func get(elementWithID daoID: String) -> HistoryGraph? {
+        fatalError("must be implemented")
         return HistoryGraph(withName: "", sinopse: "", width: 0, andHeight: 0)
     }
     
