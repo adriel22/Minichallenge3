@@ -14,7 +14,15 @@ struct DISKHistoryNode: Codable {
     var resume: String?
     var text: String?
     
-    var parent: String?
-    var shortcutIDs: [String] = []
+    var parent: Int?
+    var shortcutIDs: [Int] = []
     var connections: [DISKConnection] = []
+    var shortcutTarget: Int?
+    
+    init(text: String?, resume: String?, positionX: Int, positionY: Int) {
+        self.text = text
+        self.resume = resume
+        self.positionX = positionX
+        self.positionY = positionY
+    }
 }

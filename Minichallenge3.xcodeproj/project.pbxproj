@@ -58,6 +58,10 @@
 		E3617DA22299627800D1DD73 /* DISKHistoryGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3617DA12299627800D1DD73 /* DISKHistoryGraph.swift */; };
 		E3617DA62299646A00D1DD73 /* DISKHistoryNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3617DA52299646A00D1DD73 /* DISKHistoryNode.swift */; };
 		E3617DA8229965DC00D1DD73 /* DISConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3617DA7229965DC00D1DD73 /* DISConnection.swift */; };
+		E3617DAC229973D300D1DD73 /* Array+node.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3617DAB229973D300D1DD73 /* Array+node.swift */; };
+		E3617DB02299782400D1DD73 /* DISKHistoryFromatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3617DAF2299782400D1DD73 /* DISKHistoryFromatter.swift */; };
+		E3617DB22299789500D1DD73 /* Data+decoded.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3617DB12299789500D1DD73 /* Data+decoded.swift */; };
+		E3617DB4229978AF00D1DD73 /* Encodable+encoded.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3617DB3229978AF00D1DD73 /* Encodable+encoded.swift */; };
 		E381E2C32288D7B700E25B78 /* GraphItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381E2C22288D7B700E25B78 /* GraphItemView.swift */; };
 		E381E2C52288DC1D00E25B78 /* GraphViewConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381E2C42288DC1D00E25B78 /* GraphViewConnector.swift */; };
 		E381E2C72288DCC500E25B78 /* ItemViewConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381E2C62288DCC500E25B78 /* ItemViewConnector.swift */; };
@@ -198,6 +202,10 @@
 		E3617DA12299627800D1DD73 /* DISKHistoryGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DISKHistoryGraph.swift; path = ../DISKHistoryGraph.swift; sourceTree = "<group>"; };
 		E3617DA52299646A00D1DD73 /* DISKHistoryNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DISKHistoryNode.swift; path = ../DISKHistoryNode.swift; sourceTree = "<group>"; };
 		E3617DA7229965DC00D1DD73 /* DISConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DISConnection.swift; path = ../DISConnection.swift; sourceTree = "<group>"; };
+		E3617DAB229973D300D1DD73 /* Array+node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+node.swift"; sourceTree = "<group>"; };
+		E3617DAF2299782400D1DD73 /* DISKHistoryFromatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DISKHistoryFromatter.swift; sourceTree = "<group>"; };
+		E3617DB12299789500D1DD73 /* Data+decoded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+decoded.swift"; sourceTree = "<group>"; };
+		E3617DB3229978AF00D1DD73 /* Encodable+encoded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+encoded.swift"; sourceTree = "<group>"; };
 		E381E2C22288D7B700E25B78 /* GraphItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphItemView.swift; sourceTree = "<group>"; };
 		E381E2C42288DC1D00E25B78 /* GraphViewConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewConnector.swift; sourceTree = "<group>"; };
 		E381E2C62288DCC500E25B78 /* ItemViewConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewConnector.swift; sourceTree = "<group>"; };
@@ -450,6 +458,8 @@
 				E381E2D02289C41800E25B78 /* NSLayoutConstraint+activate.swift */,
 				E32A37A6228EE69E00E2F8B1 /* CGRect+init.swift */,
 				E32A37AD2290580500E2F8B1 /* Array+set+call.swift */,
+				E3617DB12299789500D1DD73 /* Data+decoded.swift */,
+				E3617DB3229978AF00D1DD73 /* Encodable+encoded.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -486,6 +496,7 @@
 			children = (
 				E3617DAA2299672A00D1DD73 /* DISKModels */,
 				E3617D9622995A0D00D1DD73 /* DISKHistoryDAO.swift */,
+				E3617DAF2299782400D1DD73 /* DISKHistoryFromatter.swift */,
 			);
 			path = DISKDatabase;
 			sourceTree = "<group>";
@@ -496,6 +507,7 @@
 				E3617DA12299627800D1DD73 /* DISKHistoryGraph.swift */,
 				E3617DA52299646A00D1DD73 /* DISKHistoryNode.swift */,
 				E3617DA7229965DC00D1DD73 /* DISConnection.swift */,
+				E3617DAB229973D300D1DD73 /* Array+node.swift */,
 			);
 			path = DISKModels;
 			sourceTree = "<group>";
@@ -919,6 +931,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3617DB22299789500D1DD73 /* Data+decoded.swift in Sources */,
 				E3617DA22299627800D1DD73 /* DISKHistoryGraph.swift in Sources */,
 				FC017E40228E577E008979E7 /* AddRamificationViewModel.swift in Sources */,
 				E32A379E228B011300E2F8B1 /* MyNarrativesView.swift in Sources */,
@@ -964,6 +977,7 @@
 				FC02F5DC228D8B31008F0777 /* UIColor+hexInit.swift in Sources */,
 				E331CCD12288971D0041379B /* GraphLineView.swift in Sources */,
 				E32A37DC2290C65200E2F8B1 /* GraphViewItemEventHandler.swift in Sources */,
+				E3617DAC229973D300D1DD73 /* Array+node.swift in Sources */,
 				E331CCC62287B3070041379B /* GraphView.swift in Sources */,
 				E32A37C0229098EB00E2F8B1 /* DAO.swift in Sources */,
 				E32A37E12291996F00E2F8B1 /* GraphViewDidLayoutType.swift in Sources */,
@@ -977,9 +991,11 @@
 				FC0615F9229441CB00BF3946 /* AddRamificationViewModelDelegate.swift in Sources */,
 				FC02F5EA228D8EA2008F0777 /* BranchCollectionViewCell.swift in Sources */,
 				E32A37CF2290A14A00E2F8B1 /* HistoryNodeViewModel.swift in Sources */,
+				E3617DB4229978AF00D1DD73 /* Encodable+encoded.swift in Sources */,
 				E3593096229438FA00F502BA /* DetailsViewModelTransitioningDelegate.swift in Sources */,
 				FC0137E32294E7BB00C97229 /* AddRamificationTrasitioningDelegate.swift in Sources */,
 				E3617D9722995A0D00D1DD73 /* DISKHistoryDAO.swift in Sources */,
+				E3617DB02299782400D1DD73 /* DISKHistoryFromatter.swift in Sources */,
 				FC02E93E228AFFC100537429 /* ExpandableTableViewHeaderView.swift in Sources */,
 				E331CCCA228846B20041379B /* GraphViewDelegate.swift in Sources */,
 				FC060916228C6A1B008C98AE /* CardView.swift in Sources */,

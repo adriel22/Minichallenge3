@@ -12,8 +12,8 @@ protocol DAO {
     associatedtype Element
     
     func getAll() -> [Element]
-    func save(element: Element)
+    func save(element: Element) -> Element?
     func delete(element: Element)
-    func get(elementWithID daoID: Int) -> Element
-    func update(element: Element)
+    func get(elementWithID daoID: String) -> Element?
+    func update(element: Element) -> Bool
 }

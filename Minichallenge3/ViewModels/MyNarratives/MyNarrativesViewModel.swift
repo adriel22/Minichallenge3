@@ -11,15 +11,16 @@ import HistoryGraph
 class MyNarrativesViewModel {
     public weak var delegate: MyNarrativesViewModelDelegate?
     var clickedCellIndex: IndexPath?
-    var historiesDAO = RAMHistoryDAO()
+    var historiesDAO = DISKHistoryDAO()
     
     private lazy var narratives: [HistoryGraph] = historiesDAO.getAll()
     
     func addNarrative(withName name: String, toTable tableView: UITableView) {
         let graph = HistoryGraph(withName: name, sinopse: "", width: 3, andHeight: 3)
-        narratives.append(graph)
-        tableView.reloadData()
-        
+        if let savedHistory = historiesDAO.save(element: graph) {
+            narratives.append(savedHistory)
+            tableView.reloadData()
+        }
     }
     
     func numberOfRows() -> Int {

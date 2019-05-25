@@ -1,5 +1,5 @@
 //
-//  DISConnection.swift
+//  Encodable+encoded.swift
 //  Minichallenge3
 //
 //  Created by Elias Paulino on 25/05/19.
@@ -8,7 +8,8 @@
 
 import Foundation
 
-struct DISKConnection: Codable {
-    var title: String
-    var nodeID: Int
+extension Encodable {
+    func encoded() throws -> Data {
+        return try JSONEncoder().encode(self)
+    }
 }
