@@ -12,6 +12,7 @@ public struct HistoryConnection: Comparable {
 
     public weak var destinyNode: HistoryNodeProtocol?
     public var title: String
+    
 
     public static func < (lhs: HistoryConnection, rhs: HistoryConnection) -> Bool {
         return lhs.title < rhs.title

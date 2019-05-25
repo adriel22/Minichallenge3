@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C200C2D228D9BA4002F7FAF /* PresentationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C200C2C228D9BA4002F7FAF /* PresentationViewModel.swift */; };
+		3C200C2F228D9BFE002F7FAF /* PresentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C200C2E228D9BFE002F7FAF /* PresentationViewController.swift */; };
+		3C200C31228D9CE8002F7FAF /* ViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C200C30228D9CE8002F7FAF /* ViewModelProtocol.swift */; };
+		3C200C33228D9E92002F7FAF /* NodePresentationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C200C32228D9E92002F7FAF /* NodePresentationTableViewCell.swift */; };
+		3C4765F22296FF730048AAAA /* PresentationDelegateDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4765F12296FF730048AAAA /* PresentationDelegateDataSource.swift */; };
+		3C4765F422999F860048AAAA /* DetailsViewModelAnimationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4765F322999F860048AAAA /* DetailsViewModelAnimationDelegate.swift */; };
 		921BB6E52292CD60001DA358 /* ToolboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921BB6E42292CD60001DA358 /* ToolboxView.swift */; };
 		921BB6E72292D301001DA358 /* ToolboxViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921BB6E62292D301001DA358 /* ToolboxViewDelegate.swift */; };
 		927CFA5B228DAB8800CAC09E /* ShortcutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927CFA5A228DAB8800CAC09E /* ShortcutView.swift */; };
@@ -141,6 +147,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3C200C2C228D9BA4002F7FAF /* PresentationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationViewModel.swift; sourceTree = "<group>"; };
+		3C200C2E228D9BFE002F7FAF /* PresentationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationViewController.swift; sourceTree = "<group>"; };
+		3C200C30228D9CE8002F7FAF /* ViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelProtocol.swift; sourceTree = "<group>"; };
+		3C200C32228D9E92002F7FAF /* NodePresentationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodePresentationTableViewCell.swift; sourceTree = "<group>"; };
+		3C4765F12296FF730048AAAA /* PresentationDelegateDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationDelegateDataSource.swift; sourceTree = "<group>"; };
+		3C4765F322999F860048AAAA /* DetailsViewModelAnimationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModelAnimationDelegate.swift; sourceTree = "<group>"; };
 		3CF4D23D356FA463D37FC974 /* Pods_Minichallenge3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Minichallenge3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4405664E379635FBB9519A12 /* Pods-Minichallenge3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Minichallenge3.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Minichallenge3/Pods-Minichallenge3.debug.xcconfig"; sourceTree = "<group>"; };
 		921BB6E42292CD60001DA358 /* ToolboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolboxView.swift; sourceTree = "<group>"; };
@@ -279,6 +291,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3C200C2A228D9B39002F7FAF /* PresentationView */ = {
+			isa = PBXGroup;
+			children = (
+				3C200C32228D9E92002F7FAF /* NodePresentationTableViewCell.swift */,
+			);
+			path = PresentationView;
+			sourceTree = "<group>";
+		};
 		927CFA59228DAB5800CAC09E /* ShortcutView */ = {
 			isa = PBXGroup;
 			children = (
@@ -394,6 +414,7 @@
 				E331CCC7228846720041379B /* GraphView */,
 				927CFA59228DAB5800CAC09E /* ShortcutView */,
 				FC060914228C69FC008C98AE /* CardView */,
+				3C200C2A228D9B39002F7FAF /* PresentationView */,
 				FC02F5F2228DA510008F0777 /* AddRamificationsView.swift */,
 			);
 			path = Views;
@@ -467,6 +488,7 @@
 				FC0615F6229441AC00BF3946 /* DetailsViewModelDelegate.swift */,
 				E3593094229438FA00F502BA /* DetailsViewModelTransitioningDelegate.swift */,
 				E3593095229438FA00F502BA /* DetailsViewModel.swift */,
+				3C4765F322999F860048AAAA /* DetailsViewModelAnimationDelegate.swift */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -540,8 +562,10 @@
 			children = (
 				FC02F5E5228D8E32008F0777 /* DetailsViewController.swift */,
 				E32A37A0228B013600E2F8B1 /* MyNarrativesViewController.swift */,
+				3C200C2E228D9BFE002F7FAF /* PresentationViewController.swift */,
 				E32A37C422909D7400E2F8B1 /* HistoryGraphViewController.swift */,
 				FC02F5F0228D9AC9008F0777 /* AddRamificationViewController.swift */,
+				3C4765F12296FF730048AAAA /* PresentationDelegateDataSource.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -574,6 +598,8 @@
 		FC02F5EB228D8EDE008F0777 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				3C200C30228D9CE8002F7FAF /* ViewModelProtocol.swift */,
+				3C200C2C228D9BA4002F7FAF /* PresentationViewModel.swift */,
 				E3593093229438FA00F502BA /* Details */,
 				E3C462DF2294344B00699960 /* MyNarratives */,
 				E347A88322937D1E001423B5 /* Sinopse */,
@@ -906,6 +932,7 @@
 				E381E2C72288DCC500E25B78 /* ItemViewConnector.swift in Sources */,
 				927CFA5D228ED0A500CAC09E /* ShortcutViewDelegate.swift in Sources */,
 				FC02F5DE228D8B31008F0777 /* UIView+round.swift in Sources */,
+				3C200C33228D9E92002F7FAF /* NodePresentationTableViewCell.swift in Sources */,
 				FC02F5E7228D8E32008F0777 /* DetailsViewController.swift in Sources */,
 				FC02F5F3228DA510008F0777 /* AddRamificationsView.swift in Sources */,
 				FC02F5DA228D8B31008F0777 /* UITextView+addDoneButtonOnKeyboard.swift in Sources */,
@@ -916,6 +943,7 @@
 				E32A37C722909E8500E2F8B1 /* HistoryGraphViewModel.swift in Sources */,
 				E331CCCF2288802B0041379B /* Array+forearch.swift in Sources */,
 				FC0BA47C2292CCBF00E10AF2 /* MyNarrativesViewModel.swift in Sources */,
+				3C4765F422999F860048AAAA /* DetailsViewModelAnimationDelegate.swift in Sources */,
 				E32A37CB2290A06E00E2F8B1 /* HistoryGraphState.swift in Sources */,
 				E347A87C22934DC2001423B5 /* DetailsViewModelTransitioningDelegate.swift in Sources */,
 				E347A87F22937CCB001423B5 /* SinopseViewModel.swift in Sources */,
@@ -939,6 +967,7 @@
 				E32A37E12291996F00E2F8B1 /* GraphViewDidLayoutType.swift in Sources */,
 				E32A37DF22917EB000E2F8B1 /* GraphViewConnectionEventHandler.swift in Sources */,
 				E381E2C92288DE8300E25B78 /* CGPoint+add.swift in Sources */,
+				3C200C2F228D9BFE002F7FAF /* PresentationViewController.swift in Sources */,
 				E32A37AC2290496000E2F8B1 /* GraphViewAnimator.swift in Sources */,
 				E32A37B022905F7000E2F8B1 /* NotifierView.swift in Sources */,
 				921BB6E52292CD60001DA358 /* ToolboxView.swift in Sources */,
@@ -949,6 +978,7 @@
 				E3593096229438FA00F502BA /* DetailsViewModelTransitioningDelegate.swift in Sources */,
 				FC0137E32294E7BB00C97229 /* AddRamificationTrasitioningDelegate.swift in Sources */,
 				FC02E93E228AFFC100537429 /* ExpandableTableViewHeaderView.swift in Sources */,
+				3C4765F22296FF730048AAAA /* PresentationDelegateDataSource.swift in Sources */,
 				E331CCCA228846B20041379B /* GraphViewDelegate.swift in Sources */,
 				FC060916228C6A1B008C98AE /* CardView.swift in Sources */,
 				E3593097229438FA00F502BA /* DetailsViewModel.swift in Sources */,
@@ -961,6 +991,8 @@
 				FC02F5F1228D9AC9008F0777 /* AddRamificationViewController.swift in Sources */,
 				921BB6E72292D301001DA358 /* ToolboxViewDelegate.swift in Sources */,
 				E381E2C32288D7B700E25B78 /* GraphItemView.swift in Sources */,
+				3C200C2D228D9BA4002F7FAF /* PresentationViewModel.swift in Sources */,
+				3C200C31228D9CE8002F7FAF /* ViewModelProtocol.swift in Sources */,
 				E347A88122937CFF001423B5 /* SinopseViewModelDelegate.swift in Sources */,
 				FCB3548E228065AF00AB7ED2 /* AppDelegate.swift in Sources */,
 			);
@@ -1033,7 +1065,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = Z8P97P3QB4;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1061,7 +1093,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = Z8P97P3QB4;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1206,7 +1238,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z8P97P3QB4;
+				DEVELOPMENT_TEAM = 446LGN7Z63;
 				INFOPLIST_FILE = Minichallenge3/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1228,7 +1260,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z8P97P3QB4;
+				DEVELOPMENT_TEAM = 446LGN7Z63;
 				INFOPLIST_FILE = Minichallenge3/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1248,7 +1280,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z8P97P3QB4;
+				DEVELOPMENT_TEAM = 446LGN7Z63;
 				INFOPLIST_FILE = Minichallenge3Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1269,7 +1301,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z8P97P3QB4;
+				DEVELOPMENT_TEAM = 446LGN7Z63;
 				INFOPLIST_FILE = Minichallenge3Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1289,7 +1321,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z8P97P3QB4;
+				DEVELOPMENT_TEAM = 446LGN7Z63;
 				INFOPLIST_FILE = Minichallenge3UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1309,7 +1341,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z8P97P3QB4;
+				DEVELOPMENT_TEAM = 446LGN7Z63;
 				INFOPLIST_FILE = Minichallenge3UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

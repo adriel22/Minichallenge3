@@ -10,20 +10,33 @@ import UIKit
 
 class ExpandableTableViewHeaderView: UIView {
 
-    lazy var label: UILabel! = UILabel(frame: .zero)
-    lazy var button: UIButton! = UIButton(frame: .zero)
-    
-    lazy var isCollapsed = true
+    private lazy var label: UILabel! = UILabel(frame: .zero)
+    private lazy var button: UIButton! = UIButton(frame: .zero)
     var didTap: ((UIButton) -> Void)?
-
+    
+    var isTheLastSection = false {
+        didSet {
+            button.isHidden = !isTheLastSection
+        }
+    }
+    
+    var text: String? {
+        didSet {
+            label.text = text
+        }
+    }
+    
     override init(frame: CGRect = .zero) {
         super.init(frame: frame)
-
+        
         configureLabel()
         addSubview(label)
-
+        
         configureButton()
         addSubview(button)
+        
+        backgroundColor = UIColor(rgb: 0xEFEFF4)
+        setConstraints()
         
     }
     
@@ -33,23 +46,25 @@ class ExpandableTableViewHeaderView: UIView {
     }
     
     private func configureButton() {
-        button.setTitleColor(UIColor(color: .darkBlue), for: .normal)
+        button.isHidden = true
+        button.round(radius: 4)
+        button.backgroundColor = UIColor(color: .darkBlue)
+        button.setTitleColor(UIColor(color: .yellowWhite), for: .normal)
+        button.setTitle("Desfazer", for: .normal)
         button.addTarget(self, action: #selector(tapped(_:)), for: .touchUpInside)
     }
     
     private func setConstraints() {
-        widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width).isActive = true
-        
         label.translatesAutoresizingMaskIntoConstraints = false
         label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16).isActive = true
         label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16).isActive = true
         label.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
-        button.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
-        button.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        button.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.3).isActive = true
+        button.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.75).isActive = true
         button.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16).isActive = true
     }
     
     @objc private func tapped(_ sender: UIButton) {
