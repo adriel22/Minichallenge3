@@ -42,6 +42,17 @@ class DetailsViewModel: DetailsViewModelProtocol {
         guard let destiny = branches[branchIndex].destinyNode as? HistoryNode else { return }
         story = destiny
     }
+    
+    func goBack() {
+        if let parent = story.parent as? HistoryNode {
+            story = parent
+        } else if let parent = story.parent as? HistoryShortcut {
+            if let node = parent.node {
+                story = node
+            }
+        }
+    }
+    
     func willCloseController() {
         storyDAO.save(element: graph)
         transitionDelegate?.willCloseController()

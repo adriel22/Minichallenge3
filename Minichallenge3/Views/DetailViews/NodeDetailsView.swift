@@ -22,6 +22,7 @@ class NodeDetailsView: UIView {
     private lazy var branches = UICollectionView(frame: .zero, collectionViewLayout: .flow)
     private lazy var addBranchButton = UIButton(frame: .zero)
     private lazy var goOnButton = UIButton(frame: .zero)
+    private lazy var goBackButton = UIButton(frame: .zero)
     
     let collectionHeight: CGFloat = 48
     private var collectionTrailingContraint: NSLayoutConstraint!
@@ -72,6 +73,9 @@ class NodeDetailsView: UIView {
         configureGoOnButton()
         addSubview(goOnButton)
         
+        configureGoBackButton()
+        addSubview(goBackButton)
+        
         setConstraints()
         
     }
@@ -95,6 +99,10 @@ class NodeDetailsView: UIView {
         goOnButton.addTarget(target, action: selector, for: event)
     }
     
+    func addTargetForGoBackButton(target: Any?, selector: Selector, forEvent event: UIControl.Event) {
+        goBackButton.addTarget(target, action: selector, for: event)
+    }
+    
     private func configureBranchesCollectionView() {
         let layout = branches.collectionViewLayout as? UICollectionViewFlowLayout
         layout?.scrollDirection = .horizontal
@@ -110,6 +118,13 @@ class NodeDetailsView: UIView {
         goOnButton.setTitle("Continuar", for: .normal)
         goOnButton.setTitleColor(UIColor(color: .purpleWhite), for: .normal)
         goOnButton.round(radius: 4)
+    }
+    
+    private func configureGoBackButton() {
+        goBackButton.backgroundColor = UIColor(color: .red)
+        goBackButton.setTitle("Voltar", for: .normal)
+        goBackButton.setTitleColor(UIColor(color: .purpleWhite), for: .normal)
+        goBackButton.round(radius: 4)
     }
     
     private func setConstraints() {
@@ -134,10 +149,16 @@ class NodeDetailsView: UIView {
         branches.heightAnchor.constraint(equalToConstant: collectionHeight).isActive = true
         
         goOnButton.translatesAutoresizingMaskIntoConstraints = false
-        goOnButton.leadingAnchor.constraint(equalTo: branches.leadingAnchor).isActive = true
         goOnButton.trailingAnchor.constraint(equalTo: addBranchButton.trailingAnchor).isActive = true
+        goOnButton.leadingAnchor.constraint(equalTo: textView.centerXAnchor, constant: 4).isActive = true
         goOnButton.topAnchor.constraint(equalTo: branches.topAnchor).isActive = true
         goOnButton.bottomAnchor.constraint(equalTo: branches.bottomAnchor).isActive = true
+        
+        goBackButton.translatesAutoresizingMaskIntoConstraints = false
+        goBackButton.trailingAnchor.constraint(equalTo: textView.centerXAnchor, constant: -4).isActive = true
+        goBackButton.leadingAnchor.constraint(equalTo: branches.leadingAnchor).isActive = true
+        goBackButton.topAnchor.constraint(equalTo: branches.topAnchor).isActive = true
+        goBackButton.bottomAnchor.constraint(equalTo: branches.bottomAnchor).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -150,18 +171,21 @@ class NodeDetailsView: UIView {
             branches.isHidden = false
             addBranchButton.isHidden = false
             goOnButton.isHidden = true
+            goBackButton.isHidden = true
             textView.addDoneButtonOnKeyboard()
         } else if position == .down {
             backgroundColor = UIColor(color: .yellowWhite)
             branches.isHidden = true
             addBranchButton.isHidden = true
             goOnButton.isHidden = false
+            goBackButton.isHidden = false
             textView.addDoneButtonOnKeyboard()
         } else if position == .cell {
             backgroundColor = UIColor(color: .purpleWhite)
             branches.isHidden = false
             addBranchButton.isHidden = true
             goOnButton.isHidden = true
+            goBackButton.isHidden = true
             collectionTrailingContraint.isActive = false
             textView.isEditable = false
             branches.trailingAnchor.constraint(equalTo: textView.trailingAnchor).isActive = true
@@ -170,6 +194,7 @@ class NodeDetailsView: UIView {
             branches.isHidden = true
             addBranchButton.isHidden = true
             goOnButton.isHidden = true
+            goBackButton.isHidden = true
             textView.isEditable = false
         }
     }

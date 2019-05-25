@@ -23,8 +23,10 @@ protocol DetailsViewModelProtocol: ViewModelProtocol {
     
     func titleForCollectionViewCell(at indexPath: IndexPath) -> String?
     func textUpdated(with text: String, in node: HistoryNode)
+    
     func addBranch()
     func goOn(branchIndex: Int)
+    func goBack()
     func willCloseController()
 }
 

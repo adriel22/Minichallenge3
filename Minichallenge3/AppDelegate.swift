@@ -19,10 +19,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
 //        let controller = MyNarrativesViewController()
 
-//        let controller = HistoryGraphViewController()
-//        controller.viewModel = HistoryGraphViewModel(withHistoryGraph: RAMDatabase.shared.chapeuzinhoHistory, withIdentifier: 0)
-        let controller = PresentationViewController()
-        controller.viewModel = PresentationViewModel(graph: RAMDatabase.shared.chapeuzinhoHistory, rootNode: (RAMDatabase.shared.chapeuzinhoHistory.nodes.first! as? HistoryNode)!)
+        let controller = HistoryGraphViewController()
+        controller.viewModel = HistoryGraphViewModel(withHistoryGraph: RAMDatabase.shared.chapeuzinhoHistory, withIdentifier: 0)
+//        let controller = PresentationViewController()
+//        controller.viewModel = PresentationViewModel(graph: RAMDatabase.shared.chapeuzinhoHistory, rootNode: (RAMDatabase.shared.chapeuzinhoHistory.nodes.first! as? HistoryNode)!)
         let navigation = UINavigationController(rootViewController: controller)
         
         window = UIWindow(frame: UIScreen.main.bounds)

@@ -52,19 +52,18 @@ class DetailsViewController: UIViewController {
     }
 
     func configureUpnodeView() {
-//        upnodeView.frame.origin = scrollView.frame.origin
-//        upnodeView.frame.size = CGSize(width: UIScreen.main.bounds.width, height: (UIScreen.main.bounds.height-UIApplication.shared.statusBarFrame.height-navigationController!.navigationBar.frame.height)/2)
         upnodeView.addTargetForAddBranchButton(target: self,
                                                selector: #selector(addBranch(_:)),
                                                forEvent: .touchUpInside)
     }
 
     func configureDownnodeVode() {
-//        downnodeView.frame.origin = CGPoint(x: 0, y: upnodeView.frame.origin.y + (UIScreen.main.bounds.height-UIApplication.shared.statusBarFrame.height-navigationController!.navigationBar.frame.height)/2)
-//        downnodeView.frame.size = CGSize(width: UIScreen.main.bounds.width, height: (UIScreen.main.bounds.height-UIApplication.shared.statusBarFrame.height-navigationController!.navigationBar.frame.height)/2)
         downnodeView.addTargetForGoOnButton(target: self,
                                             selector: #selector(goOn(_:)),
                                             forEvent: .touchUpInside)
+        downnodeView.addTargetForGoBackButton(target: self,
+                                              selector: #selector(goBack(_:)),
+                                              forEvent: .touchUpInside)
     }
 
     func configureNavigationBar() {
@@ -122,6 +121,12 @@ class DetailsViewController: UIViewController {
         viewModel?.goOn(branchIndex: selected)
         viewModel?.update(self)
     }
+    
+    @objc func goBack(_ sender: UIButton) {
+        downnodeView.textView.resignFirstResponder()
+        viewModel?.goBack()
+        viewModel?.update(self)
+    }
 
     @objc func dismiss(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
@@ -141,10 +146,6 @@ extension DetailsViewController: UITextViewDelegate {
                        initialSpringVelocity: 0.7,
                        options: [.curveEaseInOut, .allowUserInteraction, .transitionCurlUp],
                        animations: {
-
-            let statusBarHeight = UIApplication.shared.statusBarFrame.height
-            let navigationBarHeight = self.navigationController!.navigationBar.frame.height
-            let halfScreenHeight = (UIScreen.main.bounds.height - statusBarHeight - navigationBarHeight)/2
 
             self.scrollView.contentOffset.y = up ? halfScreenHeight : 0
             self.downnodeView.adjustTextViewAndGoOnButton(offset: up ? -50 : 50)
