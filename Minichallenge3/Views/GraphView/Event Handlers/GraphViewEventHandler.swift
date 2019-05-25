@@ -10,6 +10,7 @@ import UIKit
 
 class GraphViewEventHandler: NSObject {
     weak var graphView: GraphView?
+    var currentZoomScale: CGFloat = 1
     
     init(withGraphView graphView: GraphView) {
         super.init()
@@ -19,10 +20,22 @@ class GraphViewEventHandler: NSObject {
         graphView.maximumZoomScale = 2.0
         graphView.minimumZoomScale = 0.3
     }
+    
+    func changeZoomScale(to scale: CGFloat?) {
+        guard let scale = scale else {
+            return
+        }
+        
+        graphView?.zoomScale = scale
+    }
 }
 
 extension GraphViewEventHandler: UIScrollViewDelegate {
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return graphView?.containerView
+    }
+    
+    func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
+        self.currentZoomScale = scale
     }
 }

@@ -12,6 +12,10 @@ class ShortcutView: GraphItemView, CardViewProtocol {
     
     private var heightCircleView: CGFloat = 64
     
+    override var shouldShake: Bool {
+        return false
+    }
+    
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false

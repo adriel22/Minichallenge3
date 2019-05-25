@@ -17,10 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-//        let controller = MyNarrativesViewController()
+        let controller = MyNarrativesViewController()
 
-        let controller = HistoryGraphViewController()
-        controller.viewModel = HistoryGraphViewModel(withHistoryGraph: RAMDatabase.shared.chapeuzinhoHistory, withIdentifier: 0)
+//        let controller = HistoryGraphViewController()
+//        controller.viewModel = HistoryGraphViewModel(withHistoryGraph: RAMDatabase.shared.chapeuzinhoHistory, withIdentifier: 0)
 //        let controller = PresentationViewController()
 //        controller.viewModel = PresentationViewModel(graph: RAMDatabase.shared.chapeuzinhoHistory, rootNode: (RAMDatabase.shared.chapeuzinhoHistory.nodes.first! as? HistoryNode)!)
         let navigation = UINavigationController(rootViewController: controller)

@@ -25,8 +25,11 @@ class NodeDetailsView: UIView {
     private lazy var goBackButton = UIButton(frame: .zero)
     
     let collectionHeight: CGFloat = 48
-    private var collectionTrailingContraint: NSLayoutConstraint!
     private var position: NodeType!
+    
+    private var collectionTrailingContraint: NSLayoutConstraint!
+    private var goBackTrailingLayoutConstraint: NSLayoutConstraint!
+    private var goOnLeadingLayoutConstraint: NSLayoutConstraint!
     
     var text: String? = "" {
         didSet {
@@ -87,8 +90,9 @@ class NodeDetailsView: UIView {
     }
     
     private func configureAddBranchButton() {
-        addBranchButton.backgroundColor = UIColor(color: .darkBlue)
-        addBranchButton.round(radius: collectionHeight/2)
+        addBranchButton.setImage(UIImage(named: "addBranch"), for: .normal)
+//        addBranchButton.backgroundColor = UIColor(color: .darkBlue)
+//        addBranchButton.round(radius: collectionHeight/2)
     }
     
     func addTargetForAddBranchButton(target: Any?, selector: Selector, forEvent event: UIControl.Event) {
@@ -150,12 +154,14 @@ class NodeDetailsView: UIView {
         
         goOnButton.translatesAutoresizingMaskIntoConstraints = false
         goOnButton.trailingAnchor.constraint(equalTo: addBranchButton.trailingAnchor).isActive = true
-        goOnButton.leadingAnchor.constraint(equalTo: textView.centerXAnchor, constant: 4).isActive = true
+        goOnLeadingLayoutConstraint = goOnButton.leadingAnchor.constraint(equalTo: goBackButton.trailingAnchor, constant: 8)
+        goOnLeadingLayoutConstraint.isActive = true
         goOnButton.topAnchor.constraint(equalTo: branches.topAnchor).isActive = true
         goOnButton.bottomAnchor.constraint(equalTo: branches.bottomAnchor).isActive = true
         
         goBackButton.translatesAutoresizingMaskIntoConstraints = false
-        goBackButton.trailingAnchor.constraint(equalTo: textView.centerXAnchor, constant: -4).isActive = true
+        goBackTrailingLayoutConstraint = goBackButton.trailingAnchor.constraint(equalTo: textView.centerXAnchor, constant: -4)
+        goBackTrailingLayoutConstraint.isActive = true
         goBackButton.leadingAnchor.constraint(equalTo: branches.leadingAnchor).isActive = true
         goBackButton.topAnchor.constraint(equalTo: branches.topAnchor).isActive = true
         goBackButton.bottomAnchor.constraint(equalTo: branches.bottomAnchor).isActive = true
@@ -203,9 +209,34 @@ class NodeDetailsView: UIView {
         branches.isUserInteractionEnabled = enabled
     }
     
-    func reload(withText text: String?) {
-        self.text = text
-        if branches.isHidden == false { self.branches.reloadData() }
+    func reload(withText text: String?, animateWithFade: Bool = true) {
+        let reloadBlock = {
+            self.text = text
+            if self.branches.isHidden == false { self.branches.reloadData() }
+        }
+        
+        if animateWithFade {
+            UIView.animate(withDuration: 0.35,
+                           delay: 0,
+                           usingSpringWithDamping: 0.7,
+                           initialSpringVelocity: 0.7,
+                           options: [.allowUserInteraction, .curveEaseInOut, .layoutSubviews], animations: {
+                            self.textView.alpha = 0
+                            self.branches.alpha = 0
+            }, completion: { _ in
+                reloadBlock()
+                UIView.animate(withDuration: 1,
+                               delay: 0,
+                               usingSpringWithDamping: 0.7,
+                               initialSpringVelocity: 0.7,
+                               options: [.allowUserInteraction, .curveEaseOut, .layoutSubviews], animations: {
+                                self.textView.alpha = 1
+                                self.branches.alpha = 1
+                }, completion: nil)
+            })
+        } else {
+            reloadBlock()
+        }
     }
     
     func reload() {
@@ -215,6 +246,38 @@ class NodeDetailsView: UIView {
     func adjustTextViewAndGoOnButton(offset: CGFloat) {
         textView.frame.size.height += offset
         goOnButton.frame.origin.y += offset
+        goBackButton.frame.origin.y += offset
+    }
+    
+    func hideGoBackButton() {
+        goBackTrailingLayoutConstraint.isActive = false
+        goBackTrailingLayoutConstraint = goBackButton.trailingAnchor.constraint(equalTo: goBackButton.leadingAnchor)
+        goBackTrailingLayoutConstraint.isActive = true
+        
+        goOnLeadingLayoutConstraint.isActive = false
+        goOnLeadingLayoutConstraint = goOnButton.leadingAnchor.constraint(equalTo: textView.leadingAnchor)
+        goOnLeadingLayoutConstraint.isActive = true
+        
+        UIView.animate(withDuration: 0.7) { self.layoutIfNeeded() }
+    }
+    
+    func hideGoOnButton() {
+        goBackTrailingLayoutConstraint.isActive = false
+        goBackTrailingLayoutConstraint = goBackButton.trailingAnchor.constraint(equalTo: textView.trailingAnchor)
+        goBackTrailingLayoutConstraint.isActive = true
+        UIView.animate(withDuration: 0.7) { self.layoutIfNeeded() }
+    }
+    
+    func showAllButtons() {
+        goBackTrailingLayoutConstraint.isActive = false
+        goBackTrailingLayoutConstraint = goBackButton.trailingAnchor.constraint(equalTo: textView.centerXAnchor, constant: -4)
+        goBackTrailingLayoutConstraint.isActive = true
+        
+        goOnLeadingLayoutConstraint.isActive = false
+        goOnLeadingLayoutConstraint = goOnButton.leadingAnchor.constraint(equalTo: goBackButton.trailingAnchor, constant: 8)
+        goOnLeadingLayoutConstraint.isActive = true
+        
+        UIView.animate(withDuration: 0.7) { self.layoutIfNeeded() }
     }
 
 }

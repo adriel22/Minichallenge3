@@ -17,11 +17,14 @@ class DetailsViewController: UIViewController {
     
     var viewModel: DetailsViewModelProtocol? {
         didSet {
+            viewModel?.animationDelegate = self
             viewModel?.update(self)
         }
     }
 
     lazy var selected = 0
+    lazy var shouldAnimateUpView = false
+    lazy var shouldAnimateDownView = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,9 +70,8 @@ class DetailsViewController: UIViewController {
     }
 
     func configureNavigationBar() {
-        let image = UIImage(named: "Dismiss")
-        navigationItem.title = "Jurema, a aventureira da vida real"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(dismiss(_:)))
+        viewModel?.setNavigationBarTitle?(in: navigationItem)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(dismiss(_:)))
     }
 
     func setDelegatesAndDataSources() {
@@ -119,12 +121,18 @@ class DetailsViewController: UIViewController {
     @objc func goOn(_ sender: UIButton) {
         downnodeView.textView.resignFirstResponder()
         viewModel?.goOn(branchIndex: selected)
+        selected = 0
+        shouldAnimateUpView = true
+        shouldAnimateDownView = true
         viewModel?.update(self)
     }
     
     @objc func goBack(_ sender: UIButton) {
         downnodeView.textView.resignFirstResponder()
         viewModel?.goBack()
+        selected = 0
+        shouldAnimateUpView = true
+        shouldAnimateDownView = true
         viewModel?.update(self)
     }
 
@@ -213,6 +221,8 @@ extension DetailsViewController: UICollectionViewDataSource, UICollectionViewDel
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selected = indexPath.item
+        shouldAnimateUpView = false
+        shouldAnimateDownView = true
         viewModel?.update(self)
     }
 
@@ -224,13 +234,22 @@ extension DetailsViewController: UICollectionViewDataSource, UICollectionViewDel
     }
 
 }
-extension DetailsViewController: DetailsViewModelDelegate {
+extension DetailsViewController: DetailsViewModelDelegate, DetailsViewModelAnimationDelegate {
     func showAddView(_ controller: AddRamificationViewController) {
         controller.viewModel.trasitioningDelegate = self.viewModel as? AddRamificationTrasitioningDelegate
         self.present(controller, animated: true, completion: nil)
     }
+    
     func updateView() {
         self.viewModel?.update(self)
+    }
+    
+    func shouldAnimateUpnodeView() -> Bool {
+        return shouldAnimateUpView
+    }
+    
+    func shouldAnimateDownnodeView() -> Bool {
+        return shouldAnimateDownView
     }
     
 }

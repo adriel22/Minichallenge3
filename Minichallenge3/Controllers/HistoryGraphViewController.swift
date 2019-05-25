@@ -30,6 +30,7 @@ class HistoryGraphViewController: UIViewController {
     
     lazy var toolBox: ToolboxView = {
         let toolBox = ToolboxView(frame: .zero)
+        toolBox.delegate = self
         toolBox.translatesAutoresizingMaskIntoConstraints = false
         return toolBox
     }()
@@ -43,11 +44,6 @@ class HistoryGraphViewController: UIViewController {
     override func viewDidLoad() {
         setupView()
         setConstraints()
-        
-        
-//        Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { (_) in
-//            self.viewModel.optionWasSelected(atPositon: 0)
-//        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -76,26 +72,21 @@ class HistoryGraphViewController: UIViewController {
     }
     
     @objc func playWasTapped(recognizer: UITapGestureRecognizer) {
-        viewModel?.playWasTapped(self)
+        viewModel?.playWasTapped(navigationController ?? self)
     }
     
     func setConstraints() {
         let constraints = [
-            graphView.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
+            graphView.topAnchor.constraint(equalTo: sinopseView.bottomAnchor, constant: 10),
             graphView.leftAnchor.constraint(equalTo: view.leftAnchor),
             graphView.rightAnchor.constraint(equalTo: view.rightAnchor),
             graphView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             toolBox.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
             toolBox.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -16),
-            toolBox.widthAnchor.constraint(equalToConstant: 64)
+            toolBox.widthAnchor.constraint(equalToConstant: 34)
         ]
 
         NSLayoutConstraint.activate(constraints)
-    }
-    
-    func getFirstHistory() -> HistoryGraph {
-        let history = RAMHistoryDAO()
-        return history.get(elementWithID: 0)
     }
     
     func cardForNodeType(_ nodeType: HistoryGraphViewModelNodeType) -> CardViewProtocol {
@@ -238,13 +229,12 @@ extension HistoryGraphViewController: HistoryGraphViewModelDelegate {
         self.graphView.addItem(atPositon: destinyPosition)
     }
     
-    func needDeleteConnection() {
+    func needReloadConnection() {
         self.graphView.reloadConnections()
     }
     
     func needShowViewController(_ viewController: UIViewController) {
         present(viewController, animated: true, completion: nil)
-        
     }
     
     func needReloadGraph() {
@@ -288,5 +278,23 @@ extension HistoryGraphViewController: ShortcutViewDelegate, ShortcutViewDataSour
 extension HistoryGraphViewController: SinopseDelegate {
     func textWasEdited(text: String) {
         
+    }
+}
+
+extension HistoryGraphViewController: ToolboxViewDelegate {
+    func tappedButtonAddNode() {
+        viewModel?.optionWasSelected(atPositon: 0)
+    }
+    
+    func tappedButtonTrash() {
+        viewModel?.optionWasSelected(atPositon: 1)
+    }
+    
+    func tappedButtonConnection() {
+        viewModel?.optionWasSelected(atPositon: 2)
+    }
+    
+    func tappedButtonCheck() {
+        viewModel?.optionWasFinished()
     }
 }

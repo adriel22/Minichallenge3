@@ -35,6 +35,16 @@ class PresentationViewController: UIViewController {
     
     func configureNavigationBar() {
         viewModel?.setNavigationBarTitle?(in: navigationItem)
+        let button = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(dismiss(_:)))
+        navigationItem.setRightBarButton(button, animated: false)
+    }
+    
+    @objc func dismiss(_ sender: UIBarButtonItem) {
+        if let navigation = navigationController {
+            navigation.dismiss(animated: true, completion: nil)
+        } else {
+            dismiss(animated: true, completion: nil)
+        }
     }
     
     func configureNodePresentationView() {

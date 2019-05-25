@@ -12,4 +12,5 @@ protocol ToolboxViewDelegate: class {
     func tappedButtonAddNode()
     func tappedButtonTrash()
     func tappedButtonConnection()
+    func tappedButtonCheck()
 }

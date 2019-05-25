@@ -127,6 +127,7 @@ class ItemViewConnector {
         connectorLayer.strokeColor = UIColor(color: .gray).cgColor
         connectorLayer.lineWidth = lineWidth
         connectorLayer.fillColor = UIColor.clear.cgColor
+        connectorLayer.lineCap = .round
 
         containerView.layer.insertSublayer(connectorLayer, at: 0)
         

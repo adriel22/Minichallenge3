@@ -16,6 +16,7 @@ import HistoryGraph
 
 protocol DetailsViewModelProtocol: ViewModelProtocol {
     var delegate: DetailsViewModelDelegate? { get set }
+    var animationDelegate: DetailsViewModelAnimationDelegate? { get set }
     var transitionDelegate: DetailsViewModelTransitioningDelegate? { get set }
     
     var graph: HistoryGraph { get }

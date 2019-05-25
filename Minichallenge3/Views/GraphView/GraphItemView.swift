@@ -19,6 +19,10 @@ class GraphItemView: NotifierView {
     var oldRightAnchor: NSLayoutConstraint?
     
     var eventHandler: GraphViewItemEventHandler?
+    
+    var shouldShake: Bool {
+        return true
+    }
 
     /// It sets the constraints for a item view
     ///
@@ -79,6 +83,10 @@ class GraphItemView: NotifierView {
     }
     
     func shake(repeatCount: Float) {
+        guard shouldShake else {
+            return
+        }
+        
         let shakeAnimation = CABasicAnimation(keyPath: "transform.rotation")
         let scaleAnimation = CABasicAnimation(keyPath: "transform.scale")
         shakeAnimation.duration = 0.07
