@@ -9,7 +9,7 @@
 import Foundation
 import HistoryGraph
 
-struct DISKHistoryFromatter {
+struct DISKHistoryFormatter {
     static func setDISKNodeAtributtes(
         forDISKNode diskNode: inout DISKHistoryNode,
         withHistoryNode normalNode: HistoryNode,
@@ -28,6 +28,19 @@ struct DISKHistoryFromatter {
         })
         
         if let nodeParent = normalNode.parent {
+            diskNode.parent = historyGraph.nodes.indexForNode(nodeParent)
+        }
+    }
+    
+    static func setDISKShortcutNodeAtributtes(
+        forDISKNode diskNode: inout DISKHistoryNode,
+        withHistoryNode shortcut: HistoryShortcut,
+        in historyGraph: HistoryGraph) {
+        
+        if let targetShortcutNode = shortcut.node {
+            diskNode.shortcutTarget = historyGraph.nodes.indexForNode(targetShortcutNode)
+        }
+        if let nodeParent = shortcut.parent {
             diskNode.parent = historyGraph.nodes.indexForNode(nodeParent)
         }
     }
@@ -102,10 +115,12 @@ struct DISKHistoryFromatter {
             
             if let normalNode = node as? HistoryNode {
                 setDISKNodeAtributtes(forDISKNode: &diskNode, withHistoryNode: normalNode, in: historyGraph)
-            }
-            
-            if let shortcutNode = node as? HistoryShortcut {
-                diskNode.shortcutTarget = historyGraph.nodes.indexForNode(shortcutNode)
+            } else if let shortcutNode = node as? HistoryShortcut {
+                setDISKShortcutNodeAtributtes(
+                    forDISKNode: &diskNode,
+                    withHistoryNode: shortcutNode,
+                    in: historyGraph
+                )
             }
             
             return diskNode

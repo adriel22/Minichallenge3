@@ -59,9 +59,9 @@
 		E3617DA62299646A00D1DD73 /* DISKHistoryNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3617DA52299646A00D1DD73 /* DISKHistoryNode.swift */; };
 		E3617DA8229965DC00D1DD73 /* DISConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3617DA7229965DC00D1DD73 /* DISConnection.swift */; };
 		E3617DAC229973D300D1DD73 /* Array+node.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3617DAB229973D300D1DD73 /* Array+node.swift */; };
-		E3617DB02299782400D1DD73 /* DISKHistoryFromatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3617DAF2299782400D1DD73 /* DISKHistoryFromatter.swift */; };
 		E3617DB22299789500D1DD73 /* Data+decoded.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3617DB12299789500D1DD73 /* Data+decoded.swift */; };
 		E3617DB4229978AF00D1DD73 /* Encodable+encoded.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3617DB3229978AF00D1DD73 /* Encodable+encoded.swift */; };
+		E3617DB62299AD4A00D1DD73 /* DISKHistoryFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3617DB52299AD4A00D1DD73 /* DISKHistoryFormatter.swift */; };
 		E381E2C32288D7B700E25B78 /* GraphItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381E2C22288D7B700E25B78 /* GraphItemView.swift */; };
 		E381E2C52288DC1D00E25B78 /* GraphViewConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381E2C42288DC1D00E25B78 /* GraphViewConnector.swift */; };
 		E381E2C72288DCC500E25B78 /* ItemViewConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381E2C62288DCC500E25B78 /* ItemViewConnector.swift */; };
@@ -203,9 +203,9 @@
 		E3617DA52299646A00D1DD73 /* DISKHistoryNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DISKHistoryNode.swift; path = ../DISKHistoryNode.swift; sourceTree = "<group>"; };
 		E3617DA7229965DC00D1DD73 /* DISConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DISConnection.swift; path = ../DISConnection.swift; sourceTree = "<group>"; };
 		E3617DAB229973D300D1DD73 /* Array+node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+node.swift"; sourceTree = "<group>"; };
-		E3617DAF2299782400D1DD73 /* DISKHistoryFromatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DISKHistoryFromatter.swift; sourceTree = "<group>"; };
 		E3617DB12299789500D1DD73 /* Data+decoded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+decoded.swift"; sourceTree = "<group>"; };
 		E3617DB3229978AF00D1DD73 /* Encodable+encoded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+encoded.swift"; sourceTree = "<group>"; };
+		E3617DB52299AD4A00D1DD73 /* DISKHistoryFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DISKHistoryFormatter.swift; sourceTree = "<group>"; };
 		E381E2C22288D7B700E25B78 /* GraphItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphItemView.swift; sourceTree = "<group>"; };
 		E381E2C42288DC1D00E25B78 /* GraphViewConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewConnector.swift; sourceTree = "<group>"; };
 		E381E2C62288DCC500E25B78 /* ItemViewConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewConnector.swift; sourceTree = "<group>"; };
@@ -495,8 +495,8 @@
 			isa = PBXGroup;
 			children = (
 				E3617DAA2299672A00D1DD73 /* DISKModels */,
+				E3617DB52299AD4A00D1DD73 /* DISKHistoryFormatter.swift */,
 				E3617D9622995A0D00D1DD73 /* DISKHistoryDAO.swift */,
-				E3617DAF2299782400D1DD73 /* DISKHistoryFromatter.swift */,
 			);
 			path = DISKDatabase;
 			sourceTree = "<group>";
@@ -985,6 +985,7 @@
 				E381E2C92288DE8300E25B78 /* CGPoint+add.swift in Sources */,
 				E32A37AC2290496000E2F8B1 /* GraphViewAnimator.swift in Sources */,
 				E32A37B022905F7000E2F8B1 /* NotifierView.swift in Sources */,
+				E3617DB62299AD4A00D1DD73 /* DISKHistoryFormatter.swift in Sources */,
 				921BB6E52292CD60001DA358 /* ToolboxView.swift in Sources */,
 				E381E2C52288DC1D00E25B78 /* GraphViewConnector.swift in Sources */,
 				E3617D9F22995FBE00D1DD73 /* RAMIdentifierWrapper.swift in Sources */,
@@ -995,7 +996,6 @@
 				E3593096229438FA00F502BA /* DetailsViewModelTransitioningDelegate.swift in Sources */,
 				FC0137E32294E7BB00C97229 /* AddRamificationTrasitioningDelegate.swift in Sources */,
 				E3617D9722995A0D00D1DD73 /* DISKHistoryDAO.swift in Sources */,
-				E3617DB02299782400D1DD73 /* DISKHistoryFromatter.swift in Sources */,
 				FC02E93E228AFFC100537429 /* ExpandableTableViewHeaderView.swift in Sources */,
 				E331CCCA228846B20041379B /* GraphViewDelegate.swift in Sources */,
 				FC060916228C6A1B008C98AE /* CardView.swift in Sources */,

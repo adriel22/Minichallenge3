@@ -45,7 +45,7 @@ class DISKHistoryDAO: DAO {
             guard let diskHistory = DISKHistoryGraph(fromURL: historyURL) else {
                 return nil
             }
-            let graphHistory = DISKHistoryFromatter.DISKHistoryToHistoryGraph(diskHistory: diskHistory)
+            let graphHistory = DISKHistoryFormatter.DISKHistoryToHistoryGraph(diskHistory: diskHistory)
             
             return graphHistory
         })
@@ -55,7 +55,7 @@ class DISKHistoryDAO: DAO {
         guard element.idKey == nil else {
             return nil
         }
-        let diskHistory = DISKHistoryFromatter.historyGraphToDISKModel(historyGraph: element)
+        let diskHistory = DISKHistoryFormatter.historyGraphToDISKModel(historyGraph: element)
         
         guard let historyData = try? diskHistory.encoded(),
               let historyURL = historyURL?.appendingPathComponent(diskHistory.identifier) else {
@@ -83,7 +83,7 @@ class DISKHistoryDAO: DAO {
         guard element.idKey != nil else {
             return false
         }
-        let diskHistory = DISKHistoryFromatter.historyGraphToDISKModel(historyGraph: element)
+        let diskHistory = DISKHistoryFormatter.historyGraphToDISKModel(historyGraph: element)
         
         guard let historyData = try? diskHistory.encoded(),
               let historyURL = historyURL?.appendingPathComponent(diskHistory.identifier) else {
