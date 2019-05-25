@@ -26,6 +26,9 @@ class MyNarrativesViewController: UIViewController {
         return tableView
     }()
 
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.barStyle = .black
+    }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }

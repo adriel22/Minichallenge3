@@ -73,6 +73,7 @@
 		E3C030D3228479DC00AD53E0 /* HistoryConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B32282F1F300AD53E0 /* HistoryConnection.swift */; };
 		E3C030D4228479DC00AD53E0 /* HistoryNodesGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B5228322FC00AD53E0 /* HistoryNodesGrid.swift */; };
 		E3C462DE2293914300699960 /* SinopseDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C462DD2293914300699960 /* SinopseDelegate.swift */; };
+		FC0137E32294E7BB00C97229 /* AddRamificationTrasitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0137E22294E7BB00C97229 /* AddRamificationTrasitioningDelegate.swift */; };
 		FC017E40228E577E008979E7 /* AddRamificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC017E3F228E577E008979E7 /* AddRamificationViewModel.swift */; };
 		FC022736229329250059FBA5 /* MyNarrativesViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC022735229329250059FBA5 /* MyNarrativesViewModelDelegate.swift */; };
 		FC02E93D228AFFC100537429 /* ExpandableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02E939228AFFC100537429 /* ExpandableTableViewCell.swift */; };
@@ -88,6 +89,8 @@
 		FC02F5F1228D9AC9008F0777 /* AddRamificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02F5F0228D9AC9008F0777 /* AddRamificationViewController.swift */; };
 		FC02F5F3228DA510008F0777 /* AddRamificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC02F5F2228DA510008F0777 /* AddRamificationsView.swift */; };
 		FC060916228C6A1B008C98AE /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC060915228C6A1B008C98AE /* CardView.swift */; };
+		FC0615F7229441AC00BF3946 /* DetailsViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0615F6229441AC00BF3946 /* DetailsViewModelDelegate.swift */; };
+		FC0615F9229441CB00BF3946 /* AddRamificationViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0615F8229441CB00BF3946 /* AddRamificationViewModelDelegate.swift */; };
 		FC0BA47C2292CCBF00E10AF2 /* MyNarrativesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0BA47B2292CCBF00E10AF2 /* MyNarrativesViewModel.swift */; };
 		FCB3548E228065AF00AB7ED2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB3548D228065AF00AB7ED2 /* AppDelegate.swift */; };
 		FCB35490228065AF00AB7ED2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB3548F228065AF00AB7ED2 /* ViewController.swift */; };
@@ -206,6 +209,7 @@
 		E3C030C3228478EB00AD53E0 /* HistoryGraph.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HistoryGraph.h; sourceTree = "<group>"; };
 		E3C030C4228478EB00AD53E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E3C462DD2293914300699960 /* SinopseDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinopseDelegate.swift; sourceTree = "<group>"; };
+		FC0137E22294E7BB00C97229 /* AddRamificationTrasitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRamificationTrasitioningDelegate.swift; sourceTree = "<group>"; };
 		FC017E3F228E577E008979E7 /* AddRamificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRamificationViewModel.swift; sourceTree = "<group>"; };
 		FC022735229329250059FBA5 /* MyNarrativesViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNarrativesViewModelDelegate.swift; sourceTree = "<group>"; };
 		FC02E939228AFFC100537429 /* ExpandableTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandableTableViewCell.swift; sourceTree = "<group>"; };
@@ -221,6 +225,8 @@
 		FC02F5F0228D9AC9008F0777 /* AddRamificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRamificationViewController.swift; sourceTree = "<group>"; };
 		FC02F5F2228DA510008F0777 /* AddRamificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRamificationsView.swift; sourceTree = "<group>"; };
 		FC060915228C6A1B008C98AE /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		FC0615F6229441AC00BF3946 /* DetailsViewModelDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailsViewModelDelegate.swift; path = Minichallenge3/ViewModels/DetailsViewModelDelegate.swift; sourceTree = SOURCE_ROOT; };
+		FC0615F8229441CB00BF3946 /* AddRamificationViewModelDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRamificationViewModelDelegate.swift; sourceTree = "<group>"; };
 		FC0BA47B2292CCBF00E10AF2 /* MyNarrativesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNarrativesViewModel.swift; sourceTree = "<group>"; };
 		FCB3548A228065AF00AB7ED2 /* Minichallenge3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Minichallenge3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCB3548D228065AF00AB7ED2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -458,6 +464,7 @@
 		E3593093229438FA00F502BA /* Details */ = {
 			isa = PBXGroup;
 			children = (
+				FC0615F6229441AC00BF3946 /* DetailsViewModelDelegate.swift */,
 				E3593094229438FA00F502BA /* DetailsViewModelTransitioningDelegate.swift */,
 				E3593095229438FA00F502BA /* DetailsViewModel.swift */,
 			);
@@ -518,6 +525,16 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		FC0137E42294E89B00C97229 /* AddRamification */ = {
+			isa = PBXGroup;
+			children = (
+				FC017E3F228E577E008979E7 /* AddRamificationViewModel.swift */,
+				FC0615F8229441CB00BF3946 /* AddRamificationViewModelDelegate.swift */,
+				FC0137E22294E7BB00C97229 /* AddRamificationTrasitioningDelegate.swift */,
+			);
+			path = AddRamification;
+			sourceTree = "<group>";
+		};
 		FC02E8DC228AE18900537429 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -563,7 +580,7 @@
 				E347A87D22934E34001423B5 /* Details */,
 				E32A37DA2290C35800E2F8B1 /* HistoryNode */,
 				E32A37C92290A05E00E2F8B1 /* HistoryGraph */,
-				FC017E3F228E577E008979E7 /* AddRamificationViewModel.swift */,
+				FC0137E42294E89B00C97229 /* AddRamification */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -892,6 +909,7 @@
 				FC02F5E7228D8E32008F0777 /* DetailsViewController.swift in Sources */,
 				FC02F5F3228DA510008F0777 /* AddRamificationsView.swift in Sources */,
 				FC02F5DA228D8B31008F0777 /* UITextView+addDoneButtonOnKeyboard.swift in Sources */,
+				FC0615F7229441AC00BF3946 /* DetailsViewModelDelegate.swift in Sources */,
 				FCB35490228065AF00AB7ED2 /* ViewController.swift in Sources */,
 				E32A37D12290B4F000E2F8B1 /* HistoryGraphViewModelDelegate.swift in Sources */,
 				E32A37AA229040B300E2F8B1 /* OperationAnimationStage.swift in Sources */,
@@ -925,9 +943,11 @@
 				E32A37B022905F7000E2F8B1 /* NotifierView.swift in Sources */,
 				921BB6E52292CD60001DA358 /* ToolboxView.swift in Sources */,
 				E381E2C52288DC1D00E25B78 /* GraphViewConnector.swift in Sources */,
+				FC0615F9229441CB00BF3946 /* AddRamificationViewModelDelegate.swift in Sources */,
 				FC02F5EA228D8EA2008F0777 /* BranchCollectionViewCell.swift in Sources */,
 				E32A37CF2290A14A00E2F8B1 /* HistoryNodeViewModel.swift in Sources */,
 				E3593096229438FA00F502BA /* DetailsViewModelTransitioningDelegate.swift in Sources */,
+				FC0137E32294E7BB00C97229 /* AddRamificationTrasitioningDelegate.swift in Sources */,
 				FC02E93E228AFFC100537429 /* ExpandableTableViewHeaderView.swift in Sources */,
 				E331CCCA228846B20041379B /* GraphViewDelegate.swift in Sources */,
 				FC060916228C6A1B008C98AE /* CardView.swift in Sources */,
