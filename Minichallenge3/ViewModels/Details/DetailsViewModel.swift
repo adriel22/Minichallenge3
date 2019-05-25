@@ -23,7 +23,7 @@ class DetailsViewModel: DetailsViewModelProtocol {
         self.graph = graph
     }
     
-    func titleForCollectionViewCell(atIndexPath indexPath: IndexPath) -> String? {
+    func titleForCollectionViewCell(at indexPath: IndexPath) -> String? {
         return story.connections[indexPath.item].title
     }
     
@@ -32,7 +32,7 @@ class DetailsViewModel: DetailsViewModelProtocol {
         delegate?.showAddView(addView)
     }
     
-    func textUpdated(with text: String, inNode node: HistoryNode) {
+    func textUpdated(with text: String, in node: HistoryNode) {
         node.text = text
     }
     
@@ -56,7 +56,7 @@ class DetailsViewModel: DetailsViewModelProtocol {
         view.upnodeView.reload(withText: story.text)
     }
     
-    func setNavigationBarTitle(inNavigationItem item: UINavigationItem) {
+    func setNavigationBarTitle(in item: UINavigationItem) {
         item.title = story.resume
     }
     

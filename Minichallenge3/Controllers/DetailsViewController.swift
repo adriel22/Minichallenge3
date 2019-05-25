@@ -94,17 +94,13 @@ class DetailsViewController: UIViewController {
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-        
-        let statusBarHeight = UIApplication.shared.statusBarFrame.height
-        let navigationBarHeight = self.navigationController!.navigationBar.frame.height
-        let halfScreenHeight = (UIScreen.main.bounds.height - statusBarHeight - navigationBarHeight)/2
     
         upnodeView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             upnodeView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             upnodeView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             upnodeView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5),
-            upnodeView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor, constant: -halfScreenHeight/2)
+            upnodeView.bottomAnchor.constraint(equalTo: scrollView.centerYAnchor)
         ])
 
         downnodeView.translatesAutoresizingMaskIntoConstraints = false
@@ -180,7 +176,7 @@ extension DetailsViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         if textView === upnodeView.textView {
             if let viewModel = viewModel {
-                viewModel.textUpdated(with: textView.text, inNode: viewModel.story)
+                viewModel.textUpdated(with: textView.text, in: viewModel.story)
             }
         }
 
@@ -188,7 +184,7 @@ extension DetailsViewController: UITextViewDelegate {
             if let branches = viewModel?.story.connections {
                 if branches.isEmpty { return }
                 guard let node =  branches[selected].destinyNode as? HistoryNode else { return }
-                viewModel?.textUpdated(with: textView.text, inNode: node)
+                viewModel?.textUpdated(with: textView.text, in: node)
             }
         }
     }
@@ -200,8 +196,8 @@ extension DetailsViewController: UICollectionViewDataSource, UICollectionViewDel
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? BranchCollectionViewCell
-        cell?.title = viewModel?.titleForCollectionViewCell(atIndexPath: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "branchCell", for: indexPath) as? BranchCollectionViewCell
+        cell?.title = viewModel?.titleForCollectionViewCell(at: indexPath)
         return cell!
     }
     
@@ -221,7 +217,7 @@ extension DetailsViewController: UICollectionViewDataSource, UICollectionViewDel
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let font = UIFont.systemFont(ofSize: 13)
-        let string = viewModel?.titleForCollectionViewCell(atIndexPath: indexPath) ?? ""
+        let string = viewModel?.titleForCollectionViewCell(at: indexPath) ?? ""
         let width = string.width(usingFont: font) + 32
         return CGSize(width: width, height: 48)
     }

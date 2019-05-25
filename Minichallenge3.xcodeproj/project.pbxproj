@@ -11,7 +11,7 @@
 		3C200C2F228D9BFE002F7FAF /* PresentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C200C2E228D9BFE002F7FAF /* PresentationViewController.swift */; };
 		3C200C31228D9CE8002F7FAF /* ViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C200C30228D9CE8002F7FAF /* ViewModelProtocol.swift */; };
 		3C200C33228D9E92002F7FAF /* NodePresentationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C200C32228D9E92002F7FAF /* NodePresentationTableViewCell.swift */; };
-		3C200C572294773A002F7FAF /* BranchCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C200C5622947738002F7FAF /* BranchCollectionView.swift */; };
+		3C4765F22296FF730048AAAA /* PresentationDelegateDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4765F12296FF730048AAAA /* PresentationDelegateDataSource.swift */; };
 		921BB6E52292CD60001DA358 /* ToolboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921BB6E42292CD60001DA358 /* ToolboxView.swift */; };
 		921BB6E72292D301001DA358 /* ToolboxViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921BB6E62292D301001DA358 /* ToolboxViewDelegate.swift */; };
 		927CFA5B228DAB8800CAC09E /* ShortcutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927CFA5A228DAB8800CAC09E /* ShortcutView.swift */; };
@@ -150,7 +150,7 @@
 		3C200C2E228D9BFE002F7FAF /* PresentationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationViewController.swift; sourceTree = "<group>"; };
 		3C200C30228D9CE8002F7FAF /* ViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelProtocol.swift; sourceTree = "<group>"; };
 		3C200C32228D9E92002F7FAF /* NodePresentationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodePresentationTableViewCell.swift; sourceTree = "<group>"; };
-		3C200C5622947738002F7FAF /* BranchCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchCollectionView.swift; sourceTree = "<group>"; };
+		3C4765F12296FF730048AAAA /* PresentationDelegateDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationDelegateDataSource.swift; sourceTree = "<group>"; };
 		3CF4D23D356FA463D37FC974 /* Pods_Minichallenge3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Minichallenge3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4405664E379635FBB9519A12 /* Pods-Minichallenge3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Minichallenge3.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Minichallenge3/Pods-Minichallenge3.debug.xcconfig"; sourceTree = "<group>"; };
 		921BB6E42292CD60001DA358 /* ToolboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolboxView.swift; sourceTree = "<group>"; };
@@ -292,17 +292,9 @@
 		3C200C2A228D9B39002F7FAF /* PresentationView */ = {
 			isa = PBXGroup;
 			children = (
-				3C200C5622947738002F7FAF /* BranchCollectionView.swift */,
-			);
-			path = PresentationView;
-			sourceTree = "<group>";
-		};
-		3C200C2B228D9B82002F7FAF /* PresentationNodeCell */ = {
-			isa = PBXGroup;
-			children = (
 				3C200C32228D9E92002F7FAF /* NodePresentationTableViewCell.swift */,
 			);
-			path = PresentationNodeCell;
+			path = PresentationView;
 			sourceTree = "<group>";
 		};
 		927CFA59228DAB5800CAC09E /* ShortcutView */ = {
@@ -417,7 +409,6 @@
 				E32A379D228B011300E2F8B1 /* CustomNavigation.swift */,
 				E32A379C228B011300E2F8B1 /* MyNarrativesView.swift */,
 				FC02E92B228AFEBF00537429 /* ExpandableCell */,
-				3C200C2B228D9B82002F7FAF /* PresentationNodeCell */,
 				E331CCC7228846720041379B /* GraphView */,
 				927CFA59228DAB5800CAC09E /* ShortcutView */,
 				FC060914228C69FC008C98AE /* CardView */,
@@ -571,6 +562,7 @@
 				3C200C2E228D9BFE002F7FAF /* PresentationViewController.swift */,
 				E32A37C422909D7400E2F8B1 /* HistoryGraphViewController.swift */,
 				FC02F5F0228D9AC9008F0777 /* AddRamificationViewController.swift */,
+				3C4765F12296FF730048AAAA /* PresentationDelegateDataSource.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -971,7 +963,6 @@
 				E32A37E12291996F00E2F8B1 /* GraphViewDidLayoutType.swift in Sources */,
 				E32A37DF22917EB000E2F8B1 /* GraphViewConnectionEventHandler.swift in Sources */,
 				E381E2C92288DE8300E25B78 /* CGPoint+add.swift in Sources */,
-				3C200C572294773A002F7FAF /* BranchCollectionView.swift in Sources */,
 				3C200C2F228D9BFE002F7FAF /* PresentationViewController.swift in Sources */,
 				E32A37AC2290496000E2F8B1 /* GraphViewAnimator.swift in Sources */,
 				E32A37B022905F7000E2F8B1 /* NotifierView.swift in Sources */,
@@ -983,6 +974,7 @@
 				E3593096229438FA00F502BA /* DetailsViewModelTransitioningDelegate.swift in Sources */,
 				FC0137E32294E7BB00C97229 /* AddRamificationTrasitioningDelegate.swift in Sources */,
 				FC02E93E228AFFC100537429 /* ExpandableTableViewHeaderView.swift in Sources */,
+				3C4765F22296FF730048AAAA /* PresentationDelegateDataSource.swift in Sources */,
 				E331CCCA228846B20041379B /* GraphViewDelegate.swift in Sources */,
 				FC060916228C6A1B008C98AE /* CardView.swift in Sources */,
 				E3593097229438FA00F502BA /* DetailsViewModel.swift in Sources */,

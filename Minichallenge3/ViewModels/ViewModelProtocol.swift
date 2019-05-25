@@ -11,7 +11,7 @@ import HistoryGraph
 
 @objc protocol ViewModelProtocol {
     func update(_ view: UIViewController)
-    @objc optional func setNavigationBarTitle(inNavigationItem item: UINavigationItem)
+    @objc optional func setNavigationBarTitle(in item: UINavigationItem)
 }
 
 protocol DetailsViewModelProtocol: ViewModelProtocol {
@@ -21,8 +21,8 @@ protocol DetailsViewModelProtocol: ViewModelProtocol {
     var graph: HistoryGraph { get }
     var story: HistoryNode { get }
     
-    func titleForCollectionViewCell(atIndexPath indexPath: IndexPath) -> String?
-    func textUpdated(with text: String, inNode node: HistoryNode)
+    func titleForCollectionViewCell(at indexPath: IndexPath) -> String?
+    func textUpdated(with text: String, in node: HistoryNode)
     func addBranch()
     func goOn(branchIndex: Int)
     func willCloseController()
@@ -33,11 +33,12 @@ protocol PresentationViewModelProtocol: ViewModelProtocol {
     var rootNode: HistoryNode { get }
     var nodes: [HistoryNode] { get }
     
-    func textForTableViewCell(atIndexPath indexPath: IndexPath, reuseIdentifier: String) -> String?
-    func titleForCollectionViewCell(atTableViewIndexPath tableViewIndexPath: IndexPath, atCollectionViewIndexPath collectionViewIndexPath: IndexPath) -> String?
-    func titleForHeader(atSection section: Int, selectedBranch: Int?) -> String?
+    func updateHeaderTitle(with title: String?, in view: UIViewController)
+    func titleForHeader(at section: Int) -> String?
+    func textForHistoryNode(at section: Int) -> String?
+    func titleForCollectionViewCell(at section: Int, at collectionViewIndexPath: IndexPath) -> String?
     
-    func forwardBranch(tableViewIndexPath: IndexPath, collectionViewIndexPath: IndexPath, updateView view: UIViewController)
-    func switchBranch(tableViewIndexPath: IndexPath, collectionViewIndexPath: IndexPath, updateView view: UIViewController)
-    func undo(atSection section: Int, inView view: UIViewController)
+    func forwardBranch(section: Int, indexPath: IndexPath, in view: UIViewController)
+    func undo(in view: UIViewController)
+    
 }

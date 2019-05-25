@@ -76,7 +76,7 @@ class HistoryGraphViewController: UIViewController {
     }
     
     @objc func playWasTapped(recognizer: UITapGestureRecognizer) {
-        viewModel?.playWasTapped()
+        viewModel?.playWasTapped(self)
     }
     
     func setConstraints() {

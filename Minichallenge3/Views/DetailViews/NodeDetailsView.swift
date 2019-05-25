@@ -19,23 +19,17 @@ class NodeDetailsView: UIView {
     
     lazy var textView = UITextView(frame: .zero)
     
-    private lazy var branches = BranchCollectionView(frame: .zero, collectionViewLayout: .flow)
+    private lazy var branches = UICollectionView(frame: .zero, collectionViewLayout: .flow)
     private lazy var addBranchButton = UIButton(frame: .zero)
     private lazy var goOnButton = UIButton(frame: .zero)
     
-    private let collectionHeight: CGFloat = 48
+    let collectionHeight: CGFloat = 48
     private var collectionTrailingContraint: NSLayoutConstraint!
     private var position: NodeType!
     
     var text: String? = "" {
         didSet {
             textView.text = text
-        }
-    }
-    
-    var tableViewSection: Int? {
-        didSet {
-            branches.tableViewSection = tableViewSection
         }
     }
     
