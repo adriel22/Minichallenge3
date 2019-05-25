@@ -12,7 +12,7 @@ public class HistoryNodesGrid: CustomStringConvertible {
 
     public var graphWidth: Int
     public var graphHeight: Int
-    weak var graph: HistoryGraph?
+    public weak var graph: HistoryGraph?
 
     public weak var delegate: HistoryGridDelegate?
 
@@ -46,18 +46,22 @@ public class HistoryNodesGrid: CustomStringConvertible {
         }
     }
 
-    init(width: Int, andHeight height: Int) {
+    public init(width: Int, andHeight height: Int) {
         self.graphWidth = width
         self.graphHeight = height
     }
 
     /// add a column to the begin of the grid
     func addColumToGridBegin() {
+        guard let graph = self.graph else {
+            fatalError("The grid must have a associeted graph")
+        }
+        
         for lineIndex in 0..<graphHeight {
             grid[lineIndex].insert(nil, at: 0)
         }
 
-        graph?.nodes.forEach({ (currentNode) in
+        graph.nodes.forEach({ (currentNode) in
             currentNode.positionX += 1
         })
 

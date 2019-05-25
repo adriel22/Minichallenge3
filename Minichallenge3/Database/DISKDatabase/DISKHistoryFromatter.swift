@@ -122,6 +122,8 @@ struct DISKHistoryFromatter {
             andHeight: diskHistory.gridHeight
         )
         
+        historyGraph.idKey = diskHistory.identifier
+        
         historyGraph.nodes = diskHistory.nodes.map({ (currentDISKNode) -> HistoryNodeProtocol in
             guard currentDISKNode.shortcutTarget != nil else {
                 return HistoryNode(
@@ -143,6 +145,28 @@ struct DISKHistoryFromatter {
             setAtributtes(forHistoryNode: historyNode, withDISKNode: diskNode, in: historyGraph)
         }
         
+        historyGraph.grid = createGridForHistory(
+            historyGraph,
+            withSize: (
+                width: diskHistory.gridWidth,
+                height: diskHistory.gridHeight
+            )
+        )
+        
         return historyGraph
+    }
+    
+    static func createGridForHistory(
+        _ historyGraph: HistoryGraph,
+        withSize size: (width: Int, height: Int)) -> HistoryNodesGrid {
+        let grid = HistoryNodesGrid(width: size.width, andHeight: size.height)
+        
+        historyGraph.nodes.forEach { (currentNode) in
+            grid[currentNode.positionY, currentNode.positionX] = currentNode
+        }
+        
+        grid.graph = historyGraph
+        
+        return grid
     }
 }

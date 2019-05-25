@@ -37,7 +37,7 @@ class HistoryGraphViewModel {
     
     private var historyGraph: HistoryGraph
     private var historyGraphID: Int
-    private var historyDAO = RAMHistoryDAO()
+    private var historyDAO = DISKHistoryDAO()
     
     var currentState: HistoryGraphState = .normal {
         didSet {
@@ -105,7 +105,9 @@ class HistoryGraphViewModel {
     }
     
     func viewWillDisappear() {
-        historyDAO.update(element: historyGraph)
+        if !historyDAO.update(element: historyGraph) {
+            delegate?.needShowError(message: "Was not possible saving the changes")
+        }
     }
     
     func connectionButtonWasSelected(connection: Connection) {

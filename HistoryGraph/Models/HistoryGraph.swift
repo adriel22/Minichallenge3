@@ -132,7 +132,7 @@ open class HistoryGraph: CustomStringConvertible {
 
         grid.delegate?.addShortcut(inPosition: (shortcut.positionX, shortcut.positionY))
         
-        addBordersToNode(destinyNode)
+        addBordersToNode(shortcut)
     }
 
     /// checks if a node is the graph
