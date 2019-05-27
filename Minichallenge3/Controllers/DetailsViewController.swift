@@ -135,6 +135,14 @@ class DetailsViewController: UIViewController {
         shouldAnimateDownView = true
         viewModel?.update(self)
     }
+    
+    func collapseLastNode() {
+        
+    }
+    
+    func expandNotLastNode() {
+        
+    }
 
     @objc func dismiss(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)

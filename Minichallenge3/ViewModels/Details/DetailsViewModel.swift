@@ -76,10 +76,13 @@ class DetailsViewModel: DetailsViewModelProtocol {
         let destinyNode = !branches.isEmpty ? branches[view.selected].destinyNode : nil
         
         if destinyNode == nil {
+            view.downnodeView.collapseWhenIsTheLastNode()
             view.downnodeView.hideGoOnButton()
         } else if story === graph.nodes.first {
+            view.downnodeView.expandWhenIsNotTheLastNode()
             view.downnodeView.hideGoBackButton()
         } else {
+            view.downnodeView.expandWhenIsNotTheLastNode()
             view.downnodeView.showAllButtons()
         }
         

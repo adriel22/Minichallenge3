@@ -148,7 +148,7 @@ class NodeDetailsView: UIView {
         branches.leadingAnchor.constraint(equalTo: textView.leadingAnchor).isActive = true
         collectionTrailingContraint = branches.trailingAnchor.constraint(equalTo: addBranchButton.leadingAnchor, constant: -16)
         collectionTrailingContraint.isActive = true
-        branches.topAnchor.constraint(equalTo: textView.bottomAnchor, constant: 8).isActive = true
+//        branches.topAnchor.constraint(equalTo: textView.bottomAnchor, constant: 8).isActive = true
         branches.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16).isActive = true
         branches.heightAnchor.constraint(equalToConstant: collectionHeight).isActive = true
         
@@ -241,6 +241,18 @@ class NodeDetailsView: UIView {
     
     func reload() {
         branches.reloadData()
+    }
+    
+    func collapseWhenIsTheLastNode() {
+        if position == .down {
+            backgroundColor = UIColor(color: .purpleWhite)
+        }
+    }
+    
+    func expandWhenIsNotTheLastNode() {
+        if position == .down {
+            backgroundColor = UIColor(color: .yellowWhite)
+        }
     }
     
     func adjustTextViewAndGoOnButton(offset: CGFloat) {

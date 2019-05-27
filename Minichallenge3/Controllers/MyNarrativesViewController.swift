@@ -51,6 +51,11 @@ class MyNarrativesViewController: UIViewController {
         self.view = customView
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
     @objc func addNarrative(_ sender: UIBarButtonItem) {
         //Alerta temporário
         let alert = UIAlertController(title: "Nova Narrativa", message: "Digite o nome da narrativa", preferredStyle: .alert)
