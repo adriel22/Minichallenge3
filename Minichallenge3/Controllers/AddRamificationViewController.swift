@@ -12,6 +12,7 @@ import HistoryGraph
 class AddRamificationViewController: UIViewController {
     let viewModel: AddRamificationViewModel
     let addRamificationView = AddRamificationView()
+    let searchController = UISearchController(searchResultsController: nil)
 
     init(inGraph graph: HistoryGraph, withParentNode parent: HistoryNode) {
         viewModel = AddRamificationViewModel(inGraph: graph, withParent: parent)
@@ -41,6 +42,10 @@ class AddRamificationViewController: UIViewController {
         
         addRamificationView.segmentedControl.addTarget(self.viewModel, action: #selector(viewModel.changedStateof(_:)), for: .allEvents)
 
+        
+        //Teste
+        //
+        //
     }
     override func viewWillDisappear(_ animated: Bool) {
         self.view.endEditing(true)
@@ -48,12 +53,18 @@ class AddRamificationViewController: UIViewController {
 
     @objc func buttonsAction(sender: UIButton!) {
         if sender == self.addRamificationView.createButton {
-            if let cardName = addRamificationView.cardName.text {
-                viewModel.addNode(cardName)
-            } else {
-                return
+            
+            switch addRamificationView.state {
+            case .create:
+                if let cardName = addRamificationView.cardName.text {
+                    viewModel.addNode(cardName)
+                }
+            case .reuse:
+                if let cardName = addRamificationView.searchBar.text {
+                    viewModel.reuseNode(cardName)
+//                    self.graph
+                }
             }
-
         }
         self.dismiss(animated: true, completion: nil)
     }
@@ -91,8 +102,7 @@ extension AddRamificationViewController: AddRamificationViewModelDelegate {
 
 extension AddRamificationViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        <#code#>
+//        searchController.
     }
-    
     
 }

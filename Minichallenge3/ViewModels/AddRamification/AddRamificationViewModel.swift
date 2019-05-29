@@ -55,5 +55,25 @@ class AddRamificationViewModel {
             delegate?.updateViewTostate(.reuse)
         }
     }
+    
+//    func addButtonClicked(withState state: RamificationViewStates) {
+//        switch state {
+//        case .create:
+//            if let cardName = addRamificationView.cardName.text {
+//                viewModel.addNode(cardName)
+//            }
+//        case .reuse:
+//            print("")
+//        }
+//    }
+    func reuseNode(_ nodeTitle: String) {
+        graph.nodes.forEach({
+            if $0.resume == nodeTitle {
+//                let newNode =
+                try? graph.addPath(fromNode: parentNode, toNode: $0, withTitle: "Shortcut")
+            }
+        })
+        trasitioningDelegate?.finishedAddingRamification()
+    }
 
 }

@@ -158,9 +158,11 @@ class AddRamificationView: UIView {
         if state == .create {
             cardName.isHidden = false
             searchBar.isHidden = true
+            self.state = .create
         } else {
             searchBar.isHidden = false
             cardName.isHidden = true
+            self.state = .reuse
         }
     }
     
