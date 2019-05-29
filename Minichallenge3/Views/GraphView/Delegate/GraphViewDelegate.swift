@@ -12,4 +12,5 @@ protocol GraphViewDelegate: AnyObject {
     func itemWasSelectedAt(forGraphView graphView: GraphView, postion: GridPosition)
     func connectionButtonWasSelected(forGraphView graphView: GraphView, connection: Connection)
     func didLayoutNodes(forGraphView graphView: GraphView, withLoadType loadType: GraphViewDidLayoutType)
+    func itemWasDragged(fromPosition originPosition: GridPosition, toPosition destinyPosition: GridPosition)
 }

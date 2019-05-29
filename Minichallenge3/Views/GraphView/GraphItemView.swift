@@ -17,6 +17,9 @@ class GraphItemView: NotifierView {
 
     var oldLeftAnchor: NSLayoutConstraint?
     var oldRightAnchor: NSLayoutConstraint?
+    var oldTopAnchor: NSLayoutConstraint?
+    var oldBottomAnchor: NSLayoutConstraint?
+    var oldWidthAnchor: NSLayoutConstraint?
     
     var eventHandler: GraphViewItemEventHandler?
     
@@ -46,15 +49,33 @@ class GraphItemView: NotifierView {
         translatesAutoresizingMaskIntoConstraints = false
 
         let currentLeftAnchor = self.leftAnchor.constraint(equalTo: leftAnchor, constant: columnMargin)
-        self.oldLeftAnchor = currentLeftAnchor
+        let currentTopAnchor = self.topAnchor.constraint(equalTo: lineView.topAnchor)
+        let currentBottomAnchor = self.bottomAnchor.constraint(lessThanOrEqualTo: lineView.bottomAnchor)
+        let currentWidthAnchor = self.widthAnchor.constraint(equalToConstant: widthAnchor)
 
-        let width = self.widthAnchor.constraint(equalToConstant: widthAnchor)
+        self.oldLeftAnchor = currentLeftAnchor
+        self.oldTopAnchor = currentTopAnchor
+        self.oldBottomAnchor = currentBottomAnchor
+        self.oldWidthAnchor = currentWidthAnchor
+        
         NSLayoutConstraint.activate([
-            width,
+            currentWidthAnchor,
             currentLeftAnchor,
-            self.topAnchor.constraint(equalTo: lineView.topAnchor),
-            self.bottomAnchor.constraint(lessThanOrEqualTo: lineView.bottomAnchor)
+            currentTopAnchor,
+            currentBottomAnchor
         ])
+    }
+    
+    func removeMiddleConstraints() {
+        if let widthAnchor = self.oldWidthAnchor,
+           let topAnchor = self.oldTopAnchor,
+           let bottomAnchor = self.oldBottomAnchor {
+
+            widthAnchor.isActive = false
+            topAnchor.isActive = false
+            bottomAnchor.isActive = false
+            removeConstraints([widthAnchor, topAnchor, bottomAnchor])
+        }
     }
 
     func removeOpenConstraints() {

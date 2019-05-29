@@ -36,25 +36,28 @@ class GraphViewOperator {
     public func replace(
         items: (currentItem: GraphItemView, newItem: GraphItemView),
         atPosition position: GridPosition,
-        withDatasource datasoure: GraphViewDatasource,
-        andGraphView graphView: GraphView,
+        withContext context: Context,
+        removingOriginFromParent: Bool = true,
         completion: @escaping () -> Void) {
 
-        let columnWidth  = datasoure.columnWidth(forGraphView: graphView, inXPosition: position.xPosition)
-        let columnSpacing = datasoure.columnSpacing(forGraphView: graphView)
-        let isTheLastInTheItem = position.xPosition == graphView.lineViews[position.yPosition].itemViews.count - 1
+        let columnWidth  = context.datasource.columnWidth(forGraphView: context.graphView, inXPosition: position.xPosition)
+        let columnSpacing = context.datasource.columnSpacing(forGraphView: context.graphView)
+        let isTheLastInTheItem = position.xPosition == context.graphView.lineViews[position.yPosition].itemViews.count - 1
         let positionXIsGreatherThenZero = position.xPosition > 0
-        let parentLine = graphView.lineViews[position.yPosition]
+        let parentLine = context.graphView.lineViews[position.yPosition]
         let parentItem = positionXIsGreatherThenZero ?
-            graphView.lineViews[position.yPosition].itemViews[position.xPosition - 1] : nil
+            context.graphView.lineViews[position.yPosition].itemViews[position.xPosition - 1] : nil
 
         items.currentItem.removeOpenConstraints()
         items.currentItem.removeClosingConstraints()
-        items.currentItem.removeFromSuperview()
+        
+        if removingOriginFromParent {
+            items.currentItem.removeFromSuperview()
+        }
 
         parentLine.insertSubview(items.newItem, at: position.xPosition)
         items.newItem.setConstraintsFor(
-            leftAnchor: graphView.itemViewLeftAnchor(
+            leftAnchor: context.graphView.itemViewLeftAnchor(
                 forLastItemView: parentItem,
                 inLineView: parentLine
             ),
@@ -65,7 +68,7 @@ class GraphViewOperator {
         if isTheLastInTheItem {
             items.newItem.setClosingConstraints()
         } else {
-            let childItem = graphView.lineViews[position.yPosition].itemViews[position.xPosition + 1]
+            let childItem = context.graphView.lineViews[position.yPosition].itemViews[position.xPosition + 1]
             childItem.setConstraintsFor(
                 leftAnchor: items.newItem.rightAnchor,
                 widthAnchor: columnWidth,
@@ -92,8 +95,7 @@ class GraphViewOperator {
                 newItem: newItem
             ),
             atPosition: position,
-            withDatasource: context.datasource,
-            andGraphView: context.graphView,
+            withContext: context,
             completion: completion
         )
         
@@ -120,8 +122,7 @@ class GraphViewOperator {
                 newItem: newItem
             ),
             atPosition: position,
-            withDatasource: context.datasource,
-            andGraphView: context.graphView,
+            withContext: context,
             completion: completion
         )
         

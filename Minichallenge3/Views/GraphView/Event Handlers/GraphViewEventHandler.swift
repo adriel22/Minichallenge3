@@ -28,8 +28,6 @@ class GraphViewEventHandler: NSObject {
         
         graphView?.zoomScale = scale
     }
-    
-    
 }
 
 extension GraphViewEventHandler: UIScrollViewDelegate {

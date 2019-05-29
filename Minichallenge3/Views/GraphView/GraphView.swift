@@ -78,7 +78,6 @@ class GraphView: UIScrollView {
         }
 
         connector.removeConnectors(fromContainerView: containerView)
-        
         connector.build(withDatasource: datasource, graphView: self, andContainerView: containerView)
     }
     
@@ -343,6 +342,16 @@ class GraphView: UIScrollView {
         }.first
     }
     
+    func itemView(atPosition position: CGPoint) -> GraphItemView? {
+        return lineViews.flatMap { (currentLine) -> [GraphItemView] in
+            return currentLine.itemViews.filter({ (currentItem) -> Bool in
+                let frameInContainer = currentLine.convert(currentItem.frame, to: self.containerView)
+                
+                return frameInContainer.contains(position)
+            })
+        }.first
+    }
+    
     func isValidLine(position: Int, inGraphView graphView: GraphView, extraSize: Int = 0) -> Bool {
         let positionIsValid = position >= 0 && position < (graphView.lineViews.count + extraSize)
         return positionIsValid
@@ -375,4 +384,9 @@ class GraphView: UIScrollView {
             itemViewAtPosition.shake(repeatCount: 10)
         }
     }
+//
+//    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        super.touchesMoved(touches, with: event)
+//        print(event)
+//    }
 }

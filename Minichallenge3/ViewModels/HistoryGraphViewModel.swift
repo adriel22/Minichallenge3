@@ -52,6 +52,30 @@ class HistoryGraphViewModel {
         historyGraph.grid.delegate = self
     }
     
+    func itemWasDragged(fromPosition originPosition: GridPosition, toPosition destinyPosition: GridPosition) {
+        guard self.historyGraph.grid[destinyPosition.yPosition, destinyPosition.xPosition] == nil,
+              let draggedNode = self.historyGraph.grid[originPosition.yPosition, originPosition.xPosition] else {
+            return
+        }
+        do {
+            try self.historyGraph.removeNode(draggedNode)
+            draggedNode.positionX = destinyPosition.xPosition
+            draggedNode.positionY = destinyPosition.yPosition
+            try self.historyGraph.addNode(draggedNode)
+        } catch let error as HistoryError {
+            delegate?.needShowError(message: error.rawValue)
+        } catch {
+            delegate?.needShowError(message: "A Error Happend")
+        }
+    }
+    
+    func parentPositions(fromPosition position: GridPosition) -> [GridPosition] {
+        guard let parentNode = self.historyGraph.grid[position.yPosition, position.xPosition]?.parent else {
+            return []
+        }
+        return [(yPosition: parentNode.positionY, xPosition: parentNode.positionX)]
+    }
+    
     func gridSize() -> GridSize {
         return (width: historyGraph.grid.graphWidth, height: historyGraph.grid.graphHeight)
     }
@@ -178,6 +202,11 @@ class HistoryGraphViewModel {
             message: "Tap the path name",
             action: "OK", cancelAction: "Cancel",
             completion: { [weak self] (pathName) in
+                if let lastTappedPosition = self?.lastTappedNodePosition {
+                    self?.lastTappedNodePosition = nil
+                    self?.delegate?.needReloadNode(atPosition: lastTappedPosition)
+                }
+                
                 do {
                     try self?.historyGraph.addPath(fromNode: originNode, toNode: destinyNode, withTitle: pathName)
                     self?.delegate?.needReloadConnection()
@@ -187,10 +216,10 @@ class HistoryGraphViewModel {
                 } catch {
                     self?.delegate?.needShowError(message: "A Error Happend")
                 }
-            }, cancelCompletion: {
-                if let lastTappedPosition = self.lastTappedNodePosition {
-                    self.lastTappedNodePosition = nil
-                    self.delegate?.needReloadNode(atPosition: lastTappedPosition)
+            }, cancelCompletion: { [weak self] in
+                if let lastTappedPosition = self?.lastTappedNodePosition {
+                    self?.lastTappedNodePosition = nil
+                    self?.delegate?.needReloadNode(atPosition: lastTappedPosition)
                 }
             }
         )
