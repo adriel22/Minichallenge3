@@ -40,4 +40,8 @@ extension CGPoint {
     public func translateToY(of point: CGPoint) -> CGPoint {
         return CGPoint(x: x, y: point.y)
     }
+    
+    public func distanceTo(otherPoint: CGPoint) -> CGFloat {
+        return sqrt(pow(self.x - otherPoint.x, 2) + pow(self.y - otherPoint.y, 2))
+    }
 }

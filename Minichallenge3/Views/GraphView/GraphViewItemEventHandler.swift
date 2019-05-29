@@ -13,7 +13,7 @@ class GraphViewItemEventHandler {
     weak var itemView: GraphItemView?
     weak var delegate: GraphViewDelegate?
     
-    var draggingInfo: (itemView: GraphItemView?, originPosition: GridPosition?)
+    var draggingInfo: (itemView: UIView?, originPosition: GridPosition?, lastNearItems: [GraphItemView]?)
 
     init(
         withItemView itemView: GraphItemView,
@@ -35,143 +35,126 @@ class GraphViewItemEventHandler {
     }
     
     @objc func itemWasLongPressed(recognizer: UILongPressGestureRecognizer) {
-        switch recognizer.state {
-        case .began:
-            guard let graphView = self.graphView,
-                  let graphViewDatasource = graphView.datasource,
-                  let itemView = self.itemView,
-                  let positionForItem = graphView.position(forItemView: itemView),
-                  graphViewDatasource.connections(forGraphView: graphView, fromItemAtPosition: positionForItem).count == 0,
-                  graphViewDatasource.parents(forGraphView: graphView, fromItemAtPosition: positionForItem).count == 0 else {
-                return
-            }
-            
-            let placeHolder = GraphItemEmptyView()
-            let pressPosition = recognizer.location(in: graphView.containerView)
-            
-            graphView.graphOperator.replace(
-                items: (
-                    currentItem: itemView,
-                    newItem: placeHolder
-                ),
-                atPosition: positionForItem,
-                withContext: (
-                    graphView: graphView,
-                    containerView: graphView.containerView,
-                    datasource: graphViewDatasource
-                ),
-                completion: { [weak self] in
-                    self?.draggingInfo = (itemView, positionForItem)
-                    itemView.removeMiddleConstraints()
-                    itemView.translatesAutoresizingMaskIntoConstraints = true
-                    itemView.center = pressPosition
-                    graphView.containerView.addSubview(itemView)
-                    graphView.isScrollEnabled = false
-                    graphView.containerView.touchesMovedCompletion = { (_) in
-                        
-                    }
-                   
-                    let dragGestureRecognizer = UIPanGestureRecognizer(
-                        target: self,
-                        action: #selector(self?.itemWasDragged(recognizer:))
-                    )
-                    itemView.addGestureRecognizer(dragGestureRecognizer)
-                }
-            )
-        default:
-            break
-        }
-    }
-    
-    @objc func itemWasDragged(recognizer: UIPanGestureRecognizer) {
-        guard let draggingItemView = self.draggingInfo.itemView else {
+        guard let graphView = self.graphView,
+              let graphViewDatasource = graphView.datasource else {
             return
         }
         
-        let dragPosition = recognizer.location(in: graphView?.containerView)
+        let context: Context = (
+            graphView: graphView,
+            containerView: graphView.containerView,
+            datasource: graphViewDatasource
+        )
+        
+        let pressPosition = recognizer.location(in: graphView.containerView)
         
         switch recognizer.state {
+        case .began:
+            longPressDidBegin(recognizer: recognizer, withContext: context, andLocationInContainer: pressPosition)
         case .changed:
-            guard let itemView = graphView?.itemView(atPosition: dragPosition) as? GraphItemEmptyView else {
-                
-                draggingItemView.center = dragPosition
-                return
-            }
-            let itemViewFrameInContainer = itemView.convert(itemView.bounds, to: self.graphView?.containerView)
-            
-            UIView.animate(withDuration: 0.1) {
-                draggingItemView.frame = itemViewFrameInContainer
-            }
-        case .failed, .cancelled, .ended:
-            
-            guard let graphView = self.graphView,
-                  let graphViewDatasource = graphView.datasource else {
-                return
-            }
-            
-            guard let itemView = graphView.itemView(atPosition: dragPosition) as? GraphItemEmptyView,
-                  let positionForItem = graphView.position(forItemView: itemView) else {
-                    
-                guard let dragOriginPosition = self.draggingInfo.originPosition,
-                      let originItemView = self.graphView?.itemView(forPosition: dragOriginPosition) as? GraphItemEmptyView else {
-                        return
-                    }
-                
-                    let itemViewFrameInContainer = originItemView.convert(originItemView.bounds, to: self.graphView?.containerView)
-                    
-                    UIView.animate(withDuration: 0.2, animations: {
-                        draggingItemView.frame = itemViewFrameInContainer
-                    }, completion: { (_) in
-                        self.draggingInfo.itemView = nil
-                        self.graphView?.graphOperator.replace(
-                            items: (
-                                currentItem: originItemView,
-                                newItem: draggingItemView
-                            ),
-                            atPosition: dragOriginPosition,
-                            withContext: (
-                                graphView: graphView,
-                                containerView: graphView.containerView,
-                                datasource: graphViewDatasource
-                            ),
-                            completion: {}
-                        )
-                    })
-                    
-                return
-            }
-            
-            let itemViewFrameInContainer = itemView.convert(itemView.bounds, to: graphView.containerView)
-            
-            UIView.animate(withDuration: 0.2, animations: {
-                draggingItemView.frame = itemViewFrameInContainer
-            }, completion: { (_) in
-                self.draggingInfo.itemView = nil
-                graphView.graphOperator.replace(
-                    items: (
-                        currentItem: itemView,
-                        newItem: draggingItemView
-                    ),
-                    atPosition: positionForItem,
-                    withContext: (
-                        graphView: graphView,
-                        containerView: graphView.containerView,
-                        datasource: graphViewDatasource
-                    ),
-                    completion: { [weak self] in
-                        guard let draggedItemOrigin = self?.draggingInfo.originPosition else {
-                            return
-                        }
-                        self?.delegate?.itemWasDragged(fromPosition: draggedItemOrigin, toPosition: positionForItem)
-                    }
-                )
-            })
+            longPressDidChange(recognizer: recognizer, withContext: context, andLocationInContainer: pressPosition)
+        case .ended, .cancelled, .failed:
+            longPressDidEnd(recognizer: recognizer, withContext: context, andLocationInContainer: pressPosition)
         default:
             break
         }
-        
     }
     
+    func longPressDidBegin(
+        recognizer: UILongPressGestureRecognizer,
+        withContext context: Context,
+        andLocationInContainer location: CGPoint) {
+        
+        guard let itemView = self.itemView,
+              let positionForItem = context.graphView.position(forItemView: itemView),
+              context.datasource.connections(forGraphView: context.graphView, fromItemAtPosition: positionForItem).count == 0,
+              context.datasource.parents(forGraphView: context.graphView, fromItemAtPosition: positionForItem).count == 0,
+              let snapShortView = itemView.snapshotView(afterScreenUpdates: false) else {
+            return
+        }
+        
+        itemView.isHidden = true
+        snapShortView.center = location
+        
+        context.graphView.containerView.addSubview(snapShortView)
+        self.draggingInfo = (snapShortView, positionForItem, [])
+    }
+    
+    func longPressDidChange(
+        recognizer: UILongPressGestureRecognizer,
+        withContext context: Context,
+        andLocationInContainer location: CGPoint) {
+        
+        guard let draggingView = draggingInfo.itemView else {
+            return
+        }
+        
+        guard let itemAtCurrentLocation = context.graphView.itemView(atPosition: location) else {
+            draggingView.center = location
+            return
+        }
+        
+        let nearItems = context.graphView.nearVisibleItems(atPosition: location, onlyEmptyItems: true)
+        
+        draggingInfo.lastNearItems?.set(atributte: \.backgroundColor, value: .clear)
+        draggingInfo.lastNearItems?.set(atributte: \.alpha, value: 1)
+        
+        let numberOfNearItems = min(4, nearItems.count)
+        
+        draggingInfo.lastNearItems = Array(nearItems[0..<numberOfNearItems])
+        let itemBoundsInContainer = itemAtCurrentLocation.convert(itemAtCurrentLocation.bounds, to: context.containerView)
+
+        draggingInfo.lastNearItems?.set(atributte: \.backgroundColor, value: .green)
+        draggingInfo.lastNearItems?.set(atributte: \.alpha, value: 0.3)
+        
+        UIView.animate(withDuration: 0.2) {
+            draggingView.frame = itemBoundsInContainer
+        }
+    }
+    
+    func longPressDidEnd(
+        recognizer: UILongPressGestureRecognizer,
+        withContext context: Context,
+        andLocationInContainer location: CGPoint) {
+        
+        draggingInfo.lastNearItems?.set(atributte: \.backgroundColor, value: .clear)
+        draggingInfo.lastNearItems?.set(atributte: \.alpha, value: 1)
+        draggingInfo.itemView?.removeFromSuperview()
+        self.itemView?.isHidden = false
+        
+        guard let itemView = self.itemView,
+              let positionForItem = context.graphView.position(forItemView: itemView),
+              let dragOriginPosition = self.draggingInfo.originPosition,
+              let originItemView = context.graphView.itemView(forPosition: dragOriginPosition) else {
+            return
+        }
+        
+        guard let destinyItemView = context.graphView.itemView(atPosition: location) as? GraphItemEmptyView,
+              let gridPositionForDestityItem = context.graphView.position(forItemView: destinyItemView) else {
+            return
+        }
+        
+        context.graphView.graphOperator.replace(
+            items: (
+                currentItem: originItemView,
+                newItem: GraphItemEmptyView()
+            ),
+            atPosition: positionForItem,
+            withContext: context,
+            completion: {}
+        )
+        
+        context.graphView.graphOperator.replace(
+            items: (
+                currentItem: destinyItemView,
+                newItem: originItemView
+            ),
+            atPosition: gridPositionForDestityItem,
+            withContext: context,
+            completion: {}
+        )
+    }
+
     @objc func itemWasTapped(recognizer: UITapGestureRecognizer) {
         guard let graphView = self.graphView,
               let itemView = self.itemView,

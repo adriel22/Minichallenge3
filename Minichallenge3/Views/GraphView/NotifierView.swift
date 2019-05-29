@@ -10,19 +10,11 @@ import UIKit
 
 class NotifierView: UIView {
     var didLayoutSubViewsCompletions: [(() -> Void)] = []
-    var touchesMovedCompletion: ((UITouch?) -> Void)?
 
     override func layoutSubviews() {
         super.layoutSubviews()
         didLayoutSubViewsCompletions.forEach { (completion) in
             completion()
-        }
-    }
-    
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesMoved(touches, with: event)
-        if let firstTouch = touches.first {
-            touchesMovedCompletion?(firstTouch)
         }
     }
 
