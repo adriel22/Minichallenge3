@@ -13,7 +13,8 @@ class GraphViewItemEventHandler {
     weak var itemView: GraphItemView?
     weak var delegate: GraphViewDelegate?
     
-    var draggingInfo: (itemView: UIView?, originPosition: GridPosition?, lastNearItems: [GraphItemView]?)
+    var draggingInfo: (itemView: UIView?, originPosition: GridPosition?)
+    var lastNearItems: [GraphItemView] = []
 
     init(
         withItemView itemView: GraphItemView,
@@ -68,16 +69,17 @@ class GraphViewItemEventHandler {
         guard let itemView = self.itemView,
               let positionForItem = context.graphView.position(forItemView: itemView),
               context.datasource.connections(forGraphView: context.graphView, fromItemAtPosition: positionForItem).count == 0,
-              context.datasource.parents(forGraphView: context.graphView, fromItemAtPosition: positionForItem).count == 0,
-              let snapShortView = itemView.snapshotView(afterScreenUpdates: false) else {
+              context.datasource.parents(forGraphView: context.graphView, fromItemAtPosition: positionForItem).count == 0 else {
             return
         }
+        
+        let snapShortView = itemView.snapshot
         
         itemView.isHidden = true
         snapShortView.center = location
         
         context.graphView.containerView.addSubview(snapShortView)
-        self.draggingInfo = (snapShortView, positionForItem, [])
+        self.draggingInfo = (snapShortView, positionForItem)
     }
     
     func longPressDidChange(
@@ -96,16 +98,16 @@ class GraphViewItemEventHandler {
         
         let nearItems = context.graphView.nearVisibleItems(atPosition: location, onlyEmptyItems: true)
         
-        draggingInfo.lastNearItems?.set(atributte: \.backgroundColor, value: .clear)
-        draggingInfo.lastNearItems?.set(atributte: \.alpha, value: 1)
+        lastNearItems.set(atributte: \.backgroundColor, value: .clear)
+        lastNearItems.set(atributte: \.alpha, value: 1)
         
         let numberOfNearItems = min(4, nearItems.count)
         
-        draggingInfo.lastNearItems = Array(nearItems[0..<numberOfNearItems])
+        lastNearItems = Array(nearItems[0..<numberOfNearItems])
         let itemBoundsInContainer = itemAtCurrentLocation.convert(itemAtCurrentLocation.bounds, to: context.containerView)
 
-        draggingInfo.lastNearItems?.set(atributte: \.backgroundColor, value: .green)
-        draggingInfo.lastNearItems?.set(atributte: \.alpha, value: 0.3)
+        lastNearItems.set(atributte: \.backgroundColor, value: .green)
+        lastNearItems.set(atributte: \.alpha, value: 0.3)
         
         UIView.animate(withDuration: 0.2) {
             draggingView.frame = itemBoundsInContainer
@@ -117,8 +119,8 @@ class GraphViewItemEventHandler {
         withContext context: Context,
         andLocationInContainer location: CGPoint) {
         
-        draggingInfo.lastNearItems?.set(atributte: \.backgroundColor, value: .clear)
-        draggingInfo.lastNearItems?.set(atributte: \.alpha, value: 1)
+        lastNearItems.set(atributte: \.backgroundColor, value: .clear)
+        lastNearItems.set(atributte: \.alpha, value: 1)
         draggingInfo.itemView?.removeFromSuperview()
         self.itemView?.isHidden = false
         
@@ -134,6 +136,9 @@ class GraphViewItemEventHandler {
             return
         }
         
+        let replacingDispatchGroup = DispatchGroup()
+        
+        replacingDispatchGroup.enter()
         context.graphView.graphOperator.replace(
             items: (
                 currentItem: originItemView,
@@ -141,9 +146,12 @@ class GraphViewItemEventHandler {
             ),
             atPosition: positionForItem,
             withContext: context,
-            completion: {}
+            completion: {
+                replacingDispatchGroup.leave()
+            }
         )
         
+        replacingDispatchGroup.enter()
         context.graphView.graphOperator.replace(
             items: (
                 currentItem: destinyItemView,
@@ -151,8 +159,17 @@ class GraphViewItemEventHandler {
             ),
             atPosition: gridPositionForDestityItem,
             withContext: context,
-            completion: {}
+            completion: {
+                replacingDispatchGroup.leave()
+            }
         )
+        
+        replacingDispatchGroup.notify(queue: .main) {
+            self.delegate?.itemWasDragged(
+                fromPosition: dragOriginPosition,
+                toPosition: gridPositionForDestityItem
+            )
+        }
     }
 
     @objc func itemWasTapped(recognizer: UITapGestureRecognizer) {

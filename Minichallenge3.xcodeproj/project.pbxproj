@@ -82,6 +82,8 @@
 		E3C030D3228479DC00AD53E0 /* HistoryConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B32282F1F300AD53E0 /* HistoryConnection.swift */; };
 		E3C030D4228479DC00AD53E0 /* HistoryNodesGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C030B5228322FC00AD53E0 /* HistoryNodesGrid.swift */; };
 		E3C462DE2293914300699960 /* SinopseDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C462DD2293914300699960 /* SinopseDelegate.swift */; };
+		E3D5E654229F318300910463 /* UIView+snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D5E653229F318300910463 /* UIView+snapshot.swift */; };
+		E3D5E656229F3B5B00910463 /* UIView+shadowAtributtes.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D5E655229F3B5B00910463 /* UIView+shadowAtributtes.swift */; };
 		FC0137E32294E7BB00C97229 /* AddRamificationTrasitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0137E22294E7BB00C97229 /* AddRamificationTrasitioningDelegate.swift */; };
 		FC017E40228E577E008979E7 /* AddRamificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC017E3F228E577E008979E7 /* AddRamificationViewModel.swift */; };
 		FC022736229329250059FBA5 /* MyNarrativesViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC022735229329250059FBA5 /* MyNarrativesViewModelDelegate.swift */; };
@@ -227,6 +229,8 @@
 		E3C030C3228478EB00AD53E0 /* HistoryGraph.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HistoryGraph.h; sourceTree = "<group>"; };
 		E3C030C4228478EB00AD53E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E3C462DD2293914300699960 /* SinopseDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinopseDelegate.swift; sourceTree = "<group>"; };
+		E3D5E653229F318300910463 /* UIView+snapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+snapshot.swift"; sourceTree = "<group>"; };
+		E3D5E655229F3B5B00910463 /* UIView+shadowAtributtes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+shadowAtributtes.swift"; sourceTree = "<group>"; };
 		FC0137E22294E7BB00C97229 /* AddRamificationTrasitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRamificationTrasitioningDelegate.swift; sourceTree = "<group>"; };
 		FC017E3F228E577E008979E7 /* AddRamificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRamificationViewModel.swift; sourceTree = "<group>"; };
 		FC022735229329250059FBA5 /* MyNarrativesViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNarrativesViewModelDelegate.swift; sourceTree = "<group>"; };
@@ -463,6 +467,8 @@
 				E3617DB12299789500D1DD73 /* Data+decoded.swift */,
 				E3617DB3229978AF00D1DD73 /* Encodable+encoded.swift */,
 				E3617DB72299BD1B00D1DD73 /* CGPoint+mult.swift */,
+				E3D5E653229F318300910463 /* UIView+snapshot.swift */,
+				E3D5E655229F3B5B00910463 /* UIView+shadowAtributtes.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -940,6 +946,7 @@
 				E32A379E228B011300E2F8B1 /* MyNarrativesView.swift in Sources */,
 				E32A37E722923ADD00E2F8B1 /* GraphView+operations.swift in Sources */,
 				E331CCCC228846C20041379B /* GraphViewDatasource.swift in Sources */,
+				E3D5E656229F3B5B00910463 /* UIView+shadowAtributtes.swift in Sources */,
 				E3617DB82299BD1B00D1DD73 /* CGPoint+mult.swift in Sources */,
 				E32A37A1228B013600E2F8B1 /* MyNarrativesViewController.swift in Sources */,
 				E3617DA8229965DC00D1DD73 /* DISConnection.swift in Sources */,
@@ -977,6 +984,7 @@
 				E32A37C522909D7400E2F8B1 /* HistoryGraphViewController.swift in Sources */,
 				E32A379B228A4FD700E2F8B1 /* GraphViewOperator.swift in Sources */,
 				E381E2CB2288E0AF00E25B78 /* UIBezierPath+addPolygon.swift in Sources */,
+				E3D5E654229F318300910463 /* UIView+snapshot.swift in Sources */,
 				E3C462DE2293914300699960 /* SinopseDelegate.swift in Sources */,
 				FC02F5DC228D8B31008F0777 /* UIColor+hexInit.swift in Sources */,
 				E331CCD12288971D0041379B /* GraphLineView.swift in Sources */,
