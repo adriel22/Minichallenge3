@@ -37,7 +37,7 @@ class HistoryGraphViewModel {
     
     private var historyGraph: HistoryGraph
     private var historyGraphID: Int
-    private var historyDAO = RAMHistoryDAO()
+    private var historyDAO = DISKHistoryDAO()
     
     var currentState: HistoryGraphState = .normal {
         didSet {
@@ -52,6 +52,30 @@ class HistoryGraphViewModel {
         historyGraph.grid.delegate = self
     }
     
+    func itemWasDragged(fromPosition originPosition: GridPosition, toPosition destinyPosition: GridPosition) {
+        guard self.historyGraph.grid[destinyPosition.yPosition, destinyPosition.xPosition] == nil,
+              let draggedNode = self.historyGraph.grid[originPosition.yPosition, originPosition.xPosition] else {
+            return
+        }
+        do {
+            try self.historyGraph.removeNode(draggedNode)
+            draggedNode.positionX = destinyPosition.xPosition
+            draggedNode.positionY = destinyPosition.yPosition
+            try self.historyGraph.addNode(draggedNode)
+        } catch let error as HistoryError {
+            delegate?.needShowError(message: error.rawValue)
+        } catch {
+            delegate?.needShowError(message: "A Error Happend")
+        }
+    }
+    
+    func parentPositions(fromPosition position: GridPosition) -> [GridPosition] {
+        guard let parentNode = self.historyGraph.grid[position.yPosition, position.xPosition]?.parent else {
+            return []
+        }
+        return [(yPosition: parentNode.positionY, xPosition: parentNode.positionX)]
+    }
+    
     func gridSize() -> GridSize {
         return (width: historyGraph.grid.graphWidth, height: historyGraph.grid.graphHeight)
     }
@@ -63,7 +87,10 @@ class HistoryGraphViewModel {
             }
             return nil
         }
-        return HistoryNodeViewModel(withHistoryGraph: historyGraph, andHistoryNode: nodeAtPosition, withState: currentState)
+        
+        let isSelected = self.lastTappedNodePosition != nil ? lastTappedNodePosition! == position : false
+        
+        return HistoryNodeViewModel(withHistoryGraph: historyGraph, andHistoryNode: nodeAtPosition, withState: currentState, isSelected: isSelected)
     }
 
     func gridConnections(fromPositionGridPosition gridPosition: GridPosition) -> [GridPosition] {
@@ -111,7 +138,9 @@ class HistoryGraphViewModel {
     }
     
     func viewWillDisappear() {
-        historyDAO.update(element: historyGraph, withID: historyGraphID)
+        if !historyDAO.update(element: historyGraph) {
+            delegate?.needShowError(message: "Was not possible saving the changes")
+        }
     }
     
     func connectionButtonWasSelected(connection: Connection) {
@@ -170,6 +199,7 @@ class HistoryGraphViewModel {
                   ] as? HistoryNode else {
             
             self.lastTappedNodePosition = position
+            self.delegate?.needReloadNode(atPosition: position)
             return
         }
         
@@ -178,18 +208,27 @@ class HistoryGraphViewModel {
             message: "Tap the path name",
             action: "OK", cancelAction: "Cancel",
             completion: { [weak self] (pathName) in
-            do {
-                try self?.historyGraph.addPath(fromNode: originNode, toNode: destinyNode, withTitle: pathName)
-                self?.delegate?.needReloadConnection()
-                self?.delegate?.needReloadNode(atPosition: (yPosition: destinyNode.positionY, xPosition: destinyNode.positionX))
-            } catch let error as HistoryError {
-                self?.delegate?.needShowError(message: error.rawValue)
-            } catch {
-                self?.delegate?.needShowError(message: "A Error Happend")
+                if let lastTappedPosition = self?.lastTappedNodePosition {
+                    self?.lastTappedNodePosition = nil
+                    self?.delegate?.needReloadNode(atPosition: lastTappedPosition)
+                }
+                
+                do {
+                    try self?.historyGraph.addPath(fromNode: originNode, toNode: destinyNode, withTitle: pathName)
+                    self?.delegate?.needReloadConnection()
+                    self?.delegate?.needReloadNode(atPosition: (yPosition: destinyNode.positionY, xPosition: destinyNode.positionX))
+                } catch let error as HistoryError {
+                    self?.delegate?.needShowError(message: error.rawValue)
+                } catch {
+                    self?.delegate?.needShowError(message: "A Error Happend")
+                }
+            }, cancelCompletion: { [weak self] in
+                if let lastTappedPosition = self?.lastTappedNodePosition {
+                    self?.lastTappedNodePosition = nil
+                    self?.delegate?.needReloadNode(atPosition: lastTappedPosition)
+                }
             }
-        })
-        
-        self.lastTappedNodePosition = nil
+        )
     }
     
     private func nodeWasSelectedInAddingState(atPossition position: GridPosition, inNode node: HistoryNodeProtocol) {
@@ -198,30 +237,30 @@ class HistoryGraphViewModel {
         }
         
         delegate?.needShowInputAlert(title: "Node Creation", message: "Dê um nome a ramificação", action: "OK", cancelAction: "Cancel", completion: { [weak self] (inputText) in
-            do {
-                let newNodeLine = originNode.positionY + 1
-                guard let newNodeColumn = self?.historyGraph.grid.findPositionInLine(atIndex: newNodeLine, nearIndex: originNode.positionX) else {
-                    return
+                do {
+                    let newNodeLine = originNode.positionY + 1
+                    guard let newNodeColumn = self?.historyGraph.grid.findPositionInLine(atIndex: newNodeLine, nearIndex: originNode.positionX) else {
+                        return
+                    }
+                    
+                    let newNode = HistoryNode(
+                        withResume: "Tap to edit",
+                        text: "Tap to edit",
+                        positionX: newNodeColumn,
+                        andPositionY: newNodeLine
+                    )
+                    
+                    newNode.resume = nil
+                    
+                    try self?.historyGraph.addNode(newNode)
+                    try self?.historyGraph.addPath(fromNode: originNode, toNode: newNode, withTitle: inputText)
+                    self?.delegate?.needReloadNode(atPosition: (yPosition: newNode.positionY, xPosition: newNode.positionX))
+                } catch let error as HistoryError {
+                    self?.delegate?.needShowError(message: error.rawValue)
+                } catch {
+                    self?.delegate?.needShowError(message: "A Error Happend")
                 }
-                
-                let newNode = HistoryNode(
-                    withResume: "Tap to edit",
-                    text: "Tap to edit",
-                    positionX: newNodeColumn,
-                    andPositionY: newNodeLine
-                )
-                
-                newNode.resume = nil
-                
-                try self?.historyGraph.addNode(newNode)
-                try self?.historyGraph.addPath(fromNode: originNode, toNode: newNode, withTitle: inputText)
-                self?.delegate?.needReloadNode(atPosition: (yPosition: newNode.positionY, xPosition: newNode.positionX))
-            } catch let error as HistoryError {
-                self?.delegate?.needShowError(message: error.rawValue)
-            } catch {
-                self?.delegate?.needShowError(message: "A Error Happend")
-            }
-        })
+            }, cancelCompletion: nil)
     }
     
     private func nodeWasSelectedInRemovingState(atPossition position: GridPosition, inNode node: HistoryNodeProtocol) {

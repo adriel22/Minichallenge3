@@ -15,6 +15,8 @@ class RAMDatabase {
     
     var chapeuzinhoHistory: HistoryGraph = {
         let history = HistoryGraph(withName: "Chapeuzinho Vermelho", sinopse: "Chapeuzinho Vermelho vai a paraia e encontrar o lobo mal", width: 3, andHeight: 3)
+        var historyWrapper = RAMIdentifierWrapper(history: history)
+        historyWrapper.identifier = 0
         
         let rootNode = HistoryNode(withResume: "Chapeuzinho escolhe o caminho", text: "Você se depara com dois caminhos. Você escolhe o caminho curto ou o longo?", positionX: 2, andPositionY: 0)
         
@@ -41,6 +43,8 @@ class RAMDatabase {
     
     var joseph: HistoryGraph = {
         let history = HistoryGraph(withName: "Joseph`s Life", sinopse: "A history about the choices of Joseph in his life", width: 11, andHeight: 7)
+        var historyWrapper = RAMIdentifierWrapper(history: history)
+        historyWrapper.identifier = 1
         
         let node17 = HistoryNode(withResume: "", text: "Joseph was a student of a public university, he loved to write stories because he believed that through them people could see the different world. One day he discovered the branching narratives, stories that enable the reader to choose his course. Excitement soon came when he realized that there was much of this kind of narrative to be explored. he researched and discovered that there were some ways to write these stories: ", positionX: 5, andPositionY: 0)
 

@@ -12,7 +12,7 @@ class SinopseViewModel {
     weak var delegate: SinopseViewModelDelegate?
     
     func textWasSet(text: String?) {
-        guard let text = text else {
+        guard let text = text, !text.isEmpty else {
             delegate?.needSet(text: "Tap a sinopse...")
             return
         }

@@ -131,6 +131,11 @@ extension ViewController: HistoryGridDelegate {
 }
 
 extension ViewController: GraphViewDatasource {
+    
+    func parents(forGraphView graphView: GraphView, fromItemAtPosition itemPosition: GridPosition) -> [GridPosition] {
+        return []
+    }
+    
     func connectionButtonColor(forGraphView graphView: GraphView) -> UIColor? {
         return nil
     }

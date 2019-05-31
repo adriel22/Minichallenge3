@@ -66,6 +66,8 @@ class CardView: GraphItemView, CardViewProtocol {
 
         return actionLabel
     }()
+    
+    var isSelected: Bool = false
 
     init() {
         textView = UILabel()
@@ -227,10 +229,17 @@ class CardView: GraphItemView, CardViewProtocol {
     }
 
     private func addShadow() {
+        
         self.layer.masksToBounds = false
         self.layer.shadowOffset = CGSize(width: 0, height: 0)
-        self.layer.shadowRadius = 3
-        self.layer.shadowOpacity = 0.5
+        
+        if isSelected {
+            self.layer.shadowRadius = 7
+            self.layer.shadowOpacity = 0.5
+        } else {
+            self.layer.shadowRadius = 3
+            self.layer.shadowOpacity = 0.5
+        }
     }
 
     func setCardText(_ text: String) {
@@ -268,6 +277,8 @@ class CardView: GraphItemView, CardViewProtocol {
     }
 
     func setup(withViewModel viewModel: HistoryNodeViewModel) {
+        self.isSelected = viewModel.isSelected
+        
         switch viewModel.currentState {
         case .normal:
             changeState(to: .normal)

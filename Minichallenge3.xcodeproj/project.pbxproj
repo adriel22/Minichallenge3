@@ -19,7 +19,6 @@
 		927CFA5B228DAB8800CAC09E /* ShortcutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927CFA5A228DAB8800CAC09E /* ShortcutView.swift */; };
 		927CFA5D228ED0A500CAC09E /* ShortcutViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927CFA5C228ED0A500CAC09E /* ShortcutViewDelegate.swift */; };
 		927CFA5F2291CA1400CAC09E /* ShortcutViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927CFA5E2291CA1400CAC09E /* ShortcutViewDataSource.swift */; };
-		92E92CEC228C59A9000494BA /* HistoryGraphDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E92CEB228C59A9000494BA /* HistoryGraphDelegate.swift */; };
 		92E92CEE228CFE75000494BA /* HistoryGridDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E92CED228CFE75000494BA /* HistoryGridDelegate.swift */; };
 		C77E46C789F9B2BADE16D712 /* Pods_Minichallenge3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CF4D23D356FA463D37FC974 /* Pods_Minichallenge3.framework */; };
 		E3012A722285A7B000AB008F /* HistoryNodesGridTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3012A712285A7B000AB008F /* HistoryNodesGridTests.swift */; };
@@ -61,6 +60,16 @@
 		E347A88122937CFF001423B5 /* SinopseViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E347A88022937CFF001423B5 /* SinopseViewModelDelegate.swift */; };
 		E3593096229438FA00F502BA /* DetailsViewModelTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3593094229438FA00F502BA /* DetailsViewModelTransitioningDelegate.swift */; };
 		E3593097229438FA00F502BA /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3593095229438FA00F502BA /* DetailsViewModel.swift */; };
+		E3617D9722995A0D00D1DD73 /* DISKHistoryDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3617D9622995A0D00D1DD73 /* DISKHistoryDAO.swift */; };
+		E3617D9F22995FBE00D1DD73 /* RAMIdentifierWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3617D9E22995FBE00D1DD73 /* RAMIdentifierWrapper.swift */; };
+		E3617DA22299627800D1DD73 /* DISKHistoryGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3617DA12299627800D1DD73 /* DISKHistoryGraph.swift */; };
+		E3617DA62299646A00D1DD73 /* DISKHistoryNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3617DA52299646A00D1DD73 /* DISKHistoryNode.swift */; };
+		E3617DA8229965DC00D1DD73 /* DISConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3617DA7229965DC00D1DD73 /* DISConnection.swift */; };
+		E3617DAC229973D300D1DD73 /* Array+node.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3617DAB229973D300D1DD73 /* Array+node.swift */; };
+		E3617DB22299789500D1DD73 /* Data+decoded.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3617DB12299789500D1DD73 /* Data+decoded.swift */; };
+		E3617DB4229978AF00D1DD73 /* Encodable+encoded.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3617DB3229978AF00D1DD73 /* Encodable+encoded.swift */; };
+		E3617DB62299AD4A00D1DD73 /* DISKHistoryFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3617DB52299AD4A00D1DD73 /* DISKHistoryFormatter.swift */; };
+		E3617DB82299BD1B00D1DD73 /* CGPoint+mult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3617DB72299BD1B00D1DD73 /* CGPoint+mult.swift */; };
 		E381E2C32288D7B700E25B78 /* GraphItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381E2C22288D7B700E25B78 /* GraphItemView.swift */; };
 		E381E2C52288DC1D00E25B78 /* GraphViewConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381E2C42288DC1D00E25B78 /* GraphViewConnector.swift */; };
 		E381E2C72288DCC500E25B78 /* ItemViewConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381E2C62288DCC500E25B78 /* ItemViewConnector.swift */; };
@@ -162,7 +171,6 @@
 		927CFA5A228DAB8800CAC09E /* ShortcutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutView.swift; sourceTree = "<group>"; };
 		927CFA5C228ED0A500CAC09E /* ShortcutViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutViewDelegate.swift; sourceTree = "<group>"; };
 		927CFA5E2291CA1400CAC09E /* ShortcutViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutViewDataSource.swift; sourceTree = "<group>"; };
-		92E92CEB228C59A9000494BA /* HistoryGraphDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryGraphDelegate.swift; sourceTree = "<group>"; };
 		92E92CED228CFE75000494BA /* HistoryGridDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryGridDelegate.swift; sourceTree = "<group>"; };
 		B20FF8B7118109CF1BB19056 /* Pods-Minichallenge3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Minichallenge3.release.xcconfig"; path = "Pods/Target Support Files/Pods-Minichallenge3/Pods-Minichallenge3.release.xcconfig"; sourceTree = "<group>"; };
 		E3012A712285A7B000AB008F /* HistoryNodesGridTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryNodesGridTests.swift; sourceTree = "<group>"; };
@@ -204,6 +212,16 @@
 		E347A88022937CFF001423B5 /* SinopseViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SinopseViewModelDelegate.swift; path = Minichallenge3/ViewModels/SinopseViewModelDelegate.swift; sourceTree = SOURCE_ROOT; };
 		E3593094229438FA00F502BA /* DetailsViewModelTransitioningDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewModelTransitioningDelegate.swift; sourceTree = "<group>"; };
 		E3593095229438FA00F502BA /* DetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
+		E3617D9622995A0D00D1DD73 /* DISKHistoryDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DISKHistoryDAO.swift; sourceTree = "<group>"; };
+		E3617D9E22995FBE00D1DD73 /* RAMIdentifierWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RAMIdentifierWrapper.swift; sourceTree = "<group>"; };
+		E3617DA12299627800D1DD73 /* DISKHistoryGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DISKHistoryGraph.swift; path = ../DISKHistoryGraph.swift; sourceTree = "<group>"; };
+		E3617DA52299646A00D1DD73 /* DISKHistoryNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DISKHistoryNode.swift; path = ../DISKHistoryNode.swift; sourceTree = "<group>"; };
+		E3617DA7229965DC00D1DD73 /* DISConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DISConnection.swift; path = ../DISConnection.swift; sourceTree = "<group>"; };
+		E3617DAB229973D300D1DD73 /* Array+node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+node.swift"; sourceTree = "<group>"; };
+		E3617DB12299789500D1DD73 /* Data+decoded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+decoded.swift"; sourceTree = "<group>"; };
+		E3617DB3229978AF00D1DD73 /* Encodable+encoded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+encoded.swift"; sourceTree = "<group>"; };
+		E3617DB52299AD4A00D1DD73 /* DISKHistoryFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DISKHistoryFormatter.swift; sourceTree = "<group>"; };
+		E3617DB72299BD1B00D1DD73 /* CGPoint+mult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+mult.swift"; sourceTree = "<group>"; };
 		E381E2C22288D7B700E25B78 /* GraphItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphItemView.swift; sourceTree = "<group>"; };
 		E381E2C42288DC1D00E25B78 /* GraphViewConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewConnector.swift; sourceTree = "<group>"; };
 		E381E2C62288DCC500E25B78 /* ItemViewConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewConnector.swift; sourceTree = "<group>"; };
@@ -341,6 +359,7 @@
 		E32A37B12290947A00E2F8B1 /* Database */ = {
 			isa = PBXGroup;
 			children = (
+				E3617D95229959F600D1DD73 /* DISKDatabase */,
 				E32A37C1229098FA00E2F8B1 /* RAMDatabase */,
 				E32A37BC229098EB00E2F8B1 /* DAO */,
 			);
@@ -360,6 +379,7 @@
 			children = (
 				E32A37B22290949E00E2F8B1 /* RAMDatabase.swift */,
 				E32A37C222909A8200E2F8B1 /* RAMHistoryDAO.swift */,
+				E3617D9E22995FBE00D1DD73 /* RAMIdentifierWrapper.swift */,
 			);
 			path = RAMDatabase;
 			sourceTree = "<group>";
@@ -463,6 +483,9 @@
 				E381E2D02289C41800E25B78 /* NSLayoutConstraint+activate.swift */,
 				E32A37A6228EE69E00E2F8B1 /* CGRect+init.swift */,
 				E32A37AD2290580500E2F8B1 /* Array+set+call.swift */,
+				E3617DB12299789500D1DD73 /* Data+decoded.swift */,
+				E3617DB3229978AF00D1DD73 /* Encodable+encoded.swift */,
+				E3617DB72299BD1B00D1DD73 /* CGPoint+mult.swift */,
 				3C4765F52299A5BB0048AAAA /* UINavigationController+preferredStatusBarStyle.swift */,
 			);
 			path = Extensions;
@@ -496,6 +519,27 @@
 			path = Details;
 			sourceTree = "<group>";
 		};
+		E3617D95229959F600D1DD73 /* DISKDatabase */ = {
+			isa = PBXGroup;
+			children = (
+				E3617DAA2299672A00D1DD73 /* DISKModels */,
+				E3617DB52299AD4A00D1DD73 /* DISKHistoryFormatter.swift */,
+				E3617D9622995A0D00D1DD73 /* DISKHistoryDAO.swift */,
+			);
+			path = DISKDatabase;
+			sourceTree = "<group>";
+		};
+		E3617DAA2299672A00D1DD73 /* DISKModels */ = {
+			isa = PBXGroup;
+			children = (
+				E3617DA12299627800D1DD73 /* DISKHistoryGraph.swift */,
+				E3617DA52299646A00D1DD73 /* DISKHistoryNode.swift */,
+				E3617DA7229965DC00D1DD73 /* DISConnection.swift */,
+				E3617DAB229973D300D1DD73 /* Array+node.swift */,
+			);
+			path = DISKModels;
+			sourceTree = "<group>";
+		};
 		E381E2D4228A27EF00E25B78 /* Connector */ = {
 			isa = PBXGroup;
 			children = (
@@ -511,7 +555,6 @@
 			children = (
 				E3C030BA22845ECE00AD53E0 /* HistoryError.swift */,
 				E3C030AB2282F19500AD53E0 /* HistoryGraph.swift */,
-				92E92CEB228C59A9000494BA /* HistoryGraphDelegate.swift */,
 				E3C030AD2282F1B400AD53E0 /* HistoryNodeProtocol.swift */,
 				E3C030AF2282F1C500AD53E0 /* HistoryNode.swift */,
 				E3C030B12282F1E300AD53E0 /* HistoryShortcut.swift */,
@@ -909,7 +952,6 @@
 				E3C030D2228479DC00AD53E0 /* HistoryShortcut.swift in Sources */,
 				E3C030CE228479DC00AD53E0 /* HistoryError.swift in Sources */,
 				E3C030D0228479DC00AD53E0 /* HistoryNodeProtocol.swift in Sources */,
-				92E92CEC228C59A9000494BA /* HistoryGraphDelegate.swift in Sources */,
 				E3C030D3228479DC00AD53E0 /* HistoryConnection.swift in Sources */,
 				E3C030CF228479DC00AD53E0 /* HistoryGraph.swift in Sources */,
 				E3C030D4228479DC00AD53E0 /* HistoryNodesGrid.swift in Sources */,
@@ -921,11 +963,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3617DB22299789500D1DD73 /* Data+decoded.swift in Sources */,
+				E3617DA22299627800D1DD73 /* DISKHistoryGraph.swift in Sources */,
 				FC017E40228E577E008979E7 /* AddRamificationViewModel.swift in Sources */,
 				E32A379E228B011300E2F8B1 /* MyNarrativesView.swift in Sources */,
 				E32A37E722923ADD00E2F8B1 /* GraphView+operations.swift in Sources */,
 				E331CCCC228846C20041379B /* GraphViewDatasource.swift in Sources */,
+				E3617DB82299BD1B00D1DD73 /* CGPoint+mult.swift in Sources */,
 				E32A37A1228B013600E2F8B1 /* MyNarrativesViewController.swift in Sources */,
+				E3617DA8229965DC00D1DD73 /* DISConnection.swift in Sources */,
 				E32A37D92290C2D700E2F8B1 /* HistoryGraphViewModelNodeType.swift in Sources */,
 				FC02E93D228AFFC100537429 /* ExpandableTableViewCell.swift in Sources */,
 				E32A37D32290B87800E2F8B1 /* SinopseLabel.swift in Sources */,
@@ -934,6 +980,7 @@
 				E32A37A5228ED44300E2F8B1 /* GraphItemEmptyView.swift in Sources */,
 				E381E2C72288DCC500E25B78 /* ItemViewConnector.swift in Sources */,
 				927CFA5D228ED0A500CAC09E /* ShortcutViewDelegate.swift in Sources */,
+				E3617DA62299646A00D1DD73 /* DISKHistoryNode.swift in Sources */,
 				FC02F5DE228D8B31008F0777 /* UIView+round.swift in Sources */,
 				3C200C33228D9E92002F7FAF /* NodePresentationTableViewCell.swift in Sources */,
 				FC02F5E7228D8E32008F0777 /* DetailsViewController.swift in Sources */,
@@ -966,6 +1013,7 @@
 				FC02F5DC228D8B31008F0777 /* UIColor+hexInit.swift in Sources */,
 				E331CCD12288971D0041379B /* GraphLineView.swift in Sources */,
 				E32A37DC2290C65200E2F8B1 /* GraphViewItemEventHandler.swift in Sources */,
+				E3617DAC229973D300D1DD73 /* Array+node.swift in Sources */,
 				E331CCC62287B3070041379B /* GraphView.swift in Sources */,
 				E32A37C0229098EB00E2F8B1 /* DAO.swift in Sources */,
 				E32A37E12291996F00E2F8B1 /* GraphViewDidLayoutType.swift in Sources */,
@@ -974,13 +1022,17 @@
 				3C200C2F228D9BFE002F7FAF /* PresentationViewController.swift in Sources */,
 				E32A37AC2290496000E2F8B1 /* GraphViewAnimator.swift in Sources */,
 				E32A37B022905F7000E2F8B1 /* NotifierView.swift in Sources */,
+				E3617DB62299AD4A00D1DD73 /* DISKHistoryFormatter.swift in Sources */,
 				921BB6E52292CD60001DA358 /* ToolboxView.swift in Sources */,
 				E381E2C52288DC1D00E25B78 /* GraphViewConnector.swift in Sources */,
+				E3617D9F22995FBE00D1DD73 /* RAMIdentifierWrapper.swift in Sources */,
 				FC0615F9229441CB00BF3946 /* AddRamificationViewModelDelegate.swift in Sources */,
 				FC02F5EA228D8EA2008F0777 /* BranchCollectionViewCell.swift in Sources */,
 				E32A37CF2290A14A00E2F8B1 /* HistoryNodeViewModel.swift in Sources */,
+				E3617DB4229978AF00D1DD73 /* Encodable+encoded.swift in Sources */,
 				E3593096229438FA00F502BA /* DetailsViewModelTransitioningDelegate.swift in Sources */,
 				FC0137E32294E7BB00C97229 /* AddRamificationTrasitioningDelegate.swift in Sources */,
+				E3617D9722995A0D00D1DD73 /* DISKHistoryDAO.swift in Sources */,
 				FC02E93E228AFFC100537429 /* ExpandableTableViewHeaderView.swift in Sources */,
 				3C4765F22296FF730048AAAA /* PresentationDelegateDataSource.swift in Sources */,
 				E331CCCA228846B20041379B /* GraphViewDelegate.swift in Sources */,

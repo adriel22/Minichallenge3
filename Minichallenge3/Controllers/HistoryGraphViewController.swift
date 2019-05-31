@@ -103,6 +103,10 @@ class HistoryGraphViewController: UIViewController {
 }
 
 extension HistoryGraphViewController: GraphViewDatasource, GraphViewDelegate {
+    func parents(forGraphView graphView: GraphView, fromItemAtPosition itemPosition: GridPosition) -> [GridPosition] {
+        return viewModel?.parentPositions(fromPosition: itemPosition) ?? []
+    }
+    
     func didLayoutNodes(forGraphView graphView: GraphView, withLoadType loadType: GraphViewDidLayoutType) {
         if let centerItemPosition = viewModel?.centerItemPosition {
             DispatchQueue.main.async {
@@ -121,6 +125,10 @@ extension HistoryGraphViewController: GraphViewDatasource, GraphViewDelegate {
     
     func itemWasSelectedAt(forGraphView graphView: GraphView, postion: GridPosition) {
         viewModel?.nodeWasSelected(atPossition: postion)
+    }
+    
+    func itemWasDragged(fromPosition originPosition: GridPosition, toPosition destinyPosition: GridPosition) {
+        viewModel?.itemWasDragged(fromPosition: originPosition, toPosition: destinyPosition)
     }
     
     func connections(forGraphView graphView: GraphView, fromItemAtPosition itemPosition: GridPosition) -> [GridPosition] {
@@ -180,7 +188,7 @@ extension HistoryGraphViewController: HistoryGraphViewModelDelegate {
         }
     }
     
-    func needShowInputAlert(title: String, message: String, action: String, cancelAction: String, completion: @escaping (String) -> Void) {
+    func needShowInputAlert(title: String, message: String, action: String, cancelAction: String, completion: @escaping (String) -> Void, cancelCompletion: (() -> Void)?) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alertController.addTextField { (textField) in
             textField.placeholder = "Tap the Ramification Name..."
@@ -191,7 +199,9 @@ extension HistoryGraphViewController: HistoryGraphViewModelDelegate {
             }
             completion(inputText)
         }))
-        alertController.addAction(UIAlertAction(title: cancelAction, style: .destructive, handler: nil))
+        alertController.addAction(UIAlertAction(title: cancelAction, style: .destructive, handler: { (_) in
+            cancelCompletion?()
+        }))
         present(alertController, animated: true, completion: nil)
     }
     
@@ -246,7 +256,9 @@ extension HistoryGraphViewController: HistoryGraphViewModelDelegate {
     }
     
     func needShowError(message: String) {
-        print(message)
+        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alertController, animated: true, completion: nil)
     }
     
     func needDeleteNode(atPositon position: GridPosition) {
@@ -277,7 +289,7 @@ extension HistoryGraphViewController: ShortcutViewDelegate, ShortcutViewDataSour
 
 extension HistoryGraphViewController: SinopseDelegate {
     func textWasEdited(text: String) {
-        
+        viewModel?.sinpseWasEdited(to: text)
     }
 }
 

@@ -24,4 +24,5 @@ protocol GraphViewDatasource: AnyObject {
     func connectionsImage(forGraphView graphView: GraphView) -> UIImage?
     func connectionButtonColor(forGraphView graphView: GraphView) -> UIColor?
     func connections(forGraphView graphView: GraphView, fromItemAtPosition itemPosition: GridPosition) -> [GridPosition]
+    func parents(forGraphView graphView: GraphView, fromItemAtPosition itemPosition: GridPosition) -> [GridPosition]
 }

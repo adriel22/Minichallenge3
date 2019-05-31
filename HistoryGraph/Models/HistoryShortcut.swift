@@ -43,7 +43,7 @@ public class HistoryShortcut: HistoryNodeProtocol {
     /// - Parameters:
     ///   - node: the target shortcut node
     ///   - parent: the parent of the shortcut
-    init(forNode node: HistoryNode, positionX: Int, andPositionY positionY: Int) {
+    public init(forNode node: HistoryNode?, positionX: Int, andPositionY positionY: Int) {
         self.node = node
         self.parent = nil
         self.positionX = positionX

@@ -13,6 +13,7 @@ open class HistoryGraph: CustomStringConvertible {
     public var nodes: [HistoryNodeProtocol] = []
     public var historyName: String
     public var sinopse: String
+    public var idKey: String?
 
     public var grid: HistoryNodesGrid
 
@@ -26,8 +27,6 @@ open class HistoryGraph: CustomStringConvertible {
         return description
     }
     
-    public weak var delegate: HistoryGraphDelegate?
-
     public init(withName name: String, sinopse: String, width: Int, andHeight height: Int) {
         self.historyName = name
         self.sinopse = sinopse
@@ -133,7 +132,7 @@ open class HistoryGraph: CustomStringConvertible {
 
         grid.delegate?.addShortcut(inPosition: (shortcut.positionX, shortcut.positionY))
         
-        addBordersToNode(destinyNode)
+        addBordersToNode(shortcut)
     }
 
     /// checks if a node is the graph
@@ -249,10 +248,14 @@ open class HistoryGraph: CustomStringConvertible {
         guard containsNode(shortcut) else {
             throw HistoryError.dontContainsNode
         }
+        
+        grid[shortcut.positionY, shortcut.positionX] = nil
 
         if let parent = shortcut.parent as? HistoryNode,
            let targetNode = shortcut.node {
             targetNode.shortcuts.removeAll(where: { $0 === shortcut})
+            nodes.removeAll(where: { $0 === shortcut})
+            
             parent.connections.removeAll { (connection) -> Bool in
                 guard let destinyNode = connection.destinyNode else {
                     return false

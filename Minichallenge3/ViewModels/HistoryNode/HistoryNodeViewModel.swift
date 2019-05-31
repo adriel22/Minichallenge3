@@ -11,6 +11,9 @@ import HistoryGraph
 class HistoryNodeViewModel {
     private var historyGraph: HistoryGraph
     private var historyNode: HistoryNodeProtocol?
+    
+    let isSelected: Bool
+    
     let currentState: HistoryGraphState
     lazy var optionName: String? = {
         guard let historyNode = historyNode,
@@ -45,9 +48,15 @@ class HistoryNodeViewModel {
         }
     }
 
-    init(withHistoryGraph historyGraph: HistoryGraph, andHistoryNode historyNode: HistoryNodeProtocol? = nil, withState state: HistoryGraphState) {
+    init(
+        withHistoryGraph historyGraph: HistoryGraph,
+        andHistoryNode historyNode: HistoryNodeProtocol? = nil,
+        withState state: HistoryGraphState,
+        isSelected: Bool = false) {
+        
         self.historyGraph = historyGraph
         self.historyNode = historyNode
         self.currentState = state
+        self.isSelected = isSelected
     }
 }

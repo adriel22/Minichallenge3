@@ -16,8 +16,9 @@ class RAMHistoryDAO: DAO {
         return RAMDatabase.shared.histories
     }
     
-    func save(element: HistoryGraph) {
+    func save(element: HistoryGraph) -> HistoryGraph? {
         RAMDatabase.shared.histories.append(element)
+        return element
     }
     
     func delete(element: HistoryGraph) {
@@ -26,16 +27,24 @@ class RAMHistoryDAO: DAO {
         }
     }
     
-    func get(elementWithID daoID: Int) -> HistoryGraph {
-        return RAMDatabase.shared.histories[daoID]
+    func get(elementWithID daoID: String) -> HistoryGraph? {
+        guard let intDAOID = Int(daoID),
+              intDAOID < RAMDatabase.shared.histories.count &&
+              intDAOID >= 0 else {
+            return nil
+        }
+        return RAMDatabase.shared.histories[intDAOID]
     }
     
-    func update(element: HistoryGraph, withID identifier: Int) {
-        guard identifier < RAMDatabase.shared.histories.count && identifier > 0 else {
-            return
+    func update(element: HistoryGraph) -> Bool {
+        let wrapper = RAMIdentifierWrapper(history: element)
+        guard wrapper.identifier < RAMDatabase.shared.histories.count && wrapper.identifier >= 0 else {
+            return false
         }
         
-        RAMDatabase.shared.histories.remove(at: identifier)
-        RAMDatabase.shared.histories.insert(element, at: identifier)
+        RAMDatabase.shared.histories.remove(at: wrapper.identifier)
+        RAMDatabase.shared.histories.insert(element, at: wrapper.identifier)
+        
+        return true
     }
 }

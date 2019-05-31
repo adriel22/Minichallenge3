@@ -61,6 +61,10 @@ class SinopseTextView: UITextView {
 }
 
 extension SinopseTextView: SinopseViewModelDelegate {
+    func needCurrentText() -> String {
+        return self.text ?? ""
+    }
+    
     func needSetCursor(toPosition positionOffset: Int) {
         if let positionOfCursor = position(from: beginningOfDocument, offset: positionOffset) {
             

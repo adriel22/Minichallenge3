@@ -12,4 +12,5 @@ protocol SinopseViewModelDelegate: AnyObject {
     func needSet(text: String)
     func needEndEdition()
     func needSetCursor(toPosition position: Int)
+    func needCurrentText() -> String
 }

@@ -27,13 +27,7 @@ public class HistoryNode: HistoryNodeProtocol {
     /// - Parameters:
     ///   - resume: the resume is a little text about the node history, used to the nodes previews
     ///   - text: the real history text for the node
-    public init(withResume resume: String, text: String, positionX: Int, andPositionY positionY: Int) {
-        if resume.isEmpty {
-            self.resume = nil
-        } else {
-            self.resume = resume
-        }
-        
+    public init(withResume resume: String?, text: String?, positionX: Int, andPositionY positionY: Int) {
         self.text = text
         self.positionX = positionX
         self.positionY = positionY
