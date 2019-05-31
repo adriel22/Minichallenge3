@@ -13,6 +13,16 @@ class BranchCollectionViewCell: UICollectionViewCell {
     private lazy var selectionBackground: UIView! = UIView(frame: .zero)
     private lazy var label: UILabel! = UILabel(frame: .zero)
     
+    override var isSelected: Bool {
+        didSet {
+            if isSelected {
+                select()
+            } else {
+                deselect()
+            }
+        }
+    }
+    
     var title: String? = "" {
         didSet {
             if let label = label {

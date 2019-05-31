@@ -65,7 +65,7 @@ class MyNarrativesViewModel {
         if let lastCliked = clickedCellIndex {
             clickedCellIndex = nil
             tableView.reloadRows(at: [lastCliked], with: .automatic)
-            
+            if lastCliked == indexPath { return }
         }
         clickedCellIndex = indexPath
         let cell = tableView.cellForRow(at: indexPath)
