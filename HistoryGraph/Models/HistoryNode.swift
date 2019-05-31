@@ -34,9 +34,32 @@ public class HistoryNode: HistoryNodeProtocol {
     }
 
     public func removeConnection(toNode node: HistoryNodeProtocol) {
-        connections.removeAll { currentConnection in
+        guard let connectionIndex = connectionIndex(toNode: node) else {
+            return
+        }
+        
+        connections[connectionIndex].destinyNode?.parent = nil
+        connections.remove(at: connectionIndex)
+    }
+    
+    public func connection(toNode node: HistoryNodeProtocol) -> HistoryConnection? {
+        guard let connectionIndex = connectionIndex(toNode: node) else {
+            return nil
+        }
+        
+        return connections[connectionIndex]
+    }
+    
+    public func connectionIndex(toNode node: HistoryNodeProtocol) -> Int? {
+        let nodeIndex = connections.firstIndex {currentConnection in
             currentConnection.destinyNode === node
         }
+        
+        guard let safeNodeIndex = nodeIndex else {
+            return nil
+        }
+        
+        return safeNodeIndex
     }
 
     public func connection(toPositionX positionX: Int, positionY: Int) -> HistoryConnection? {

@@ -11,7 +11,6 @@ import UIKit
 extension UIView {
     var snapshot: UIView {
         let selfShadowAtributtes = self.shadowAtributtes
-        
         //remove shadow to draw the view hierarchy
         self.layer.shadowOpacity = 0
         
@@ -28,7 +27,8 @@ extension UIView {
         imageView.center = self.center
         
         //place the shadow back
-        self.layer.shadowOpacity = self.shadowAtributtes.opacity
+        
+        self.layer.shadowOpacity = selfShadowAtributtes.opacity
         imageView.shadowAtributtes = selfShadowAtributtes
     
         return imageView

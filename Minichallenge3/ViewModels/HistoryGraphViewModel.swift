@@ -58,10 +58,11 @@ class HistoryGraphViewModel {
             return
         }
         do {
-            try self.historyGraph.removeNode(draggedNode)
-            draggedNode.positionX = destinyPosition.xPosition
-            draggedNode.positionY = destinyPosition.yPosition
-            try self.historyGraph.addNode(draggedNode)
+            try self.historyGraph.moveNode(
+                draggedNode,
+                toPositionX: destinyPosition.xPosition,
+                andPositionY: destinyPosition.yPosition
+            )
         } catch let error as HistoryError {
             delegate?.needShowError(message: error.rawValue)
         } catch {

@@ -150,7 +150,7 @@ open class HistoryGraph: CustomStringConvertible {
     /// add a node to the graph
     ///
     /// - Parameter node: the node
-    public func addNode(_ node: HistoryNodeProtocol) throws {
+    public func addNode(_ node: HistoryNodeProtocol, notifyAddition: Bool = true) throws {
 
         let existPosition: Bool = grid.hasPosition(yIndex: node.positionY, xIndex: node.positionX)
         let positionIsFree: Bool = grid[node.positionY, node.positionX] == nil
@@ -168,7 +168,9 @@ open class HistoryGraph: CustomStringConvertible {
 
         nodes.append(node)
         
-        grid.delegate?.addNode(inPosition: (node.positionX, node.positionY))
+        if notifyAddition {
+            grid.delegate?.addNode(inPosition: (node.positionX, node.positionY))
+        }
 
         addBordersToNode(node)
     }
@@ -265,6 +267,31 @@ open class HistoryGraph: CustomStringConvertible {
             }
         }
         grid.delegate?.removedShortcut(atPosition: (x: shortcut.positionX, y: shortcut.positionY))
+    }
+    
+    public func moveNode(_ node: HistoryNodeProtocol, toPositionX positionX: Int, andPositionY positionY: Int) throws {
+        let parentNode = node.parent
+        let normalNode = node as? HistoryNode
+        let parentNormalNode = parentNode as? HistoryNode
+        let parentNodeConnectionTitle = parentNormalNode?.connection(toNode: node)?.title
+        
+        try removeNode(node)
+        node.positionX = positionX
+        node.positionY = positionY
+        try addNode(node, notifyAddition: false)
+        
+        if let safeParentNormalNode = parentNormalNode {
+            safeParentNormalNode.removeConnection(toNode: node)
+            try addConnection(
+                fromNode: safeParentNormalNode,
+                toNode: node,
+                withTitle: parentNodeConnectionTitle ?? ""
+            )
+        }
+        
+        normalNode?.connections.forEach({ (currentConnection) in
+            currentConnection.destinyNode?.parent = normalNode
+        })
     }
 
     /// It checks the connection between two nodes
