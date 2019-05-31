@@ -91,6 +91,8 @@
 		E3C462DE2293914300699960 /* SinopseDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C462DD2293914300699960 /* SinopseDelegate.swift */; };
 		E3D5E654229F318300910463 /* UIView+snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D5E653229F318300910463 /* UIView+snapshot.swift */; };
 		E3D5E656229F3B5B00910463 /* UIView+shadowAtributtes.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D5E655229F3B5B00910463 /* UIView+shadowAtributtes.swift */; };
+		E3D5E65922A1C42B00910463 /* GraphViewBorderHover.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D5E65822A1C42B00910463 /* GraphViewBorderHover.swift */; };
+		E3D5E65B22A1C43900910463 /* GraphViewDragType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D5E65A22A1C43900910463 /* GraphViewDragType.swift */; };
 		FC0137E32294E7BB00C97229 /* AddRamificationTrasitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0137E22294E7BB00C97229 /* AddRamificationTrasitioningDelegate.swift */; };
 		FC017E40228E577E008979E7 /* AddRamificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC017E3F228E577E008979E7 /* AddRamificationViewModel.swift */; };
 		FC022736229329250059FBA5 /* MyNarrativesViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC022735229329250059FBA5 /* MyNarrativesViewModelDelegate.swift */; };
@@ -199,7 +201,7 @@
 		E32A37D22290B87800E2F8B1 /* SinopseLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SinopseLabel.swift; path = ../SinopseLabel.swift; sourceTree = "<group>"; };
 		E32A37D62290BC3B00E2F8B1 /* SinopseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinopseView.swift; sourceTree = "<group>"; };
 		E32A37D82290C2D700E2F8B1 /* HistoryGraphViewModelNodeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryGraphViewModelNodeType.swift; sourceTree = "<group>"; };
-		E32A37DB2290C65200E2F8B1 /* GraphViewItemEventHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GraphViewItemEventHandler.swift; path = ../GraphViewItemEventHandler.swift; sourceTree = "<group>"; };
+		E32A37DB2290C65200E2F8B1 /* GraphViewItemEventHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewItemEventHandler.swift; sourceTree = "<group>"; };
 		E32A37DE22917EB000E2F8B1 /* GraphViewConnectionEventHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewConnectionEventHandler.swift; sourceTree = "<group>"; };
 		E32A37E02291996F00E2F8B1 /* GraphViewDidLayoutType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewDidLayoutType.swift; sourceTree = "<group>"; };
 		E32A37E4229236FF00E2F8B1 /* GraphViewEventHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewEventHandler.swift; sourceTree = "<group>"; };
@@ -245,6 +247,8 @@
 		E3C462DD2293914300699960 /* SinopseDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinopseDelegate.swift; sourceTree = "<group>"; };
 		E3D5E653229F318300910463 /* UIView+snapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+snapshot.swift"; sourceTree = "<group>"; };
 		E3D5E655229F3B5B00910463 /* UIView+shadowAtributtes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+shadowAtributtes.swift"; sourceTree = "<group>"; };
+		E3D5E65822A1C42B00910463 /* GraphViewBorderHover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewBorderHover.swift; sourceTree = "<group>"; };
+		E3D5E65A22A1C43900910463 /* GraphViewDragType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewDragType.swift; sourceTree = "<group>"; };
 		FC0137E22294E7BB00C97229 /* AddRamificationTrasitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRamificationTrasitioningDelegate.swift; sourceTree = "<group>"; };
 		FC017E3F228E577E008979E7 /* AddRamificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRamificationViewModel.swift; sourceTree = "<group>"; };
 		FC022735229329250059FBA5 /* MyNarrativesViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNarrativesViewModelDelegate.swift; sourceTree = "<group>"; };
@@ -420,7 +424,7 @@
 		E32A37DD22917E6F00E2F8B1 /* Event Handlers */ = {
 			isa = PBXGroup;
 			children = (
-				E32A37DB2290C65200E2F8B1 /* GraphViewItemEventHandler.swift */,
+				E3D5E65722A1C40E00910463 /* Graph Item */,
 				E32A37DE22917EB000E2F8B1 /* GraphViewConnectionEventHandler.swift */,
 				E32A37E4229236FF00E2F8B1 /* GraphViewEventHandler.swift */,
 			);
@@ -588,6 +592,16 @@
 				FC022735229329250059FBA5 /* MyNarrativesViewModelDelegate.swift */,
 			);
 			path = MyNarratives;
+			sourceTree = "<group>";
+		};
+		E3D5E65722A1C40E00910463 /* Graph Item */ = {
+			isa = PBXGroup;
+			children = (
+				E32A37DB2290C65200E2F8B1 /* GraphViewItemEventHandler.swift */,
+				E3D5E65822A1C42B00910463 /* GraphViewBorderHover.swift */,
+				E3D5E65A22A1C43900910463 /* GraphViewDragType.swift */,
+			);
+			path = "Graph Item";
 			sourceTree = "<group>";
 		};
 		E63AF8B70B6E719FFBCF5BDE /* Pods */ = {
@@ -992,6 +1006,7 @@
 				3C200C33228D9E92002F7FAF /* NodePresentationTableViewCell.swift in Sources */,
 				FC02F5E7228D8E32008F0777 /* DetailsViewController.swift in Sources */,
 				FC02F5F3228DA510008F0777 /* AddRamificationsView.swift in Sources */,
+				E3D5E65B22A1C43900910463 /* GraphViewDragType.swift in Sources */,
 				FC02F5DA228D8B31008F0777 /* UITextView+addDoneButtonOnKeyboard.swift in Sources */,
 				FC0615F7229441AC00BF3946 /* DetailsViewModelDelegate.swift in Sources */,
 				FCB35490228065AF00AB7ED2 /* ViewController.swift in Sources */,
@@ -1037,6 +1052,7 @@
 				FC0615F9229441CB00BF3946 /* AddRamificationViewModelDelegate.swift in Sources */,
 				FC02F5EA228D8EA2008F0777 /* BranchCollectionViewCell.swift in Sources */,
 				E32A37CF2290A14A00E2F8B1 /* HistoryNodeViewModel.swift in Sources */,
+				E3D5E65922A1C42B00910463 /* GraphViewBorderHover.swift in Sources */,
 				E3617DB4229978AF00D1DD73 /* Encodable+encoded.swift in Sources */,
 				E3593096229438FA00F502BA /* DetailsViewModelTransitioningDelegate.swift in Sources */,
 				FC0137E32294E7BB00C97229 /* AddRamificationTrasitioningDelegate.swift in Sources */,

@@ -198,7 +198,6 @@ open class HistoryGraph: CustomStringConvertible {
     ///
     /// - Parameter node: the node the be removed
     public func removeNode(_ node: HistoryNodeProtocol) throws {
-        //rever com os shortcuts//revisto!!
         guard containsNode(node) else {
             throw HistoryError.dontContainsNode
         }
@@ -269,6 +268,13 @@ open class HistoryGraph: CustomStringConvertible {
         grid.delegate?.removedShortcut(atPosition: (x: shortcut.positionX, y: shortcut.positionY))
     }
     
+    /// Moves a node to the given position
+    ///
+    /// - Parameters:
+    ///   - node: the node to move
+    ///   - positionX: the position x
+    ///   - positionY: the position y
+    /// - Throws: <#throws value description#>
     public func moveNode(_ node: HistoryNodeProtocol, toPositionX positionX: Int, andPositionY positionY: Int) throws {
         let parentNode = node.parent
         let normalNode = node as? HistoryNode

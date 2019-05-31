@@ -13,7 +13,8 @@ class GraphViewItemEventHandler {
     weak var itemView: GraphItemView?
     weak var delegate: GraphViewDelegate?
     
-    var draggingInfo: (itemView: UIView?, originPosition: GridPosition?, dragType: GraphViewDragType?)
+    var draggingInfo: (itemView: UIView?, originPosition: GridPosition?)
+    var dragType: GraphViewDragType?
     var lastNearItems: [GraphItemView] = []
     var currentAutoScrollDirection: GraphViewBorderHover = .none
 
@@ -62,6 +63,12 @@ class GraphViewItemEventHandler {
         }
     }
     
+    /// It will create the snapshot view of the dragging node and decide the drag type.
+    ///
+    /// - Parameters:
+    ///   - recognizer: the longpress recognizer
+    ///   - context: the graph context
+    ///   - location: the tap location in container view
     func longPressDidBegin(
         recognizer: UILongPressGestureRecognizer,
         withContext context: Context,
@@ -76,7 +83,7 @@ class GraphViewItemEventHandler {
         itemView.isHidden = true
         
         context.graphView.containerView.addSubview(snapShortView)
-        self.draggingInfo = (snapShortView, positionForItem, nil)
+        self.draggingInfo = (snapShortView, positionForItem)
         
         guard context.datasource.connections(forGraphView: context.graphView, fromItemAtPosition: positionForItem).count == 0,
               context.datasource.parents(forGraphView: context.graphView, fromItemAtPosition: positionForItem).count == 0 else {
@@ -88,22 +95,30 @@ class GraphViewItemEventHandler {
             snapShortView.center.x = location.x
             snapShortView.center.y = itemCenterInContainer.y
                 
-            self.draggingInfo.dragType = .inline
+            self.dragType = .inline
             
             return
         }
         
         snapShortView.center = location
-        self.draggingInfo.dragType = .free
+        self.dragType = .free
     }
     
+    
+    /// It will move the node based on the finger position.
+    /// It will try to adjuste the dragging node view to the nearest free position.
+    ///
+    /// - Parameters:
+    ///   - recognizer: the long press recognizer
+    ///   - context: the graph context
+    ///   - location: the long press location in containerview
     func longPressDidChange(
         recognizer: UILongPressGestureRecognizer,
         withContext context: Context,
         andLocationInContainer location: CGPoint) {
         
         guard let draggingView = draggingInfo.itemView,
-              let dragType = self.draggingInfo.dragType else {
+              let dragType = self.dragType else {
             return
         }
         
@@ -145,63 +160,69 @@ class GraphViewItemEventHandler {
 //        autoScroll(recognizer: recognizer, withContext: context)
     }
     
-    func autoScroll(recognizer: UILongPressGestureRecognizer,
-                    withContext context: Context) {
-      
-        let fingerPosition = recognizer.location(in: context.graphView)
-        
-        var scrollOffset: CGPoint
-        
-        let autoScrollDirection = itemIsOnContainerBorders(atPoint: fingerPosition, borderMargin: 50)
-        
-        guard autoScrollDirection != self.currentAutoScrollDirection else {
-            return
-        }
-        
-        switch autoScrollDirection {
-        case .left:
-            scrollOffset = CGPoint(x: -50, y: 0)
-        case .right:
-            scrollOffset = CGPoint(x: 50, y: 0)
-        case .bottom:
-            scrollOffset = CGPoint(x: 0, y: 50)
-        case .top:
-            scrollOffset = CGPoint(x: 0, y: -50)
-        default:
-            scrollOffset = CGPoint.zero
-        }
-        
-//        context.graphView.setContentOffset(context.graphView.contentOffset + scrollOffset, animated: true)
-        
-        context.graphView.layer.removeAllAnimations()
-        
-        UIView.animate(withDuration: 0.2, delay: 0, options: .repeat, animations: {
-            let currentOffset = context.graphView.contentOffset
-            print(currentOffset)
-            context.graphView.contentOffset = currentOffset + scrollOffset
-        }) { (_) in
-
-        }
-        
-        self.currentAutoScrollDirection = autoScrollDirection
-
-//        guard newScrollOffset.x < context.graphView.contentSize.width &&
-//              newScrollOffset.y < context.graphView.contentSize.height else {
+//    func autoScroll(recognizer: UILongPressGestureRecognizer,
+//                    withContext context: Context) {
+//
+//        let fingerPosition = recognizer.location(in: context.graphView)
+//
+//        var scrollOffset: CGPoint
+//
+//        let autoScrollDirection = itemIsOnContainerBorders(atPoint: fingerPosition, borderMargin: 50)
+//
+//        guard autoScrollDirection != self.currentAutoScrollDirection else {
 //            return
 //        }
-        
-//        context.graphView.layer.removeAllAnimations()
-//        UIView.animate(withDuration: 0.2) {
-//            context.graphView.contentOffset = newScrollOffset
+//
+//        switch autoScrollDirection {
+//        case .left:
+//            scrollOffset = CGPoint(x: -50, y: 0)
+//        case .right:
+//            scrollOffset = CGPoint(x: 50, y: 0)
+//        case .bottom:
+//            scrollOffset = CGPoint(x: 0, y: 50)
+//        case .top:
+//            scrollOffset = CGPoint(x: 0, y: -50)
+//        default:
+//            scrollOffset = CGPoint.zero
 //        }
-//        print(context.graphView.layer.animationKeys())
+//
+////        context.graphView.setContentOffset(context.graphView.contentOffset + scrollOffset, animated: true)
+//
+//        context.graphView.layer.removeAllAnimations()
+//
 //        UIView.animate(withDuration: 0.2, delay: 0, options: .repeat, animations: {
-//            context.graphView.contentOffset = newScrollOffset
+//            let currentOffset = context.graphView.contentOffset
+//            print(currentOffset)
+//            context.graphView.contentOffset = currentOffset + scrollOffset
 //        }) { (_) in
 //
 //        }
-    }
+//
+//        self.currentAutoScrollDirection = autoScrollDirection
+//
+////        guard newScrollOffset.x < context.graphView.contentSize.width &&
+////              newScrollOffset.y < context.graphView.contentSize.height else {
+////            return
+////        }
+//
+////        context.graphView.layer.removeAllAnimations()
+////        UIView.animate(withDuration: 0.2) {
+////            context.graphView.contentOffset = newScrollOffset
+////        }
+////        print(context.graphView.layer.animationKeys())
+////        UIView.animate(withDuration: 0.2, delay: 0, options: .repeat, animations: {
+////            context.graphView.contentOffset = newScrollOffset
+////        }) { (_) in
+////
+////        }
+//    }
     
+    /// It will replace the items from the origin with the destiny positions.
+    ///
+    /// - Parameters:
+    ///   - recognizer: the long press recognizer
+    ///   - context: the graph context
+    ///   - location: the location of the long press
     func longPressDidEnd(
         recognizer: UILongPressGestureRecognizer,
         withContext context: Context,
@@ -224,6 +245,8 @@ class GraphViewItemEventHandler {
             return
         }
         
+        
+        /// this dispach group will limit the end of the operations to when all them have been finished.
         let replacingDispatchGroup = DispatchGroup()
         
         replacingDispatchGroup.enter()
@@ -252,6 +275,7 @@ class GraphViewItemEventHandler {
             }
         )
         
+        // all the replaces ares finished
         replacingDispatchGroup.notify(queue: .main) {
             self.delegate?.itemWasDragged(
                 fromPosition: dragOriginPosition,
@@ -259,7 +283,7 @@ class GraphViewItemEventHandler {
             )
         }
     }
-
+    
     @objc func itemWasTapped(recognizer: UITapGestureRecognizer) {
         guard let graphView = self.graphView,
               let itemView = self.itemView,
@@ -270,6 +294,12 @@ class GraphViewItemEventHandler {
         delegate?.itemWasSelectedAt(forGraphView: graphView, postion: positionForItem)
     }
     
+    /// Checks if the dragging item is near the graph view borders.
+    ///
+    /// - Parameters:
+    ///   - point: the current position of the dragging view.
+    ///   - borderMargin: the paramenter margin
+    /// - Returns: return the current positioning in the graphview
     func itemIsOnContainerBorders(atPoint point: CGPoint, borderMargin: CGFloat) -> GraphViewBorderHover {
         guard let graphView = self.graphView else {
             return .none
@@ -292,12 +322,4 @@ class GraphViewItemEventHandler {
         }
         return .none
     }
-}
-
-enum GraphViewBorderHover {
-    case left, right, top, bottom, none
-}
-
-enum GraphViewDragType {
-    case free, inline
 }
