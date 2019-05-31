@@ -26,12 +26,6 @@ class MyNarrativesViewController: UIViewController {
         return tableView
     }()
 
-    override func viewWillAppear(_ animated: Bool) {
-        navigationController?.navigationBar.barStyle = .black
-    }
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -55,6 +49,11 @@ class MyNarrativesViewController: UIViewController {
     
     override func loadView() {
         self.view = customView
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     @objc func addNarrative(_ sender: UIBarButtonItem) {
