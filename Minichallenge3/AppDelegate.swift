@@ -48,7 +48,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let story3 = HistoryNode(withResume: "RESUME", text: "Story 3", positionX: 3, andPositionY: 1)
         try? graph.addNode(story3)
-        try? graph.addConnection(fromNode: story2, toNode: story3, withTitle: "Other branch")
+        
+        let story4 = HistoryNode(withResume: "RESUME", text: "Story 4", positionX: 4, andPositionY: 1)
+        try? graph.addNode(story4)
+        
+        let story5 = HistoryNode(withResume: "RESUME", text: "Story 5", positionX: 1, andPositionY: 1)
+        try? graph.addNode(story5)
+        
+        let story6 = HistoryNode(withResume: "RESUME", text: "Story 6", positionX: 0, andPositionY: 1)
+        try? graph.addNode(story6)
+        
+        try? graph.addConnection(fromNode: story, toNode: story3, withTitle: "Other branch")
+        try? graph.addConnection(fromNode: story, toNode: story4, withTitle: "Other branch")
+        try? graph.addConnection(fromNode: story, toNode: story5, withTitle: "Other branch")
+        try? graph.addConnection(fromNode: story, toNode: story6, withTitle: "Other branch")
         
         let controller = PresentationViewController()
         controller.viewModel = PresentationViewModel(graph: graph, rootNode: story)
