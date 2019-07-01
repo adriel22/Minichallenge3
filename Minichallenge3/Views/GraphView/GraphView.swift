@@ -352,6 +352,36 @@ class GraphView: UIScrollView {
         }.first
     }
     
+    /// The items with lower distance to the pivot point
+    ///
+    /// - Parameter position: the pivot point
+    /// - Returns: the result items
+    func nearVisibleItems(atPosition position: CGPoint, onlyEmptyItems: Bool = false) -> [GraphItemView] {
+        return lineViews.flatMap { (currentLine) -> [GraphItemView] in
+            currentLine.itemViews.compactMap({ [weak self] (currentItem) -> GraphItemView? in
+                guard let self = self else {
+                    return nil
+                }
+                
+                let canIncludeItem = onlyEmptyItems ? currentItem is GraphItemEmptyView : true
+                let itemPositionInContainer = currentLine.convert(currentItem.center, to: self)
+                return self.bounds.contains(itemPositionInContainer) && canIncludeItem ? currentItem : nil
+            })
+        }.sorted { (item1, item2) -> Bool in
+            guard let item1Line = item1.parentLine, let item2Line = item2.parentLine else {
+                fatalError("GraphItem parent is missing.")
+            }
+            
+            let item1CenterInContainer = item1Line.convert(item1.center, to: containerView)
+            let item2CenterInContainer = item2Line.convert(item2.center, to: containerView)
+            
+            let item1DistanceToPivot = item1CenterInContainer.distanceTo(otherPoint: position)
+            let item2DistanceToPivot = item2CenterInContainer.distanceTo(otherPoint: position)
+            
+            return item1DistanceToPivot < item2DistanceToPivot
+        }
+    }
+    
     func isValidLine(position: Int, inGraphView graphView: GraphView, extraSize: Int = 0) -> Bool {
         let positionIsValid = position >= 0 && position < (graphView.lineViews.count + extraSize)
         return positionIsValid
@@ -384,9 +414,4 @@ class GraphView: UIScrollView {
             itemViewAtPosition.shake(repeatCount: 10)
         }
     }
-//
-//    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        super.touchesMoved(touches, with: event)
-//        print(event)
-//    }
 }
